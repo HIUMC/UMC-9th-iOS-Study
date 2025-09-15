@@ -37,8 +37,5 @@ UMC 9기 iOS 스터디
 | CI/CD:     | 배포 관련 설정, 워크플로우 구성 등                    |
 
 ### ✅ 커밋 예시 모음
-> chore: 프로젝트 초기 세팅 <br>
-> feat: 프로필 화면 UI 구현 <br>
-> fix: iOS 17에서 버튼 클릭 오류 수정 <br>
-> design: 로그인 화면 레이아웃 조정 <br>
-> docs: README에 프로젝트 소개 추가 <br>
+> feat: 화면 Navigation 연결
+> refactor: HomeView 구조 수정
