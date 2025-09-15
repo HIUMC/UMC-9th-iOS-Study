@@ -7,9 +7,11 @@ UMC 9기 iOS 스터디
 본인 닉네임
  ┣ week0
  ┃ ┣ week0_practice
- ┃ ┗ week0_homework
+ ┃ 
  ┣ week1
  ┃ ┗ week1_grammar
+ ┣ MEGABOX
+ ┃ ┗ week1_homework
  ┗ ...
 ``
 
