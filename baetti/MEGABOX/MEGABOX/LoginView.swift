@@ -88,6 +88,29 @@ struct LoginView: View {
     }
 }
 
-#Preview {
-    LoginView()
+enum PREVIEW_DEVICE_TYPE : String, CaseIterable {
+    case iPhone_16_Pro_Max = "iPhone 16 Pro Max"
+    case iPhone_11 = "iPhone 11"
+    
+    var previewDevice: PreviewDevice {
+        .init(rawValue: self.rawValue)
+    }
+}
+
+func devicePreviews<Content: View>(
+    content: @escaping () -> Content
+) -> some View {
+    ForEach(PREVIEW_DEVICE_TYPE.allCases, id: \.self) { device in
+        content()
+            .previewDevice(device.previewDevice)
+            .previewDisplayName(device.rawValue)
+    }
+}
+
+struct SwiftUIView_Preview: PreviewProvider {
+    static var previews: some View {
+        devicePreviews {
+            LoginView()
+        }
+    }
 }
