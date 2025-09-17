@@ -10,8 +10,11 @@ import SwiftUI
 struct SplashView: View {
     var body: some View {
         ZStack(alignment: .center){
+            Rectangle().foregroundStyle(Color.white)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea(edges: .all)
             Image(.meboxLogo1)
-        }.background(Color.white)
+        }
     }
 }
     
