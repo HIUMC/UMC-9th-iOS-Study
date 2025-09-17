@@ -11,8 +11,8 @@ struct SplashView: View {
     var body: some View {
         ZStack(alignment: .center){
             Rectangle()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .foregroundStyle(Color.white)
-            
             Logo
         }
     }
