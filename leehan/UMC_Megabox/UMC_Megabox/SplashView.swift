@@ -11,6 +11,7 @@ struct SplashView: View {
     var body: some View {
         ZStack(alignment: .center){
             Rectangle()
+                .ignoresSafeArea()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .foregroundStyle(Color.white)
             Logo
@@ -19,6 +20,8 @@ struct SplashView: View {
     
     private var Logo: some View {
         Image("megaboxLogo")
+            .resizable()
+            .scaledToFit()
             .frame(width: 249, height: 84)
     }
 }
