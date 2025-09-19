@@ -29,15 +29,15 @@ struct LoginView: View {
             UMCadvertisement // 'UMC 홍보'
         }.padding() // 상화좌우 여백을 VStack에 Padding()으로 구현
                     // 기기가 바뀌어도 어느정도 비율 유지
-    }
+    } // end of body
     
     private var topGroup: some View {
         HStack {
             Text("로그인")
-                .font(.SemiBold24)
+                .font(.PretendardSemiBold(size: 24))
                 .foregroundStyle(.black)
         }
-    }
+    } // end of topGroup
     
     private var enterGroup: some View {
         
@@ -49,7 +49,7 @@ struct LoginView: View {
         VStack {
             HStack {
                 Text("아이디")
-                    .font(.medium16)
+                    .font(.PretendardMedium(size: 16))
                     .foregroundStyle(.gray03)
                 Spacer()
             }
@@ -66,7 +66,7 @@ struct LoginView: View {
             
             HStack {
                 Text("비밀번호")
-                    .font(.medium16)
+                    .font(.PretendardMedium(size: 16))
                     .foregroundStyle(.gray03)
                 Spacer()
             }
@@ -76,7 +76,7 @@ struct LoginView: View {
                 .frame(height: 1)
                 .foregroundStyle(.gray02)
         }
-    }
+    } // end of enterGroup
     
     
     private var loginBtn: some View {
@@ -91,20 +91,20 @@ struct LoginView: View {
                     .foregroundStyle(.purple03)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                 Text("로그인")
-                    .font(.Bold18)
+                    .font(.PretendardBold(size: 18))
                     .foregroundStyle(.white)
             }
         }
-    }
+    } // end of loginBtn
     
     
     private var signupBtn: some View {
         Button(action: {}) {
             Text("회원가입")
-                .font(.medium13)
+                .font(.PretendardMedium(size: 13))
                 .foregroundStyle(.gray03)
         }
-    }
+    } // end of signupBtn
     
     
     private var socialLoginBtn: some View {
@@ -133,19 +133,15 @@ struct LoginView: View {
             
             Spacer()
         }
-    }
-    
+    } // end of socialLoginBtn
     
     private var UMCadvertisement: some View {
         Image("advertisement")
             .resizable()
             .scaledToFit() // 원본 이미지 비율을 해치치 않으면서 화면에 맞게 조정
             .frame(height: 266)
-    }
-    
+    } //end of UMCadvertisement
 }
-        
-
 
 #Preview {
     LoginView()
