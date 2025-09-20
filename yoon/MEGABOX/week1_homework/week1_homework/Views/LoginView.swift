@@ -12,12 +12,15 @@ struct LoginView: View {
         VStack{
             TopBanner
             
-            Spacer()
+            Spacer().frame(height: 157)
             
             LoginInput
             
+            Spacer().frame(height: 35)
+            
             SocialLogin
             
+            Spacer().frame(height: 39)
             
             UMCImage
                 
@@ -33,13 +36,19 @@ struct LoginView: View {
             TextField("아이디", text: .constant("")) // constant: 임시값
                 .padding(.bottom,4)
                 .foregroundStyle(.gray03)
+            
             Divider().foregroundStyle(.gray02)
+            
             Spacer().frame(height: 40)
+            
             TextField("비밀번호",text: .constant(""))
                 .padding(.bottom,4)
                 .foregroundStyle(.gray03)
+            
             Divider().foregroundStyle(.gray02)
-                .padding(.bottom,75)
+            
+            Spacer().frame(height:75)
+            
             Button(action: {
                 print("로그인 클릭")
             }
@@ -51,10 +60,10 @@ struct LoginView: View {
                     .background(.purple03)
                     .foregroundStyle(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .padding(.bottom, 17)
+                    
                     
             }
-              
+            Spacer().frame(height:17)
             
             Text("회원가입").font(.Pretendardmedium13)
                 .foregroundStyle(.gray04)
@@ -62,16 +71,15 @@ struct LoginView: View {
     }
     private var SocialLogin:some View {
         HStack{
-            Spacer()
-            Image(.loginBtn)
+            Spacer().frame(width:71)
+            Image(.kakaoLogin)
            Spacer()
-            Image(.loginBtn1)
+            Image(.appleLogin)
             Spacer()
-            Image(.loginBtn2)
-            Spacer()
+            Image(.naverLogin)
+            Spacer().frame(width:71)
         }
-        .padding(.top, 35)
-        .padding(.bottom, 39)
+    
     }
     private var UMCImage:some View {
         Image(.UMC)
