@@ -52,6 +52,8 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		611890D52E7FB69700243C23 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
+		611890D62E7FB69D00243C23 /* ViewModels */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModels; sourceTree = "<group>"; };
 		6191AD9E2E782B6100F6F18F /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
 		6191ADA32E782B9800F6F18F /* Resources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Resources; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -86,6 +88,8 @@
 		1655454AFDF6D7FC7B4E361F /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				611890D62E7FB69D00243C23 /* ViewModels */,
+				611890D52E7FB69700243C23 /* Models */,
 				6191ADA32E782B9800F6F18F /* Resources */,
 				6191AD9E2E782B6100F6F18F /* Views */,
 				FBDC5358BCC565CEC81BDBD1 /* MegaBoxApp.swift */,
@@ -173,6 +177,8 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				611890D52E7FB69700243C23 /* Models */,
+				611890D62E7FB69D00243C23 /* ViewModels */,
 				6191AD9E2E782B6100F6F18F /* Views */,
 				6191ADA32E782B9800F6F18F /* Resources */,
 			);

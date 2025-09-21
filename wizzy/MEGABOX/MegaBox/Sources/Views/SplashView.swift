@@ -11,12 +11,14 @@ struct SplashView: View {
     var body: some View {
         ZStack(alignment: .center) {
             Rectangle()
+                .ignoresSafeArea()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .foregroundStyle(Color.white)
             Image(.megaboxLogo1)
                 .resizable()
                 .frame(width: 249, height: 84)
         }
+        
     }
 }
 

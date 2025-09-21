@@ -4,7 +4,7 @@ import SwiftUI
 struct MegaBoxApp: App {
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            ProfileManageView()
         }
     }
 }
