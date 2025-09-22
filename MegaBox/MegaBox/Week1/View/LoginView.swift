@@ -13,13 +13,14 @@ struct LoginView: View {
             Text("로그인")
                 .font(.pretendardSemiBold(24))
                 .padding(.top, 10)
+                .foregroundStyle(.black00)
             
             Spacer() //공간 분리
                 
             VStack(spacing: 20) {
                 TextField("아이디", text: .constant(""))
                     .font(.pretendardMedium(16))
-                    .foregroundColor(Color("gray03"))
+                    .foregroundStyle(.gray03)
                  
                 
                 Divider()
