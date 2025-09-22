@@ -9,7 +9,7 @@ import SwiftUI
 import Foundation
 
 struct UserInfoView: View {
-    @AppStorage("id") private var id: String = ""
+    @AppStorage("name") private var name: String = ""
     
     var body: some View {
         VStack {
@@ -40,7 +40,7 @@ struct UserInfoView: View {
             /* 상단 HStack */
             HStack {
                 /* ~~~ 님 */
-                Text("\(id)님")
+                Text("\(name)님")
                     .font(.PretendardBold(size: 24))
                 
                 /* WELCOME */
@@ -55,7 +55,9 @@ struct UserInfoView: View {
                 Spacer()
                 
                 /* 회원정보 버튼 */
-                Button( action: {} ) {
+                
+                
+                Button( action: { } ) {
                     RoundedRectangle(cornerRadius: 16)
                         .foregroundStyle(.gray07)
                         .frame(width: 72, height: 28)
