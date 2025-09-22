@@ -28,7 +28,7 @@ struct LoginView: View {
 
                 TextField("비밀번호", text: .constant(""))
                     .font(.pretendardMedium(16))
-                    .foregroundColor(Color("gray03"))
+                    .foregroundStyle(Color("gray03"))
                 
                 Divider()
             }
@@ -46,7 +46,7 @@ struct LoginView: View {
           
             Button(action: {}) {
                 Text("회원가입")
-                    .foregroundColor(Color("gray04"))
+                    .foregroundStyle(Color("gray04"))
                     .font(.pretendardMedium(13))
             
             }
@@ -76,7 +76,7 @@ struct LoginView: View {
                     Image("appleLogin")
                         .resizable()
                         .frame(width: 40, height: 40)
-                        .foregroundColor(.black)
+                        .foregroundStyle(.black)
                 }
             }
             .padding(.top, 8)
