@@ -6,8 +6,17 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct LoginView: View {
+    @Bindable var loginInput: LoginViewModel
+    @AppStorage("idinfo") private var idinfo : String = ""
+    @AppStorage("pwdinfo") private var pwdinfo : String = ""
+    
+    init(loginInput: LoginViewModel) {
+        self.loginInput = loginInput
+    }
+    // 초깃값을 LoginViewModel의 초깃값으로 설정
     var body: some View {
         VStack{
             TopBanner
@@ -26,14 +35,16 @@ struct LoginView: View {
                 
         }.padding(.horizontal, 16)
     }
+    
     private var TopBanner:some View {
         HStack{
             Text("로그인").font(.PretendardsemiBold24)
         }
     }
+    
     private var LoginInput:some View {
         VStack{
-            TextField("아이디", text: .constant("")) // constant: 임시값
+            TextField("아이디", text: $loginInput.loginModel.id)
                 .padding(.bottom,4)
                 .foregroundStyle(.gray03)
             
@@ -41,7 +52,7 @@ struct LoginView: View {
             
             Spacer().frame(height: 40)
             
-            TextField("비밀번호",text: .constant(""))
+            SecureField("비밀번호",text: $loginInput.loginModel.pwd)
                 .padding(.bottom,4)
                 .foregroundStyle(.gray03)
             
@@ -50,7 +61,8 @@ struct LoginView: View {
             Spacer().frame(height:75)
             
             Button(action: {
-                print("로그인 클릭")
+                self.idinfo = self.loginInput.loginModel.id
+                self.pwdinfo = self.loginInput.loginModel.pwd
             }
             ) {
                 Text("로그인")
@@ -61,7 +73,6 @@ struct LoginView: View {
                     .foregroundStyle(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     
-                    
             }
             Spacer().frame(height:17)
             
@@ -69,6 +80,7 @@ struct LoginView: View {
                 .foregroundStyle(.gray04)
         }
     }
+    
     private var SocialLogin:some View {
         HStack{
             Spacer().frame(width:71)
@@ -81,18 +93,28 @@ struct LoginView: View {
         }
     
     }
+    
     private var UMCImage:some View {
         Image(.UMC)
             .resizable()
             .scaledToFit()
     }
+    
+    private var ProfileHeader:some View {
+        HStack {
+            Text(idinfo)
+            Text("WELCOME")
+                .font(.Pretendardmedium14)
+                .background(.tag)
+        }
+    }
+    
 }
-
 
 struct Login_Preview: PreviewProvider {
     static var previews: some View {
         devicePreviews {
-            LoginView()
+            LoginView(loginInput: LoginViewModel())
         }
     }
 }
