@@ -6,9 +6,15 @@
 //
 
 import SwiftUI
-
+import Observation
 
 struct LoginView: View {
+    /* @AppStorage를 이용해 저장할 값 작성 */
+    @AppStorage("id") private var id: String = ""
+    @AppStorage("pwd") private var pwd: String = ""
+    /* @State를 이용해 LoginView에서 인스턴스 생성 */
+    @State var viewModel = LoginViewModel()
+    
     var body: some View {
         VStack {
             topGroup // '로그인' 텍스트
@@ -43,17 +49,15 @@ struct LoginView: View {
         
         /*
          VStack을 이용해 아이디와 비밀번호가 수직으로 배치되게 함
-         텍스트들은 HStack과 Spacer()를 활용헤 좌로 밀착
          텍스트 사이에 Divider()로 분리선 구현
         */
         VStack {
-            HStack {
-                Text("아이디")
-                    .font(.PretendardMedium(size: 16))
-                    .foregroundStyle(.gray03)
-                Spacer()
-            }
             
+            /* $ 기호를 활용하여 Binding */
+            /* TextField, SecureField는 Binding값을 요구함
+             값을 "읽기"만 하는게 아니라 "쓰기"도 해야하기 때문 */
+            TextField("아이디", text: $viewModel.loginModel.id)
+                .frame(width: 408, height: 24)
             
             Divider()
                 .frame(height: 1)
@@ -63,15 +67,10 @@ struct LoginView: View {
             Spacer()
                 .frame(height: 40)
             
-            
-            HStack {
-                Text("비밀번호")
-                    .font(.PretendardMedium(size: 16))
-                    .foregroundStyle(.gray03)
-                Spacer()
-            }
-            
-            
+            /* 보안 입력을 위해 SecureField 사용 */
+            SecureField("비밀번호", text: $viewModel.loginModel.pwd)
+                .frame(width: 408, height: 24)
+                
             Divider()
                 .frame(height: 1)
                 .foregroundStyle(.gray02)
@@ -84,7 +83,9 @@ struct LoginView: View {
          로그인 버튼은 ZStack으로 배경을 만들어줌
          배경을 적절히 꾸미고 그 위에 텍스트 컴포넌트를 올려줌
          */
-        Button(action: {}) {
+        Button(action: { /* 아이디와 비밀번호 저장 */
+            id = viewModel.loginModel.id
+            pwd = viewModel.loginModel.pwd }) {
             ZStack {
                 Rectangle()
                     .frame(height: 54)
