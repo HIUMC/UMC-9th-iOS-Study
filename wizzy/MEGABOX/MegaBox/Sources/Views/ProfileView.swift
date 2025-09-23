@@ -74,7 +74,9 @@ struct ProfileView: View {
                     .frame(height: 46)
                     .foregroundStyle(LinearGradient(
                         colors:
-                            [Color.linearColor1, Color.linearColor2, Color.linearColor3],
+                            [Color.linearColor1,
+                             Color.linearColor2,
+                             Color.linearColor3],
                         startPoint: .leading,
                         endPoint: .trailing
                     ))
@@ -92,6 +94,7 @@ struct ProfileView: View {
         }
     }
     
+    //MARK: - 쿠폰 / 스토어 교환권 / 모바일 티켓
     
     private var CouponView: some View {
         HStack(spacing: 0) {
@@ -136,16 +139,20 @@ struct ProfileView: View {
                     .font(.PretendardSemiBold18)
                     .foregroundStyle(.black)
             }
-            
-            
         }
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 24)
         .padding(.vertical, 12)
         .background(Color.white)
-        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+        .clipShape(
+            RoundedRectangle(
+                cornerRadius: 8,
+                style: .continuous))
         .overlay(
-            RoundedRectangle(cornerRadius: 8, style: .continuous)
+            RoundedRectangle(
+                cornerRadius: 8,
+                style: .continuous
+            )
                 .stroke(Color.gray02, lineWidth: 0.5)
         )
         
