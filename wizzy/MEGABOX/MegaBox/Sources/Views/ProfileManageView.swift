@@ -12,7 +12,7 @@ struct ProfileManageView: View {
     @AppStorage("name") private var storedName: String = "name"
     @Environment(\.dismiss) private var dismiss
     
-    @State private var tempName: String = ""
+    @State private var tempName: String = "" /// 이게 최선인가?
     
     var body: some View {
         VStack(spacing: 0) {
@@ -25,7 +25,7 @@ struct ProfileManageView: View {
     }
     
     
-    
+    //MARK: - 상단 바
     private var TopBarView: some View {
         HStack(alignment: .center, spacing: 0) {
             Button(action: {
