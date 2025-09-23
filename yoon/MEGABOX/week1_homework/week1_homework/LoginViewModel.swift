@@ -9,7 +9,7 @@ import Foundation
 
 @Observable
 class LoginViewModel {
-    var loginModel = LoginModel(id: "", pwd: "")
+    var loginModel = LoginModel(id: "", pwd: "", name: "")
     // LoginModel의 양식을 받아와서 초깃값 설정
 }
 
