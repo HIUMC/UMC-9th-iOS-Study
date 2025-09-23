@@ -8,7 +8,7 @@
 import SwiftUI
 import Foundation
 
-struct ManageUserInfo: View {
+struct ManageUserInfoView: View {
     @AppStorage("id") private var id = ""
     @AppStorage("name") private var name = ""
     /* TextField 에서 입력받은 텍스트 임시저장, Button의 action으로 임시저장한 State 변수를 Appstorage로 */
@@ -100,5 +100,5 @@ struct ManageUserInfo: View {
 
 
 #Preview {
-    ManageUserInfo()
+    ManageUserInfoView()
 }

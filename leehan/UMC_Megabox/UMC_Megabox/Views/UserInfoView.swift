@@ -55,8 +55,6 @@ struct UserInfoView: View {
                 Spacer()
                 
                 /* 회원정보 버튼 */
-                
-                
                 Button( action: { } ) {
                     RoundedRectangle(cornerRadius: 16)
                         .foregroundStyle(.gray07)
