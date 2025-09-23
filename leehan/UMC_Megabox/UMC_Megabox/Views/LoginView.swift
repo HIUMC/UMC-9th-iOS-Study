@@ -57,7 +57,6 @@ struct LoginView: View {
             /* TextField, SecureField는 Binding값을 요구함
              값을 "읽기"만 하는게 아니라 "쓰기"도 해야하기 때문 */
             TextField("아이디", text: $viewModel.loginModel.id)
-                .frame(width: 408, height: 24)
             
             Divider()
                 .frame(height: 1)
@@ -69,7 +68,6 @@ struct LoginView: View {
             
             /* 보안 입력을 위해 SecureField 사용 */
             SecureField("비밀번호", text: $viewModel.loginModel.pwd)
-                .frame(width: 408, height: 24)
                 
             Divider()
                 .frame(height: 1)

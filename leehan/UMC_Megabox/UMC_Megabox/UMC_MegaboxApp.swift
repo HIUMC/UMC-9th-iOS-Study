@@ -11,7 +11,7 @@ import SwiftUI
 struct UMC_MegaboxApp: App {
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            UserInfoView()
         }
     }
 }
