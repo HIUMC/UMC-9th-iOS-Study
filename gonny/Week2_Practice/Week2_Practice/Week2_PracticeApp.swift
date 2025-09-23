@@ -11,7 +11,7 @@ import SwiftUI
 struct Week2_PracticeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MovieView()
         }
     }
 }
