@@ -7,6 +7,14 @@
 import SwiftUI
 
 struct LoginView: View {
+    //로그인 뷰모델에서 바인딩 받은 값
+    @State private var viewModel = LoginViewModel()
+       
+ 
+    // 과제 요구: AppStorage에 아이디와 비밀번호 저장
+    @AppStorage("userId") private var savedId: String = ""
+    @AppStorage("userPwd") private var savedPwd: String = ""
+    
     var body: some View {
         VStack(spacing: 24) {
     
@@ -18,7 +26,7 @@ struct LoginView: View {
             Spacer() //공간 분리
                 
             VStack(spacing: 20) {
-                TextField("아이디", text: .constant(""))
+                TextField("아이디", text: $viewModel.loginModel.id)
                     .font(.pretendardMedium(16))
                     .foregroundStyle(.gray03)
                  
@@ -26,7 +34,7 @@ struct LoginView: View {
                 Divider()
 
 
-                TextField("비밀번호", text: .constant(""))
+                SecureField("비밀번호", text: $viewModel.loginModel.pwd)
                     .font(.pretendardMedium(16))
                     .foregroundStyle(Color("gray03"))
                 
@@ -35,7 +43,10 @@ struct LoginView: View {
             .padding(.horizontal, 24)
 
             // 로그인 버튼
-            Button(action: {}) {
+            Button(action: {
+                savedId = viewModel.loginModel.id
+                savedPwd = viewModel.loginModel.pwd
+            }) {
                 Image("login")
                     .resizable()
                     .frame(width: 380, height: 54)
