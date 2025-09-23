@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct LoginView: View {
+    // 과제 전용 저장소
+    @AppStorage("id") var id: String = ""
+    @AppStorage("pwd") var pwd: String = ""
+    @State private var viewModel = LoginViewModel()
+    
     var body: some View {
+        @Bindable var viewModel = viewModel
         VStack {
             navigationBar
             Spacer()
@@ -36,32 +42,37 @@ struct LoginView: View {
     
     private var InputSection: some View {
         VStack(alignment:.leading){
-            
-            Text("아이디")
+
+            TextField("아이디", text: $viewModel.id)
                 .font(.medium16)
                 .foregroundColor(.gray03)
                 .padding(.bottom, 4)
-            
+
             Divider()
                 .padding(.bottom, 40)
-            
-            Text("비밀번호")
+
+            SecureField("비밀번호", text: $viewModel.pwd)
                 .font(.medium16)
                 .foregroundColor(.gray03)
                 .padding(.bottom, 4)
+
             Divider()
         }
     }
     
     private var LoginButton: some View {
         VStack(alignment:.center) {
-            Button(action: {}) {
+            Button(action: {
+                id = viewModel.id
+                pwd = viewModel.pwd
+                print("id: \(viewModel.id), pwd: \(viewModel.pwd)")
+            }) {
                 Text("로그인")
                     .font(.bold18)
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity, maxHeight: 54)
                     .background(Color.purple03)
-                    .cornerRadius(10)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
             }
             .padding(.bottom, 17)
             
@@ -84,7 +95,7 @@ struct LoginView: View {
     private var BannerSection: some View {
         Image("loginBanner")
             .resizable()
-            .aspectRatio(contentMode: .fit)
+            .scaledToFit()
     }
 }
 
