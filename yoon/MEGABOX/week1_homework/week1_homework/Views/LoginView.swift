@@ -128,10 +128,16 @@ struct LoginView: View {
         HStack{
             Spacer().frame(width:71)
             Image(.kakaoLogin)
+                .resizable()
+                .frame(width:40,height:40)
             Spacer()
             Image(.appleLogin)
+                .resizable()
+                .frame(width:40,height:40)
             Spacer()
             Image(.naverLogin)
+                .resizable()
+                .frame(width:40,height:40)
             Spacer().frame(width:71)
         }
         
