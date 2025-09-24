@@ -10,15 +10,19 @@ import SwiftUI
 struct LoginView: View {
     var body: some View {
         VStack{
+            Spacer().frame(height:44)
             navigationBarTitle
-            Spacer()
+            Spacer().frame(height:125)
             idPasswordView
-            Spacer().frame(height:74)
+            Spacer().frame(height:35)
             loginButton
+            Spacer().frame(height:17)
+            signUpText
             Spacer().frame(height:35)
             socialLogin
             Spacer().frame(height:39)
             umcPoster
+            Spacer()
         }
         .padding()
     }
@@ -27,7 +31,7 @@ struct LoginView: View {
     private var navigationBarTitle: some View {
         HStack(alignment: .center){
             Text("로그인")
-                .font(.PretendardBold(size: 24))
+                .font(.PretendardSemiBold(size: 24))
         }//HStack_end
     }
     
@@ -51,37 +55,59 @@ struct LoginView: View {
         
     }
     
+    //로그인버튼
     private var loginButton: some View{
         VStack{
-            RoundedRectangle(cornerRadius:10)
-                .foregroundStyle(.purple03)
-                .frame(height:54)
-                .overlay(
-                    Text("로그인") // 겹쳐 올릴 텍스트
+            Button(action: { /* 로그인 액션 */ }) {
+                    Text("로그인")
+                        .font(.PretendardBold(size: 18))
                         .foregroundStyle(.white)
-                        .font(.PretendardBold(size: 18)))
+                        .frame(maxWidth: .infinity, minHeight: 54)
+                        .background(RoundedRectangle(cornerRadius: 10).fill(.purple03))
+                }
+                .buttonStyle(.plain)
             //로그인 버튼 ZStack으로 구현 해도 됨 -> 이렇게 하면 center 정렬 더 정확하게 맞추어짐
             
-            Spacer().frame(height:17)
             
-            Text("회원가입")
-                .foregroundStyle(.gray04)
-                .font(.PretendardRegular(size: 13))
         }//VStack_end
     }
     
+    //회원가입
+    private var signUpText : some View{
+        Text("회원가입")
+            .foregroundStyle(.gray04)
+            .font(.PretendardRegular(size: 13))
+    }
+    
+    //소셜로그인
     private var socialLogin: some View{
         HStack{
+           
             Spacer().frame(width:71)
-            Image(.naverLogin)
+            Button(action: {
+                /*소셜로그인*/
+            }) {
+                Image(.naverLogin)
+            }
             Spacer()
-            Image(.kakaoLogin)
+            Spacer().frame(width:71)
+            Button(action: {
+                /*소셜로그인*/
+            }) {
+                Image(.kakaoLogin)
+            }
             Spacer()
-            Image(.appleLogin)
+            Spacer().frame(width:71)
+            Button(action: {
+                /*소셜로그인*/
+            }) {
+                Image(.appleLogin)
+            }
             Spacer().frame(width:71)
         }
     }
     
+    //umc 포스터
     private var umcPoster: some View{
         Image(.umc)
             .resizable()

@@ -10,10 +10,13 @@ import SwiftUI
 struct SplashView: View {
     var body: some View {
         ZStack(alignment: .center){
-            Color(.white)
+            //배경색
+            Color(.white01)
             
             VStack{
+                //로고
                 Image(.megaboxLogo)
+                //사진 속성에 추가해야 하는 확장자
                     .resizable()
                     .scaledToFit()
                     .frame(width: 249, height: 84)
