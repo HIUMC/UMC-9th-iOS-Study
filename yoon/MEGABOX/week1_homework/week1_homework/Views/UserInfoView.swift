@@ -97,7 +97,6 @@ struct UserInfoView: View {
         }.clipShape(RoundedRectangle(cornerRadius: 8))
         
     }
-    //MARK: -
     private var StatusInfo:some View {
         
         HStack(spacing:43){
@@ -136,7 +135,9 @@ struct UserInfoView: View {
         }.frame(maxWidth:.infinity)
             .padding(.horizontal,24)
             .padding(.vertical,12)
-            .background(RoundedRectangle(cornerRadius: 8).stroke(Color.gray02,lineWidth: 1)) // 스택에 background 쓰면 안댐
+            .background{RoundedRectangle(cornerRadius: 8).stroke(Color.gray02,lineWidth: 1)}
+        // 스택에 background 쓰면 안댐 (deprecated)
+        // ()로 묶으면 deprecated, {}로 묶으면 사용 가능?
          
     }
     

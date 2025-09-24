@@ -13,6 +13,7 @@ struct UserSettingsView: View {
     @AppStorage("pwdinfo") private var pwdinfo : String = ""
     @AppStorage("nameinfo") private var nameinfo : String = ""
     @State private var newname: String = ""
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack{
@@ -38,7 +39,7 @@ struct UserSettingsView: View {
     private var NavigationBar: some View {
         VStack{
             HStack{
-                Button(action: {
+                Button(action: {dismiss()
                 }){Text(Image(systemName: "arrow.left")).foregroundStyle(.black)}
                     
                 Spacer()
@@ -54,7 +55,7 @@ struct UserSettingsView: View {
         VStack{
             TextField("아이디", text: $idinfo)
                 .disabled(true) // 텍스트로 줘도 댐
-                .padding(.bottom, 3) // 패딩 주는게 맞어요? 피그마랑 너무 차이나는데
+                .padding(.bottom, 3) 
             
             Divider()
             
@@ -67,7 +68,7 @@ struct UserSettingsView: View {
                     self.nameinfo = self.newname
                 }){Text("변경").font(.Pretendardmedium10).foregroundStyle(.gray03)
                         .frame(width:38,height:20)
-                    .background(RoundedRectangle(cornerRadius: 16).stroke(Color.gray03,lineWidth: 1))}
+                    .background{RoundedRectangle(cornerRadius: 16).stroke(Color.gray03,lineWidth: 1)}}
             }.padding(.bottom, 3)
             
             Divider()
