@@ -16,9 +16,8 @@ extension Font {
         case medium
         case regular
         case light
-        case black
-        case thin
         case extraLight
+        case thin
         
         var value: String {
             switch self {
@@ -34,12 +33,10 @@ extension Font {
                 return "Pretendard-Regular"
             case .light:
                 return "Pretendard-Light"
-            case .black:
-                return "Pretendard-Black"
+            case .extraLight:
+                return "Pretendard-ExtraLight"
             case .thin:
                 return "Pretendard-Thin"
-            case.extraLight:
-                return "Pretendard-ExtraLight"
             }
         }
     }
@@ -48,80 +45,44 @@ extension Font {
         return .custom(type.value, size: size)
     }
     
-    static var PretendardBold30: Font {
-        return .pretend(type: .bold, size: 30)
+    static func PretendardBold(size: CGFloat) -> Font {
+        return .pretend(type: .bold, size: size)
     }
-    static var PretendardExtraBold24: Font {
-        return .pretend(type: .extraBold, size: 24)
+    
+    static func PretendardMedium(size: CGFloat) -> Font {
+        return .pretend(type: .medium, size: size)
     }
-    static var PretendardBold18: Font {
-        return .pretend(type: .bold, size: 18)
+    
+    static func PretendardExtraBold(size: CGFloat) -> Font {
+        return .pretend(type: .extraBold, size: size)
     }
-    static var PretendardBold22: Font {
-        return .pretend(type: .bold, size: 22)
+    
+    static func PretendardRegular(size: CGFloat) -> Font {
+        return .pretend(type: .regular, size: size)
     }
-    static var PretendardBold24: Font {
-        return .pretend(type: .bold, size: 24)
+    
+    static func PretendardSemiBold(size: CGFloat) -> Font {
+        return .pretend(type: .semibold, size: size)
     }
-    static var PretendardSemiBold38: Font {
-        return .pretend(type: .semibold, size: 38)
+    
+    static func PretendardLight(size: CGFloat) -> Font {
+        return .pretend(type: .medium, size: size)
     }
-    static var PretendardSemiBold24: Font {
-        return .pretend(type: .semibold, size: 24)
+    
+    static func PretendardExtraLight(size: CGFloat) -> Font {
+        return .pretend(type: .extraLight, size: size)
     }
-    static var PretendardSemiBold18: Font {
-        return .pretend(type: .semibold, size: 18)
-    }
-    static var PretendardSemiBold16: Font {
-        return .pretend(type: .semibold, size: 16)
-    }
-    static var PretendardSemiBold14: Font {
-        return .pretend(type: .semibold, size: 14)
-    }
-    static var PretendardSemiBold13: Font {
-        return .pretend(type: .semibold, size: 13)
-    }
-    static var PretendardSemiBold12: Font {
-        return .pretend(type: .semibold, size: 12)
-    }
-    static var PretendardRegular20: Font {
-        return .pretend(type: .regular, size: 20)
-    }
-    static var PretendardRegular18: Font {
-        return .pretend(type: .regular, size: 18)
-    }
-    static var PretendardRegular13: Font {
-        return .pretend(type: .regular, size: 13)
-    }
-    static var PretendardRegular12: Font {
-        return .pretend(type: .regular, size: 12)
-    }
-    static var PretendardRegular9: Font {
-        return .pretend(type: .regular, size: 9)
-    }
-    static var PretendardMedium18: Font {
-        return .pretend(type: .medium, size: 18)
-    }
-    static var PretendardMedium16: Font {
-        return .pretend(type: .medium, size: 16)
-    }
-    static var PretendardMedium14: Font {
-        return .pretend(type: .medium, size: 14)
-    }
-    static var PretendardMedium13: Font {
-        return .pretend(type: .medium, size: 13)
-    }
-    static var PretendardMedium10: Font {
-        return .pretend(type: .medium, size: 10)
-    }
-    static var PretendardMedium8: Font {
-        return .pretend(type: .medium, size: 8)
-    }
-    static var PretendardLight14: Font {
-        return .pretend(type: .light, size: 14)
+    
+    static func PretendardThin(size: CGFloat) -> Font {
+        return .pretend(type: .thin, size: size)
     }
     
     
-    /* 여기에 더 추가해주세요 */
-    
+    /*
+     나중에 사용할 때에는 이렇게 씀
+     
+     Text("Hello, SwiftUI!")
+         .font(.PretendardMedium(size: 16))
+     
+     */
 }
