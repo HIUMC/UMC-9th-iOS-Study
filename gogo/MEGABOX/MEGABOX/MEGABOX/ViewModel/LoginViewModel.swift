@@ -16,7 +16,7 @@ class LoginViewModel {
     // 로그인 동작: 저장은 View 쪽에서 처리
     func login() {
         // 이 안에서는 UserDefaults나 네트워크 호출 같은 로직만 넣을 수 있음
-        // AppStorage 저장은 View(LoginView)에서 수행
+        // AppStorage 저장은 View(LoginView)에서 수행..허자
     }
 }
 

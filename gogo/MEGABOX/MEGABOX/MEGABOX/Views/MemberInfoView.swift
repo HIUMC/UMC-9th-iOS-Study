@@ -26,36 +26,6 @@ struct MemberInfoView: View {
         }
         .padding(.horizontal)
     }
-    //MARK: - 하단 메뉴 뷰
-    private var bottomMenuView: some View {
-        HStack(alignment: .center) {
-            VStack {
-                Image("movie")
-                Text("영화별예매")
-                    .font(.PretendardMedium(size:16))
-            }
-            Spacer()
-            VStack {
-                Image("location")
-                Text("극장별예매")
-                    .font(.PretendardMedium(size:16))
-            }
-            Spacer()
-            VStack {
-                Image("seat")
-                Text("특별관예매")
-                    .font(.PretendardMedium(size:16))
-            }
-            Spacer()
-            VStack {
-                Image("popcorn")
-                Text("모바일오더")
-                    .font(.PretendardMedium(size:16))
-            }
-        }
-        .padding(0)
-        .frame(maxWidth: .infinity, alignment: .center)
-    }
     
     //MARK: -이름 가운데 글자 마스킹
     //이름이 3글자가 아닌 경우도 고려함.
@@ -66,7 +36,7 @@ struct MemberInfoView: View {
         return "\(firstChar)*\(lastChar)님"
     }
     
-    //MARK: -헤더 하위뷰
+    //MARK: -헤더 뷰
     private var headerView: some View {
         HStack(alignment: .center) {
             VStack(alignment: .leading, spacing: 6) {
@@ -102,6 +72,7 @@ struct MemberInfoView: View {
                               .padding(.trailing, 12)
                               .padding(.vertical, 4)
                         }
+                        //피그마 그대로 색상 가져옴
                         .background(Color(red: 0.28, green: 0.28, blue: 0.28))
                         .cornerRadius(16)
                     }
@@ -158,14 +129,8 @@ struct MemberInfoView: View {
         }
     }
     
-    
-}
-
-#Preview {
-    MemberInfoView()
-}
-    
-    //MARK: - 상태정보 뷰
+    //MARK: -상태정보 뷰
+    //좀 기네.. 재사용할 수 있으면 좋았을텐데
     private var statusInfoView: some View {
         HStack {
             VStack(spacing: 6) {
@@ -213,3 +178,47 @@ struct MemberInfoView: View {
                 .stroke(Color("gray02"), lineWidth: 1)
         )
     }
+    
+    //MARK: -하단 메뉴 뷰
+    private var bottomMenuView: some View {
+        HStack(alignment: .center) {
+            VStack {
+                Image("movie")
+                Text("영화별예매")
+                    .font(.PretendardMedium(size:16))
+            }
+            Spacer()
+            VStack {
+                Image("location")
+                Text("극장별예매")
+                    .font(.PretendardMedium(size:16))
+            }
+            Spacer()
+            VStack {
+                Image("seat")
+                Text("특별관예매")
+                    .font(.PretendardMedium(size:16))
+            }
+            Spacer()
+            VStack {
+                Image("popcorn")
+                Text("모바일오더")
+                    .font(.PretendardMedium(size:16))
+            }
+        }
+        .padding(0)
+        .frame(maxWidth: .infinity, alignment: .center)
+    }
+}
+
+//프리뷰 (과제용/아이폰 11, 16프로)
+#Preview("iPhone 11") {
+   LoginView()
+}
+
+#Preview("iPhone 16 Pro") {
+ LoginView()
+}
+
+
+
