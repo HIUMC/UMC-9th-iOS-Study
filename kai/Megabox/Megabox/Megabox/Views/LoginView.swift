@@ -8,6 +8,15 @@
 import SwiftUI
 
 struct LoginView: View {
+    @Bindable var loginviewModel : LoginViewModel
+    
+    @AppStorage("userID") private var userID : String = ""
+    @AppStorage("userPwd") private var userPwd : String = ""
+    
+    init(loginviewModel: LoginViewModel) {
+           self.loginviewModel = loginviewModel
+       }
+    
     var body: some View {
         VStack{
             Spacer().frame(height:44)
@@ -38,17 +47,19 @@ struct LoginView: View {
     //아이디 비밀번호 입력칸
     private var idPasswordView: some View {
         VStack(alignment: .leading){
-            Text("아이디")
+            TextField("아이디", text: $loginviewModel.loginModel.id)
                 .font(.PretendardRegular(size: 16))
-                .foregroundStyle(.gray03)
+                .foregroundColor(.gray03)
+                
+            
             Divider()
                 .offset(y:-3)
             
             Spacer().frame(height:40)
             
-            Text("비밀번호")
+            SecureField("비밀번호", text: $loginviewModel.loginModel.pwd)
                 .font(.PretendardRegular(size: 16))
-                .foregroundStyle(.gray03)
+                .foregroundColor(.gray03)
             Divider()
                 .offset(y:-3)
         }//VStack_end
@@ -58,7 +69,11 @@ struct LoginView: View {
     //로그인버튼
     private var loginButton: some View{
         VStack{
-            Button(action: { /* 로그인 액션 */ }) {
+            Button(action: {
+                userID = loginviewModel.loginModel.id
+                userPwd = loginviewModel.loginModel.pwd
+                
+                        }) {
                     Text("로그인")
                         .font(.PretendardBold(size: 18))
                         .foregroundStyle(.white)
@@ -119,5 +134,5 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView()
+    LoginView(loginviewModel: LoginViewModel())
 }
