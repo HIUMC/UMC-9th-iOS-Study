@@ -11,8 +11,8 @@ struct MemberInfoManageView: View {
     @Environment(\.dismiss) private var dismiss
 
     // AppStorage
-    @AppStorage("idinfo")   private var userId: String = ""   // 로그인 시 저장된 아이디
-    @AppStorage("userNameinfo") private var userName: String = ""
+    @AppStorage("id")   private var userId: String = ""   // 로그인 시 저장된 아이디
+    @AppStorage("name") private var userName: String = ""
 
     // 편집 상태
     @State private var isEditingName: Bool = false

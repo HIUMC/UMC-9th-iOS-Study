@@ -10,8 +10,8 @@ import SwiftUI
 struct LoginView: View {
     @Bindable var loginviewModel : LoginViewModel
     
-    @AppStorage("userID") private var userID : String = ""
-    @AppStorage("userPwd") private var userPwd : String = ""
+    @AppStorage("id") private var userID : String = ""
+    @AppStorage("pwd") private var userPwd : String = ""
     
     init(loginviewModel: LoginViewModel) {
            self.loginviewModel = loginviewModel

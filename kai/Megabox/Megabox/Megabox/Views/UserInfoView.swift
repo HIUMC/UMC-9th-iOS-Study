@@ -35,17 +35,20 @@ struct UserInfoView: View {
         VStack(alignment: .leading){
             //이름,welcome,회원정보
             HStack{
-                Text("\(userName)")
+                Text("\(userName)님")
                 .font(.PretendardBold(size: 24))
-                Text("님")
-                    .font(.PretendardBold(size: 24))
-                    .padding(.trailing, 5)
-                Image(.welcome)
-                    .resizable()
-                    .scaledToFit()
+                .padding(.trailing, 3)
+                
+                RoundedRectangle(cornerRadius:6)
+                    .frame(width:81,height:25)
+                    .foregroundStyle(.tag)
+                    .overlay(
+                        Text("WELCOME")
+                            .font(.PretendardRegular(size: 14))
+                            .foregroundStyle(.white01))
                 
                 Spacer()
-                    .frame(width:176)
+                    
                  
                 Button(action: { /* 회원정보 액션 */ }) {
                     RoundedRectangle(cornerRadius: 16)
