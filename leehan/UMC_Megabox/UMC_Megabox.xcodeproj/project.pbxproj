@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		F8431AB22E795410004CDA65 /* UMC_Megabox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = UMC_Megabox.app; path = "/Users/oong/Desktop/UMC-9th-iOS-Study/leehan/UMC_Megabox/build/Debug-iphoneos/UMC_Megabox.app"; sourceTree = "<absolute>"; };
+		F87869B52E8144A4001AFA0A /* UMC_Megabox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UMC_Megabox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -33,6 +33,7 @@
 			isa = PBXGroup;
 			children = (
 				F8431AB42E795410004CDA65 /* UMC_Megabox */,
+				F87869B52E8144A4001AFA0A /* UMC_Megabox.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,7 +59,7 @@
 			packageProductDependencies = (
 			);
 			productName = UMC_Megabox;
-			productReference = F8431AB22E795410004CDA65 /* UMC_Megabox.app */;
+			productReference = F87869B52E8144A4001AFA0A /* UMC_Megabox.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
