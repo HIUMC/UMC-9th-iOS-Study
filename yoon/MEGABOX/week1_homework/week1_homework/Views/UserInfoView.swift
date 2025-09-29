@@ -26,8 +26,15 @@ struct UserInfoView: View {
             
             Spacer().frame(height:33)
             
-            TicketResv
-            
+            HStack{
+                ResvItem(title: "영화별예매", iconImage: Image("film"))
+                Spacer()
+                ResvItem(title: "극장별예매", iconImage: Image("location"))
+                Spacer()
+                ResvItem(title: "특별관예매", iconImage: Image("chair"))
+                Spacer()
+                ResvItem(title: "모바일오더", iconImage: Image("popcorn"))
+            }
             Spacer()
             
         }.padding(.horizontal, 16)
@@ -36,7 +43,7 @@ struct UserInfoView: View {
     private var ProfileHeader:some View {
         VStack(alignment: .leading){
             HStack {
-                Text(nameinfo)
+                Text("\(nameinfo)님")
                     .font(.PretendardBold24)
                 
                 Text("WELCOME")
@@ -97,6 +104,8 @@ struct UserInfoView: View {
         }.clipShape(RoundedRectangle(cornerRadius: 8))
         
     }
+    
+
     private var StatusInfo:some View {
         
         HStack(spacing:43){
@@ -140,41 +149,16 @@ struct UserInfoView: View {
         // ()로 묶으면 deprecated, {}로 묶으면 사용 가능?
          
     }
-    
-    private var TicketResv: some View {
-        HStack{
+
+    struct ResvItem: View {
+        let title: String
+        let iconImage: Image
+        var body: some View {
             VStack(spacing:12){
-                Image(.film)
+                iconImage
                     .resizable()
                     .frame(width:36,height:36)
-                Text("영화별예매")
-                    .font(.Pretendardmedium16)
-                
-            }
-            Spacer()
-            VStack(spacing:12){
-                Image(.location)
-                    .resizable()
-                    .frame(width:36,height:36)
-                Text("극장별예매")
-                    .font(.Pretendardmedium16)
-                
-            }
-            Spacer()
-            VStack(spacing:12){
-                Image(.chair)
-                    .resizable()
-                    .frame(width:36,height:36)
-                Text("특별관예매")
-                    .font(.Pretendardmedium16)
-                
-            }
-            Spacer()
-            VStack(spacing:12){
-                Image(.popcorn)
-                    .resizable()
-                    .frame(width:36,height:36)
-                Text("모바일오더")
+                Text(title)
                     .font(.Pretendardmedium16)
                 
             }
