@@ -10,8 +10,6 @@ import Foundation
 
 struct DetailedMovieCard: Identifiable {
     var id = UUID()
-    var poster: Image
-    var title: String
     var subTitle: String
     var explaination: String
     var smallPoster: Image

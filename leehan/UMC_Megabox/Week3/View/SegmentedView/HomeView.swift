@@ -15,32 +15,34 @@ struct HomeView: View {
     
     var body: some View {
         
-        ScrollView(.vertical) {
-            LazyVStack {
-                
-                HeaderSection
-                
-                Spacer().frame(height: 9)
-                
-                Buttons
-                
-                Spacer().frame(height: 25)
-                
-                CinemaCard
-                
-                Spacer().frame(height: 38.5)
-                
-                MoreFunView
-                
-                Spacer().frame(height: 44)
-                
-                MovieBoardView
-                
-                
-                
-                
-            }.padding() /* end of LazyGrid */
-        } /* end of ScrollView */
+        NavigationStack {
+            ScrollView(.vertical) {
+                LazyVStack {
+                    
+                    HeaderSection
+                    
+                    Spacer().frame(height: 9)
+                    
+                    Buttons
+                    
+                    Spacer().frame(height: 25)
+                    
+                    CinemaCard
+                    
+                    Spacer().frame(height: 38.5)
+                    
+                    MoreFunView
+                    
+                    Spacer().frame(height: 44)
+                    
+                    MovieBoardView
+                    
+                    
+                    
+                    
+                }.padding() /* end of LazyGrid */
+            } /* end of ScrollView */
+        }
     }
     
     /* --- 상단 헤더 섹션 --- */
@@ -115,13 +117,26 @@ struct HomeView: View {
     private var CinemaCard: some View {
         ScrollView(.horizontal, content: {
             LazyHStack(spacing: 24, content: {
+                /*
+                 ForEach 를 이용해 MovieCardViewModel에 있는 더미 데이터를 순환시킴
+                 MovieCardViewModel에 있는 데이터를 movie로 받아서 하위 뷰로 넘겨줌
+                 하위 뷰에서 movie의 데이터들을 이용해 뷰를 구성하도록 함
+                 */
+                /*
+                 하위 뷰 개별로 봤을 땐 패딩 포함 요소들의 위치가 제대로 들어가있는데,
+                 상위 뷰에서 네비게이션으로 들어가면 왜 패딩도 없어져있고 요소들의 위치도 달라져있는지
+                 모르겠음
+                 */
                 ForEach(movieCard.movieCards) { movie in
                     
                     VStack {
-                        movie.MoviePoster
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 148, height: 212)
+                        NavigationLink(destination: DetailedMovieCardView(movieCard: movie)) {
+                            movie.MoviePoster
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 148, height: 212)
+                        }
+                        
                         
                         Spacer().frame(height: 8)
                         

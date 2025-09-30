@@ -13,4 +13,11 @@ struct MovieCard: Identifiable {
     var MoviePoster: Image
     var MovieName: String
     var People: String
+    
+    var bigPoster: Image
+    var subTitle: String
+    var explaination: String
+    var smallPoster: Image
+    var age: String
+    var date: String
 }
