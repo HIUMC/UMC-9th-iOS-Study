@@ -11,33 +11,34 @@ import SwiftUI
 struct UserInfoView: View {
     @AppStorage("nameinfo") private var nameinfo : String = ""
     var body: some View {
-        VStack{
-            Spacer().frame(height:59)
-            
-            ProfileHeader
-            
-            Spacer().frame(height:15)
-            
-            ClubMembership
-            
-            Spacer().frame(height:33)
-            
-            StatusInfo
-            
-            Spacer().frame(height:33)
-            
-            HStack{
-                ResvItem(title: "영화별예매", iconImage: Image("film"))
+        NavigationStack{
+            VStack{
+                Spacer().frame(height:59)
+                
+                ProfileHeader
+                
+                Spacer().frame(height:15)
+                
+                ClubMembership
+                
+                Spacer().frame(height:33)
+                
+                StatusInfo
+                
+                Spacer().frame(height:33)
+                
+                HStack{
+                    ResvItem(title: "영화별예매", iconImage: Image("film"))
+                    Spacer()
+                    ResvItem(title: "극장별예매", iconImage: Image("location"))
+                    Spacer()
+                    ResvItem(title: "특별관예매", iconImage: Image("chair"))
+                    Spacer()
+                    ResvItem(title: "모바일오더", iconImage: Image("popcorn"))
+                }
                 Spacer()
-                ResvItem(title: "극장별예매", iconImage: Image("location"))
-                Spacer()
-                ResvItem(title: "특별관예매", iconImage: Image("chair"))
-                Spacer()
-                ResvItem(title: "모바일오더", iconImage: Image("popcorn"))
-            }
-            Spacer()
-            
-        }.padding(.horizontal, 16)
+            }.padding(.horizontal, 16)
+        }
     }
     
     private var ProfileHeader:some View {
@@ -56,8 +57,7 @@ struct UserInfoView: View {
                 
                 Spacer()
                 
-                Button(action: {
-                }){Text("회원정보")
+                NavigationLink(destination: UserSettingsView()){Text("회원정보")
                         .frame(width: 72)
                         .padding(.vertical, 4)
                     .font(.PretendardsemiBold14)}
@@ -80,7 +80,7 @@ struct UserInfoView: View {
     }
     
     private var ClubMembership:some View {
-        Button(action:{}) {
+        Button(action:{}){
             HStack(spacing:3 ){
                 Text("클럽 멤버십")
                     .font(.PretendardsemiBold16)
@@ -90,7 +90,8 @@ struct UserInfoView: View {
                     .foregroundStyle(.white)
                 
                 
-            }.frame(maxWidth: .infinity)
+            }
+            .frame(maxWidth: .infinity)
                 .padding(.vertical,12)
                 .padding(.leading, 8)
                 .padding(.trailing, 308)
@@ -102,10 +103,8 @@ struct UserInfoView: View {
                     ) // ColorAsset 등록 안하고 가능?
                 )
         }.clipShape(RoundedRectangle(cornerRadius: 8))
-        
     }
     
-
     private var StatusInfo:some View {
         
         HStack(spacing:43){
@@ -147,9 +146,9 @@ struct UserInfoView: View {
             .background{RoundedRectangle(cornerRadius: 8).stroke(Color.gray02,lineWidth: 1)}
         // 스택에 background 쓰면 안댐 (deprecated)
         // ()로 묶으면 deprecated, {}로 묶으면 사용 가능?
-         
+        
     }
-
+    
     struct ResvItem: View {
         let title: String
         let iconImage: Image
