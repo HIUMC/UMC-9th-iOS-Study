@@ -12,26 +12,28 @@ struct UserInfoView: View {
     @AppStorage("name") private var name: String = ""
     
     var body: some View {
-        VStack {
-            
-            Spacer().frame(height: 103)
-            
-            topUserInfoGroup
-            
-            Spacer().frame(height: 15)
-            
-            clubMembershipBtn
-            
-            Spacer().frame(height: 33)
-            
-            stateInfo
-            
-            Spacer().frame(height: 33)
-            
-            bottomView
-            
-            Spacer().frame(height: 527)
-        }.padding(16)
+        NavigationStack {
+            VStack {
+                
+                Spacer().frame(height: 103)
+                
+                topUserInfoGroup
+                
+                Spacer().frame(height: 15)
+                
+                clubMembershipBtn
+                
+                Spacer().frame(height: 33)
+                
+                stateInfo
+                
+                Spacer().frame(height: 33)
+                
+                bottomView
+                
+                Spacer().frame(height: 527)
+            }.padding(16)
+        }
     }
     
     /* 상단 사용자 정보 */
@@ -55,7 +57,7 @@ struct UserInfoView: View {
                 Spacer()
                 
                 /* 회원정보 버튼 */
-                Button( action: { } ) {
+                NavigationLink(destination: ManageUserInfoView()){
                     RoundedRectangle(cornerRadius: 16)
                         .foregroundStyle(.gray07)
                         .frame(width: 72, height: 28)
@@ -64,8 +66,6 @@ struct UserInfoView: View {
                                 .font(.PretendardSemiBold(size: 14))
                                 .foregroundStyle(.white))
                 }
-                
-                
             } // end of HStack
             
             /* 하단 HStack*/
