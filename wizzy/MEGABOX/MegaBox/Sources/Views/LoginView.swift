@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct LoginView: View {
+    @Environment(NavigationRouter.self) var router
+    //@Environment(MovieViewModel.self) var movieViewModel
     
     @State var viewModel = LoginViewModel()
     @AppStorage("id") private var storedId: String = ""
@@ -76,6 +78,7 @@ struct LoginView: View {
                 storedId = viewModel.loginModel.id
                 storedPwd = viewModel.loginModel.pwd
                 print("저장된 아이디: \(storedId), 저장된 비밀번호: \(storedPwd)")
+                router.path.append(Route.login)
                 
             }) {
                 Text("로그인")
@@ -115,4 +118,5 @@ struct LoginView: View {
 
 #Preview {
     LoginView()
+        .environment(NavigationRouter())
 }
