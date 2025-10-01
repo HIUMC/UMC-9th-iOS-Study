@@ -63,14 +63,15 @@ struct HomeView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }
         }
-    }
+    } // enum 써보기
     
     struct MovieCard: View {
         let movie: MovieModel
         
         var body: some View {
                 VStack {
-                    NavigationLink(destination: MovieInfoView(movie: movie)){
+                    NavigationLink(destination: MovieInfoView(movie: movie)
+                        .navigationBarBackButtonHidden(true)){
                         Image(movie.posterName)
                             .resizable()
                             .frame(width: 148, height: 212)
@@ -87,7 +88,7 @@ struct HomeView: View {
                     Text("누적관객수 \(movie.performance)").font(.Pretendardmedium18)
             }
         }
-    }
+    } // Back 버튼은 네비게이션 때문에 생기는 것이다
     
     struct MovieList: View {
         @Bindable var movieViewModel: MovieViewModel
