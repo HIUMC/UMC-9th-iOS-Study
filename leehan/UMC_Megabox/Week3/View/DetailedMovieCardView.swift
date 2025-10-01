@@ -16,9 +16,7 @@ struct DetailedMovieCardView: View {
     let movieCard: MovieCard
     
     var body: some View {
-        
         VStack {
-            
             Text("F1 더 무비")
             bigPoster
             Spacer().frame(height: 9)
@@ -31,7 +29,6 @@ struct DetailedMovieCardView: View {
             bottomView.padding(.horizontal)
             Spacer()
         }
-        
     }
     
     private var bigPoster: some View {

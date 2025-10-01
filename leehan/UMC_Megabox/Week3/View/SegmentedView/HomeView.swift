@@ -61,18 +61,24 @@ struct HomeView: View {
             
             /* 로고 밑 텍스트 */
             HStack {
-                Text("홈")
-                    .font(.PretendardSemiBold(size: 24))
-                    .foregroundStyle(.black)
-                Text("이벤트")
-                    .font(.PretendardSemiBold(size: 24))
-                    .foregroundStyle(.gray04)
-                Text("스토어")
-                    .font(.PretendardSemiBold(size: 24))
-                    .foregroundStyle(.gray04)
-                Text("선호극장")
-                    .font(.PretendardSemiBold(size: 24))
-                    .foregroundStyle(.gray04)
+                HStack {
+                    Text("홈")
+                        .font(.PretendardSemiBold(size: 24))
+                        .foregroundStyle(.black)
+                    Spacer()
+                    Text("이벤트")
+                        .font(.PretendardSemiBold(size: 24))
+                        .foregroundStyle(.gray04)
+                    Spacer()
+                    Text("스토어")
+                        .font(.PretendardSemiBold(size: 24))
+                        .foregroundStyle(.gray04)
+                    Spacer()
+                    Text("선호극장")
+                        .font(.PretendardSemiBold(size: 24))
+                        .foregroundStyle(.gray04)
+                }.frame(width: 320, height: 36)
+                
                 Spacer()
             }
         }
@@ -157,6 +163,7 @@ struct HomeView: View {
                             Text(movie.MovieName)
                                 .font(.PretendardBold(size: 22))
                                 .foregroundStyle(.black)
+                                .frame(height: 30)
                             Spacer()
                         }
                         
@@ -167,6 +174,7 @@ struct HomeView: View {
                             Text("누적관객수 \(movie.People)")
                                 .font(.PretendardMedium(size: 18))
                                 .foregroundStyle(.black)
+                                .frame(height: 21)
                             Spacer()
                         }
                         
@@ -181,7 +189,7 @@ struct HomeView: View {
     /* --- 알고보면 더 재밌는 무비피드 --- */
     
     private var MoreFunView: some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack {
                 Text("알고보면 더 재밌는 무비피드")
                     .font(.PretendardBold(size: 24))
@@ -191,13 +199,15 @@ struct HomeView: View {
                     RoundedRectangle(cornerRadius: 1000)
                         .frame(width: 39, height: 39)
                         .foregroundStyle(.gray00)
-                        .overlay( Text("->").frame(width: 29, height: 22)
-                                            .foregroundStyle(.gray08))
+                        .overlay( Image(systemName: "arrow.right")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 18)
+                            .foregroundStyle(.gray08))
                 }
-            } /* end of HStack */
+            }.frame(height: 36)/* end of HStack */
             
-            Spacer()
-                .frame(height: 5.5)
+            
             
             Image("MoreFunImage")
                 .resizable()
