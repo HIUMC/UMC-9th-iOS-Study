@@ -18,7 +18,8 @@ struct HomeView: View {
                     MovieChart
                     Spacer().frame(height: 25)
                     MovieList(movieViewModel: MovieViewModel())
-                    Spacer()
+                    Spacer().frame(height:37)
+                    MovieFeed
                 }.padding(.horizontal,16)
                     .padding(.top,23)
             }
@@ -65,6 +66,42 @@ struct HomeView: View {
         }
     } // enum 써보기
     
+    private var MovieFeed: some View {
+        VStack(alignment: .leading){
+            HStack{
+                Text("알고보면 더 재미있는 무비피드").font(.PretendardBold24).foregroundStyle(.black)
+                Spacer()
+                Text(Image(systemName: "arrow.right")).foregroundStyle(.black)
+            }
+            Image(.himePoster).resizable().scaledToFit()
+            Spacer().frame(height:44)
+            VStack(alignment: .leading){
+                MovieFeedDetail(img: Image(.hime2), explanation: "9월, 메가박스의 영화들(1) - 명작들의 재개봉", example: "<모노노케 히메>,<퍼펙트 블루>")
+                Spacer().frame(height:37)
+                MovieFeedDetail(img: Image(.ugly2), explanation: "메가박스 오리지널 티켓 Re.37 <얼굴>", example: "영화 속 양극적인 감정의 대비")
+                             
+                }
+            }
+        }
+    }
+    
+    struct MovieFeedDetail: View {
+        let img: Image
+        let explanation: String
+        let example: String
+        var body: some View {
+            HStack{
+                img.frame(width:100,height:100)
+                Spacer().frame(width: 23)
+                VStack{
+                    Text(explanation).font(.PretendardsemiBold18).foregroundStyle(.black)
+                    Spacer()
+                    Text(example).font(.PretendardsemiBold13).foregroundStyle(.gray03)
+                }
+        }
+    }
+    }
+    
     struct MovieCard: View {
         let movie: MovieModel
         
@@ -100,7 +137,7 @@ struct HomeView: View {
             }
         } // 2행 이상으로 가는게 아니니까 LazyHStack으로 충분하지 않을까.,
     }
-}
+
 
 struct HomeView_Preview: PreviewProvider {
     static var previews: some View {

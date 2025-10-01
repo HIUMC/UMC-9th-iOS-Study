@@ -10,6 +10,7 @@ import Foundation
 
 
 struct LoginView: View {
+    @State private var router = NavigationRouter()
     @Bindable var loginInput: LoginViewModel
     @AppStorage("idinfo") private var idinfo : String = ""
     @AppStorage("pwdinfo") private var pwdinfo : String = ""
