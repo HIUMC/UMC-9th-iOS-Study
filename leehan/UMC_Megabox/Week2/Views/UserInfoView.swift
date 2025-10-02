@@ -12,7 +12,7 @@ struct UserInfoView: View {
     @AppStorage("name") private var name: String = ""
     
     var body: some View {
-        NavigationStack {
+        //NavigationStack {
             VStack {
                 
                 Spacer().frame(height: 103)
@@ -32,8 +32,8 @@ struct UserInfoView: View {
                 bottomView
                 
                 Spacer().frame(height: 527)
-            }.padding(16)
-        }
+            }//.padding(16)
+       // }
     }
     
     /* 상단 사용자 정보 */

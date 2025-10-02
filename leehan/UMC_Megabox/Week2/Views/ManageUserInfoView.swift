@@ -28,7 +28,7 @@ struct ManageUserInfoView: View {
             userNameId
             
             Spacer()
-        }.padding(16)
+        }//.padding(16)
     }
     /* 상단 네비게이션 바 */
     private var topNavigation: some View {

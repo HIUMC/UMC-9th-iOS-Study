@@ -18,13 +18,13 @@ struct DetailedMovieCardView: View {
     var body: some View {
         VStack {
             Text("F1 더 무비")
-            bigPoster
+            bigPoster.ignoresSafeArea()
             Spacer().frame(height: 9)
             titles
             Spacer().frame(height: 9)
             explain.padding(.horizontal)
             Spacer().frame(height: 30)
-            btns
+            btns.ignoresSafeArea()
             Spacer().frame(height: 15)
             bottomView.padding(.horizontal)
             Spacer()

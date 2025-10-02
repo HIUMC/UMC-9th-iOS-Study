@@ -11,27 +11,21 @@ struct MainTabView: View {
     
     var body: some View {
         TabView {
-            HomeView().tabItem {
-                Image(systemName: "house.fill" )
-                Text("홈")
+            Tab("홈", systemImage: "house.fill") {
+                HomeView()
             }
             
-            BookingView().tabItem {
-                Image(systemName: "ticket.fill" )
-                Text("바로 예매")
+            Tab("바로 예매", systemImage: "ticket.fill") {
+                BookingView()
             }
             
-            StoreView().tabItem {
-                Image(systemName: "popcorn.fill" )
-                Text("모바일 오더")
+            Tab("모바일 오더", systemImage: "popcorn.fill") {
+                StoreView()
             }
             
-            UserInfoView().tabItem {
-                Image(systemName: "person.fill" )
-                Text("마이 페이지")
+            Tab("마이 페이지", systemImage: "person.fill") {
+                UserInfoView()
             }
-            
-            
         }
     }
 }

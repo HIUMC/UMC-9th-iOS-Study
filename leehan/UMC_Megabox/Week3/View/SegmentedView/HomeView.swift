@@ -9,13 +9,12 @@ import SwiftUI
 import Foundation
 
 struct HomeView: View {
-    @State private var selectedTabIndex = 0
     @State private var movieCard: MovieCardViewModel = .init()
     @State private var movieBoard: MovieBoardViewModel = .init()
     
     var body: some View {
         
-        NavigationStack {
+        //NavigationStack {
             ScrollView(.vertical) {
                 LazyVStack {
                     
@@ -40,9 +39,9 @@ struct HomeView: View {
                     
                     
                     
-                }.padding() /* end of LazyGrid */
+                }//.padding() /* end of LazyGrid */
             } /* end of ScrollView */
-        }
+      //  }
     }
     
     /* --- 상단 헤더 섹션 --- */
