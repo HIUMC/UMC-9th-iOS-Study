@@ -30,24 +30,53 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		786B27542E79861200560305 /* Exceptions for "MegaBox" folder in "MegaBox" target */ = {
+		787C881A2E8B907000127E8B /* Exceptions for "MegaBox" folder in "MegaBox" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				DIContainer/DIContainer.swift,
+				MegaBoxApp.swift,
+				Models/HomeModel.swift,
+				Models/LoginModel.swift,
+				Models/MovieDetailModel.swift,
+				Models/Profile.swift,
+				Navigation/NavigationDestination.swift,
+				Navigation/NavigationRouter.swift,
+				Navigation/NavigationRoutingView.swift,
+				"Preview Content/Preview Assets.xcassets",
+				Resource/Assets/Assets.xcassets,
+				Resource/Assets/ColorExtension.swift,
+				Resource/Font/Fonts.swift,
+				"Resource/Font/Pretendard-Bold.otf",
+				"Resource/Font/Pretendard-ExtraBold.otf",
+				"Resource/Font/Pretendard-Light.otf",
+				"Resource/Font/Pretendard-Medium.otf",
+				"Resource/Font/Pretendard-Regular.otf",
+				"Resource/Font/Pretendard-SemiBold.otf",
+				ViewModels/HomeViewModel.swift,
+				ViewModels/LoginViewModel.swift,
+				ViewModels/MovieDetailViewModel.swift,
+				Views/BaseTabView.swift,
+				Views/HomeView.swift,
+				Views/LoginView.swift,
+				Views/MemberInfoView.swift,
+				Views/MobileOrderView.swift,
+				Views/MovieDetailView.swift,
+				Views/ProfileView.swift,
+				Views/ReserveView.swift,
+				Views/SplashView.swift,
 			);
 			target = 786B27142E79816500560305 /* MegaBox */;
+		};
+		787C89EE2E8C314C00127E8B /* Exceptions for "MegaBox" folder in "MegaBoxUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Views/ReserveView.swift,
+			);
+			target = 786B272E2E79816700560305 /* MegaBoxUITests */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		786B27172E79816500560305 /* MegaBox */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				786B27542E79861200560305 /* Exceptions for "MegaBox" folder in "MegaBox" target */,
-			);
-			path = MegaBox;
-			sourceTree = "<group>";
-		};
 		786B27282E79816700560305 /* MegaBoxTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = MegaBoxTests;
@@ -56,6 +85,15 @@
 		786B27322E79816700560305 /* MegaBoxUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = MegaBoxUITests;
+			sourceTree = "<group>";
+		};
+		787C88072E8B907000127E8B /* MegaBox */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				787C881A2E8B907000127E8B /* Exceptions for "MegaBox" folder in "MegaBox" target */,
+				787C89EE2E8C314C00127E8B /* Exceptions for "MegaBox" folder in "MegaBoxUITests" target */,
+			);
+			path = MegaBox;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -88,10 +126,10 @@
 		786B270C2E79816500560305 = {
 			isa = PBXGroup;
 			children = (
-				786B27172E79816500560305 /* MegaBox */,
 				786B27282E79816700560305 /* MegaBoxTests */,
 				786B27322E79816700560305 /* MegaBoxUITests */,
 				786B27162E79816500560305 /* Products */,
+				787C88072E8B907000127E8B /* MegaBox */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,9 +158,6 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				786B27172E79816500560305 /* MegaBox */,
-			);
 			name = MegaBox;
 			packageProductDependencies = (
 			);
@@ -145,6 +180,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				786B27282E79816700560305 /* MegaBoxTests */,
+				787C88072E8B907000127E8B /* MegaBox */,
 			);
 			name = MegaBoxTests;
 			packageProductDependencies = (
@@ -334,6 +370,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = MegaBox/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -391,6 +428,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = MegaBox/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -408,7 +446,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MegaBox/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 6PW49YXW64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -438,7 +476,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MegaBox/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 6PW49YXW64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

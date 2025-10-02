@@ -58,7 +58,7 @@ struct MemberInfoView: View {
             HStack {
                 TextField("이름", text: $tempName)
                     .textFieldStyle(PlainTextFieldStyle())
-                    .foregroundColor(.black00)
+                    .foregroundStyle(.black00)
                 
                 Spacer()
                 
