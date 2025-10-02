@@ -8,14 +8,8 @@
 import Foundation
 import SwiftUI
 
-enum Route: Hashable {
-    case home
-    case userInfo
-    case movieInfo
-}
-
 @Observable
-class NavigationRouter: ObservableObject {
+class NavigationRouter {
     var path = NavigationPath()
     
     func push(_ route: Route) {

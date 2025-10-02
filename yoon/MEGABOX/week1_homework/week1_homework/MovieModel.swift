@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct MovieModel: Identifiable {
+struct MovieModel: Identifiable, Hashable {
     let id = UUID()
     let posterName: String
     let secPosterName: String
@@ -17,3 +17,4 @@ struct MovieModel: Identifiable {
     let performance: String
 }
 // 이미지, 버튼 View 라서 모델에 넣는 것 비추
+// 연관값인 MovieModel에도 Hashable 넣어주기

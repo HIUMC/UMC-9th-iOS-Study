@@ -9,9 +9,10 @@ import Foundation
 import SwiftUI
 
 struct UserInfoView: View {
+    @Environment(NavigationRouter.self) var router
     @AppStorage("nameinfo") private var nameinfo : String = ""
     var body: some View {
-        NavigationStack{
+       
             VStack{
                 Spacer().frame(height:59)
                 
@@ -37,8 +38,8 @@ struct UserInfoView: View {
                     ResvItem(title: "모바일오더", iconImage: Image("popcorn"))
                 }
                 Spacer()
-            }.padding(.horizontal, 16)
-        }
+            }.padding(.horizontal,16)
+        
     }
     
     private var ProfileHeader:some View {
@@ -57,15 +58,14 @@ struct UserInfoView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: UserSettingsView()){Text("회원정보")
+                Button(action:{router.push(.profile)}){Text("회원정보")
                         .frame(width: 72)
                         .padding(.vertical, 4)
                     .font(.PretendardsemiBold14)}
                 .foregroundStyle(.white)
                 .background(.gray07)
-                .clipShape(RoundedRectangle(cornerRadius: 16))
-                
-            }
+                .clipShape(RoundedRectangle(cornerRadius: 16))}
+            
             // width, height 고정이면 frame으로 크기조정. padding X
             HStack(spacing: 9){
                 Text("멤버십 포인트")
@@ -169,6 +169,8 @@ struct UserInfo_Preview: PreviewProvider {
     static var previews: some View {
         devicePreviews {
             UserInfoView()
+                .environment(NavigationRouter())
+                .environment(MovieViewModel())
         }
     }
 }

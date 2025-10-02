@@ -48,7 +48,7 @@ struct UserSettingsView: View {
                         .font(.Pretendardmedium16)
                         .padding(.trailing,162)
                 }.frame(width: 408)
-            }.padding(.horizontal,16)
+            }
         }
     
     private var UserInfo: some View {

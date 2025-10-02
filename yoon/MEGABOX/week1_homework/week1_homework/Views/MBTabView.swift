@@ -9,11 +9,14 @@ import Foundation
 import SwiftUI
 
 struct MBTabView: View {
+    @Environment(NavigationRouter.self) var router
+    @Environment(MovieViewModel.self) var viewModel
     var body: some View {
         TabView {
             Tab("홈", systemImage: "house.fill") {
                 HomeView()
-                    .navigationBarBackButtonHidden(true)
+                    .environment(router)
+                    .environment(viewModel)
             }
 
             Tab("바로 예매", systemImage: "play.laptopcomputer") {
@@ -25,11 +28,14 @@ struct MBTabView: View {
             }
             
             Tab("마이 페이지", systemImage: "person") {
-                UserInfoView()            }
+                UserInfoView()
+                  }
         }
     }
 }
 // 그냥 탭뷰로 하니 충돌 남
 #Preview {
     MBTabView()
+        .environment(NavigationRouter())
+        .environment(MovieViewModel())
 }

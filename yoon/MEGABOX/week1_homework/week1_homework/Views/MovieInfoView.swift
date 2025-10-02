@@ -8,6 +8,9 @@
 import Foundation
 import SwiftUI
 
+// 패스뷰를 통해서 들어오면 패딩이 적용이 안됌
+// NavigationStack -> 자식 뷰로 갈때 레이아웃이 달라지기 때문
+// 패스 뷰로 들어왔을 때 레이아웃 깨지는걸 어떻게 해야 할지 모르겠음.,
 struct MovieInfoView: View {
     let movie: MovieModel
     @Environment(\.dismiss) var dismiss
@@ -83,6 +86,8 @@ struct MovieInfoView_Preview: PreviewProvider {
     static var previews: some View {
         devicePreviews {
             MovieInfoView(movie: MovieModel(posterName: "sample",secPosterName: "암거나",name:"영화제목",engname: "영어이름", performance: "100만명"))
+                .environment(NavigationRouter())
+                .environment(MovieViewModel())
         }
     }
 } // 현재 프리뷰는 데이터를 받은게 없으니까 정말 예시로 아무거나 들어가는 것이구나?
