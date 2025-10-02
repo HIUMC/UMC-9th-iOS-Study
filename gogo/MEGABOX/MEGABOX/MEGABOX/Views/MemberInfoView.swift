@@ -11,6 +11,8 @@ import SwiftUI
 struct MemberInfoView: View {
     @AppStorage("userName") private var userName: String = "고석현"
     @AppStorage("userPoints") private var userPoints: Int = 500
+    @Environment(NavigationRouter.self) var router
+    @Environment(MovieViewModel.self) var viewModel
     
     //MARK: -바디 뷰
     var body: some View {
@@ -57,7 +59,7 @@ struct MemberInfoView: View {
                     .cornerRadius(6)
                     Spacer()
                     Button(action: {
-                        //TODO: - 회원정보 버튼 클릭 시 동작
+                        router.path.append(Route.memberInfo)
                     }) {
                         HStack(alignment: .center, spacing: 0) {
                            
@@ -213,11 +215,15 @@ struct MemberInfoView: View {
 
 //프리뷰 (과제용/아이폰 11, 16프로)
 #Preview("iPhone 11") {
-   LoginView()
+    MemberInfoView()
+    .environment(NavigationRouter())
+           .environment(MovieViewModel())
 }
 
 #Preview("iPhone 16 Pro") {
- LoginView()
+    MemberInfoView()
+    .environment(NavigationRouter())
+           .environment(MovieViewModel())
 }
 
 
