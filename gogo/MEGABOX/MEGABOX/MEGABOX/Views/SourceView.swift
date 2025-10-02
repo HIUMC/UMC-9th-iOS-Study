@@ -31,7 +31,7 @@ struct SourceView: View {
                         TabBarView()
                             .navigationBarBackButtonHidden(true)
                     case .memberInfo:
-                        MemberInfoView()
+                        InfoManageView()
                             .navigationBarBackButtonHidden(true)
                     }
                 }
