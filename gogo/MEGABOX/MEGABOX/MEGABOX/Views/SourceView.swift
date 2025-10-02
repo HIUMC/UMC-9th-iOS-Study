@@ -24,9 +24,9 @@ struct SourceView: View {
                     case .home:
                         HomeView()
                             .navigationBarBackButtonHidden(true)
-//                    case .detail(let movie):
-//                        MovieDetailView(movie: movie)
-//                            .navigationBarBackButtonHidden(true)
+                    case .movieDetail(let movie):
+                        MovieDetailView(movie: movie)
+                            .navigationBarBackButtonHidden(true)
                     case .login:
                         TabBarView()
                             .navigationBarBackButtonHidden(true)

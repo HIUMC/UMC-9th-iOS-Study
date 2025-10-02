@@ -14,4 +14,8 @@ struct MovieModel: Identifiable, Hashable {
     let title: String
     let poster: String
     let countAudience: String
+    //F1 상세 화면용 추가 변수
+    let description: String?
+    let releaseDate: String?
+    let rating: String?
 }

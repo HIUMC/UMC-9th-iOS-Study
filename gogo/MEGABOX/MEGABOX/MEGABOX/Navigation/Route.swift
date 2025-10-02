@@ -12,4 +12,5 @@ enum Route: Hashable {
     case login
 //    case detail(MovieModel)
     case memberInfo
+    case movieDetail(movie: MovieModel)
 }
