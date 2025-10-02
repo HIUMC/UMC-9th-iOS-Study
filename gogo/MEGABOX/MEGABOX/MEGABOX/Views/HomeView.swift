@@ -24,6 +24,21 @@ struct HomeView: View {
                 switch selectedTab {
                 case "홈":
                     homeMainView
+                case "이벤트":
+                    VStack {
+                        Text("이벤트 뷰 작성 예정")
+                        Spacer()
+                    }
+                case "스토어":
+                    VStack {
+                        Text("스토어 뷰 작성 예정")
+                        Spacer()
+                    }
+                case "선호극장":
+                    VStack {
+                        Text("선호극장 뷰 작성 예정")
+                        Spacer()
+                    }
                 default:
                     EmptyView()
                 }
@@ -201,7 +216,7 @@ private var TopFeedView: some View {
                 .font(.PretendardBold(size:24))
             Spacer()
             Button(action: {
-                //TODO: -무비 피드이동
+                //TODO: -"알고보면 더 재밌는 무비 피드" 이동
             }) {
                 Image("right")
                     .tint(.gray08)
@@ -212,7 +227,7 @@ private var TopFeedView: some View {
         Image(.movieFeed1)
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .frame(width: .infinity)
+//            .frame(width: .infinity)
             .padding(.bottom, 25)
     }
     .padding(.horizontal, 20)
