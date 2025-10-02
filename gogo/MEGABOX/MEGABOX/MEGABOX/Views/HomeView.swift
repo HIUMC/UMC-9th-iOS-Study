@@ -237,7 +237,7 @@ private var BottomFeedView: some View {
                     .foregroundStyle(.gray03)
             }
         }
-        .padding(.horizontal, 20)
+//        .padding(.horizontal, 20)
         .padding(.bottom, 39)
 
         HStack(spacing: 12) {
@@ -255,8 +255,9 @@ private var BottomFeedView: some View {
                     .foregroundStyle(.gray03)
             }
         }
-        .padding(.horizontal, 20)
+//        .padding(.horizontal, 20)
     }
+    .padding(.horizontal, 20)
  
 }
 
