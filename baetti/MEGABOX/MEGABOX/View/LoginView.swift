@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct LoginView: View {
-    // 과제 전용 저장소
-    @AppStorage("id") var id: String = ""
-    @AppStorage("pwd") var pwd: String = ""
+    @Environment(NavigationRouter.self) private var router
+
+    @AppStorage("id") var id: String = "1234"
+    @AppStorage("pwd") var pwd: String = "1234"
     @State private var viewModel = LoginViewModel()
     
     var body: some View {
@@ -63,9 +64,14 @@ struct LoginView: View {
     private var LoginButton: some View {
         VStack(alignment:.center) {
             Button(action: {
-                id = viewModel.id
-                pwd = viewModel.pwd
-                print("id: \(viewModel.id), pwd: \(viewModel.pwd)")
+                // 입력한 값이 미리 저장해둔 계정과 일치하는지 확인
+                if viewModel.id == id && viewModel.pwd == pwd {
+                    print("로그인 성공!")
+                    // 여기서 화면 전환이나 상태 변경 처리 가능
+                    router.push(.login)
+                } else {
+                    print("아이디 또는 비밀번호가 올바르지 않습니다.")
+                }
             }) {
                 Text("로그인")
                     .font(.bold18)
@@ -99,29 +105,9 @@ struct LoginView: View {
     }
 }
 
-enum PREVIEW_DEVICE_TYPE : String, CaseIterable {
-    case iPhone_16_Pro_Max = "iPhone 16 Pro Max"
-    case iPhone_11 = "iPhone 11"
-    
-    var previewDevice: PreviewDevice {
-        .init(rawValue: self.rawValue)
+#Preview {
+    NavigationStack {
+        LoginView()
     }
-}
-
-func devicePreviews<Content: View>(
-    content: @escaping () -> Content
-) -> some View {
-    ForEach(PREVIEW_DEVICE_TYPE.allCases, id: \.self) { device in
-        content()
-            .previewDevice(device.previewDevice)
-            .previewDisplayName(device.rawValue)
-    }
-}
-
-struct SwiftUIView_Preview: PreviewProvider {
-    static var previews: some View {
-        devicePreviews {
-            LoginView()
-        }
-    }
+    .environment(NavigationRouter())
 }

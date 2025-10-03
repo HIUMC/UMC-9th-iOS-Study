@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct MemberInfoManageView: View {
-    @Environment(\.dismiss) private var dismiss
-
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
             NavigationBar()
@@ -66,7 +64,6 @@ extension MemberInfoManageView {
                 
                 Divider()
                     .padding(.bottom, 24)
-
 
                 // 이름 + 변경 버튼
                 HStack {

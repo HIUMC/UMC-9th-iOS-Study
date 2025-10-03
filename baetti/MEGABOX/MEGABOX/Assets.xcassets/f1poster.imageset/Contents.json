@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "f1poster.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
