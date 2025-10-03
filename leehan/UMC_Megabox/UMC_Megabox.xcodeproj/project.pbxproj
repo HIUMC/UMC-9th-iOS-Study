@@ -11,6 +11,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		F824AB782E854B2A00AB791F /* Week1 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Week1;
+			sourceTree = "<group>";
+		};
+		F824AB792E854B4100AB791F /* Week2 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Week2;
+			sourceTree = "<group>";
+		};
+		F824AB7A2E854B6200AB791F /* Week3 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Week3;
+			sourceTree = "<group>";
+		};
 		F8431AB42E795410004CDA65 /* UMC_Megabox */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = UMC_Megabox;
@@ -34,6 +49,9 @@
 			children = (
 				F8431AB42E795410004CDA65 /* UMC_Megabox */,
 				F87869B52E8144A4001AFA0A /* UMC_Megabox.app */,
+				F824AB782E854B2A00AB791F /* Week1 */,
+				F824AB792E854B4100AB791F /* Week2 */,
+				F824AB7A2E854B6200AB791F /* Week3 */,
 			);
 			sourceTree = "<group>";
 		};
@@ -53,6 +71,9 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				F824AB782E854B2A00AB791F /* Week1 */,
+				F824AB792E854B4100AB791F /* Week2 */,
+				F824AB7A2E854B6200AB791F /* Week3 */,
 				F8431AB42E795410004CDA65 /* UMC_Megabox */,
 			);
 			name = UMC_Megabox;
