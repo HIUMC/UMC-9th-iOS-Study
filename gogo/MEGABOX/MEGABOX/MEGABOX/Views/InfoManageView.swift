@@ -9,6 +9,7 @@ import SwiftUI
 
 struct InfoManageView: View {
     
+    @Environment(\.dismiss) private var dismiss
 
     @AppStorage("userId") private var savedId: String = "ksh020920"
     @AppStorage("userName") private var savedName: String = "고석현"
@@ -22,7 +23,7 @@ struct InfoManageView: View {
     
             HStack {
                 Button(action: {
-                    // 뒤로가기 나중에 구현
+                    dismiss()
                 }) {
                     Image("back")
                         .resizable()

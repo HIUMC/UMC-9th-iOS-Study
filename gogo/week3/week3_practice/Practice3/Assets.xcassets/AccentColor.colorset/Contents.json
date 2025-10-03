@@ -1,7 +1,6 @@
 {
-  "images" : [
+  "colors" : [
     {
-      "filename" : "location.pdf",
       "idiom" : "universal"
     }
   ],
