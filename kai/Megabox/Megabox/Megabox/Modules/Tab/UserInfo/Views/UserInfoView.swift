@@ -8,9 +8,17 @@
 import SwiftUI
 
 struct UserInfoView: View {
+    
     @AppStorage("id") var userID: String = ""
     @AppStorage("pwd") var userPwd: String = ""
     @AppStorage("name") var userName: String = ""
+    
+    @EnvironmentObject var container: DIContainer
+
+    @State var homeViewModel: HomeViewModel
+    @State var userInfoViewModel: UserInfoViewModel
+
+    
 
 
     var body: some View {
@@ -22,7 +30,7 @@ struct UserInfoView: View {
             Spacer().frame(height:33)
             CouponState
             Spacer().frame(height:33)
-            InfoIcons()
+            InfoIcons(viewModel: userInfoViewModel)
             Spacer()
 
         }
@@ -50,7 +58,8 @@ struct UserInfoView: View {
                 Spacer()
                     
                  
-                Button(action: { /* 회원정보 액션 */ }) {
+                Button(action: { container.navigationRouter.path.append(NavigationDestination.userinfo)
+                }) {
                     RoundedRectangle(cornerRadius: 16)
                         .frame(width:72,height:28)
                         .foregroundStyle(.gray07)
@@ -151,7 +160,7 @@ struct InfoMenuCard: View {
     let label: String
     var action: () -> Void = {}
 
-    private let iconSize: CGFloat = 36  // 🔧 Figma 아이콘 크기에 맞춰 조절
+    private let iconSize: CGFloat = 36
 
     var body: some View {
         Button(action: action) {
@@ -176,13 +185,15 @@ struct InfoMenuCard: View {
 }
 
 struct InfoIcons : View{
-    @State private var infoviewModel = InfoViewModel()
+    @EnvironmentObject var container: DIContainer
+    
+    @State var viewModel: UserInfoViewModel
 
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 0), count: 4)
 
     var body: some View {
         LazyVGrid(columns: columns, alignment: .center, spacing: 0) {
-            ForEach(infoviewModel.infoModel) { item in
+            ForEach(viewModel.infoModel) { item in
                 InfoMenuCard(icon: item.icon, label: item.label) {
                     // TODO: 탭 액션 (네비게이션/시트 등)
                 }
@@ -191,5 +202,7 @@ struct InfoIcons : View{
     }
 }
 #Preview {
-    UserInfoView()
+    UserInfoView(container: DIContainer())
+        .environment(NavigationRouter())
+        .environment(HomeViewModel())
 }

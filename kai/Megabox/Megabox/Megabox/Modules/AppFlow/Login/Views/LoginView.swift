@@ -10,6 +10,9 @@ import SwiftUI
 struct LoginView: View {
     @Bindable var loginviewModel : LoginViewModel
     
+    @Environment(NavigationRouter.self) var router
+    
+    
     @AppStorage("id") private var userID : String = ""
     @AppStorage("pwd") private var userPwd : String = ""
     
@@ -73,6 +76,8 @@ struct LoginView: View {
                 userID = loginviewModel.loginModel.id
                 userPwd = loginviewModel.loginModel.pwd
                 
+                router.path.append(NavigationDestination.login)
+                
                         }) {
                     Text("로그인")
                         .font(.PretendardBold(size: 18))
@@ -135,4 +140,6 @@ struct LoginView: View {
 
 #Preview {
     LoginView(loginviewModel: LoginViewModel())
+        .environment(NavigationRouter())
+        .environment(HomeViewModel())
 }

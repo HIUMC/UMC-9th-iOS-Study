@@ -1,5 +1,5 @@
 //
-//  UserProfileView.swift
+//  UserInfoManageView.swift
 //  Megabox
 //
 //  Created by 김지우 on 9/24/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MemberInfoManageView: View {
+struct UserInfoManageView: View {
     @Environment(\.dismiss) private var dismiss
 
     // AppStorage
@@ -134,5 +134,5 @@ struct MemberInfoManageView: View {
 }
 
 #Preview {
-    MemberInfoManageView()
+    UserInfoManageView()
 }
