@@ -2,11 +2,13 @@
 //  ProfileView.swift
 //  MegaBox
 //
-//  Created by 박병선 on 9/23/25.
+//  Created by 박병선 on 10/1/25.
 //
 import SwiftUI
 
 struct ProfileView: View{
+    
+    @EnvironmentObject var container : DIContainer
 
     var body: some View{
         VStack(alignment: .leading, spacing: 15){
@@ -14,16 +16,16 @@ struct ProfileView: View{
             clubMembershipView()
             couponInfoView()
             reservationView()
-            
         }
     }
 }
 
 //MARK: -하위뷰
 ///헤더뷰
-private struct profileHeaderView: View {
+struct profileHeaderView: View {
     
-    @AppStorage("userName") private var savedName: String = "이*원"
+    @EnvironmentObject var container : DIContainer
+    @AppStorage("userName") private var savedName: String =  "이*원"
     @AppStorage("userPoint") private var savedPoint: Int = 500
     
     var body: some View {
@@ -65,7 +67,7 @@ private struct profileHeaderView: View {
             
             // 오른쪽: 회원정보 버튼
             Button(action: {
-                print("회원정보 버튼 클릭")
+                container.navigationRouter.push(.memberInfo)
             }) {
                 Text("회원정보")
                     .font(.pretendardSemiBold(14))
@@ -82,7 +84,7 @@ private struct profileHeaderView: View {
     }
 }
 
-private struct clubMembershipView: View{
+struct clubMembershipView: View{
     var body: some View{
         Button(action: {
             print("클럽 멤버십 버튼 클릭")
@@ -112,7 +114,7 @@ private struct clubMembershipView: View{
     }
 }
 
-private struct couponInfoView: View {
+struct couponInfoView: View {
     var body: some View {
         
         HStack(spacing: 10) {
@@ -173,7 +175,7 @@ private struct couponInfoView: View {
     }
 }
 
-private struct reservationView: View{
+ struct reservationView: View{
     var body: some View{
         HStack{
             Button(action: {
@@ -249,3 +251,4 @@ private struct reservationView: View{
 #Preview{
     ProfileView()
 }
+

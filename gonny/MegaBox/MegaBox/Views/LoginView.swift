@@ -9,6 +9,7 @@ import SwiftUI
 struct LoginView: View {
     //로그인 뷰모델에서 바인딩 받은 값
     @State private var viewModel = LoginViewModel()
+    @AppStorage("isLoggedIn") private var isLoggedIn: Bool = false
        
  
     // 과제 요구: AppStorage에 아이디와 비밀번호 저장
@@ -46,6 +47,8 @@ struct LoginView: View {
             Button(action: {
                 savedId = viewModel.loginModel.id
                 savedPwd = viewModel.loginModel.pwd
+                
+                isLoggedIn = true
             }) {
                 Image("login")
                     .resizable()
@@ -55,7 +58,9 @@ struct LoginView: View {
             .padding(.horizontal, 24)
 
           
-            Button(action: {}) {
+            Button(action: {
+                
+            }) {
                 Text("회원가입")
                     .foregroundStyle(Color("gray04"))
                     .font(.pretendardMedium(13))

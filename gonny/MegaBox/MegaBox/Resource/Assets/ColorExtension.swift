@@ -4,9 +4,10 @@
 //
 //  Created by 박병선 on 9/23/25.
 //
+
 import SwiftUI
 
-extension Color {
+public extension Color {
     /// HEX 문자열로 Color 생성 (예: "#FF5733" or "FF5733")
     init(hex: String) {
         var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -34,3 +35,4 @@ extension Color {
         self.init(.sRGB, red: r, green: g, blue: b, opacity: a)
     }
 }
+ 
