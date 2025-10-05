@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-extension Font {
+public extension Font {
     enum Pretend {
         case extraBold
         case bold
