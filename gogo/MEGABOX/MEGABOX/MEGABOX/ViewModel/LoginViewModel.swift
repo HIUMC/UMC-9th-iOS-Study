@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Observation
+
 
 // MARK: - 로그인 뷰모델
 @Observable

@@ -10,30 +10,29 @@ import Observation
 
 
 struct LoginView: View {
+    @Environment(NavigationRouter.self) var router
+    
     @State private var viewModel = LoginViewModel()
     @AppStorage("userId") private var storedId: String = ""
     @AppStorage("userPwd") private var storedPwd: String = ""
     var body: some View {
         VStack {
-            NavigationBarView()
+            navigationBarView
                 .padding(.bottom, 125)
-            LoginInputView(viewModel: viewModel)
+            loginInputView
                 .padding(.bottom, 35)
-            LoginButtonView(viewModel: viewModel, storedId: $storedId, storedPwd: $storedPwd)
+            loginButtonView
                 .padding(.bottom, 10)
-            SignUpTextView()
+            signUpTextView
                 .padding(.bottom, 22)
-            SocialLoginView()
+            socialLoginView
                 .padding(.bottom,22)
-            UmcBannerView()
+            umcBannerView
             Spacer()
         }
     }
-}
-
-//MARK: -네비게이션 바 하위뷰
-struct NavigationBarView: View {
-    var body: some View {
+    
+    private var navigationBarView: some View {
         HStack {
             Spacer()
             Text("로그인")
@@ -41,14 +40,9 @@ struct NavigationBarView: View {
                 .foregroundStyle(.black)
             Spacer()
         }
-
     }
-}
-
-//MARK: -로그인 텍스트필드 하위뷰
-struct LoginInputView: View {
-    @Bindable var viewModel: LoginViewModel
-    var body: some View {
+    
+    private var loginInputView: some View {
         VStack(alignment: .leading, spacing: 35) {
             VStack(alignment: .leading, spacing: 0) {
                 TextField("아이디", text: $viewModel.loginModel.id)
@@ -77,17 +71,13 @@ struct LoginInputView: View {
         }
         .padding(.horizontal, 16)
     }
-}
-
-//MARK: - 로그인 버튼 하위뷰
-struct LoginButtonView: View {
-    @Bindable var viewModel: LoginViewModel
-    @Binding var storedId: String
-    @Binding var storedPwd: String
-    var body: some View {
+    
+    private var loginButtonView: some View {
         Button(action: {
             storedId = viewModel.loginModel.id
             storedPwd = viewModel.loginModel.pwd
+            print("저장된 아이디: \(storedId), 저장된 비밀번호: \(storedPwd)")
+                           router.path.append(Route.login)
         }) {
             HStack {
                 Spacer()
@@ -103,21 +93,14 @@ struct LoginButtonView: View {
             .padding(.horizontal, 16)
         }
     }
-}
-
-//MARK: -"회원가입" 텍스트 하위뷰
-struct SignUpTextView: View {
-    var body: some View {
+    
+    private var signUpTextView: some View {
         Text("회원가입")
             .font(.PretendardMedium(size:13))
             .foregroundStyle(Color("gray04"))
-           
     }
-}
-
-//MARK: -소셜 로그인 하위뷰
-struct SocialLoginView: View {
-    var body: some View {
+    
+    private var socialLoginView: some View {
         HStack(spacing: 73) {
             Image("naverLogo")
                 .resizable()
@@ -132,13 +115,9 @@ struct SocialLoginView: View {
                 .scaledToFit()
                 .frame(width: 40, height: 40)
         }
-       
     }
-}
-
-//MARK: UMC 홍보 이미지 하위뷰
-struct UmcBannerView: View {
-    var body: some View {
+    
+    private var umcBannerView: some View {
         Image("umcBanner")
             .resizable()
             .scaledToFit()
@@ -151,9 +130,11 @@ struct UmcBannerView: View {
 
 //프리뷰 (과제용/아이폰 11, 16프로)
 #Preview("iPhone 11") {
-   LoginView()
+    LoginView()
+           .environment(NavigationRouter())
 }
 
 #Preview("iPhone 16 Pro") {
- LoginView()
+    LoginView()
+           .environment(NavigationRouter())
 }

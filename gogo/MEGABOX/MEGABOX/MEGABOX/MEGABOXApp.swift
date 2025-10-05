@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
-
 @main
-struct MEGABOXApp: App {
+struct MegaBoxApp: App {
+    @State private var router = NavigationRouter()
+    @State private var viewModel = MovieViewModel()
     var body: some Scene {
         WindowGroup {
-            MemberInfoView()
+           
+            SourceView()
+                .environment(router)
+                .environment(viewModel)
         }
     }
 }
