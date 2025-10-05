@@ -12,29 +12,39 @@ struct LoginView: View {
     /* @AppStorage를 이용해 저장할 값 작성 */
     @AppStorage("id") private var id: String = ""
     @AppStorage("pwd") private var pwd: String = ""
+    @State private var path = NavigationPath()
     /* @State를 이용해 LoginView에서 인스턴스 생성 */
     @State var viewModel = LoginViewModel()
     
     var body: some View {
-        VStack {
-            topGroup // '로그인' 텍스트
-            Spacer()
-                .frame(height: 157)
-            enterGroup // '아이디', '비밀번호'
-            Spacer()
-                .frame(height: 75)
-            loginBtn // '로그인'
-            Spacer()
-                .frame(height: 17)
-            signupBtn // '회원가입'
-            Spacer()
-                .frame(height: 35)
-            socialLoginBtn // '네 카 애'
-            Spacer()
-                .frame(height: 39)
-            UMCadvertisement // 'UMC 홍보'
-        }.padding() // 상화좌우 여백을 VStack에 Padding()으로 구현
-                    // 기기가 바뀌어도 어느정도 비율 유지
+        // loginBtn에서 NavigationLink를 사용하기 위해 NavigationStack으로 감싸줌
+        NavigationStack(path: $path) {
+            VStack {
+                //Spacer().frame(height: 44)
+                topGroup // '로그인' 텍스트
+                Spacer()
+                    .frame(height: 100)
+                enterGroup // '아이디', '비밀번호'
+                Spacer()
+                    .frame(height: 75)
+                loginBtn   // '로그인'
+                Spacer()
+                    .frame(height: 17)
+                signupBtn // '회원가입'
+                Spacer()
+                    .frame(height: 35)
+                socialLoginBtn // '네 카 애'
+                Spacer()
+                    .frame(height: 39)
+                UMCadvertisement // 'UMC 홍보'
+                
+            }//.padding() // 상화좌우 여백을 VStack에 Padding()으로 구현
+                        // 기기가 바뀌어도 어느정도 비율 유지
+            .navigationDestination(for: String.self) { str in
+                if str == "MainTabView" { MainTabView() }
+            }
+            
+        }.padding(.horizontal)
     } // end of body
     
     private var topGroup: some View {
@@ -81,9 +91,11 @@ struct LoginView: View {
          로그인 버튼은 ZStack으로 배경을 만들어줌
          배경을 적절히 꾸미고 그 위에 텍스트 컴포넌트를 올려줌
          */
-        Button(action: { /* 아이디와 비밀번호 저장 */
-            id = viewModel.loginModel.id
-            pwd = viewModel.loginModel.pwd }) {
+        Button(action: {
+            if id == viewModel.loginModel.id && pwd == viewModel.loginModel.pwd {
+                path.append("MainTabView")
+            }
+        }) {
             ZStack {
                 Rectangle()
                     .frame(height: 54)
@@ -94,6 +106,21 @@ struct LoginView: View {
                     .foregroundStyle(.white)
             }
         }
+        
+        /*Button(action: { /* 아이디와 비밀번호 저장 */
+            if (id == viewModel.loginModel.id && pwd == viewModel.loginModel.pwd) {
+                
+            } }) {
+            ZStack {
+                Rectangle()
+                    .frame(height: 54)
+                    .foregroundStyle(.purple03)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                Text("로그인")
+                    .font(.PretendardBold(size: 18))
+                    .foregroundStyle(.white)
+            }
+        }*/
     } // end of loginBtn
     
     
