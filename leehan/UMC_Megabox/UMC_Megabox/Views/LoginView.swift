@@ -16,9 +16,11 @@ struct LoginView: View {
     /* @State를 이용해 LoginView에서 인스턴스 생성 */
     @State var viewModel = LoginViewModel()
     
+    @Environment(AuthenticationManager.self) private var auth
+    
+    
+    
     var body: some View {
-        // loginBtn에서 NavigationLink를 사용하기 위해 NavigationStack으로 감싸줌
-        NavigationStack(path: $path) {
             VStack {
                 //Spacer().frame(height: 44)
                 topGroup // '로그인' 텍스트
@@ -37,13 +39,6 @@ struct LoginView: View {
                 Spacer()
                     .frame(height: 39)
                 UMCadvertisement // 'UMC 홍보'
-                
-            }//.padding() // 상화좌우 여백을 VStack에 Padding()으로 구현
-                        // 기기가 바뀌어도 어느정도 비율 유지
-            .navigationDestination(for: String.self) { str in
-                if str == "MainTabView" { MainTabView() }
-            }
-            
         }.padding(.horizontal)
     } // end of body
     
@@ -93,7 +88,7 @@ struct LoginView: View {
          */
         Button(action: {
             if id == viewModel.loginModel.id && pwd == viewModel.loginModel.pwd {
-                path.append("MainTabView")
+                auth.login()
             }
         }) {
             ZStack {
@@ -171,4 +166,5 @@ struct LoginView: View {
 
 #Preview {
     LoginView()
+        .environment(AuthenticationManager())
 }
