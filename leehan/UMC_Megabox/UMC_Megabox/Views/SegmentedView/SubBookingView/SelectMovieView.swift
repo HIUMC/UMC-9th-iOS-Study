@@ -10,6 +10,7 @@ import SwiftUI
 struct SelectMovieView: View {
     
     @ObservedObject var viewModel: BookingViewModel
+    @State private var isShowingMovieSearch = false
     
     var body: some View {
         
@@ -32,7 +33,7 @@ struct SelectMovieView: View {
                 
                 Spacer()
                 
-                Button( action: { } ) {
+                Button( action: { isShowingMovieSearch = true } ) {
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(.gray02, lineWidth: 1)
                         .foregroundStyle(.clear)
@@ -42,7 +43,7 @@ struct SelectMovieView: View {
                         .frame(width: 69, height: 30)
                 }
                 
-            }.frame(width: 408, height: 30)
+            }.frame(height: 30)
             
             ScrollView(.horizontal) {
                 LazyHStack(spacing: 8) {
@@ -64,7 +65,12 @@ struct SelectMovieView: View {
                 }
             }
             
-        }.frame(width: 408, height: 139)// end of VStack
+        }.frame(height: 139)// end of VStack
+            .sheet(isPresented: $isShowingMovieSearch) {
+                        // isShowingMovieSearch가 true가 되면 이 뷰를 시트로 띄움
+                        // BookingViewModel의 selectedMovie를 Binding으로 전달
+                        MovieSearchView(selectedMovie: $viewModel.selectedMovie)
+                    }
     }
 }
 

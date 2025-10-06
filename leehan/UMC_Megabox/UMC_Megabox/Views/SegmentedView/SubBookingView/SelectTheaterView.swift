@@ -12,7 +12,7 @@ struct SelectTheaterView: View {
     
     var body: some View {
         
-        if !viewModel.availableTheaters.isEmpty {
+        if (!viewModel.availableTheaters.isEmpty) {
             HStack(spacing: 8) {
                 ForEach(viewModel.availableTheaters) { theater in
                     Button( action: { viewModel.selectedTheater = theater } ) {

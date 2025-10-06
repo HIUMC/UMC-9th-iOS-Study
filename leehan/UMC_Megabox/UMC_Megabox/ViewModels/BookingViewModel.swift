@@ -18,6 +18,7 @@ class BookingViewModel: ObservableObject {
     @Published var selectedMovie: Movie?
     @Published var selectedTheater: Theater?
     @Published var selectedDate: Date?
+    @Published var selectedShowtime: Showtime?
 
     // MARK: - 출력 (UI에 보여줄 데이터)
     @Published var availableTheaters: [Theater] = []
@@ -59,7 +60,6 @@ class BookingViewModel: ObservableObject {
                 guard movie != nil else { // movie == nil 이면 (영화 선택이 없으면) 밑의 코드 실행
                     self?.availableTheaters = []
                     self?.selectedTheater = nil
-                    self?.availableDates = []
                     self?.selectedDate = nil
                     
                     return
@@ -70,7 +70,10 @@ class BookingViewModel: ObservableObject {
         
                 // 이전에 선택했던 극장이 있다면 초기화
                 self?.selectedTheater = nil
+                self?.availableDates = []
                 self?.selectedDate = nil
+                self?.showtimes = []
+                self?.errorMessage = nil
             }
             .store(in: &cancellables)
 
@@ -100,6 +103,8 @@ class BookingViewModel: ObservableObject {
                 
                 // 이전에 선택했던 날짜가 있다면 초기화
                 self?.selectedDate = nil
+                self?.showtimes = []
+                self?.errorMessage = nil
             }
             .store(in: &cancellables)
         
