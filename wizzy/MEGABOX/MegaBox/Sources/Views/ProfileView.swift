@@ -11,7 +11,8 @@ struct ProfileView: View {
     @AppStorage("id") private var storedId: String = "Guest"
     
     @Environment(NavigationRouter.self) var router
-    @Environment(MovieViewModel.self) var viewModel
+    @EnvironmentObject var viewModel: MovieViewModel
+
     //@State private var router = NavigationRouter() // 하위뷰에서 이렇게 절대 만들지 말 것!!
     
     var body: some View {
@@ -213,5 +214,5 @@ struct ProfileView: View {
 #Preview {
     ProfileView()
         .environment(NavigationRouter())
-        .environment(MovieViewModel())
+        .environmentObject(MovieViewModel())
 }

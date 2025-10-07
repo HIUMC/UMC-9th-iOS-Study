@@ -10,10 +10,8 @@ import SwiftUI
 
 struct MainView: View {
     ///한 곳(MainView)에서 만든 객체를 앱 전체 화면에서 동일하게 쓰고 싶을 때
-    ///@Environment(NavigationRouter.self) var router
-    ///@Environment(MovieViewModel.self) var viewModel 사용
     @Environment(NavigationRouter.self) var router
-    @Environment(MovieViewModel.self) var viewModel
+    @EnvironmentObject var viewModel: MovieViewModel
 
     var body: some View {
         @Bindable var router = router
@@ -21,7 +19,7 @@ struct MainView: View {
         NavigationStack(path: $router.path) {
             LoginView()
                 .environment(router)
-                .environment(viewModel)
+                .environmentObject(viewModel)
                 .navigationDestination(for: Route.self) { route in
                     switch route {
                     case .home:

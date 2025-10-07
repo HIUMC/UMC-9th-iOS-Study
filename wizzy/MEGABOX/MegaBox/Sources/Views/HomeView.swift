@@ -14,7 +14,8 @@ enum MovieTab: String, CaseIterable {
 
 struct HomeView: View {
     @Environment(NavigationRouter.self) var router
-    @Environment(MovieViewModel.self) var viewModel
+    @EnvironmentObject var viewModel: MovieViewModel
+
     
     @State private var tab: MovieTab = .chart
 
@@ -143,7 +144,7 @@ struct MovieCard: View {
             
             Text(movieModel.title)
                 .font(.PretendardBold22)
-            Text("누적관객수 \(movieModel.countAudience)")
+            Text("누적관객수 \(movieModel.countAudience ?? "idk")")
                 .font(.PretendardMedium18)
         }
     }
@@ -252,5 +253,5 @@ struct MovieFeedView: View {
 #Preview {
     HomeView()
         .environment(NavigationRouter())
-        .environment(MovieViewModel())
+        .environmentObject(MovieViewModel())
 }
