@@ -85,7 +85,7 @@ struct MovieInfoView: View {
 struct MovieInfoView_Preview: PreviewProvider {
     static var previews: some View {
         devicePreviews {
-            MovieInfoView(movie: MovieModel(posterName: "sample",secPosterName: "암거나",name:"영화제목",engname: "영어이름", performance: "100만명"))
+            MovieInfoView(movie: MovieModel(posterName: "sample",secPosterName: "암거나",name:"영화제목",engname: "영어이름", performance: "100만명", age: "15"))
                 .environment(NavigationRouter())
                 .environment(MovieViewModel())
         }

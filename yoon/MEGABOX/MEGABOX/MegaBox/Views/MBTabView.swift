@@ -9,14 +9,12 @@ import Foundation
 import SwiftUI
 
 struct MBTabView: View {
-    @Environment(NavigationRouter.self) var router
-    @Environment(MovieViewModel.self) var viewModel
+     
     var body: some View {
         TabView {
             Tab("홈", systemImage: "house.fill") {
                 HomeView()
-                    .environment(router)
-                    .environment(viewModel)
+       
             }
 
             Tab("바로 예매", systemImage: "play.laptopcomputer") {

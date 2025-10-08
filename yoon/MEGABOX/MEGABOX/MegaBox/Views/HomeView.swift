@@ -78,8 +78,6 @@ struct HomeView: View {
                             .background(select == tab ? .gray08 : .gray02)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
-                    // 안에다 넣어도, } 밖에다 넣어도 같다?
-                    // enum 추가 학습 필요
                 }
             }
         }
@@ -138,7 +136,7 @@ struct HomeView: View {
                         Text("바로 예매")
                             .frame(width: 148,height: 36)
                             .foregroundStyle(.purple03)
-                            .background(RoundedRectangle(cornerRadius: 10).stroke(.purple03, lineWidth: 1))
+                            .background{RoundedRectangle(cornerRadius: 10).stroke(.purple03, lineWidth: 1)}
                     }
                     Spacer().frame(height: 8)
                     Text(movie.name).font(.PretendardBold22)
@@ -156,7 +154,7 @@ struct HomeView: View {
                     ForEach(movieViewModel.movies) { movie in MovieCard(movie: movie)}
                 }
             })
-        } // 2행 이상으로 가는게 아니니까 LazyHStack으로 충분하지 않을까.,
+        } 
     }
 
 
