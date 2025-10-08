@@ -16,12 +16,8 @@ struct MEGABOXApp: App {
         WindowGroup {
             NavigationStack(path: $router.path) {
                 LoginView()
-                    .environment(router)
                     .navigationDestination(for: Route.self) { route in
                         switch route {
-                        case .home:
-                            BaseTabView()
-                                .navigationBarBackButtonHidden(true)
                         case .login:
                             BaseTabView()
                                 .navigationBarBackButtonHidden(true)

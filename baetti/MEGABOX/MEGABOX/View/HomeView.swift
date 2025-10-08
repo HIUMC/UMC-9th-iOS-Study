@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var viewModel = MovieViewModel()
+    @Environment(MovieViewModel.self) private var viewModel
     @Environment(NavigationRouter.self) private var router
     
     @State private var selected: ChartTab = .chart
     private enum ChartTab { case chart, upcoming }
     
     var body: some View {
-        @Bindable var viewModel = viewModel
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
                 HeaderSection
@@ -48,7 +47,7 @@ struct HomeView: View {
                     withAnimation(.easeInOut) { selected = .chart }
                 } label: {
                     Text("무비차트")
-                        .font(.semiBold18)
+                        .font(.medium14)
                         .padding(.horizontal, 18)
                         .padding(.vertical, 10)
                         .background(
@@ -62,8 +61,8 @@ struct HomeView: View {
                     withAnimation(.easeInOut) { selected = .upcoming }
                 } label: {
                     Text("상영예정")
-                        .font(.subheadline.weight(.semibold))
-                        .padding(.horizontal, 16)
+                        .font(.medium14)
+                        .padding(.horizontal, 18)
                         .padding(.vertical, 10)
                         .background(
                             Capsule()
@@ -77,8 +76,7 @@ struct HomeView: View {
             if selected == .chart {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 24) {
-                        ForEach(viewModel.movies.indices, id: \.self) { index in
-                            let movie = viewModel.movies[index]
+                        ForEach(viewModel.movies) { movie in
                             VStack(alignment: .leading) {
                                 if movie.poster == "poster3" {
                                     Button {
@@ -109,7 +107,7 @@ struct HomeView: View {
                                     .lineLimit(1)
                                     .padding(.bottom, 3)
                                 
-                                Text("누적관객수 \(movie.countAudience)")
+                                Text("누적관객수 \(movie.countAudience ?? "")")
                                     .font(.medium18)
                                     .foregroundColor(.black)
                             }

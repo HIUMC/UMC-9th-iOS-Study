@@ -9,13 +9,11 @@ import SwiftUI
 
 struct LoginView: View {
     @Environment(NavigationRouter.self) private var router
-
+    @ObservedObject var viewModel: LoginViewModel = .init()
+    
     @AppStorage("id") var id: String = "1234"
     @AppStorage("pwd") var pwd: String = "1234"
-    @State private var viewModel = LoginViewModel()
-    
     var body: some View {
-        @Bindable var viewModel = viewModel
         VStack {
             navigationBar
             Spacer()
@@ -44,7 +42,7 @@ struct LoginView: View {
     private var InputSection: some View {
         VStack(alignment:.leading){
 
-            TextField("아이디", text: $viewModel.id)
+            TextField("아이디", text: $viewModel.loginModel.id)
                 .font(.medium16)
                 .foregroundColor(.gray03)
                 .padding(.bottom, 4)
@@ -52,7 +50,7 @@ struct LoginView: View {
             Divider()
                 .padding(.bottom, 40)
 
-            SecureField("비밀번호", text: $viewModel.pwd)
+            SecureField("비밀번호", text: $viewModel.loginModel.pwd)
                 .font(.medium16)
                 .foregroundColor(.gray03)
                 .padding(.bottom, 4)
@@ -65,7 +63,7 @@ struct LoginView: View {
         VStack(alignment:.center) {
             Button(action: {
                 // 입력한 값이 미리 저장해둔 계정과 일치하는지 확인
-                if viewModel.id == id && viewModel.pwd == pwd {
+                if viewModel.loginModel.id == id && viewModel.loginModel.pwd == pwd {
                     print("로그인 성공!")
                     // 여기서 화면 전환이나 상태 변경 처리 가능
                     router.push(.login)
@@ -106,8 +104,6 @@ struct LoginView: View {
 }
 
 #Preview {
-    NavigationStack {
-        LoginView()
-    }
-    .environment(NavigationRouter())
+    LoginView()
+        .environment(NavigationRouter())
 }

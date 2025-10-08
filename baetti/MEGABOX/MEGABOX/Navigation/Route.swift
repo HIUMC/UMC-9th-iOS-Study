@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-enum Route: Hashable {
+enum Route: Equatable, Hashable {
     case login
-    case home
     case profile
     case detail(MovieModel)
 }
