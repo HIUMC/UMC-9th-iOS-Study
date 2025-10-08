@@ -59,7 +59,8 @@ private extension HomeView {
                     router.push(.movieDetail(movie: movie))
                 })
             case .upcoming:
-                Text("상영예정 하위뷰 작성 예정")
+                Text("상영예정 하위뷰 작성 예정!!!!!!")
+                    .font(.PretendardBold(size: 20))
                 //TODO: - 상영예정 하위뷰
             
             }
