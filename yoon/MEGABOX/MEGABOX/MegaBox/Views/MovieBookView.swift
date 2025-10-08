@@ -13,14 +13,15 @@ struct MovieBookView: View {
     @Environment(NavigationRouter.self) var router
     @Environment(MovieViewModel.self) var movieViewModel
     @State private var selectedMovie: MovieModel?
+    @State private var isShowingSheet: Bool = false
     @ObservedObject var theaterVM: TheaterViewModel
     
     var body: some View {
         VStack{
             NavigationBar
             if let movie = displayMovie {
-                MovieNavigationBar(movie: movie)
-            } // display의 결과값을 movie 로 선언하여 MovieNavigationBar에 사용
+                MovieNavigationBar( movie: movie, isShowingSheet: $isShowingSheet)
+            }// display의 결과값을 movie 로 선언하여 MovieNavigationBar에 사용
             MovieList(selectedMovie: $selectedMovie)
                 .onChange(of: selectedMovie) { oldValue, newValue in
                     theaterVM.selectedMovie = newValue}
@@ -38,6 +39,9 @@ struct MovieBookView: View {
                 }
             
         }.padding(.horizontal,16)
+        .sheet(isPresented: $isShowingSheet){
+                MovieSearchView()
+                }
     }
     
     
@@ -77,14 +81,16 @@ struct MovieBookView: View {
     
     struct MovieNavigationBar: View {
         let movie: MovieModel
-        
+        @Binding var isShowingSheet: Bool
         var body: some View {
             HStack {
                 AgeBadge(movie: movie)
                 Spacer().frame(width:37)
                 Text(movie.name).font(.PretendardBold18).foregroundStyle(.black)
                 Spacer()
-                Button(action:{}) {
+                Button(action:{
+                    isShowingSheet.toggle()
+                }) {
                     Text("전체영화")
                         .padding(10)
                         .font(.PretendardsemiBold14)
