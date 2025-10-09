@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-// MARK: - MovieDetailView: F1 영화 상세 페이지 (메인 뷰)
+// MARK: - MovieDetailView: F1 영화 상세 페이지
 /*
 struct MovieDetailView: View {
     let movie: MovieDetailModel

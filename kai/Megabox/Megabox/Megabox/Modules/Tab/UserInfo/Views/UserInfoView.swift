@@ -15,8 +15,8 @@ struct UserInfoView: View {
     
     @EnvironmentObject var container: DIContainer
 
-    @State var homeViewModel: HomeViewModel
-    @State var userInfoViewModel: UserInfoViewModel
+    
+    @State var userInfoViewModel = UserInfoViewModel() // 뷰 내부에서 ViewModel 인스턴스 생성 및 관리
 
     
 
@@ -202,7 +202,7 @@ struct InfoIcons : View{
     }
 }
 #Preview {
-    UserInfoView(container: DIContainer())
+    UserInfoView()
         .environment(NavigationRouter())
-        .environment(HomeViewModel())
+        .environmentObject(DIContainer()) // DIContainer 주입
 }

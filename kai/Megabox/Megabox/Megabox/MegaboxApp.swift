@@ -9,11 +9,13 @@ import SwiftUI
 
 @main
 struct MegaboxApp: App {
+    @StateObject private var container = DIContainer()
+
     var body: some Scene {
         WindowGroup {
-            LoginView(loginviewModel: LoginViewModel())
-                .environment(NavigationRouter())
-                .environment(HomeViewModel())
+            BaseTabView()
+                .environmentObject(container)
+            
         }
     }
 }
