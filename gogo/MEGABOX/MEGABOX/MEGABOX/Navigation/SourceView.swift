@@ -10,7 +10,7 @@ import SwiftUI
 struct SourceView: View {
    
     @Environment(NavigationRouter.self) var router
-    @Environment(MovieViewModel.self) var viewModel
+    @EnvironmentObject var viewModel: MovieViewModel
 
     var body: some View {
         @Bindable var router = router
@@ -18,7 +18,7 @@ struct SourceView: View {
         NavigationStack(path: $router.path) {
             LoginView()
                 .environment(router)
-                .environment(viewModel)
+                .environmentObject(viewModel)
                 .navigationDestination(for: Route.self) { route in
                     switch route {
                     case .home:

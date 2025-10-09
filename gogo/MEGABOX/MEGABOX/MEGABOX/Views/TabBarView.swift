@@ -9,8 +9,7 @@ import SwiftUI
 
 struct TabBarView: View {
     @Environment(NavigationRouter.self) var router
-    @Environment(MovieViewModel.self) var viewModel
-
+    @EnvironmentObject var viewModel: MovieViewModel
     var body: some View {
         ZStack {
             TabView {
@@ -41,5 +40,5 @@ struct TabBarView: View {
 #Preview {
     TabBarView()
         .environment(NavigationRouter())
-        .environment(MovieViewModel())
+        .environmentObject(MovieViewModel())
 }

@@ -12,7 +12,7 @@ struct MemberInfoView: View {
     @AppStorage("userName") private var userName: String = "고석현"
     @AppStorage("userPoints") private var userPoints: Int = 500
     @Environment(NavigationRouter.self) var router
-    @Environment(MovieViewModel.self) var viewModel
+    @EnvironmentObject var viewModel: MovieViewModel
     
     //MARK: -바디 뷰
     var body: some View {
@@ -217,13 +217,13 @@ struct MemberInfoView: View {
 #Preview("iPhone 11") {
     MemberInfoView()
     .environment(NavigationRouter())
-           .environment(MovieViewModel())
+    .environmentObject(MovieViewModel())
 }
 
 #Preview("iPhone 16 Pro") {
     MemberInfoView()
     .environment(NavigationRouter())
-           .environment(MovieViewModel())
+    .environmentObject(MovieViewModel())
 }
 
 
