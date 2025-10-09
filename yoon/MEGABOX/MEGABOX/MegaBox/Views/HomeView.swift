@@ -9,10 +9,7 @@
 import Foundation
 import SwiftUI
 
-enum MvTab: String, CaseIterable{
-    case chart = "무비차트"
-    case upcoming = "상영예정"
-}
+
 // 뷰 밖에다 써도 됌
 struct HomeView: View {
     @Environment(NavigationRouter.self) var router
@@ -63,7 +60,7 @@ struct HomeView: View {
                         .foregroundStyle(.gray04)
                 }
             }.frame(width: 320)
-        }
+        }.frame(maxWidth: .infinity, alignment: .leading)
     }
     
     struct ChartButton: View {

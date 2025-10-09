@@ -19,29 +19,39 @@ struct MovieBookView: View {
     var body: some View {
         VStack{
             NavigationBar
+            
             if let movie = displayMovie {
                 MovieNavigationBar( movie: movie, isShowingSheet: $isShowingSheet)
             }// display의 결과값을 movie 로 선언하여 MovieNavigationBar에 사용
+            
             MovieList(selectedMovie: $selectedMovie)
                 .onChange(of: selectedMovie) { oldValue, newValue in
                     theaterVM.selectedMovie = newValue}
             // 선택된 영화가 바뀔 때마다 onChange 동작
             // theaterVM.selectedMovie 갱신
             // TheaterViewModel의 selectedMovie 변경을 반영
+            
             Spacer().frame(height: 32)
+            
             TheaterButton(theaterVM: theaterVM)
             // selectedMovie 변경사항을 isEnabled에 반영
+            
             Spacer().frame(height: 29)
+            
             CalendarView(theaterVM: theaterVM)
-            Spacer()
+            
+            Spacer().frame(height:40)
+            
             if theaterVM.ShowTheaterInfo {
-                    TheaterInfoView(theaterVM: theaterVM)
-                }
+                TheaterInfoView(theaterVM: theaterVM)
+            }
+            
+            Spacer()
             
         }.padding(.horizontal,16)
         .sheet(isPresented: $isShowingSheet){
                 MovieSearchView()
-                }
+        }
     }
     
     
@@ -56,10 +66,7 @@ struct MovieBookView: View {
             .frame(width: 440, height: 42)
             .background(Color.purple03)
     }
-    
-    
-    
-    
+
     struct AgeBadge: View {
         let movie: MovieModel
         var body: some View {
@@ -181,7 +188,7 @@ struct MovieBookView_Preview: PreviewProvider {
         let theaterVM: TheaterViewModel = {
             let vm = TheaterViewModel()
             vm.selectedMovie = MovieModel(posterName: "f1", secPosterName: "", name: "F1 더 무비", engname: "F1 The Movie", performance: "50", age: "12")
-            vm.selectedTheater = [TheaterModel(name: "강남"), TheaterModel(name: "홍대")]
+            vm.selectedTheater = [TheaterModel(name: "강남")]
             vm.selectedDate = Date()
             return vm
         }()

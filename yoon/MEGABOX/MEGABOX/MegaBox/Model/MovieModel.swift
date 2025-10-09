@@ -8,6 +8,11 @@
 import Foundation
 import SwiftUI
 
+enum MvTab: String, CaseIterable{
+    case chart = "무비차트"
+    case upcoming = "상영예정"
+}
+
 struct MovieModel: Identifiable, Hashable {
     let id = UUID()
     var posterName: String

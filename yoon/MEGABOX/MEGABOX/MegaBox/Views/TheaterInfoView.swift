@@ -8,6 +8,13 @@
 import Foundation
 import SwiftUI
 
+struct MovieTimeData {
+    let start: String
+    let end: String
+    let vacancy: Int
+    let capacity: Int
+}
+
 struct MovieTime: View {
     let start: String
     let end: String
@@ -43,7 +50,6 @@ struct TheaterInfoView: View {
                MovieTimeData(start: "13:00", end: "15:30", vacancy: 30, capacity: 60)],
         "홍대": [MovieTimeData(start: "11:00", end: "13:30", vacancy: 20, capacity: 40),
                MovieTimeData(start: "13:00", end: "15:30", vacancy: 30, capacity: 60)]
-        // 신촌은 없는 극장
     ]
     
     var body: some View {
@@ -53,16 +59,15 @@ struct TheaterInfoView: View {
                 Text(theater.name)
                     .font(.PretendardBold18)
                 Spacer().frame(height:21)
-
-                // 즉시 실행 클로저 사용
+                
                 let theaterHallName = { () -> String in
                     switch theater.name {
                     case "강남": return "크리클라이너 1관"
                     case "홍대": return "BTS관 (7층 1관 [Laser])"
-                    default: return "상영관 정보 없음"
+                    default: return "선택한 극장에 상용시간표가 없습니다"
                     }
                 }()
-
+                
                 Text(theaterHallName)
                     .font(.PretendardBold18)
                     .foregroundStyle(.black)
@@ -70,37 +75,24 @@ struct TheaterInfoView: View {
                 Spacer().frame(height:21)
                 
                 if let times = availableTheaters[theater.name], !times.isEmpty {
-                        HStack(spacing: 36) {
-                            ForEach(times, id: \.start) { time in
-                                MovieTime(start: time.start, end: time.end, vacancy: time.vacancy, capacity: time.capacity)
-                                        }
-                                    }
-                } else {
-                    Text("선택한 극장에 상영시간표가 없습니다")
-                        .foregroundColor(.red)
+                    HStack(spacing: 36) {
+                        ForEach(times, id: \.start) { time in
+                            MovieTime(start: time.start, end: time.end, vacancy: time.vacancy, capacity: time.capacity)
+                        }
+                    }
                 }
             }
-            
-           
-           
-            }
+        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+    }
+}
+    struct TheaterInfoView_Preview: PreviewProvider {
+        static var previews: some View {
+            TheaterInfoView(theaterVM: {
+                let vm = TheaterViewModel()
+                vm.selectedTheater = [TheaterModel(name: "강남"), TheaterModel(name: "홍대")]
+                return vm
+            }())
+            .previewLayout(.sizeThatFits)
+            .padding()
         }
     }
-struct MovieTimeData {
-    let start: String
-    let end: String
-    let vacancy: Int
-    let capacity: Int
-}
-
-struct TheaterInfoView_Preview: PreviewProvider {
-    static var previews: some View {
-        TheaterInfoView(theaterVM: {
-            let vm = TheaterViewModel()
-            vm.selectedTheater = [TheaterModel(name: "강남"), TheaterModel(name: "홍대")]
-            return vm
-        }())
-        .previewLayout(.sizeThatFits)
-        .padding()
-    }
-}

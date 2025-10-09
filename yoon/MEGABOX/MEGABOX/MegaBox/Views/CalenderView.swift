@@ -12,34 +12,35 @@ struct CalendarView: View {
     @Bindable var viewModel: CalendarViewModel = .init()
     @ObservedObject var theaterVM: TheaterViewModel
     var body: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: 2) {
             ForEach(Array(viewModel.currentWeekDates().enumerated()), id: \.element.id) { index, day in
                 let isSelected = Calendar.current.isDate(day.date, inSameDayAs: viewModel.selectedDate)
                 let weekday = Calendar.current.component(.weekday, from: day.date)
                 
-                ZStack {
-                    if isSelected {
-                        RoundedRectangle(cornerRadius: 12)
-                            .foregroundStyle(.purple03)
-                            .frame(width: 55, height: 60)
-                    }
-                    VStack(spacing : 4) {
-                        Text(day.date, formatter: monthDayFormatter)
-                            .foregroundStyle(isSelected ? .white : .black)
-                            .font(.PretendardBold18)
-                        
-                        Text(weekdayLabel(for: index, date: day.date))
-                            .foregroundStyle(isSelected ? .white : (weekday == 1 ? Color.holiday : weekday == 7 ? Color.tag : Color.black))
-                            .font(.PretendardsemiBold14)
-                    }
-                    .onTapGesture {
-                        guard theaterVM.isEnabled else { return } // 극장 선택 후에만 선택 가능
-                        viewModel.selectDate(day.date)
-                    }
-                }
+                Button(action:{
+                    guard theaterVM.isEnabled else { return } // 극장 선택 후에만 선택 가능
+                    viewModel.selectDate(day.date)
+                    theaterVM.selectedDate = day.date
+                  
+                }){
+                    VStack(spacing : 5) {
+                            Text(formattedDate(day.date, isToday: index == 0))
+                                .foregroundStyle(isSelected ? .white : .black)
+                                .font(.PretendardBold18)
+                            
+                            Text(weekdayLabel(for: index, date: day.date))
+                                .foregroundStyle(isSelected ? .white : (weekday == 1 ? Color.holiday : weekday == 7 ? Color.tag : Color.black))
+                                .font(.PretendardsemiBold14)
+                        }
+                    }.frame(width: 55, height: 60)
+                    .background(isSelected ? .purple03 : .white)
+                    .cornerRadius(12)
             }
-        }
+        }.padding(.horizontal, 16) // HStack에 패딩 적용
+            .frame(maxWidth: .infinity, alignment: .leading) // 좌측 정렬
+        // 왜 안댐?
     }
+    
     let monthDayFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "M.d" // ex: 9.22
@@ -72,6 +73,16 @@ private func weekdayLabel(for index: Int, date: Date) -> String {
        return formatter
    }()
 
+func formattedDate(_ date: Date, isToday: Bool) -> String {
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "ko_KR")
+    if isToday {
+        formatter.dateFormat = "M.d" // 오늘은 월.일
+    } else {
+        formatter.dateFormat = "d"   // 나머지는 일만
+    }
+    return formatter.string(from: date)
+}
 
 struct CalenderView_Preview: PreviewProvider {
     static var previews: some View {

@@ -14,6 +14,7 @@ final class TheaterViewModel: ObservableObject {
         TheaterModel(name: "홍대"),
         TheaterModel(name: "신촌")
     ] // 초기값 설정
+    // enum 타입으로?
     
     @Published var selectedTheater: Set<TheaterModel> = []
     // 중복 선택 가능

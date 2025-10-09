@@ -19,37 +19,53 @@ struct MovieSearchView: View {
             VStack (alignment:.center, spacing:36){
                 Text("영화 선택")
                     .font(.PretendardsemiBold18)
-                    
+                
                 if vm.query.isEmpty {
                     LazyVGrid(columns:columns,spacing: 36 ) {
                         ForEach(vm.movies, id: \.id) {movie in
-                                VStack(spacing: 8){
-                                    Image(movie.posterName)
-                                        .resizable()
-                                        .frame(width:95,height:135)
-                                    Text(movie.name)
-                                        .font(.PretendardsemiBold14)
-                                }
+                            // 라벨
+                            VStack(spacing: 8){
+                                Image(movie.posterName)
+                                    .resizable()
+                                    .frame(width:95,height:135)
+                                Text(movie.name)
+                                    .font(.PretendardsemiBold14)
+                            }
+                            // 라벨
                         }
                     }
-                    
-                    TextField("영화명을 입력해주세요", text: $vm.query)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding(.horizontal)
-                    
-                    if vm.isLoading {
-                        ProgressView("검색중…")
-                    }
-                    
-                    if let error = vm.errorMessage {
-                        Text(error).foregroundStyle(.red)
+                }
+                if vm.isLoading {
+                    ProgressView("검색중…")
+                }
+                
+                else if let error = vm.errorMessage {
+                    Text(error).foregroundStyle(.red)
+                }
+                else {
+                    LazyVGrid(columns:columns,spacing: 36 ) {
+                        ForEach(vm.results, id: \.id) {movie in
+                            VStack(spacing: 8){
+                                Image(movie.posterName)
+                                    .resizable()
+                                    .frame(width:95,height:135)
+                                Text(movie.name)
+                                    .font(.PretendardsemiBold14)
+                            }
+                        }
                     }
                 }
+                Spacer()
+                
+                TextField("영화명을 입력해주세요", text: $vm.query)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.horizontal)
+            }
             }.padding(.horizontal,16)
                
         }
     }
-}
+
 struct MovieSearchView_Preview: PreviewProvider {
     static var previews: some View {
         devicePreviews {

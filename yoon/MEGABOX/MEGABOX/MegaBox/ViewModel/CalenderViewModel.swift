@@ -18,6 +18,8 @@ class CalendarViewModel {
         var days: [CalendarDay] = []
         let today = Date()
         
+
+        
         for i in 0..<7 {
             if let date = calendar.date(byAdding: .day, value: i, to: today) {
                 let day = calendar.component(.day, from: date)
