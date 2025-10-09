@@ -8,9 +8,11 @@ import SwiftUI
 
 struct ProfileView: View{
     
-    @EnvironmentObject var container : DIContainer
+    @Environment(NavigationRouter.self) private var router
 
     var body: some View{
+        //@Bindable var router = router
+        
         VStack(alignment: .leading, spacing: 15){
             profileHeaderView()
             clubMembershipView()
@@ -23,12 +25,12 @@ struct ProfileView: View{
 //MARK: -하위뷰
 ///헤더뷰
 struct profileHeaderView: View {
-    
-    @EnvironmentObject var container : DIContainer
+    @Environment(NavigationRouter.self) private var router
     @AppStorage("userName") private var savedName: String =  "이*원"
     @AppStorage("userPoint") private var savedPoint: Int = 500
     
     var body: some View {
+        
         HStack {
             // 왼쪽: 프로필 정보
             VStack(alignment: .leading, spacing: 4) {
@@ -67,7 +69,7 @@ struct profileHeaderView: View {
             
             // 오른쪽: 회원정보 버튼
             Button(action: {
-                container.navigationRouter.push(.memberInfo)
+                router.push(MemberInfoView()) 
             }) {
                 Text("회원정보")
                     .font(.pretendardSemiBold(14))
@@ -250,5 +252,7 @@ struct couponInfoView: View {
 
 #Preview{
     ProfileView()
-}
+    .environment(NavigationRouter())  //  인스턴스 직접 주입
+  }
+
 

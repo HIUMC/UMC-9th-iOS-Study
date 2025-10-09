@@ -7,22 +7,23 @@
 import SwiftUI
 
 struct MovieDetailView: View {
+    @Environment(NavigationRouter.self) var router
     let movieDetail: MovieDetail
-    let movie: Movie
-    @Environment(\.dismiss) private var dismiss
-    @StateObject private var vm = MovieDetailViewModel()
+    //let movie: Movie
     @StateObject private var viewModel = HomeViewModel()
     
     var body: some View {
+        @Bindable var router = router
+        
         VStack(spacing: 0) {
             // 상단 네비게이션바
             HStack {
                 Button {
-                    dismiss()
+                    router.pop()
                 } label: {
                     Image(systemName: "arrow.left")
                         .font(.system(size: 18, weight: .bold))
-                        .foregroundColor(.black)
+                        .foregroundStyle(.black00)
                 }
                 Spacer()
                 
@@ -37,7 +38,7 @@ struct MovieDetailView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
                     // 포스터 배너
-                    Image(movieDetail.poster)
+                    Image(movieDetail.posterDetail)
                         .resizable()
                         .scaledToFill()
                         .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 240)
@@ -65,11 +66,11 @@ struct MovieDetailView: View {
                         .padding(.bottom)
                     
                     //  선택된 탭 내려주기
-                    CustomTabBar(selectedTab: $vm.selectedTab)
+                    CustomTabBar(selectedTab: $viewModel.selectedTab)
                     
                     //  탭별 컨텐츠
                     Group {
-                        switch vm.selectedTab {
+                        switch viewModel.selectedTab {
                         case .info:
                             infoSection
                         case .reviews:
@@ -88,11 +89,11 @@ struct MovieDetailView: View {
     // MARK: - Custom TabBar
     struct CustomTabBar: View {
         @Namespace private var animation
-        @Binding var selectedTab: MovieDetailViewModel.Tab
+        @Binding var selectedTab: HomeViewModel.Tab
         
         var body: some View {
             HStack {
-                ForEach(MovieDetailViewModel.Tab.allCases, id: \.self) { tab in
+                ForEach(HomeViewModel.Tab.allCases, id: \.self) { tab in
                     Button {
                         withAnimation(.spring()) {
                             selectedTab = tab
@@ -105,7 +106,7 @@ struct MovieDetailView: View {
                             
                             if selectedTab == tab {
                                 Capsule()
-                                    .fill(Color.purple)
+                                    .fill(Color.purple03)
                                     .frame(height: 3)
                                     .matchedGeometryEffect(id: "underline", in: animation)
                             } else {
@@ -124,7 +125,7 @@ struct MovieDetailView: View {
     // MARK: - 상세 정보
     private var infoSection: some View {
         HStack {
-            Image(movie.poster)
+            Image(movieDetail.posterDetail)
                 .resizable()
                 .scaledToFill()
                 .frame(width: 80, height: 100)
@@ -163,26 +164,3 @@ struct MovieDetailView: View {
     }
 }
 // MARK: - Preview
-#Preview {
-    NavigationStack {
-        MovieDetailView(
-            movieDetail:  MovieDetail(
-                titleKR: "F1 더 무비",
-                titleEN: "F1 : The Movie",
-                poster: "f1_promotion",
-                description: """
-                최고가 되지 못한 전설 VS 최고가 되고 싶은 루키
-
-                한때 주목받는 유망주였지만 끔찍한 사고로 F1에서 우승하지 못하고
-                한순간에 추락한 드라이버 ‘슌 헤이스’(브래드 피트).
-                그의 오랜 동료인 ‘루벤 세레브네스’(하비에르 바르뎀)에게
-                레이싱 복귀를 제안받으며 최하위 팀인 APGX에 합류한다.
-                """,
-                rating: "12세 이상 관람가",
-                releaseDate: "2025.06.25"
-            ),
-            movie: Movie(title: "F1 더무비", poster: "f1_poster", audience: "50만")
-           
-        )
-    }
-}

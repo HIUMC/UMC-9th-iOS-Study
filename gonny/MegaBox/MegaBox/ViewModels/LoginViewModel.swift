@@ -7,7 +7,7 @@
 import Observation
 import SwiftUI
 
-@Observable
-class LoginViewModel{
+
+class LoginViewModel: ObservableObject {
     var loginModel: LoginModel = LoginModel()
 }

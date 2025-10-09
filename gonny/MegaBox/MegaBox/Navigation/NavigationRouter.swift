@@ -9,21 +9,22 @@ import Observation
 
 @Observable
 class NavigationRouter {
-    var path = NavigationPath()  // 네비게이션 경로를 저장하는 변수
-
-    /// 특정 화면을 추가 (Push 기능)
-    func push(_ route: NavigationDestination) {
-        path.append(route)
+    /// NavigationStack의 경로
+    var path = NavigationPath()
+    
+    /// 특정 화면으로 이동 (화면 타입을 직접 append)
+    func push<T: Hashable>(_ destination: T) {
+        path.append(destination)
     }
-
-    /// 마지막 화면 제거 (Pop 기능)
+    
+    /// 마지막 화면 제거 (Pop)
     func pop() {
         if !path.isEmpty {
             path.removeLast()
         }
     }
-
-    /// 네비게이션 초기화 (전체 Pop)
+    
+    /// 루트로 돌아가기 (Reset)
     func reset() {
         path = NavigationPath()
     }
