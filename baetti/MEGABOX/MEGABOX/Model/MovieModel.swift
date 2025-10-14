@@ -11,5 +11,5 @@ struct MovieModel: Identifiable, Hashable {
     let id = UUID()
     let title: String
     let poster: String
-    let countAudience: String
+    let countAudience: String?
 }

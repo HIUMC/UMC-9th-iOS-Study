@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MemberInfoView: View {
     @Environment(NavigationRouter.self) var router
-    @Environment(MovieViewModel.self) var viewModel
     
     @AppStorage("nickname") private var nickname: String = ""
     
@@ -205,9 +204,6 @@ struct MemberInfoView: View {
 }
 
 #Preview {
-    NavigationStack {
-        MemberInfoView()
-            .environment(NavigationRouter())
-            .environment(MovieViewModel())
-    }
+    MemberInfoView()
+        .environment(NavigationRouter())
 }
