@@ -16,16 +16,19 @@ struct MovieInfoView: View {
     @Environment(\.dismiss) var dismiss
     var body: some View {
         VStack {
-            NavigationBar
-            MovieInfo
-            Spacer().frame(height: 35)
-            MovieDetailBar
-            Spacer().frame(height: 17)
-            MovieDetail
-            Spacer()
-        }.padding(.horizontal,16)
+        NavigationBar
+        ScrollView {
+                MovieInfo
+                Spacer().frame(height: 35)
+                MovieDetailBar
+                Spacer().frame(height: 17)
+                MovieDetail
+                Spacer()
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.horizontal,16)
+        }.navigationBarBackButtonHidden(true)
     }
-    
     private var NavigationBar: some View {
         VStack{
             HStack{
@@ -37,13 +40,19 @@ struct MovieInfoView: View {
                 Text(movie.name)
                         .font(.Pretendardmedium18)
                         .padding(.trailing,162)
-                }.frame(width: 408)
-            }.padding(.horizontal,16)
+                
+            }.frame(maxWidth: .infinity)
+           
+        }.padding(.horizontal,16)
+        
         }
     
     private var MovieInfo: some View {
         VStack(alignment: .center){
-            Image(movie.secPosterName).frame(height:248)
+            Image(movie.secPosterName)
+                .resizable()
+                .scaledToFit()
+                .frame(maxHeight:248)
             Spacer().frame(height: 9)
             Text(movie.name).font(.PretendardBold24)
             Text(movie.engname).foregroundStyle(.gray03).font(.PretendardsemiBold14)
@@ -56,14 +65,14 @@ struct MovieInfoView: View {
                 Text("상세정보").font(.PretendardBold22)
                 Rectangle()
                     .frame(height: 1)
-                    .frame(maxWidth: 220)
+                    .frame(maxWidth: .infinity)
                     .foregroundColor(.black)
             }
             
             VStack{
                 Text("실관람평").font(.PretendardBold22)
                 Rectangle().frame(height: 1)
-                    .frame(maxWidth: 220)
+                    .frame(maxWidth: .infinity)
                     .foregroundColor(.black)
             }   
         }
@@ -85,9 +94,9 @@ struct MovieInfoView: View {
 struct MovieInfoView_Preview: PreviewProvider {
     static var previews: some View {
         devicePreviews {
-            MovieInfoView(movie: MovieModel(posterName: "sample",secPosterName: "암거나",name:"영화제목",engname: "영어이름", performance: "100만명"))
+            MovieInfoView(movie: MovieModel(posterName: "sample",secPosterName: "암거나",name:"영화제목",engname: "영어이름", performance: "100만명", age: "15"))
                 .environment(NavigationRouter())
                 .environment(MovieViewModel())
         }
     }
-} // 현재 프리뷰는 데이터를 받은게 없으니까 정말 예시로 아무거나 들어가는 것이구나?
+}

@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct week1_homeworkApp: App {
+    let theaterVM : TheaterViewModel = .init()
     var body: some Scene {
         WindowGroup {
-            PathView()
+            PathView(theaterVM: theaterVM)
                 .environment(NavigationRouter())
                 .environment(MovieViewModel())
 // 여기에도 environment를 넣어줘야 하는구나.,.,, 깨달음 + 1

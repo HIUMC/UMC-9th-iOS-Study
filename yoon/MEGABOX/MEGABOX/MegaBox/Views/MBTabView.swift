@@ -9,18 +9,16 @@ import Foundation
 import SwiftUI
 
 struct MBTabView: View {
-    @Environment(NavigationRouter.self) var router
-    @Environment(MovieViewModel.self) var viewModel
+    @ObservedObject var theaterVM: TheaterViewModel
     var body: some View {
         TabView {
             Tab("홈", systemImage: "house.fill") {
                 HomeView()
-                    .environment(router)
-                    .environment(viewModel)
+       
             }
 
             Tab("바로 예매", systemImage: "play.laptopcomputer") {
-                Text("Sent View")
+                MovieBookView(theaterVM: theaterVM)
             }
 
             Tab("모바일 오더", systemImage: "popcorn") {
@@ -34,8 +32,14 @@ struct MBTabView: View {
     }
 }
 // 그냥 탭뷰로 하니 충돌 남
-#Preview {
-    MBTabView()
-        .environment(NavigationRouter())
-        .environment(MovieViewModel())
+struct MBTabView_Preview: PreviewProvider {
+    static var previews: some View {
+        let theaterVM = TheaterViewModel()
+        devicePreviews {
+            
+            MBTabView(theaterVM : theaterVM )
+                .environment(NavigationRouter())
+                .environment(MovieViewModel())
+        }
+    }
 }
