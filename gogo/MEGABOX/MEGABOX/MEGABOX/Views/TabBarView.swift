@@ -8,36 +8,37 @@
 import SwiftUI
 
 struct TabBarView: View {
-//    @Environment(NavigationRouter.self) var router
-//    @Environment(MovieViewModel.self) var viewModel
-
+    @Environment(NavigationRouter.self) var router
+    @EnvironmentObject var viewModel: MovieViewModel
     var body: some View {
-        TabView {
-            //홈뷰
-            Tab("홈", systemImage: "house.fill") {
-                HomeView()
+        ZStack {
+            TabView {
+                //홈뷰
+                Tab("홈", systemImage: "house.fill") {
+                    HomeView()
+                }
+                //예매뷰
+                Tab("바로 예매", systemImage: "play.laptopcomputer") {
+                    EmptyView()
+                }
+                //모바일 오더 뷰
+                Tab("모바일 오더", systemImage: "popcorn") {
+                    EmptyView()
+                }
+                //마이페이지 뷰
+                Tab("마이페이지", systemImage: "person") {
+                    MemberInfoView()
+                }
             }
-            //예매뷰
-            Tab("바로 예매", systemImage: "play.laptopcomputer") {
-                EmptyView()
-            }
-            //모바일 오더 뷰
-            Tab("모바일 오더", systemImage: "popcorn") {
-                EmptyView()
-            }
-            //마이페이지 뷰
-            Tab("마이페이지", systemImage: "person") {
-                MemberInfoView()
-            }
+            .tint(.blue)
+            
         }
-       
-        .tint(.blue)
       
     }
 }
 
 #Preview {
     TabBarView()
-//        .environment(NavigationRouter())
-//        .environment(MovieViewModel())
+        .environment(NavigationRouter())
+        .environmentObject(MovieViewModel())
 }

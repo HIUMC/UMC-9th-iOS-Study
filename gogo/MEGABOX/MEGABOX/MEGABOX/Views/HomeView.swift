@@ -12,7 +12,7 @@ import SwiftUI
 
 struct HomeView: View {
     @Environment(NavigationRouter.self) var router
-    @Environment(MovieViewModel.self) var viewModel
+    @EnvironmentObject var viewModel: MovieViewModel
     
     @State private var selectedTab: String = "홈"
     @State private var tab: MovieTab = .chart
@@ -59,7 +59,8 @@ private extension HomeView {
                     router.push(.movieDetail(movie: movie))
                 })
             case .upcoming:
-                Text("상영예정 하위뷰 작성 예정")
+                Text("상영예정 하위뷰 작성 예정!!!!!!")
+                    .font(.PretendardBold(size: 20))
                 //TODO: - 상영예정 하위뷰
             
             }
@@ -283,5 +284,5 @@ private var BottomFeedView: some View {
 #Preview {
     HomeView()
         .environment(NavigationRouter())
-        .environment(MovieViewModel())
+        .environmentObject(MovieViewModel())
 }
