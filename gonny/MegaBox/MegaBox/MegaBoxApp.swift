@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct MegaBoxApp: App {
+    @State private var router = NavigationRouter()
+
     var body: some Scene {
         WindowGroup {
-            SplashView()
+            LoginView()
+                .environment(router)
         }
     }
 }

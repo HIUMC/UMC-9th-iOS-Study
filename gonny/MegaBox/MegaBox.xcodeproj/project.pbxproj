@@ -33,15 +33,13 @@
 		787C881A2E8B907000127E8B /* Exceptions for "MegaBox" folder in "MegaBox" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				DIContainer/DIContainer.swift,
 				MegaBoxApp.swift,
-				Models/HomeModel.swift,
+				Models/CalendarDay.swift,
 				Models/LoginModel.swift,
-				Models/MovieDetailModel.swift,
+				Models/Movie.swift,
+				Models/MoviePoster.swift,
 				Models/Profile.swift,
-				Navigation/NavigationDestination.swift,
 				Navigation/NavigationRouter.swift,
-				Navigation/NavigationRoutingView.swift,
 				"Preview Content/Preview Assets.xcassets",
 				Resource/Assets/Assets.xcassets,
 				Resource/Assets/ColorExtension.swift,
@@ -52,9 +50,11 @@
 				"Resource/Font/Pretendard-Medium.otf",
 				"Resource/Font/Pretendard-Regular.otf",
 				"Resource/Font/Pretendard-SemiBold.otf",
+				ViewModels/CalendarViewModel.swift,
 				ViewModels/HomeViewModel.swift,
 				ViewModels/LoginViewModel.swift,
-				ViewModels/MovieDetailViewModel.swift,
+				ViewModels/MovieSearchViewModel.swift,
+				ViewModels/MovieViewModel.swift,
 				Views/BaseTabView.swift,
 				Views/HomeView.swift,
 				Views/LoginView.swift,
@@ -62,15 +62,18 @@
 				Views/MobileOrderView.swift,
 				Views/MovieDetailView.swift,
 				Views/ProfileView.swift,
-				Views/ReserveView.swift,
 				Views/SplashView.swift,
+				Views/Week4/CalendarView.swift,
+				Views/Week4/MovieSearchView.swift,
+				Views/Week4/MovieSheet.swift,
+				Views/Week4/ReserveView.swift,
 			);
 			target = 786B27142E79816500560305 /* MegaBox */;
 		};
 		787C89EE2E8C314C00127E8B /* Exceptions for "MegaBox" folder in "MegaBoxUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Views/ReserveView.swift,
+				Views/Week4/ReserveView.swift,
 			);
 			target = 786B272E2E79816700560305 /* MegaBoxUITests */;
 		};

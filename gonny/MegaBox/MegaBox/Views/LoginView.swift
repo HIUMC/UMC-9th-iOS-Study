@@ -7,15 +7,17 @@
 import SwiftUI
 
 struct LoginView: View {
-    //로그인 뷰모델에서 바인딩 받은 값
-    @State private var viewModel = LoginViewModel()
-    @AppStorage("isLoggedIn") private var isLoggedIn: Bool = false
-       
- 
-    // 과제 요구: AppStorage에 아이디와 비밀번호 저장
-    @AppStorage("userId") private var savedId: String = ""
-    @AppStorage("userPwd") private var savedPwd: String = ""
+    // MARK: - 상태 관리
+    @StateObject private var viewModel = LoginViewModel()
     
+        /// 로그인 상태
+        @AppStorage("isLoggedIn") private var isLoggedIn: Bool = false
+        
+        /// 저장된 계정 정보
+        @AppStorage("userId") private var savedId: String = ""
+        @AppStorage("userPwd") private var savedPwd: String = ""
+    
+    //MARK: - 바디
     var body: some View {
         VStack(spacing: 24) {
     
@@ -26,6 +28,7 @@ struct LoginView: View {
             
             Spacer() //공간 분리
                 
+            ///입력 필드
             VStack(spacing: 20) {
                 TextField("아이디", text: $viewModel.loginModel.id)
                     .font(.pretendardMedium(16))
@@ -43,13 +46,10 @@ struct LoginView: View {
             }
             .padding(.horizontal, 24)
 
-            // 로그인 버튼
-            Button(action: {
-                savedId = viewModel.loginModel.id
-                savedPwd = viewModel.loginModel.pwd
-                
-                isLoggedIn = true
-            }) {
+            /// 로그인 버튼
+            Button{
+                loginAction()
+            }label: {
                 Image("login")
                     .resizable()
                     .frame(width: 380, height: 54)
@@ -57,9 +57,9 @@ struct LoginView: View {
             }
             .padding(.horizontal, 24)
 
-          
+          /// 회원가입 버튼
             Button(action: {
-                
+                print("회원가입 화면으로 이동")
             }) {
                 Text("회원가입")
                     .foregroundStyle(Color("gray04"))
@@ -67,9 +67,9 @@ struct LoginView: View {
             
             }
 
-            // 소셜 로그인 버튼들
+            /// 소셜 로그인 버튼들
             HStack(spacing: 73) {
-                //네이버 로그인
+                ///네이버 로그인
                 Button(action: {
                         print("네이버 로그인")
                 }){
@@ -77,7 +77,7 @@ struct LoginView: View {
                         .resizable()
                         .frame(width: 40, height: 40)
                 }
-                //카카오 로그인
+                ///카카오 로그인
                 Button(action: {
                     print("카카오 로그인")
                 }) {
@@ -85,7 +85,7 @@ struct LoginView: View {
                         .resizable()
                         .frame(width: 40, height: 40)
                 }
-                //애플 로그인
+                ///애플 로그인
                 Button(action: {
                     print("애플 로그인")
                 }){
@@ -106,8 +106,26 @@ struct LoginView: View {
             Spacer()
         }
         .background(Color.white.ignoresSafeArea())
+        .fullScreenCover(isPresented: $isLoggedIn) {
+                   BaseTabView() //  로그인 성공 시 전환
+        }
+    }
+    // MARK: - 로그인 동작
+        private func loginAction() {
+            guard !viewModel.loginModel.id.isEmpty,
+                  !viewModel.loginModel.pwd.isEmpty else {
+                print("아이디 또는 비밀번호가 비어있습니다.")
+                return
+            }
+            
+            // 로그인 성공 시 저장 및 화면 전환
+            savedId = viewModel.loginModel.id
+            savedPwd = viewModel.loginModel.pwd
+            isLoggedIn = true
     }
 }
+
+
 
 #Preview { //프리뷰
     LoginView()

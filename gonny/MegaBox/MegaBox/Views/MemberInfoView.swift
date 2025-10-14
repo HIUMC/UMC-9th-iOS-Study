@@ -6,7 +6,12 @@
 //
 import SwiftUI
 
-struct MemberInfoView: View {
+struct MemberInfoView: View, Hashable  {
+    
+    //Hashable 사용할 수 있도록 해주는 함수
+    static func == (lhs: MemberInfoView, rhs: MemberInfoView) -> Bool { true }
+        func hash(into hasher: inout Hasher) {}
+    
     //MARK: -사용할 변수들
     // 로그인 시 저장된 아이디
     @AppStorage("userId") private var savedId: String = ""
@@ -17,15 +22,18 @@ struct MemberInfoView: View {
     // TextField 입력값 (수정용)
     @State private var tempName: String = ""
     
+    @Environment(\.dismiss) private var dismiss
+    
     //MARK: -body
     
     var body: some View {
+        @Environment(NavigationRouter.self) var router
         VStack(alignment: .leading, spacing: 16) {
-            
             // 네비게이션 헤더
             HStack {
                 Button(action: {
                     // 뒤로가기 동작
+                    router.pop()
                 }) {
                     Image("left_bar")
                         .resizable()
