@@ -9,14 +9,15 @@ import SwiftUI
 
 struct TabBarView: View {
     @Environment(NavigationRouter.self) var router
-    @Environment(MovieViewModel.self) var viewModel
+    @EnvironmentObject var viewModel: MovieViewModel
+
     
     var body: some View {
         TabView {
             Tab("홈", systemImage: "house.fill") {
                 HomeView()
                     .environment(router)
-                    .environment(viewModel)
+                    .environmentObject(viewModel)
             }
             
             Tab("바로 예매", systemImage: "play.laptopcomputer") {
@@ -31,7 +32,7 @@ struct TabBarView: View {
             Tab("마이페이지", systemImage: "person") {
                 ProfileView()
                     .environment(router)
-                    .environment(viewModel)
+                    .environmentObject(viewModel)
             }
         }
         .tint(.blue)
@@ -41,5 +42,5 @@ struct TabBarView: View {
 #Preview {
     TabBarView()
         .environment(NavigationRouter())
-        .environment(MovieViewModel())
+        .environmentObject(MovieViewModel())
 }
