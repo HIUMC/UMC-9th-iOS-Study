@@ -32,7 +32,7 @@ struct UserInfoView: View {
                 bottomView
                 
                 Spacer().frame(height: 527)
-            }//.padding(16)
+            }.padding(.horizontal)
        // }
     }
     

@@ -29,11 +29,13 @@ class BookingViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     
+    // 영화 상영일정 더미데이터
     private var movieService = MovieService()
 
     private var cancellables = Set<AnyCancellable>()
     
     
+    // 영화와 상영관 더미데이터
     let allMovies: [Movie] = [ .init(id: "F1", name: "F1", imageName: "F1", ageRating: 15),
                                .init(id: "무한성", name: "무한성", imageName: "무한성", ageRating: 15),
                                .init(id: "어쩔수가없다", name: "어쩔수가없다", imageName: "어쩔수가없다", ageRating: 15),

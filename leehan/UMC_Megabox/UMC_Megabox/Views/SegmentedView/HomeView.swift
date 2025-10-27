@@ -41,7 +41,8 @@ struct HomeView: View {
                     
                     
                 }//.padding() /* end of LazyGrid */
-            }.navigationDestination(for: Route.self) { route in
+            }.padding(.horizontal)
+            .navigationDestination(for: Route.self) { route in
                 switch route {
                 case .login:
                     LoginView()
