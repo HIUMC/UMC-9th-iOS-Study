@@ -9,10 +9,11 @@ import Foundation
 import SwiftUI
 
 struct CalendarView: View {
-    @Bindable var viewModel: CalendarViewModel = .init()
+    @ObservedObject var viewModel: CalendarViewModel
     @ObservedObject var theaterVM: TheaterViewModel
     var body: some View {
-        HStack(spacing: 2) {
+        HStack(spacing: 0) {
+            Spacer()
             ForEach(Array(viewModel.currentWeekDates().enumerated()), id: \.element.id) { index, day in
                 let isSelected = Calendar.current.isDate(day.date, inSameDayAs: viewModel.selectedDate)
                 let weekday = Calendar.current.component(.weekday, from: day.date)
@@ -36,9 +37,8 @@ struct CalendarView: View {
                     .background(isSelected ? .purple03 : .white)
                     .cornerRadius(12)
             }
-        }.padding(.horizontal, 16) // HStack에 패딩 적용
-            .frame(maxWidth: .infinity, alignment: .leading) // 좌측 정렬
-        // 왜 안댐?
+            Spacer()
+        }
     }
     
     let monthDayFormatter: DateFormatter = {

@@ -43,56 +43,43 @@ struct MovieTime: View {
 }
 
 struct TheaterInfoView: View {
-    @ObservedObject var theaterVM: TheaterViewModel
-    
-    let availableTheaters: [String: [MovieTimeData]] = [
-        "강남": [MovieTimeData(start: "10:00", end: "12:30", vacancy: 50, capacity: 60),
-               MovieTimeData(start: "13:00", end: "15:30", vacancy: 30, capacity: 60)],
-        "홍대": [MovieTimeData(start: "11:00", end: "13:30", vacancy: 20, capacity: 40),
-               MovieTimeData(start: "13:00", end: "15:30", vacancy: 30, capacity: 60)]
-    ]
+    let showtimes: [TimeModel]  // MovieBookView에서 전달
     
     var body: some View {
-        
-        ForEach(Array(theaterVM.selectedTheater), id: \.id) { theater in
-            VStack(alignment: .leading, spacing: 4) {
-                Text(theater.name)
+        ForEach(showtimes, id: \.auditorium) { timeModel in
+            VStack(alignment: .leading, spacing: 8) {
+                Text("상영관: \(timeModel.auditorium)")
                     .font(.PretendardBold18)
-                Spacer().frame(height:21)
                 
-                let theaterHallName = { () -> String in
-                    switch theater.name {
-                    case "강남": return "크리클라이너 1관"
-                    case "홍대": return "BTS관 (7층 1관 [Laser])"
-                    default: return "선택한 극장에 상용시간표가 없습니다"
-                    }
-                }()
-                
-                Text(theaterHallName)
-                    .font(.PretendardBold18)
-                    .foregroundStyle(.black)
-                
-                Spacer().frame(height:21)
-                
-                if let times = availableTheaters[theater.name], !times.isEmpty {
-                    HStack(spacing: 36) {
-                        ForEach(times, id: \.start) { time in
-                            MovieTime(start: time.start, end: time.end, vacancy: time.vacancy, capacity: time.capacity)
-                        }
-                    }
+                ForEach(timeModel.showtimes, id: \.start) { show in
+                    MovieTime(
+                        start: show.start,
+                        end: show.end,
+                        vacancy: show.available,
+                        capacity: show.total
+                    )
                 }
             }
-        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-    }
-}
-    struct TheaterInfoView_Preview: PreviewProvider {
-        static var previews: some View {
-            TheaterInfoView(theaterVM: {
-                let vm = TheaterViewModel()
-                vm.selectedTheater = [TheaterModel(name: "강남"), TheaterModel(name: "홍대")]
-                return vm
-            }())
-            .previewLayout(.sizeThatFits)
-            .padding()
+            .padding(.vertical, 8)
         }
     }
+}
+
+struct TheaterInfoView_Preview: PreviewProvider {
+    static var previews: some View {
+        let sampleShowtimes: [TimeModel] = [
+            TimeModel(auditorium: "크리클라이너 1관", format: "2D", showtimes: [
+                ShowTimeModel(start: "10:00", end: "12:30", available: 50, total: 60),
+                ShowTimeModel(start: "13:00", end: "15:30", available: 30, total: 60)
+            ]),
+            TimeModel(auditorium: "BTS관 (7층 1관 [Laser])", format: "2D", showtimes: [
+                ShowTimeModel(start: "11:00", end: "13:30", available: 20, total: 40),
+                ShowTimeModel(start: "14:00", end: "16:30", available: 10, total: 40)
+            ])
+        ]
+        
+        return TheaterInfoView(showtimes: sampleShowtimes)
+            .previewLayout(.sizeThatFits)
+            .padding()
+    }
+}

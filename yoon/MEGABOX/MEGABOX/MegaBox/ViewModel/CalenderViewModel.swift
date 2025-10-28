@@ -8,17 +8,15 @@
 import Foundation
 import Combine
 
-@Observable
-class CalendarViewModel {
+
+class CalendarViewModel: ObservableObject {
     var calendar: Calendar = .current
-    var selectedDate: Date = Date()
+    @Published var selectedDate: Date = Date()
     
     /// 오늘 기준 일주일 날짜 생성
     func currentWeekDates() -> [CalendarDay] {
         var days: [CalendarDay] = []
         let today = Date()
-        
-
         
         for i in 0..<7 {
             if let date = calendar.date(byAdding: .day, value: i, to: today) {

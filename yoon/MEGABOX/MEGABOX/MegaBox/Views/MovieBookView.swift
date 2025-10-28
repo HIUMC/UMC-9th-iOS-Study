@@ -9,52 +9,100 @@ import Foundation
 import SwiftUI
 import Combine
 
+//MARK: 영화 문자열 비교해서 시간표 보여주기
+// 더 나은 방법이 있을까
+
 struct MovieBookView: View {
+    @StateObject private var calendarVM = CalendarViewModel()
+    @StateObject private var scheduleVM = ScheduleViewModel()
+    @State private var currentShowtimes: [TimeModel] = []
     @Environment(NavigationRouter.self) var router
     @Environment(MovieViewModel.self) var movieViewModel
-    @State private var selectedMovie: MovieModel?
+    @EnvironmentObject var theaterVM: TheaterViewModel
+    @State private var selectedMovie: MovieModel? = nil
     @State private var isShowingSheet: Bool = false
-    @ObservedObject var theaterVM: TheaterViewModel
+    @Binding var selectTheaters: Set<Theaters>
     
     var body: some View {
         VStack{
+            
             NavigationBar
             
             if let movie = displayMovie {
                 MovieNavigationBar( movie: movie, isShowingSheet: $isShowingSheet)
             }// display의 결과값을 movie 로 선언하여 MovieNavigationBar에 사용
             
-            MovieList(selectedMovie: $selectedMovie)
+            MovieList(selectedMovie: $selectedMovie){updateShowtimes()}
                 .onChange(of: selectedMovie) { oldValue, newValue in
-                    theaterVM.selectedMovie = newValue}
+                    theaterVM.selectedMovie = newValue
+                    updateShowtimes()  // 선택된 영화 변경 시 시간표 갱신
+                }
             // 선택된 영화가 바뀔 때마다 onChange 동작
             // theaterVM.selectedMovie 갱신
             // TheaterViewModel의 selectedMovie 변경을 반영
             
             Spacer().frame(height: 32)
             
-            TheaterButton(theaterVM: theaterVM)
+            TheaterButton()
             // selectedMovie 변경사항을 isEnabled에 반영
             
             Spacer().frame(height: 29)
             
-            CalendarView(theaterVM: theaterVM)
+            CalendarView(viewModel: calendarVM, theaterVM: theaterVM)
             
             Spacer().frame(height:40)
             
             if theaterVM.ShowTheaterInfo {
-                TheaterInfoView(theaterVM: theaterVM)
+                TheaterInfoView(showtimes: currentShowtimes)
             }
             
             Spacer()
             
-        }.padding(.horizontal,16)
+            VStack(alignment: .leading, spacing: 8) {
+                if currentShowtimes.isEmpty {
+                    Text("선택된 영화/극장/날짜에 맞는 상영시간이 없습니다.")
+                        .foregroundColor(.gray)
+                        .italic()
+                } else {
+                    ForEach(currentShowtimes, id: \.auditorium) { timeModel in
+                        VStack(alignment: .leading) {
+                            Text("상영관: \(timeModel.auditorium)")
+                                .font(.headline)
+                            
+                            ForEach(timeModel.showtimes, id: \.start) { show in
+                                HStack {
+                                    Text(show.start)
+                                    Text("~")
+                                    Text(show.end)
+                                    Spacer()
+                                    Text("\(show.available)/\(show.total)")
+                                }
+                                .padding()
+                                .background(RoundedRectangle(cornerRadius: 8).fill(Color.gray.opacity(0.1)))
+                            }
+                            
+                        }
+                        .padding(.horizontal,16)
+                        
+                    }
+                }
+            }
+        }.onChange(of: theaterVM.selectedDate) {
+            updateShowtimes()
+        }
+        .onChange(of: theaterVM.selectedTheater) {
+            updateShowtimes()
+        }
+        .onAppear {
+            if selectedMovie == nil, let firstMovie = movieViewModel.movies.first {
+                selectedMovie = firstMovie
+                updateShowtimes()
+            }
+        }
         .sheet(isPresented: $isShowingSheet){
-                MovieSearchView()
+            MovieSearchView()
         }
     }
-    
-    
     private var NavigationBar: some View {
         VStack{
             Spacer()
@@ -66,7 +114,7 @@ struct MovieBookView: View {
             .frame(width: 440, height: 42)
             .background(Color.purple03)
     }
-
+    
     struct AgeBadge: View {
         let movie: MovieModel
         var body: some View {
@@ -115,11 +163,11 @@ struct MovieBookView: View {
         @Environment(NavigationRouter.self) var router
         @Binding var selectedMovie: MovieModel?
         let movie: MovieModel
+        let onSelect: () -> Void
         
         private var isSelected: Bool {
             selectedMovie?.id == movie.id
-        }
-        // 내가 선택한 영화가 맞는지 확인
+        }// 내가 선택한 영화가 맞는지 확인
         
         var body: some View {
             Image(movie.posterName)
@@ -134,7 +182,9 @@ struct MovieBookView: View {
                 )
                 .onTapGesture {
                     selectedMovie = movie
-                } // 클릭한 영화를 selectedMovie로 설정
+                    onSelect()
+                }
+            // 클릭한 영화를 selectedMovie로 설정
             
         }
     }
@@ -142,62 +192,126 @@ struct MovieBookView: View {
     struct MovieList: View {
         @Environment(MovieViewModel.self) var movieViewModel
         @Binding var selectedMovie: MovieModel?
+        let updateShowtimes: () -> Void
         var body: some View {
             ScrollView(.horizontal, showsIndicators: false, content: {
                 LazyHStack(spacing:8){
-                    ForEach(movieViewModel.movies) { movie in MovieCard(selectedMovie: $selectedMovie,movie: movie)}
+                    ForEach(movieViewModel.movies) { movie in MovieCard(selectedMovie: $selectedMovie,movie: movie){updateShowtimes()}}
                 }.frame(height: 89)
             }
             )
         }
-        
     }
     
     struct TheaterButton: View {
-        @ObservedObject var theaterVM: TheaterViewModel
+        @EnvironmentObject var theaterVM: TheaterViewModel
         
         var body: some View {
-            HStack{
-                ForEach(theaterVM.theaters) {theater in
-                    let isSelected = theaterVM.selectedTheater.contains(theater)
-                    // 현재 선택된 극장인지 확인
-                    Button(role: nil) {
-                        theaterVM.selectTheater(theater)
-                        // ViewModel에 선택 극장 전달 -> 토글
-                    } label: {
-                        Text(theater.name)
-                            .font(.PretendardsemiBold16)
-                            .foregroundStyle(isSelected ? .white : .gray05)
-                            .frame(width: 55,height: 35)
-                            .background(isSelected ? .purple03 : .gray01)
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
+            HStack(spacing: 10) {
+                ForEach(Theaters.allCases, id: \.self) { tab in
+                    if let theaterModel = theaterVM.theaters.first(where: { $0.name == tab.rawValue }) {
+                        Button(action: {
+                            if theaterVM.selectedTheater.contains(theaterModel) {
+                                theaterVM.selectedTheater.remove(theaterModel)
+                            } else {
+                                theaterVM.selectedTheater.insert(theaterModel)
+                            }
+                            print("현재 선택 극장:", theaterVM.selectedTheater.map { $0.name })
+                        }) {
+                            Text(tab.rawValue)
+                                .font(.PretendardsemiBold16)
+                                .foregroundStyle(theaterVM.selectedTheater.contains(theaterModel) ? .white : .gray05)
+                                .frame(width: 55, height: 35)
+                                .background(theaterVM.selectedTheater.contains(theaterModel) ? .purple03 : .gray01)
+                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                        }
                     }
-                    .disabled(!theaterVM.isEnabled)
-                    // isEnabled가 false면 버튼 클릭 불가
                 }
                 Spacer()
             }
         }
     }
-   
+    // 영화 이름, 극장 대조하여 시간표 출력
+    // MovieBookView 내에서
+    var filteredShowtimes: [TimeModel] {
+        guard let movie = selectedMovie,
+              let selectedDate = theaterVM.selectedDate,
+              !theaterVM.selectedTheater.isEmpty else { return [] }
+        
+        guard let scheduledMovie = scheduleVM.schedule.first?.data.movies.first(where: { $0.title == movie.name }) else {
+            return []
+        }
+        
+        // 1. 날짜 필터링
+        let filteredByDate = scheduledMovie.schedules.filter {
+            Calendar.current.isDate($0.date, inSameDayAs: selectedDate)
+        }
+        
+        // 2. 극장 필터링
+        var filteredByTheater: [AreaModel] = []
+        for dateSchedule in filteredByDate {
+            let matchingAreas = dateSchedule.areas.filter { area in
+                theaterVM.selectedTheater.contains(where: { $0.name == area.area })
+            }
+            filteredByTheater.append(contentsOf: matchingAreas)
+        }
+        
+        // 3. TimeModel 추출
+        var showtimes: [TimeModel] = []
+        for area in filteredByTheater {
+            showtimes.append(contentsOf: area.items)
+        }
+        return showtimes
+    }
+    
+    private func updateShowtimes() {
+        print("=== Update Showtimes Called ===")
+        print("selectedMovie:", selectedMovie?.name ?? "nil")
+        print("selectedDate:", theaterVM.selectedDate ?? Date())
+        print("selectedTheater:", theaterVM.selectedTheater.map { $0.name })
+        
+        let filtered = filteredShowtimes
+        currentShowtimes = filtered
+        
+        if filtered.isEmpty {
+            print("filteredShowtimes is EMPTY")
+        } else {
+            for tm in filtered {
+                print("TimeModel:", tm.auditorium, "showtimes:", tm.showtimes.map { $0.start })
+            }
+        }
+        print("==============================")
+    }
 }
-
 
 struct MovieBookView_Preview: PreviewProvider {
     static var previews: some View {
-        let theaterVM: TheaterViewModel = {
+        PreviewWrapper()
+    }
+
+    struct PreviewWrapper: View {
+        @State private var selectTheaters: Set<Theaters> = [.gangnam]
+        @StateObject private var theaterVM: TheaterViewModel = {
             let vm = TheaterViewModel()
-            vm.selectedMovie = MovieModel(posterName: "f1", secPosterName: "", name: "F1 더 무비", engname: "F1 The Movie", performance: "50", age: "12")
+            vm.selectedMovie = MovieModel(
+                posterName: "f1", secPosterName: "",
+                name: "F1 더 무비", engname: "F1 The Movie",
+                performance: "50", age: "12"
+            )
             vm.selectedTheater = [TheaterModel(name: "강남")]
             vm.selectedDate = Date()
             return vm
         }()
-        
-        return devicePreviews {
-            MovieBookView(theaterVM: theaterVM)
-                .environment(NavigationRouter())
-                .environment(MovieViewModel())
-                .environmentObject(theaterVM)
+
+        var body: some View {
+            devicePreviews {
+                MovieBookView(selectTheaters: $selectTheaters)
+                    .environment(NavigationRouter())
+                    .environment(MovieViewModel())
+                    .environmentObject(theaterVM)
+            }
         }
     }
 }
+
+
