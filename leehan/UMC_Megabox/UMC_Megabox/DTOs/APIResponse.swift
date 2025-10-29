@@ -28,7 +28,3 @@ extension APIResponse {
         )
     }
 }
-
-struct movieInfo: Codable {
-    let info: [APIResponse]
-}

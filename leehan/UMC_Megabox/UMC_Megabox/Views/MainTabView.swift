@@ -32,6 +32,7 @@ struct MainTabView: View {
                     UserInfoView()
                 }
             }
+            
         }
             .navigationDestination(for: Route.self) { route in
             switch route {

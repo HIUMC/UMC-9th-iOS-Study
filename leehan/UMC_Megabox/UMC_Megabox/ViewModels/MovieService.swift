@@ -4,7 +4,7 @@
 //
 //  Created by 이한결 on 10/6/25.
 //
-
+/*
 import SwiftUI
 import Foundation
 import Combine
@@ -64,3 +64,4 @@ struct MovieService {
         }
 }
 
+*/

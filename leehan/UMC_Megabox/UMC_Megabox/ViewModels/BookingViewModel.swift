@@ -21,26 +21,26 @@ class BookingViewModel: ObservableObject {
     @Published var selectedMovie: Movie?
     @Published var selectedTheater: Theater?
     @Published var selectedDate: Date?
-    @Published var selectedShowtime: Showtime?
+    @Published var selectedShowtime: ShowtimesDomainModel?
 
     // MARK: - 출력 (UI에 보여줄 데이터)
     @Published var availableTheaters: [Theater] = []
     @Published var availableDates: [Date] = []
-    @Published var showtimes: [Showtime] = []
+    @Published var showtimes: [ItemsDomainModel] = []
     
     // MARK: - UI 상태
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     
     // 영화 상영일정 더미데이터
-    private var movieService = MovieService()
+    //private var movieService = MovieService()
 
     private var cancellables = Set<AnyCancellable>()
     
     
     // 영화와 상영관 더미데이터
-    let allMovies: [Movie] = [ .init(id: "F1", name: "F1", imageName: "F1", ageRating: 15),
-                               .init(id: "무한성", name: "무한성", imageName: "무한성", ageRating: 15),
+    let allMovies: [Movie] = [ .init(id: "F1 더 무비", name: "F1 더 무비", imageName: "F1", ageRating: 15),
+                               .init(id: "귀멸의 칼날: 무한성", name: "귀멸의 칼날: 무한성", imageName: "무한성", ageRating: 15),
                                .init(id: "어쩔수가없다", name: "어쩔수가없다", imageName: "어쩔수가없다", ageRating: 15),
                                .init(id: "얼굴", name: "얼굴", imageName: "얼굴", ageRating: 15),
                                .init(id: "모노노케히메", name: "모노노케히메", imageName: "모노노케히메", ageRating: 15),
@@ -128,7 +128,7 @@ class BookingViewModel: ObservableObject {
                 return (movie, theater, date)
             }
             // flatMap에서 movie, theater, date 튜플을 받아 AnyPublisher<[showtime], Error> publisher 를 반환
-            .flatMap { movie, theater, date -> AnyPublisher<[Showtime], Error> in
+            .flatMap { movie, theater, date -> AnyPublisher<[ItemsDomainModel], Error> in
                 return self.fetchShowtimes(movie: movie, theater: theater, date: date)
             }
             .receive(on: DispatchQueue.main) // 결과를 항상 메인 스레드에서 받도록
@@ -158,12 +158,12 @@ class BookingViewModel: ObservableObject {
     }
     
     // fetchShowtimes 함수는 Movie, Theater, Date 값을 받아서 AnyPublisher<[Showtime], Error> publisher를 반환함
-    private func fetchShowtimes(movie: Movie, theater: Theater, date: Date) -> AnyPublisher<[Showtime], Error> {
+    private func fetchShowtimes(movie: Movie, theater: Theater, date: Date) -> AnyPublisher<[ItemsDomainModel], Error> {
         self.isLoading = true // 로딩 시작
         self.errorMessage = nil // 이전 메시지 제거
         self.showtimes = [] // 이전 목록 제거
         
-        return movieService.fetchShowtimes(movie: movie, theater: theater, date: date)
+        return self.fetchItems(movie: movie, theater: theater, date: date)
             .handleEvents(receiveCompletion: { [weak self] _ in
                 self?.isLoading = false })
             .eraseToAnyPublisher()
@@ -204,25 +204,25 @@ class BookingViewModel: ObservableObject {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     
                     guard let movieInfo = self.movieInfo else { return promise(.success([])) }
-                    
-                    // 원하는 조건에 맞는 무비들만 필터링해서 movies라는 배열로 저장
-                    let movies = movieInfo.data.movies.filter { a in
-                        return a.title == movie.id
-                    }
-                    
                     // 전달받은 Date 객체를 YYYY-MM-DD 형태의 문자열로 변환
                     let dateString = self.dateFormatter().string(from: date)
                     
-                    // movies라는 배열에서 선택한 날짜만 필터링해서 schedules라는 배열로 저장
-                    let schedules = movies[0].schedules.filter { a in
-                        return a.date == dateString }
+                    guard let movies = movieInfo.data.movies.first(where: { $0.title == movie.id }) else {
+                        print("일치하는 영화 없음")
+                        return promise(.success([]))
+                    }
                     
-                    // schedules라는 배열에서 선택한 영화관만 필터링해서 areas라는 배열로 저장
-                    let areas = schedules[0].areas.filter { a in
-                        return a.area == theater.name }
+                    guard let schedules = movies.schedules.first(where: { $0.date == dateString }) else {
+                        print("일치하는 날짜 없음")
+                        return promise(.success([]))
+                    }
                     
-                    var results = areas[0].items
+                    guard let areas = schedules.areas.first(where: { $0.area == theater.name }) else {
+                        print("일치하는 극장 없음")
+                        return promise(.success([]))
+                    }
                     
+                    let results = areas.items
                     
                     // 필터링된 결과를 반환: items 배열 (상영관 이름, format, 상영 시간 들의 배열)
                     promise(.success(results))

@@ -20,7 +20,7 @@ struct BookingView: View {
             Spacer().frame(height: 32)
             SelectDateView(viewModel: viewModel)
             Spacer().frame(height: 21)
-            ShowtimeView(viewModel: viewModel)
+            newShowtimeView(viewModel: viewModel)
         }.padding(.horizontal)
             .onAppear {
             Task {

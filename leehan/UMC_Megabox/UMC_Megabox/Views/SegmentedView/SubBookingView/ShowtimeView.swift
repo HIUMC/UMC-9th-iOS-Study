@@ -4,7 +4,7 @@
 //
 //  Created by 이한결 on 10/7/25.
 //
-
+/*
 import SwiftUI
 
 struct ShowtimeView: View {
@@ -90,3 +90,4 @@ struct ShowtimeView: View {
 #Preview {
     ShowtimeView(viewModel: BookingViewModel())
 }
+*/

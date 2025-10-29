@@ -16,7 +16,7 @@ struct MovieDTO: Codable {
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case title = "title"
-        case age = "age-rating"
+        case age = "age_rating"
         case schedules = "schedules"
     }
 }
