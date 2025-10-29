@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct ShowtimesDomainModel {
+struct ShowtimesDomainModel: Identifiable, Hashable {
+    let id: UUID
     let start: String
     let end: String
     let available: Int

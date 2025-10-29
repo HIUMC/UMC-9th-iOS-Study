@@ -8,19 +8,13 @@
 import Foundation
 
 struct MoviesDomainModel {
-    let id: String
-    let title: String
-    let age: Int
-    let schedules: SchedulesDomainModel
+    let movies: [MovieDomainModel]
 }
 
 extension MoviesDomainModel {
     func toDTO() -> MoviesDTO {
         return MoviesDTO(
-            id: id,
-            title: title,
-            age: age,
-            schedules: schedules.toDTO()
+            movies: movies.map { $0.toDTO() }
         )
     }
 }

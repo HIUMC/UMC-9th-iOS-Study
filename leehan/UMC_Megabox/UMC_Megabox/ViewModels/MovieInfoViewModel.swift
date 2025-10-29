@@ -39,21 +39,45 @@ class MovieInfoViewModel: ObservableObject {
         ///  변환된 TopDomainModel 객체가 movieInfo 프로퍼티에 저장
     }
     
-    func fetchShowtimes(movie: Movie, theater: Theater, date: Date) -> AnyPublisher<[SchedulesDomainModel], Error> {
-        return Future<[SchedulesDomainModel], Error> { promise in
+    func fetchItems(movie: Movie, theater: Theater, date: Date) -> AnyPublisher<[ItemsDomainModel], Error> {
+        
+        return Future<[ItemsDomainModel], Error> { promise in
                 
                 // 실제 네트워크 통신을 흉내 내는 딜레이
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     
-                    // 전체 데이터에서 조건에 맞는 데이터 필터링
-                    let results = allShowtimes.filter { showtime in
-                        return showtime.movieId == movie.id && showtime.theaterId == theater.id
+                    guard let movieInfo = self.movieInfo else { return promise(.success([])) }
+                    
+                    // 원하는 조건에 맞는 무비들만 필터링해서 movies라는 배열로 저장
+                    let movies = movieInfo.data.movies.filter { a in
+                        return a.title == movie.id
                     }
                     
-                    // 필터링된 결과를 반환
+                    // 전달받은 Date 객체를 YYYY-MM-DD 형태의 문자열로 변환
+                    let dateString = self.dateFormatter().string(from: date)
+                    
+                    // movies라는 배열에서 선택한 날짜만 필터링해서 schedules라는 배열로 저장
+                    let schedules = movies[0].schedules.filter { a in
+                        return a.date == dateString }
+                    
+                    // schedules라는 배열에서 선택한 영화관만 필터링해서 areas라는 배열로 저장
+                    let areas = schedules[0].areas.filter { a in
+                        return a.area == theater.name }
+                    
+                    var results = areas[0].items
+                    
+                    
+                    // 필터링된 결과를 반환: items 배열 (상영관 이름, format, 상영 시간 들의 배열)
                     promise(.success(results))
                 }
             }
             .eraseToAnyPublisher()
         }
+    
+    private func dateFormatter() -> DateFormatter {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd"
+                formatter.locale = Locale(identifier: "ko_KR") // 한국 시간 기준
+                return formatter
+            }
 }

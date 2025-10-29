@@ -7,10 +7,11 @@
 
 import Foundation
 
-struct ItemsDTO: Codable {
+struct ItemsDTO: Codable, Identifiable, Hashable {
+    let id: UUID = UUID()
     let auditorium: String
     let format: String
-    let showtimes: ShowtimesDTO
+    let showtimes: [ShowtimesDTO]
     
     enum CodingKeys: String, CodingKey {
         case auditorium = "auditorium"
@@ -22,9 +23,10 @@ struct ItemsDTO: Codable {
 extension ItemsDTO {
     func toDomain() -> ItemsDomainModel {
         return ItemsDomainModel(
+            id: id,
             auditorium: auditorium,
             format: format,
-            showtimes: showtimes.toDomain()
+            showtimes: showtimes.map { $0.toDomain() }
         )
     }
 }

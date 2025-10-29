@@ -9,7 +9,7 @@ import Foundation
 
 struct AreasDTO: Codable {
     let area: String
-    let items: ItemsDTO
+    let items: [ItemsDTO]
     
     enum CodingKeys: String, CodingKey {
         case area = "area"
@@ -21,7 +21,7 @@ extension AreasDTO {
     func toDomain() -> AreasDomainModel {
         return AreasDomainModel(
             area: area,
-            items: items.toDomain()
+            items: items.map { $0.toDomain() }
         )
     }
 }

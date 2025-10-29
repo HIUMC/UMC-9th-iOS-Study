@@ -8,26 +8,17 @@
 import Foundation
 
 struct MoviesDTO: Codable {
-    let id: String
-    let title: String
-    let age: Int
-    let schedules: SchedulesDTO
+    let movies: [MovieDTO]
     
     enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case title = "title"
-        case age = "age-rating"
-        case schedules = "schedules"
+        case movies = "movies"
     }
 }
 
 extension MoviesDTO {
     func toDomain() -> MoviesDomainModel {
         return MoviesDomainModel(
-            id: id,
-            title: title,
-            age: age,
-            schedules: schedules.toDomain()
+            movies: movies.map { $0.toDomain() }
         )
     }
 }

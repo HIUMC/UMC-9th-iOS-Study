@@ -9,15 +9,14 @@ import Foundation
 
 struct AreasDomainModel {
     let area: String
-    let items: ItemsDomainModel
+    let items: [ItemsDomainModel]
 }
 
 extension AreasDomainModel {
     func toDTO() -> AreasDTO {
         return AreasDTO(
             area: area,
-            items: items.toDTO()
+            items: items.map { $0.toDTO() }
         )
     }
 }
-

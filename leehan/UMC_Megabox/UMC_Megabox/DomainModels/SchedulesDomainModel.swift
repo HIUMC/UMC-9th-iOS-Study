@@ -9,7 +9,7 @@ import Foundation
 
 struct SchedulesDomainModel {
     let date: String?
-    let areas: AreasDomainModel
+    let areas: [AreasDomainModel]
 }
 
 extension SchedulesDomainModel {
@@ -18,13 +18,13 @@ extension SchedulesDomainModel {
         guard let date = date else {
             return SchedulesDTO(
                 date: "undefined",
-                areas: areas.toDTO()
+                areas: areas.map { $0.toDTO() }
             )
         }
         
         return SchedulesDTO(
             date: date,
-            areas: areas.toDTO()
+            areas: areas.map { $0.toDTO() }
         )
     }
 }

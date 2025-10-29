@@ -7,10 +7,11 @@
 
 import Foundation
 
-struct ItemsDomainModel {
+struct ItemsDomainModel: Identifiable, Hashable {
+    let id: UUID
     let auditorium: String
     let format: String
-    let showtimes: ShowtimesDomainModel
+    let showtimes: [ShowtimesDomainModel]
 }
 
 extension ItemsDomainModel {
@@ -18,8 +19,7 @@ extension ItemsDomainModel {
         return ItemsDTO(
             auditorium: auditorium,
             format: format,
-            showtimes: showtimes.toDTO()
+            showtimes: showtimes.map { $0.toDTO() }
         )
     }
 }
-

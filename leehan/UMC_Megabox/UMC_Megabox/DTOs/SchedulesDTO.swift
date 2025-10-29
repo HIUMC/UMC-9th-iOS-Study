@@ -9,7 +9,7 @@ import Foundation
 
 struct SchedulesDTO: Codable {
     let date: String?
-    let areas: AreasDTO
+    let areas: [AreasDTO]
     
     enum CodingKeys: String, CodingKey {
         case date = "date"
@@ -23,13 +23,13 @@ extension SchedulesDTO {
         guard let date = date else {
             return SchedulesDomainModel(
                 date: "undefined",
-                areas: areas.toDomain()
+                areas: areas.map { $0.toDomain() }
             )
         }
             
         return SchedulesDomainModel(
             date: date,
-            areas: areas.toDomain()
+            areas: areas.map { $0.toDomain() }
         )
     }
 }

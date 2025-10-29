@@ -1,3 +1,4 @@
+
 //
 //  ShowtimesDTO.swift
 //  UMC_Megabox
@@ -7,7 +8,8 @@
 
 import Foundation
 
-struct ShowtimesDTO: Codable {
+struct ShowtimesDTO: Codable, Identifiable, Hashable {
+    let id: UUID = UUID()
     let start: String
     let end: String
     let available: Int
@@ -24,6 +26,7 @@ struct ShowtimesDTO: Codable {
 extension ShowtimesDTO {
     func toDomain() -> ShowtimesDomainModel {
         return ShowtimesDomainModel(
+            id: id,
             start: start,
             end: end,
             available: available,

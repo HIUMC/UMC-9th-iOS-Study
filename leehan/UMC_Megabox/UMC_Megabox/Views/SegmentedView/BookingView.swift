@@ -22,8 +22,13 @@ struct BookingView: View {
             Spacer().frame(height: 21)
             ShowtimeView(viewModel: viewModel)
         }.padding(.horizontal)
-        
+            .onAppear {
+            Task {
+                await viewModel.fetchInfos()
+            }
+        }
     }
+        
     
     private var NavigationBar: some View {
         Rectangle()
