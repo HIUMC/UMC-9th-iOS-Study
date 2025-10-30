@@ -33,8 +33,10 @@
 		787C881A2E8B907000127E8B /* Exceptions for "MegaBox" folder in "MegaBox" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				DTO/ShowtimesResponse.swift,
 				MegaBoxApp.swift,
 				Models/CalendarDay.swift,
+				Models/DomaianModel.swift,
 				Models/LoginModel.swift,
 				Models/Movie.swift,
 				Models/MoviePoster.swift,
@@ -50,11 +52,13 @@
 				"Resource/Font/Pretendard-Medium.otf",
 				"Resource/Font/Pretendard-Regular.otf",
 				"Resource/Font/Pretendard-SemiBold.otf",
+				Resource/MovieSchedule.json,
 				ViewModels/CalendarViewModel.swift,
 				ViewModels/HomeViewModel.swift,
 				ViewModels/LoginViewModel.swift,
 				ViewModels/MovieSearchViewModel.swift,
 				ViewModels/MovieViewModel.swift,
+				ViewModels/ShowtimeViewModel.swift,
 				Views/BaseTabView.swift,
 				Views/HomeView.swift,
 				Views/LoginView.swift,
