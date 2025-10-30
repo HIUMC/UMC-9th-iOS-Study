@@ -39,14 +39,14 @@ class BookingViewModel: ObservableObject {
     
     
     // 영화와 상영관 더미데이터
-    let allMovies: [Movie] = [ .init(id: "F1 더 무비", name: "F1 더 무비", imageName: "F1", ageRating: 15),
-                               .init(id: "귀멸의 칼날: 무한성", name: "귀멸의 칼날: 무한성", imageName: "무한성", ageRating: 15),
-                               .init(id: "어쩔수가없다", name: "어쩔수가없다", imageName: "어쩔수가없다", ageRating: 15),
+    let allMovies: [Movie] = [ .init(id: "F1 더 무비", name: "F1 더 무비", imageName: "poster_f1", ageRating: 15),
+                               .init(id: "귀멸의 칼날: 무한성", name: "귀멸의 칼날: 무한성", imageName: "poster_muhanseong", ageRating: 15),
+                               .init(id: "어쩔수가없다", name: "어쩔수가없다", imageName: "poster_no_choice", ageRating: 15),
                                .init(id: "얼굴", name: "얼굴", imageName: "얼굴", ageRating: 15),
-                               .init(id: "모노노케히메", name: "모노노케히메", imageName: "모노노케히메", ageRating: 15),
-                               .init(id: "보스", name: "보스", imageName: "보스", ageRating: 15),
-                               .init(id: "야당", name: "야당", imageName: "야당", ageRating: 15),
-                               .init(id: "더로제스", name: "더로제스", imageName: "더로제스", ageRating: 15)]
+                               .init(id: "모노노케히메", name: "모노노케히메", imageName: "poster_mononoke", ageRating: 15),
+                               .init(id: "보스", name: "보스", imageName: "poster_boss", ageRating: 15),
+                               .init(id: "야당", name: "야당", imageName: "poster_yadang", ageRating: 15),
+                               .init(id: "더로제스", name: "더로제스", imageName: "poster_the_roses", ageRating: 15)]
     
     let allTheaters: [Theater] = [ .init(id: "강남", name: "강남"),
                                    .init(id: "홍대", name: "홍대"),
@@ -66,7 +66,6 @@ class BookingViewModel: ObservableObject {
                     self?.availableTheaters = []
                     self?.selectedTheater = nil
                     self?.selectedDate = nil
-                    
                     return
                 }
                 

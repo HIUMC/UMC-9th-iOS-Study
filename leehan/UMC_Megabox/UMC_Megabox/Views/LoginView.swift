@@ -137,19 +137,19 @@ struct LoginView: View {
             Spacer()
             
             Button(action: {}) {
-                Image("Naver")
+                Image("icon_naver")
             }
             
             Spacer()
             
             Button(action: {}) {
-                Image("Kakao")
+                Image("icon_kakao")
             }
             
             Spacer()
             
             Button(action: {}) {
-                Image("Apple")
+                Image("icon_apple")
             }
             
             Spacer()
@@ -157,7 +157,7 @@ struct LoginView: View {
     } // end of socialLoginBtn
     
     private var UMCadvertisement: some View {
-        Image("advertisement")
+        Image("advertisement_umc")
             .resizable()
             .scaledToFit() // 원본 이미지 비율을 해치치 않으면서 화면에 맞게 조정
             .frame(height: 266)

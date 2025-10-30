@@ -22,6 +22,9 @@ struct BookingView: View {
             Spacer().frame(height: 21)
             newShowtimeView(viewModel: viewModel)
         }.padding(.horizontal)
+            /// View가 나타나는 시점에(onAppear)
+            /// 비동기 환경에서(Task)
+            /// 비동기 함수 호출(await)
             .onAppear {
             Task {
                 await viewModel.fetchInfos()
@@ -29,7 +32,6 @@ struct BookingView: View {
         }
     }
         
-    
     private var NavigationBar: some View {
         Rectangle()
             .frame(width: 440, height: 120)

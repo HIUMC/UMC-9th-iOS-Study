@@ -19,7 +19,7 @@ struct SplashView: View {
     }
     
     private var Logo: some View {
-        Image("megaboxLogo")
+        Image("logo_megabox")
             .resizable()
             .scaledToFit()
             .frame(width: 249, height: 84)
