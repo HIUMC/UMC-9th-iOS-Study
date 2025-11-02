@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BookingView: View {
     @Environment(NavigationRouter.self) var router
-    @EnvironmentObject var viewModel: MovieViewModel
+    @EnvironmentObject var viewModel: MovieViewModel ///영화/극장/날짜/상영정보
     
     @State private var isMovieSheetOn = false
     
@@ -24,7 +24,7 @@ struct BookingView: View {
                 TheaterSelectView
             }
             if viewModel.showDate {
-                WeekStripView(viewModel: _viewModel) // 왜 _ 를 넣어야 하지?
+                WeekStripView()
             }
             
             // 하단 상영 정보 섹션 (세 가지 모두 선택되면 노출)
@@ -99,7 +99,7 @@ struct BookingView: View {
                     ForEach(viewModel.movies) { movie in
                         MoviePosterButton(
                             movieModel: movie,
-                            /// Id가 다를 텐데 흠..
+                            /// Id가 다를 것 같아서.. 제목 == 도 넣었습니다잇
                             isSelected: (viewModel.selectedMovie?.id == movie.id) || (viewModel.selectedMovie?.title == movie.title),
                             onTap: {
                                 if viewModel.selectedMovie?.id == movie.id {
@@ -152,7 +152,7 @@ private extension BookingView {
             ForEach(Theater.allCases, id: \.self) { t in
                 let isOn = viewModel.selectedTheaters.contains(t)
                 ///isOn ; 현재 반복 중인 극장(t)이 선택된 상태인지
-                Button { ///토글
+                Button { ///토글 - 선택된 극장 목록에 t 추가/삭제
                     if isOn { viewModel.selectedTheaters.remove(t) }
                     else    { viewModel.selectedTheaters.insert(t) }
                 } label: {
@@ -238,7 +238,7 @@ private struct WeekStripView: View {
     @EnvironmentObject var viewModel: MovieViewModel
 
     var body: some View {
-            // 주간 날짜 칩
+        // 주간 날짜 칩
         HStack(spacing: 8) {
             ForEach(weekDays, id: \.self) { d in
                 let isSelected = viewModel.selectedDate.map { Calendar.current.isDate($0, inSameDayAs: d) } ?? false
@@ -246,8 +246,6 @@ private struct WeekStripView: View {
                     viewModel.selectedDate = d
                 }
                 .disabled(!viewModel.showDate)
-                //.opacity(viewModel.showDate ? 1 : 0.4)
-                //.padding(.horizontal, 16) 왜 패딩을 주면 값이 이상해지지
             }
         }
         .frame(height: 92)
@@ -255,27 +253,11 @@ private struct WeekStripView: View {
         .padding(.horizontal, 16)
     }
 
-    // 오늘 기준 7일 (selectedDate가 있으면 그 주의 7일)
+    // 오늘부터 7일 표시
     private var weekDays: [Date] {
-        let base = viewModel.selectedDate ?? Date()
-        return makeWeek(from: base)
-    }
-
-    /// 기준 날짜가 속한 주의 7일(일~토 또는 사용자의 firstWeekday 기준) 반환
-    private func makeWeek(from base: Date) -> [Date] {
         let cal = Calendar.current
-        // 주 시작일 구하기 (사용자 지역의 firstWeekday 반영)
-        let start: Date
-        if let interval = cal.dateInterval(of: .weekOfYear, for: base) {
-            start = interval.start
-        } else {
-            let weekday = cal.component(.weekday, from: base)
-            let diff = (weekday - cal.firstWeekday + 7) % 7
-            start = cal.date(byAdding: .day, value: -diff, to: base) ?? base
-        }
-        let startOfDay = cal.startOfDay(for: start)
-        // 7일 생성
-        return (0..<7).compactMap { cal.date(byAdding: .day, value: $0, to: startOfDay) }
+        let start = cal.startOfDay(for: Date()) // 항상 '오늘'부터 시작
+        return (0..<7).compactMap { cal.date(byAdding: .day, value: $0, to: start) }
     }
 }
 
