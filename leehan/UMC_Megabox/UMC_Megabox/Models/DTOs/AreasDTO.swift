@@ -8,6 +8,7 @@
 import Foundation
 
 struct AreasDTO: Codable {
+    let id: UUID = UUID()
     let area: String
     let items: [ItemsDTO]
     
@@ -20,6 +21,7 @@ struct AreasDTO: Codable {
 extension AreasDTO {
     func toDomain() -> AreasDomainModel {
         return AreasDomainModel(
+            id: id,
             area: area,
             items: items.map { $0.toDomain() }
         )

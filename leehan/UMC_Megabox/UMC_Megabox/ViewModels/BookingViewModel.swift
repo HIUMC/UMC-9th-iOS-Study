@@ -19,14 +19,14 @@ class BookingViewModel: ObservableObject {
     
     // MARK: - 입력 (사용자 선택)
     @Published var selectedMovie: Movie?
-    @Published var selectedTheater: Theater?
+    @Published var selectedTheaters: [Theater] = []
     @Published var selectedDate: Date?
     @Published var selectedShowtime: ShowtimesDomainModel?
 
     // MARK: - 출력 (UI에 보여줄 데이터)
     @Published var availableTheaters: [Theater] = []
     @Published var availableDates: [Date] = []
-    @Published var showtimes: [ItemsDomainModel] = []
+    @Published var groupedItems: [AreasDomainModel] = []
     
     // MARK: - UI 상태
     @Published var isLoading: Bool = false
@@ -48,9 +48,9 @@ class BookingViewModel: ObservableObject {
                                .init(id: "야당", name: "야당", imageName: "poster_yadang", ageRating: 15),
                                .init(id: "더로제스", name: "더로제스", imageName: "poster_the_roses", ageRating: 15)]
     
-    let allTheaters: [Theater] = [ .init(id: "강남", name: "강남"),
-                                   .init(id: "홍대", name: "홍대"),
-                                   .init(id: "신촌", name: "신촌")]
+    let allTheaters: [Theater] = [ .init(name: "강남"),
+                                   .init(name: "홍대"),
+                                   .init(name: "신촌")]
 
     init() {
         setupPipelines()
@@ -64,7 +64,7 @@ class BookingViewModel: ObservableObject {
                 // 영화가 선택되었는지 확인
                 guard movie != nil else { // movie == nil 이면 (영화 선택이 없으면) 밑의 코드 실행
                     self?.availableTheaters = []
-                    self?.selectedTheater = nil
+                    self?.selectedTheaters = []
                     self?.selectedDate = nil
                     return
                 }
@@ -73,53 +73,50 @@ class BookingViewModel: ObservableObject {
                 self?.availableTheaters = self?.allTheaters ?? []
         
                 // 이전에 선택했던 극장이 있다면 초기화
-                self?.selectedTheater = nil
+                self?.selectedTheaters = []
                 self?.availableDates = []
                 self?.selectedDate = nil
-                self?.showtimes = []
+                self?.groupedItems = []
                 self?.errorMessage = nil
             }
             .store(in: &cancellables)
 
         // 상영관이 선택되면 -> 날짜 목록을 활성화한다.
-        $selectedTheater
+        $selectedTheaters
             /// compactMap은 nil이 아닐 때만 통과시키는 필터 역할
             /// 이전 selectedMovie의 sink에서 selectedTheater를 nil로 바꾸어 놓았기 때문에
             /// 일단 무조건 여기서 걸러짐
             /// 상영관을 선택하면 selectedTheater이 nil이 아니게 되면서 통과하게 됨
             /// 이전에 선택한 영화와 상영관의 날짜가 보이지 않게 하기 위함
-            .compactMap { $0 }
+            //.compactMap { $0 }
             /// map은 들어온 값을 다른 형태로 변환하는 역할
             /// 받은 theater를 Date 배열로 만들어서 반환함
-            .map { theater -> [Date] in
-                // 오늘 날짜를 기준으로 7일간의 날짜 배열을 생성
-                let today = Date() // 실행 시간 기준으로 초기화함
-                return (0..<7).compactMap { i in // 0 ~ 6 순환하며 compactMap을 통해 배열을 만듬 -> nil이 되는 값 걸러줌
-                    Calendar.current.date(byAdding: .day, value: i, to: today)
-                    /// byAdding : 일/시/분 을 더할것이다
-                    /// value : 얼만큼 더할것이다
-                    /// to : 언제부터 더할것이다
+            
+            .map { $0.isEmpty } // selectedTheater 배열이 비어있는지 확인
+            .removeDuplicates()
+            .sink { [weak self] isEmpty in
+                if isEmpty { // 배열이 비어있으면 초기화
+                    self?.availableDates = []
+                    self?.selectedDate = nil
+                } else {
+                    let today = Date()
+                    let dates = (0..<7).compactMap { i in
+                        Calendar.current.date(byAdding: .day, value: i, to: today)
+                    }
+                    self?.availableDates = dates
+                    self?.selectedDate = nil
                 }
-            }
-            .sink { [weak self] dates in
-                // 생성된 날짜 배열을 availableDates에 할당
-                self?.availableDates = dates
-                
-                // 이전에 선택했던 날짜가 있다면 초기화
-                self?.selectedDate = nil
-                self?.showtimes = []
-                self?.errorMessage = nil
             }
             .store(in: &cancellables)
         
 
         // 영화, 상영관, 날짜가 모두 선택되면 상영 시간표 불러옴
-        Publishers.CombineLatest3($selectedMovie, $selectedTheater, $selectedDate)
+        Publishers.CombineLatest3($selectedMovie, $selectedTheaters, $selectedDate)
             .debounce(for: 0.2, scheduler: RunLoop.main)
             /// 세 가지 값이 모두 nil이 아닌 유효한 값인지 확인
             /// (Movie, Theater, Date) 튜플을 반환
-            .compactMap { movie, theater, date -> (Movie, Theater, Date)? in
-                guard let movie = movie, let theater = theater, let date = date else {
+            .compactMap { movie, theater, date -> (Movie, [Theater], Date)? in
+                guard let movie = movie, !theater.isEmpty, let date = date else {
                     // 세 개 중 하나라도 nil이면 nil을 반환하여 파이프라인 중단
                     return nil
                 }
@@ -127,7 +124,7 @@ class BookingViewModel: ObservableObject {
                 return (movie, theater, date)
             }
             // flatMap에서 movie, theater, date 튜플을 받아 AnyPublisher<[showtime], Error> publisher 를 반환
-            .flatMap { movie, theater, date -> AnyPublisher<[ItemsDomainModel], Error> in
+            .flatMap { movie, theater, date -> AnyPublisher<[AreasDomainModel], Error> in
                 return self.fetchShowtimes(movie: movie, theater: theater, date: date)
             }
             .receive(on: DispatchQueue.main) // 결과를 항상 메인 스레드에서 받도록
@@ -142,25 +139,25 @@ class BookingViewModel: ObservableObject {
                 if case .failure(_) = completion {
                     self?.errorMessage = "상영 시간표를 불러오는데 실패했습니다."
                 }
-            }, receiveValue: { [weak self] showtimes in
+            }, receiveValue: { [weak self] items in
                 // 결과값이 비어있으면 "시간표 없음" 메시지 설정
-                if showtimes.isEmpty {
+                if items.isEmpty {
                     self?.errorMessage = "선택한 극장에 상영시간표가 없습니다."
                 } else {
                     self?.errorMessage = nil // 결과가 있으면 에러 메시지 제거
                 }
                 // 최종 결과를 showtimes 프로퍼티에 할당
-                self?.showtimes = showtimes
+                self?.groupedItems = items
             })
             .store(in: &cancellables)
         
     }
     
     // fetchShowtimes 함수는 Movie, Theater, Date 값을 받아서 AnyPublisher<[Showtime], Error> publisher를 반환함
-    private func fetchShowtimes(movie: Movie, theater: Theater, date: Date) -> AnyPublisher<[ItemsDomainModel], Error> {
+    private func fetchShowtimes(movie: Movie, theater: [Theater], date: Date) -> AnyPublisher<[AreasDomainModel], Error> {
         self.isLoading = true // 로딩 시작
         self.errorMessage = nil // 이전 메시지 제거
-        self.showtimes = [] // 이전 목록 제거
+        self.groupedItems = [] // 이전 목록 제거
         
         return self.fetchItems(movie: movie, theater: theater, date: date)
             .handleEvents(receiveCompletion: { [weak self] _ in
@@ -195,9 +192,9 @@ class BookingViewModel: ObservableObject {
         ///  변환된 TopDomainModel 객체가 movieInfo 프로퍼티에 저장
     }
     
-    func fetchItems(movie: Movie, theater: Theater, date: Date) -> AnyPublisher<[ItemsDomainModel], Error> {
+    func fetchItems(movie: Movie, theater: [Theater], date: Date) -> AnyPublisher<[AreasDomainModel], Error> {
         
-        return Future<[ItemsDomainModel], Error> { promise in
+        return Future<[AreasDomainModel], Error> { promise in
                 
                 // 실제 네트워크 통신을 흉내 내는 딜레이
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -216,12 +213,20 @@ class BookingViewModel: ObservableObject {
                         return promise(.success([]))
                     }
                     
-                    guard let areas = schedules.areas.first(where: { $0.area == theater.name }) else {
+                    // 선택된 극장 이름을 selectedMovieNames에 추출
+                    let selectedMovieNames = Set(theater.map { $0.name })
+                    
+                    // matchingAreas에 필터링된 결과만 저장
+                    let matchingAreas = schedules.areas.filter { area in
+                        selectedMovieNames.contains(area.area)
+                    }
+                    
+                    guard !matchingAreas.isEmpty else {
                         print("일치하는 극장 없음")
                         return promise(.success([]))
                     }
                     
-                    let results = areas.items
+                    let results = matchingAreas
                     
                     // 필터링된 결과를 반환: items 배열 (상영관 이름, format, 상영 시간 들의 배열)
                     promise(.success(results))

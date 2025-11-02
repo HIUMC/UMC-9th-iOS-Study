@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct AreasDomainModel {
+struct AreasDomainModel: Identifiable, Hashable {
+    let id: UUID
     let area: String
     let items: [ItemsDomainModel]
 }

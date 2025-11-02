@@ -13,29 +13,31 @@ struct newShowtimeView: View {
     
     var body: some View {
         ScrollView(.vertical) {
-            if !(viewModel.selectedDate == nil) {
-                VStack(spacing: 21) {
-                    HStack {
-                        Text(viewModel.selectedTheater?.name ?? "")
-                            .frame(height: 24)
-                            .font(.PretendardBold(size: 18))
-                            .foregroundStyle(.black)
-                        Spacer()
-                    }
-                    
-                    if viewModel.isLoading {
+            
+            if viewModel.isLoading {
+                ProgressView()
+            }
+            // 에러가 생긴 경우
+            else if let message = viewModel.errorMessage {
+                Text(message)
+                    .foregroundStyle(.gray02)
+            }
+            // 로딩중도 아니고 에러도 없음 + 날짜 선택도 완료함
+            else if !viewModel.availableDates.isEmpty && !viewModel.selectedTheaters.isEmpty {
+                
+                VStack(alignment: .leading, spacing: 21) {
+                    ForEach(viewModel.groupedItems) { area in
                         
-                        ProgressView()
-                    }
-                    // 에러가 생긴 경우
-                    else if let message = viewModel.errorMessage {
-                        Text(message)
-                            .foregroundStyle(.gray02)
-                    }
-                    // 로딩중도 아니고 에러도 없음 + 날짜 선택도 완료함
-                    else if !viewModel.availableDates.isEmpty && !(viewModel.selectedTheater == nil) {
+                        HStack {
+                            Text(area.area) // 극장 지역 이름
+                                .frame(height: 24)
+                                .font(.PretendardBold(size: 18))
+                                .foregroundStyle(.black)
+                            Spacer()
+                        }
                         
-                        ForEach(viewModel.showtimes) { item in
+                        ForEach(area.items) { item in
+                            
                             HStack {
                                 Text(item.auditorium)
                                     .font(.PretendardBold(size: 18))
@@ -70,21 +72,26 @@ struct newShowtimeView: View {
                                                         .font(.PretendardSemiBold(size: 14))
                                                         .foregroundStyle(.gray03)
                                                 }.padding(.vertical, 8)
-                                            } // end of VStack
-                                            
-                                        } // end of ZStack
-                                        
-                                    } // end of Button
-    
-                                }
+                                            }
+                                        }
+                                    }
+                                } // end of ForEach(item.showtimes) -> 상영 일정 순회
+                                
+                                
                             }
-                        }
+                        } // end of ForEach(viewModel.groupedItems) -> 선택한 지역 순회
+                        
+                        
                     }
-                }
+                } // end of ForEach(area.items) -> 상영관 이름과 format 순회
+                
+                
+                
             }
         }
     }
 }
+
 
 #Preview {
     newShowtimeView(viewModel: BookingViewModel())
