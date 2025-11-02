@@ -9,14 +9,9 @@ import SwiftUI
 import Combine
 
 final class TheaterViewModel: ObservableObject {
-    @Published var theaters: [TheaterModel] = [
-        TheaterModel(name: "강남"),
-        TheaterModel(name: "홍대"),
-        TheaterModel(name: "신촌")
-    ] // 초기값 설정
     // enum 타입으로?
     
-    @Published var selectedTheater: Set<TheaterModel> = []
+    @Published var selectedTheater: Set<Theaters> = []
     // 중복 선택 가능
     @Published var selectedMovie: MovieModel? = nil
     // 옵셔널
@@ -41,7 +36,7 @@ final class TheaterViewModel: ObservableObject {
         // 세개의 퍼블리셔 조합 -> 모두 존재하면 ShowTheaterInfo True 설정
     }
 
-    func selectTheater(_ theater: TheaterModel) {
+    func selectTheater(_ theater: Theaters) {
         guard isEnabled else { return } // true일때만 작동
         if selectedTheater.contains(theater) {
             selectedTheater.remove(theater)

@@ -102,6 +102,8 @@ struct MovieBookView: View {
         .sheet(isPresented: $isShowingSheet){
             MovieSearchView()
         }
+        .padding(.horizontal,16)
+        
     }
     private var NavigationBar: some View {
         VStack{
@@ -209,49 +211,45 @@ struct MovieBookView: View {
         var body: some View {
             HStack(spacing: 10) {
                 ForEach(Theaters.allCases, id: \.self) { tab in
-                    if let theaterModel = theaterVM.theaters.first(where: { $0.name == tab.rawValue }) {
-                        Button(action: {
-                            if theaterVM.selectedTheater.contains(theaterModel) {
-                                theaterVM.selectedTheater.remove(theaterModel)
-                            } else {
-                                theaterVM.selectedTheater.insert(theaterModel)
-                            }
-                            print("현재 선택 극장:", theaterVM.selectedTheater.map { $0.name })
-                        }) {
-                            Text(tab.rawValue)
-                                .font(.PretendardsemiBold16)
-                                .foregroundStyle(theaterVM.selectedTheater.contains(theaterModel) ? .white : .gray05)
-                                .frame(width: 55, height: 35)
-                                .background(theaterVM.selectedTheater.contains(theaterModel) ? .purple03 : .gray01)
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                        }
+                    Button(action: {
+                        theaterVM.selectTheater(tab)
+                        print("현재 선택 극장:", theaterVM.selectedTheater.map { $0.rawValue })
+                    }) {
+                        Text(tab.rawValue)
+                            .font(.PretendardsemiBold16)
+                            .foregroundStyle(theaterVM.selectedTheater.contains(tab) ? .white : .gray05)
+                            .frame(width: 55, height: 35)
+                            .background(theaterVM.selectedTheater.contains(tab) ? .purple03 : .gray01)
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
                     }
                 }
-                Spacer()
+            Spacer()
+            }
             }
         }
-    }
     // 영화 이름, 극장 대조하여 시간표 출력
     // MovieBookView 내에서
     var filteredShowtimes: [TimeModel] {
-        guard let movie = selectedMovie,
+        guard let schedule = scheduleVM.schedule,
+              let movie = selectedMovie,
               let selectedDate = theaterVM.selectedDate,
               !theaterVM.selectedTheater.isEmpty else { return [] }
         
-        guard let scheduledMovie = scheduleVM.schedule.first?.data.movies.first(where: { $0.title == movie.name }) else {
+        guard let scheduledMovie = schedule.data.movies.first(where: { $0.title == movie.name }) else {
             return []
         }
         
         // 1. 날짜 필터링
-        let filteredByDate = scheduledMovie.schedules.filter {
-            Calendar.current.isDate($0.date, inSameDayAs: selectedDate)
+        let filteredByDate = scheduledMovie.schedules.filter { dateModel in
+            return Calendar.current.isDate(dateModel.date, inSameDayAs: selectedDate)
         }
         
         // 2. 극장 필터링
         var filteredByTheater: [AreaModel] = []
+        
         for dateSchedule in filteredByDate {
             let matchingAreas = dateSchedule.areas.filter { area in
-                theaterVM.selectedTheater.contains(where: { $0.name == area.area })
+                theaterVM.selectedTheater.contains(where: { $0.rawValue == area.area })
             }
             filteredByTheater.append(contentsOf: matchingAreas)
         }
@@ -268,7 +266,7 @@ struct MovieBookView: View {
         print("=== Update Showtimes Called ===")
         print("selectedMovie:", selectedMovie?.name ?? "nil")
         print("selectedDate:", theaterVM.selectedDate ?? Date())
-        print("selectedTheater:", theaterVM.selectedTheater.map { $0.name })
+        print("selectedTheater:", theaterVM.selectedTheater.map { $0.rawValue })
         
         let filtered = filteredShowtimes
         currentShowtimes = filtered
@@ -298,7 +296,7 @@ struct MovieBookView_Preview: PreviewProvider {
                 name: "F1 더 무비", engname: "F1 The Movie",
                 performance: "50", age: "12"
             )
-            vm.selectedTheater = [TheaterModel(name: "강남")]
+            vm.selectedTheater = [.gangnam]
             vm.selectedDate = Date()
             return vm
         }()
