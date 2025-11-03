@@ -45,22 +45,31 @@ struct MovieTime: View {
 struct TheaterInfoView: View {
     let showtimes: [TimeModel]  // MovieBookView에서 전달
     
+    let columns = [
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible())
+        ]
+    
     var body: some View {
-        ForEach(showtimes, id: \.auditorium) { timeModel in
-            VStack(alignment: .leading, spacing: 8) {
-                Text("상영관: \(timeModel.auditorium)")
-                    .font(.PretendardBold18)
-                
-                ForEach(timeModel.showtimes, id: \.start) { show in
-                    MovieTime(
-                        start: show.start,
-                        end: show.end,
-                        vacancy: show.available,
-                        capacity: show.total
-                    )
+        VStack(alignment: .leading, spacing: 16) {
+            ForEach(showtimes, id: \.auditorium) { timeModel in
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("상영관: \(timeModel.auditorium)")
+                        .font(.PretendardBold18)
+                    LazyVGrid(columns: columns, spacing:36){
+                        ForEach(timeModel.showtimes, id: \.start) { show in
+                            MovieTime(
+                                start: show.start,
+                                end: show.end,
+                                vacancy: show.available,
+                                capacity: show.total
+                            )
+                        }
+                    }
                 }
             }
-            .padding(.vertical, 8)
         }
     }
 }

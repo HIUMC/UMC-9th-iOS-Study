@@ -15,7 +15,6 @@ import Combine
 struct MovieBookView: View {
     @StateObject private var calendarVM = CalendarViewModel()
     @StateObject private var scheduleVM = ScheduleViewModel()
-    @State private var currentShowtimes: [TimeModel] = []
     @Environment(NavigationRouter.self) var router
     @Environment(MovieViewModel.self) var movieViewModel
     @EnvironmentObject var theaterVM: TheaterViewModel
@@ -23,7 +22,14 @@ struct MovieBookView: View {
     @State private var isShowingSheet: Bool = false
     @Binding var selectTheaters: Set<Theaters>
     
+    init(selectTheaters: Binding<Set<Theaters>>) {
+        self._selectTheaters = selectTheaters
+        // VM 초기화 시점을 제어할 수 없을 때는 onAppear에서 설정해도 무방하나,
+        // 현재는 @StateObject로 선언되어 있으므로, onAppear에서 설정하겠습니다.
+    }
+    
     var body: some View {
+        // 바디안에 보이는것만 뷰에서 구현
         VStack{
             
             NavigationBar
@@ -53,40 +59,11 @@ struct MovieBookView: View {
             Spacer().frame(height:40)
             
             if theaterVM.ShowTheaterInfo {
-                TheaterInfoView(showtimes: currentShowtimes)
+                TheaterInfoView(showtimes: scheduleVM.currentShowtimes)
             }
             
             Spacer()
             
-            VStack(alignment: .leading, spacing: 8) {
-                if currentShowtimes.isEmpty {
-                    Text("선택된 영화/극장/날짜에 맞는 상영시간이 없습니다.")
-                        .foregroundColor(.gray)
-                        .italic()
-                } else {
-                    ForEach(currentShowtimes, id: \.auditorium) { timeModel in
-                        VStack(alignment: .leading) {
-                            Text("상영관: \(timeModel.auditorium)")
-                                .font(.headline)
-                            
-                            ForEach(timeModel.showtimes, id: \.start) { show in
-                                HStack {
-                                    Text(show.start)
-                                    Text("~")
-                                    Text(show.end)
-                                    Spacer()
-                                    Text("\(show.available)/\(show.total)")
-                                }
-                                .padding()
-                                .background(RoundedRectangle(cornerRadius: 8).fill(Color.gray.opacity(0.1)))
-                            }
-                            
-                        }
-                        .padding(.horizontal,16)
-                        
-                    }
-                }
-            }
         }.onChange(of: theaterVM.selectedDate) {
             updateShowtimes()
         }
@@ -96,7 +73,23 @@ struct MovieBookView: View {
         .onAppear {
             if selectedMovie == nil, let firstMovie = movieViewModel.movies.first {
                 selectedMovie = firstMovie
-                updateShowtimes()
+                
+                // 더 공부
+                Task {
+                    // json 연결
+                    await scheduleVM.fetchSchedule()
+                    
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                    dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+                    
+                    if let fixedDate = dateFormatter.date(from: "2025-09-22") {
+                        theaterVM.selectedDate = fixedDate
+                    }
+                    
+                    // 스케줄 로드와 날짜 초기화가 모두 Task 내에서 완료된 후 호출
+                    updateShowtimes()
+                } // Task 끝
             }
         }
         .sheet(isPresented: $isShowingSheet){
@@ -223,65 +216,28 @@ struct MovieBookView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 15))
                     }
                 }
-            Spacer()
+                Spacer()
             }
-            }
         }
-    // 영화 이름, 극장 대조하여 시간표 출력
-    // MovieBookView 내에서
-    var filteredShowtimes: [TimeModel] {
-        guard let schedule = scheduleVM.schedule,
-              let movie = selectedMovie,
-              let selectedDate = theaterVM.selectedDate,
-              !theaterVM.selectedTheater.isEmpty else { return [] }
-        
-        guard let scheduledMovie = schedule.data.movies.first(where: { $0.title == movie.name }) else {
-            return []
-        }
-        
-        // 1. 날짜 필터링
-        let filteredByDate = scheduledMovie.schedules.filter { dateModel in
-            return Calendar.current.isDate(dateModel.date, inSameDayAs: selectedDate)
-        }
-        
-        // 2. 극장 필터링
-        var filteredByTheater: [AreaModel] = []
-        
-        for dateSchedule in filteredByDate {
-            let matchingAreas = dateSchedule.areas.filter { area in
-                theaterVM.selectedTheater.contains(where: { $0.rawValue == area.area })
-            }
-            filteredByTheater.append(contentsOf: matchingAreas)
-        }
-        
-        // 3. TimeModel 추출
-        var showtimes: [TimeModel] = []
-        for area in filteredByTheater {
-            showtimes.append(contentsOf: area.items)
-        }
-        return showtimes
     }
     
     private func updateShowtimes() {
-        print("=== Update Showtimes Called ===")
-        print("selectedMovie:", selectedMovie?.name ?? "nil")
-        print("selectedDate:", theaterVM.selectedDate ?? Date())
-        print("selectedTheater:", theaterVM.selectedTheater.map { $0.rawValue })
+        // 1. 선택된 극장 Set<Theaters>를 [String] 배열로 변환
+        let selectedTheaterNames: [String] = theaterVM.selectedTheater.map { $0.rawValue }
         
-        let filtered = filteredShowtimes
-        currentShowtimes = filtered
-        
-        if filtered.isEmpty {
-            print("filteredShowtimes is EMPTY")
-        } else {
-            for tm in filtered {
-                print("TimeModel:", tm.auditorium, "showtimes:", tm.showtimes.map { $0.start })
-            }
-        }
-        print("==============================")
+        // 2. ViewModel의 필터링 함수 호출
+        // 이 함수를 호출하여 scheduleVM.currentShowtimes 속성을 업데이트합니다.
+        scheduleVM.applyFilterAndUpdateState(
+            movie: selectedMovie,
+            date: theaterVM.selectedDate,
+            theaters: selectedTheaterNames
+        )
     }
+    
 }
-
+    // 영화 이름, 극장 대조하여 시간표 출력
+    // MovieBookView 내에서
+    
 struct MovieBookView_Preview: PreviewProvider {
     static var previews: some View {
         PreviewWrapper()
