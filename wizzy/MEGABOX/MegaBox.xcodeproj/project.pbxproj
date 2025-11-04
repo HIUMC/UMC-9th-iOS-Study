@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		39E050FEB27D77B7056F85C1 /* MegaBoxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDC5358BCC565CEC81BDBD1 /* MegaBoxApp.swift */; };
+		611C43C82EAC8353005C2748 /* MovieSchedule.json in Resources */ = {isa = PBXBuildFile; fileRef = 611C43C72EAC8353005C2748 /* MovieSchedule.json */; };
+		611C43CA2EAC83A7005C2748 /* MovieScheduleDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611C43C92EAC83A7005C2748 /* MovieScheduleDTO.swift */; };
+		611C45292EB23C3A005C2748 /* toDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611C45282EB23C3A005C2748 /* toDomain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		611C43C72EAC8353005C2748 /* MovieSchedule.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MovieSchedule.json; sourceTree = "<group>"; };
+		611C43C92EAC83A7005C2748 /* MovieScheduleDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieScheduleDTO.swift; sourceTree = "<group>"; };
+		611C45282EB23C3A005C2748 /* toDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toDomain.swift; sourceTree = "<group>"; };
 		6833E323F8E1379B0551DAF6 /* MegaBox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "MegaBox-Info.plist"; sourceTree = "<group>"; };
 		70968C0934CDEE4482BF7866 /* MegaBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MegaBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95C1869C93BEDFCAA84B26B1 /* MegaBoxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MegaBoxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,12 +95,15 @@
 		1655454AFDF6D7FC7B4E361F /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				611C43C72EAC8353005C2748 /* MovieSchedule.json */,
 				6147D0A22E8A9D9E00A133C6 /* Navigation */,
 				611890D62E7FB69D00243C23 /* ViewModels */,
 				611890D52E7FB69700243C23 /* Models */,
 				6191ADA32E782B9800F6F18F /* Resources */,
 				6191AD9E2E782B6100F6F18F /* Views */,
 				FBDC5358BCC565CEC81BDBD1 /* MegaBoxApp.swift */,
+				611C43C92EAC83A7005C2748 /* MovieScheduleDTO.swift */,
+				611C45282EB23C3A005C2748 /* toDomain.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -230,6 +239,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				611C43C82EAC8353005C2748 /* MovieSchedule.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +258,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				39E050FEB27D77B7056F85C1 /* MegaBoxApp.swift in Sources */,
+				611C43CA2EAC83A7005C2748 /* MovieScheduleDTO.swift in Sources */,
+				611C45292EB23C3A005C2748 /* toDomain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
