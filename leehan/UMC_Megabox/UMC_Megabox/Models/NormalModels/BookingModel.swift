@@ -16,7 +16,7 @@ struct Movie: Identifiable, Hashable {
 }
 
 struct Theater: Identifiable, Hashable {
-    let id: String
+    let id: UUID = UUID()
     let name: String
 }
 
@@ -28,4 +28,5 @@ struct Showtime: Identifiable, Hashable {
     let totalSeats: Int
     let availableSeats: Int
 }
+
 

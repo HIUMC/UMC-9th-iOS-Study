@@ -32,7 +32,8 @@ struct MainTabView: View {
                     UserInfoView()
                 }
             }
-        }.padding(.horizontal)
+            
+        }
             .navigationDestination(for: Route.self) { route in
             switch route {
             case .login:

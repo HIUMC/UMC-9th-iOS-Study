@@ -16,14 +16,14 @@ class MovieSearchViewModel: ObservableObject {
     @Published var searchResults: [Movie] = []
     
     private let allMovies: [Movie] = [
-        .init(id: "movie01", name: "F1", imageName: "F1", ageRating: 15),
-        .init(id: "movie02", name: "무한성", imageName: "무한성", ageRating: 15),
-        .init(id: "movie03", name: "어쩔수가없다", imageName: "어쩔수가없다", ageRating: 15),
-        .init(id: "movie04", name: "얼굴", imageName: "얼굴", ageRating: 15),
-        .init(id: "movie05", name: "모노노케히메", imageName: "모노노케히메", ageRating: 15),
-        .init(id: "movie06", name: "보스", imageName: "보스", ageRating: 15),
-        .init(id: "movie07", name: "야당", imageName: "야당", ageRating: 15),
-        .init(id: "movie08", name: "더로제스", imageName: "더로제스", ageRating: 15)
+        .init(id: "movie01", name: "F1", imageName: "poster_f1", ageRating: 15),
+        .init(id: "movie02", name: "무한성", imageName: "poster_muhanseong", ageRating: 15),
+        .init(id: "movie03", name: "어쩔수가없다", imageName: "poster_no_choice", ageRating: 15),
+        .init(id: "movie04", name: "얼굴", imageName: "poster_face", ageRating: 15),
+        .init(id: "movie05", name: "모노노케히메", imageName: "poster_mononoke", ageRating: 15),
+        .init(id: "movie06", name: "보스", imageName: "poster_boss", ageRating: 15),
+        .init(id: "movie07", name: "야당", imageName: "poster_yadang", ageRating: 15),
+        .init(id: "movie08", name: "더로제스", imageName: "poster_the_roses", ageRating: 15)
     ]
     
     private var cancellables = Set<AnyCancellable>()

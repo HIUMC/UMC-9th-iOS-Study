@@ -32,7 +32,7 @@ struct UserInfoView: View {
                 bottomView
                 
                 Spacer().frame(height: 527)
-            }//.padding(16)
+            }.padding(.horizontal)
        // }
     }
     
@@ -179,7 +179,7 @@ struct UserInfoView: View {
     private var bottomView: some View {
         HStack {
             VStack {
-                Image("영화별예매")
+                Image("icon_movie")
                     .resizable()
                     .scaledToFit()
                 Spacer().frame(height: 12)
@@ -191,7 +191,7 @@ struct UserInfoView: View {
             Spacer()
             
             VStack {
-                Image("극장별예매")
+                Image("icon_theater")
                     .resizable()
                     .scaledToFit()
                 Spacer().frame(height: 12)
@@ -203,7 +203,7 @@ struct UserInfoView: View {
             Spacer()
             
             VStack {
-                Image("특별관예매")
+                Image("icon_special")
                     .resizable()
                     .scaledToFit()
                 Spacer().frame(height: 12)
@@ -215,7 +215,7 @@ struct UserInfoView: View {
             Spacer()
             
             VStack {
-                Image("모바일오더")
+                Image("icon_mobile_order")
                     .resizable()
                     .scaledToFit()
                 Spacer().frame(height: 12)

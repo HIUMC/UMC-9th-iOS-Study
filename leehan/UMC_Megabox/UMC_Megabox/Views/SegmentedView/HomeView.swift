@@ -41,7 +41,8 @@ struct HomeView: View {
                     
                     
                 }//.padding() /* end of LazyGrid */
-            }.navigationDestination(for: Route.self) { route in
+            }.padding(.horizontal)
+            .navigationDestination(for: Route.self) { route in
                 switch route {
                 case .login:
                     LoginView()
@@ -70,7 +71,7 @@ struct HomeView: View {
         VStack {
             /* 메가박스 로고 */
             HStack {
-                Image("megaboxLogo2")
+                Image("logo_megabox2")
                     .resizable()
                     .scaledToFit()
                     .frame(height: 30)
@@ -229,7 +230,7 @@ struct HomeView: View {
             
             
             
-            Image("MoreFunImage")
+            Image("image_morefunfeed")
                 .resizable()
                 .scaledToFit()
                 .frame(height: 221)
