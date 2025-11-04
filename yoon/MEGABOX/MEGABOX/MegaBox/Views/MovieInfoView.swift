@@ -29,6 +29,8 @@ struct MovieInfoView: View {
             .padding(.horizontal,16)
         }.navigationBarBackButtonHidden(true)
     }
+    // NavigationBar를 빼주니까 해결.
+    // 아니면 하드코딩된 넓이를 수정해줘서 해결된건가?
     private var NavigationBar: some View {
         VStack{
             HStack{

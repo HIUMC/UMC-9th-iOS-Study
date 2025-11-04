@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>MEGABOXTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>week1_homework.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -17,17 +22,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>345C2F432E77FB8B00C64079</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>345C2F532E77FB8D00C64079</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>345C2F5D2E77FB8D00C64079</key>
 		<dict>
 			<key>primary</key>
 			<true/>

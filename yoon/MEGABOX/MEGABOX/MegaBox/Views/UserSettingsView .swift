@@ -4,7 +4,7 @@
 //
 //  Created by 정승윤 on 9/25/25.
 //
-
+// MARK: - 수정
 import Foundation
 import SwiftUI
 
@@ -17,16 +17,17 @@ struct UserSettingsView: View {
     
     var body: some View {
         VStack{
-            HStack{
+
                 NavigationBar
-            }
-            
+       
             Spacer().frame(height:53)
             
-            Text("기본정보")
-                .font(.PretendardBold18)
-                .frame(width: 408,height: 24,alignment: .leading)
-            
+            HStack{
+                Text("기본정보")
+                    .font(.PretendardBold18)
+                    .frame(height: 24,alignment: .leading)
+            Spacer()
+            }
             Spacer().frame(height:26)
             
             UserInfo
@@ -37,19 +38,19 @@ struct UserSettingsView: View {
 }
     
     private var NavigationBar: some View {
-        VStack{
+        ZStack{
             HStack{
                 Button(action: {dismiss()
-                }){Text(Image(systemName: "arrow.left")).foregroundStyle(.black)}
-                    
-                Spacer()
+                }){Text(Image(systemName: "arrow.left")).foregroundStyle(.black)
+                }
                 
-                Text("회원정보 관리")
-                        .font(.Pretendardmedium16)
-                        .padding(.trailing,162)
-                }.frame(width: 408)
+                Spacer()
+            }
+            Text("회원정보 관리")
+                .font(.Pretendardmedium16)
             }
         }
+// ZStack을 쓰는게 최선인가?
     
     private var UserInfo: some View {
         VStack{

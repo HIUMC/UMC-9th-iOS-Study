@@ -24,23 +24,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3404378E2EAE487C00C58AA6 /* MEGABOX.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MEGABOX.xcodeproj; path = MegaBox/MEGABOX.xcodeproj; sourceTree = SOURCE_ROOT; };
-		3404383A2EAF642C00C58AA6 /* MEGABOX.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = MEGABOX.xcodeproj; sourceTree = "<group>"; };
-		340438B42EAF6DE300C58AA6 /* MEGABOX.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = MEGABOX.xcodeproj; sourceTree = "<group>"; };
-		3404392F2EAF6E4000C58AA6 /* MEGABOX.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = MEGABOX.xcodeproj; sourceTree = "<group>"; };
-		34043A512EAF74F500C58AA6 /* MEGABOX.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = MEGABOX.xcodeproj; sourceTree = "<group>"; };
 		345C2F442E77FB8B00C64079 /* MEGABOX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MEGABOX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		345C2F542E77FB8D00C64079 /* MEGABOXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MEGABOXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		345C2F5E2E77FB8D00C64079 /* MEGABOXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MEGABOXUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		345C2F462E77FB8B00C64079 /* MegaBox */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MegaBox;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		345C2F412E77FB8B00C64079 /* Frameworks */ = {
@@ -67,45 +54,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		340437912EAE487C00C58AA6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		3404383D2EAF642C00C58AA6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		340438B82EAF6DE300C58AA6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		340439322EAF6E4000C58AA6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		34043A522EAF74F500C58AA6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		345C2F3B2E77FB8B00C64079 = {
 			isa = PBXGroup;
 			children = (
-				345C2F462E77FB8B00C64079 /* MegaBox */,
 				345C2F452E77FB8B00C64079 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -134,9 +85,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				345C2F462E77FB8B00C64079 /* MegaBox */,
 			);
 			name = MEGABOX;
 			packageProductDependencies = (
@@ -220,28 +168,6 @@
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 345C2F452E77FB8B00C64079 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 34043A522EAF74F500C58AA6 /* Products */;
-					ProjectRef = 34043A512EAF74F500C58AA6 /* MEGABOX.xcodeproj */;
-				},
-				{
-					ProductGroup = 340439322EAF6E4000C58AA6 /* Products */;
-					ProjectRef = 3404392F2EAF6E4000C58AA6 /* MEGABOX.xcodeproj */;
-				},
-				{
-					ProductGroup = 340437912EAE487C00C58AA6 /* Products */;
-					ProjectRef = 3404378E2EAE487C00C58AA6 /* MEGABOX.xcodeproj */;
-				},
-				{
-					ProductGroup = 3404383D2EAF642C00C58AA6 /* Products */;
-					ProjectRef = 3404383A2EAF642C00C58AA6 /* MEGABOX.xcodeproj */;
-				},
-				{
-					ProductGroup = 340438B82EAF6DE300C58AA6 /* Products */;
-					ProjectRef = 340438B42EAF6DE300C58AA6 /* MEGABOX.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				345C2F432E77FB8B00C64079 /* MEGABOX */,
@@ -366,7 +292,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "MEGABOX/week1-homework-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -426,7 +351,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "MEGABOX/week1-homework-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -445,7 +369,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MEGABOX/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"$(SRCROOT)/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "week1-homework-Info.plist";
@@ -474,7 +398,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MEGABOX/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"$(SRCROOT)/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "week1-homework-Info.plist";

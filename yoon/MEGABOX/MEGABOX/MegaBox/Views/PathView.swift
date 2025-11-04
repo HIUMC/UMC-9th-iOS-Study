@@ -11,7 +11,8 @@ import SwiftUI
 struct PathView: View {
     @Environment(NavigationRouter.self) var router
     @Environment(MovieViewModel.self) var viewModel
-    @ObservedObject var theaterVM: TheaterViewModel
+    @EnvironmentObject var theaterVM: TheaterViewModel
+    @Binding var selectTheaters: Set<Theaters>
     var body: some View {
         @Bindable var router = router
         
@@ -20,7 +21,7 @@ struct PathView: View {
                 .navigationDestination(for: Route.self) { route in
                     switch route {
                     case .home:
-                        MBTabView(theaterVM: theaterVM)
+                        MBTabView(theaterVM: theaterVM, selectTheaters: $selectTheaters)
                             .navigationBarBackButtonHidden(true)
                     case .detail(let movie):
                         MovieInfoView(movie: movie)
@@ -39,10 +40,12 @@ struct PathView: View {
 
 struct PathView_Preview: PreviewProvider {
     static var previews: some View {
+        @State var selectedTheaters: Set<Theaters> = [.gangnam]
         let theaterVM = TheaterViewModel()
+        
         devicePreviews {
-            
-            PathView(theaterVM : theaterVM )
+            PathView( selectTheaters: $selectedTheaters )
+                .environmentObject(theaterVM)
                 .environment(NavigationRouter())
                 .environment(MovieViewModel())
         }

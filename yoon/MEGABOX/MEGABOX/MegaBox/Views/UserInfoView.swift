@@ -81,20 +81,19 @@ struct UserInfoView: View {
     
     private var ClubMembership:some View {
         Button(action:{}){
-            HStack(spacing:3 ){
+            HStack(spacing:3){
                 Text("클럽 멤버십")
                     .font(.PretendardsemiBold16)
                     .foregroundStyle(.white)
                 
                 Image(systemName: "chevron.right")
                     .foregroundStyle(.white)
-                
-                
+                Spacer()
             }
             .frame(maxWidth: .infinity)
                 .padding(.vertical,12)
                 .padding(.leading, 8)
-                .padding(.trailing, 308)
+                .padding(.trailing, )
                 .background(
                     LinearGradient(
                         gradient: Gradient(colors: [Color("AB8BFF"), Color("8EAEF3"), Color("5DCCEC")]),
@@ -102,48 +101,52 @@ struct UserInfoView: View {
                         endPoint: .trailing
                     ) // ColorAsset 등록 안하고 가능?
                 )
-        }.clipShape(RoundedRectangle(cornerRadius: 8))
+        }.frame(height: 46)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
     }
     
     private var StatusInfo:some View {
-        
-        HStack(spacing:43){
+        ZStack{
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(Color.gray02,lineWidth: 1)
+                .frame(height: 76)
             
-            VStack(spacing:9){
-                Text("쿠폰")
-                    .font(.PretendardsemiBold16)
-                    .foregroundStyle(.gray02)
-                Text("2")
-                    .font(.PretendardsemiBold18)
-                    .foregroundStyle(.black)
-            }.frame(width: 28,height: 52)
-            
-            Divider().frame(height:31)
-            
-            VStack(spacing:9){
-                Text("스토어 교환권")
-                    .font(.PretendardsemiBold16)
-                    .foregroundStyle(.gray02)
-                Text("0")
-                    .font(.PretendardsemiBold18)
-                    .foregroundStyle(.black)
-            }.frame(width: 87,height: 52)
-            
-            Divider().frame(height:31)
-            
-            VStack(spacing:9){
-                Text("모바일 티켓")
-                    .font(.PretendardsemiBold16)
-                    .foregroundStyle(.gray02)
-                Text("0")
-                    .font(.PretendardsemiBold18)
-                    .foregroundStyle(.black)
-            }.frame(width: 73,height: 52)
-            
-        }.frame(maxWidth:.infinity)
-            .padding(.horizontal,24)
-            .padding(.vertical,12)
-            .background{RoundedRectangle(cornerRadius: 8).stroke(Color.gray02,lineWidth: 1)}
+            HStack {
+                Spacer().frame(width:12)
+                VStack(spacing:9){
+                    Text("쿠폰")
+                        .font(.PretendardsemiBold16)
+                        .foregroundStyle(.gray02)
+                    Text("2")
+                        .font(.PretendardsemiBold18)
+                        .foregroundStyle(.black)
+                }.frame(width: 28)
+                Spacer()
+                Divider().frame(height:31)
+                Spacer()
+                VStack(spacing:9){
+                    Text("스토어 교환권")
+                        .font(.PretendardsemiBold16)
+                        .foregroundStyle(.gray02)
+                    Text("0")
+                        .font(.PretendardsemiBold18)
+                        .foregroundStyle(.black)
+                }.frame(width: 87)
+                Spacer()
+                Divider().frame(height:31)
+                Spacer()
+                VStack(spacing:9){
+                    Text("모바일 티켓")
+                        .font(.PretendardsemiBold16)
+                        .foregroundStyle(.gray02)
+                    Text("0")
+                        .font(.PretendardsemiBold18)
+                        .foregroundStyle(.black)
+                }.frame(width: 73)
+                Spacer().frame(width:12)
+            }.frame(height:76)
+
+        }
         // 스택에 background 쓰면 안댐 (deprecated)
         // ()로 묶으면 deprecated, {}로 묶으면 사용 가능?
         
