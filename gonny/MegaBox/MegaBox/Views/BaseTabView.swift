@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct BaseTabView: View {
-    //@Environment(NavigationRouter.self) var router
+    @Environment(NavigationRouter.self) var router
     
     var body: some View {
         TabView {

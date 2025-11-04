@@ -10,10 +10,12 @@ import SwiftUI
 @main
 struct MegaBoxApp: App {
     @State private var router = NavigationRouter()
+    @StateObject private var movieVM = MovieViewModel()
 
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            ReserveView()
+                .environmentObject(movieVM)
                 .environment(router)
         }
     }
