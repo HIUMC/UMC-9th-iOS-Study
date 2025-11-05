@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6792B44E2EB8667C00AD53E0 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6792B44D2EB8667C00AD53E0 /* KakaoSDKAuth */; };
+		6792B4502EB8667C00AD53E0 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 6792B44F2EB8667C00AD53E0 /* KakaoSDKCommon */; };
+		6792B4522EB8667C00AD53E0 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 6792B4512EB8667C00AD53E0 /* KakaoSDKUser */; };
+		67B27BC52EB876300080C848 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 67B27BC42EB876300080C848 /* KakaoSDK */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		F87869B52E8144A4001AFA0A /* UMC_Megabox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UMC_Megabox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,17 +30,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6792B4502EB8667C00AD53E0 /* KakaoSDKCommon in Frameworks */,
+				67B27BC52EB876300080C848 /* KakaoSDK in Frameworks */,
+				6792B44E2EB8667C00AD53E0 /* KakaoSDKAuth in Frameworks */,
+				6792B4522EB8667C00AD53E0 /* KakaoSDKUser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		67B27BC62EB876B10080C848 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F8431AA92E795410004CDA65 = {
 			isa = PBXGroup;
 			children = (
 				F8431AB42E795410004CDA65 /* UMC_Megabox */,
 				F87869B52E8144A4001AFA0A /* UMC_Megabox.app */,
+				67B27BC62EB876B10080C848 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,6 +76,10 @@
 			);
 			name = UMC_Megabox;
 			packageProductDependencies = (
+				6792B44D2EB8667C00AD53E0 /* KakaoSDKAuth */,
+				6792B44F2EB8667C00AD53E0 /* KakaoSDKCommon */,
+				6792B4512EB8667C00AD53E0 /* KakaoSDKUser */,
+				67B27BC42EB876300080C848 /* KakaoSDK */,
 			);
 			productName = UMC_Megabox;
 			productReference = F87869B52E8144A4001AFA0A /* UMC_Megabox.app */;
@@ -86,6 +109,9 @@
 			);
 			mainGroup = F8431AA92E795410004CDA65;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				6792B44C2EB8667C00AD53E0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F8431AA92E795410004CDA65;
 			projectDirPath = "";
@@ -119,6 +145,8 @@
 /* Begin XCBuildConfiguration section */
 		F8431ABB2E795413004CDA65 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = F8431AB42E795410004CDA65 /* UMC_Megabox */;
+			baseConfigurationReferenceRelativePath = Resources/Secret.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -182,6 +210,8 @@
 		};
 		F8431ABC2E795413004CDA65 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = F8431AB42E795410004CDA65 /* UMC_Megabox */;
+			baseConfigurationReferenceRelativePath = Resources/Secret.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -241,12 +271,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 35XX66L38D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "UMC-Megabox-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -259,6 +290,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Hangyeol-Lee--Personal-Team-.UMC-Megabox";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -270,12 +302,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 35XX66L38D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "UMC-Megabox-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -288,6 +321,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Hangyeol-Lee--Personal-Team-.UMC-Megabox";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -316,6 +350,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6792B44C2EB8667C00AD53E0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.25.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6792B44D2EB8667C00AD53E0 /* KakaoSDKAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6792B44C2EB8667C00AD53E0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKAuth;
+		};
+		6792B44F2EB8667C00AD53E0 /* KakaoSDKCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6792B44C2EB8667C00AD53E0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCommon;
+		};
+		6792B4512EB8667C00AD53E0 /* KakaoSDKUser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6792B44C2EB8667C00AD53E0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKUser;
+		};
+		67B27BC42EB876300080C848 /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6792B44C2EB8667C00AD53E0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F8431AAA2E795410004CDA65 /* Project object */;
 }

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Foundation
 
 struct LoginModel {
     var id: String

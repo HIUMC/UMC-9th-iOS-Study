@@ -9,14 +9,18 @@ import SwiftUI
 import Observation
 
 struct LoginView: View {
-    /* @AppStorage를 이용해 저장할 값 작성 */
-    @AppStorage("id") private var id: String = ""
-    @AppStorage("pwd") private var pwd: String = ""
-    @State private var path = NavigationPath()
-    /* @State를 이용해 LoginView에서 인스턴스 생성 */
-    @State var viewModel = LoginViewModel()
     
-    @Environment(AuthenticationManager.self) private var auth
+    /* --- keychain --- */
+    let keychain = KeychainService.shared
+    
+    
+    @State private var path = NavigationPath()
+    
+    @Environment(LoginViewModel.self) private var viewModel
+    @Environment(AuthenticationManager.self) private var authManager
+    
+    
+    @State private var errorMessage: String?
     
     
     
@@ -52,12 +56,13 @@ struct LoginView: View {
     
     private var enterGroup: some View {
         
+        
         /*
          VStack을 이용해 아이디와 비밀번호가 수직으로 배치되게 함
          텍스트 사이에 Divider()로 분리선 구현
         */
         VStack {
-            
+            @Bindable var viewModel = viewModel
             /* $ 기호를 활용하여 Binding */
             /* TextField, SecureField는 Binding값을 요구함
              값을 "읽기"만 하는게 아니라 "쓰기"도 해야하기 때문 */
@@ -87,8 +92,17 @@ struct LoginView: View {
          배경을 적절히 꾸미고 그 위에 텍스트 컴포넌트를 올려줌
          */
         Button(action: {
-            if id == viewModel.loginModel.id && pwd == viewModel.loginModel.pwd {
-                auth.login()
+            Task {
+                do {
+                    let loginID = viewModel.loginModel.id
+                    
+                    let tokenInfo = try await viewModel.loginButtonTapped()
+                    // authenticationmanager에 토큰과 로그인id를 인자로 전달
+                    await authManager.login(tokenInfo: tokenInfo, loginID: loginID)
+                } catch {
+                    self.errorMessage = "아이디 또는 비밀번호가 올바르지 않습니다."
+                    print("로그인 실패:", error.localizedDescription)
+                }
             }
         }) {
             ZStack {
@@ -102,20 +116,6 @@ struct LoginView: View {
             }
         }
         
-        /*Button(action: { /* 아이디와 비밀번호 저장 */
-            if (id == viewModel.loginModel.id && pwd == viewModel.loginModel.pwd) {
-                
-            } }) {
-            ZStack {
-                Rectangle()
-                    .frame(height: 54)
-                    .foregroundStyle(.purple03)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                Text("로그인")
-                    .font(.PretendardBold(size: 18))
-                    .foregroundStyle(.white)
-            }
-        }*/
     } // end of loginBtn
     
     
@@ -142,9 +142,15 @@ struct LoginView: View {
             
             Spacer()
             
-            Button(action: {}) {
-                Image("icon_kakao")
-            }
+            Button(action: {
+                Task {
+                    do { let kakaoToken = try await viewModel.kakaoLoginButtonTapped()
+                         await authManager.login(tokenInfo: kakaoToken, isWithKakao: true)
+                    }
+                    catch { print("로그인 실패", error) }
+                }
+            })
+            { Image("icon_kakao") }
             
             Spacer()
             
@@ -167,4 +173,5 @@ struct LoginView: View {
 #Preview {
     LoginView()
         .environment(AuthenticationManager())
+        .environment(LoginViewModel())
 }

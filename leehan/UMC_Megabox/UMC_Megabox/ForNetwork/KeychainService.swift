@@ -80,12 +80,13 @@ class KeychainService {
         print(saveStatus == errSecSuccess ? "저장 성공" : "저장 실패")
     }
     
+    // 자동로그인 구현 위해 Bool타입 반환하도록 수정
     public func loadToken() -> Bool {
-        if let loadedToken = self.loadTokenInfo() {
+        if let loadedToken = self.loadTokenInfo() { // 토큰이 있는 경우 true 반환
             print("accessToken:", loadedToken.accessToken)
             print("RefreshToken:", loadedToken.refreshToken)
             return true
-        } else {
+        } else { // 토큰이 없는 경우 false 반환
             print("토큰 정보 없음")
             return false
         }

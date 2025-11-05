@@ -12,6 +12,7 @@ struct HomeView: View {
     @State private var movieCard: MovieCardViewModel = .init()
     @State private var movieBoard: MovieBoardViewModel = .init()
     @State private var router = NavigationRouter()
+    @Environment(AuthenticationManager.self) private var authManager
     
     var body: some View {
         
@@ -76,6 +77,7 @@ struct HomeView: View {
                     .scaledToFit()
                     .frame(height: 30)
                 Spacer()
+                Button(action: { authManager.logout() }) { Text("로그아웃") }
             }
             
             Spacer().frame(height: 8)

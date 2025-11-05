@@ -33,15 +33,9 @@ struct ManageUserInfoView: View {
     /* 상단 네비게이션 바 */
     private var topNavigation: some View {
         HStack {
-            Button( action: { } ) {
-                Image(systemName: "arrow.left")
-                    .foregroundStyle(.black)
-            }
-            Spacer()
             Text("회원정보 관리")
                 .font(.PretendardMedium(size: 16))
                 .foregroundStyle(.black)
-            Spacer()
         }.frame(height: 44)
     }
     
