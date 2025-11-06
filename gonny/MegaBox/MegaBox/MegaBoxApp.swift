@@ -11,12 +11,37 @@ import SwiftUI
 struct MegaBoxApp: App {
     @State private var router = NavigationRouter()
     @StateObject private var movieVM = MovieViewModel()
-
+    @StateObject var auth = LoginViewModel()
+    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
+    
     var body: some Scene {
         WindowGroup {
-            ReserveView()
+            
+            
+            LoginView()
+             .environmentObject(auth)
+             .environmentObject(router)
+             .environmentObject(movieVM)
+            /*
+            if auth.isLoggedIn {
+                BaseTabView()
+                    .environmentObject(auth)
+                    .environmentObject(router)
+                    .environmentObject(movieVM)
+            } else {
+                LoginView()
+                    .environmentObject(auth)
+                    .environmentObject(router)
+                    .environmentObject(movieVM)
+                
+            }
+              
+            SplashView()
+                .environmentObject(auth)
+                .environmentObject(router)
                 .environmentObject(movieVM)
-                .environment(router)
+             */
+            
         }
     }
 }

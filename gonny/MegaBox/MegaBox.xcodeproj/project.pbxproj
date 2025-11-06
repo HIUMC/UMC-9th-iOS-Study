@@ -6,6 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		787DB3B12EBBCBD000F9A0C2 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 787DB3B02EBBCBD000F9A0C2 /* KakaoSDK */; };
+		787DB3B32EBBCBD000F9A0C2 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 787DB3B22EBBCBD000F9A0C2 /* KakaoSDKAuth */; };
+		787DB3B52EBBCBD000F9A0C2 /* KakaoSDKCert in Frameworks */ = {isa = PBXBuildFile; productRef = 787DB3B42EBBCBD000F9A0C2 /* KakaoSDKCert */; };
+		787DB3B72EBBCBD000F9A0C2 /* KakaoSDKCertCore in Frameworks */ = {isa = PBXBuildFile; productRef = 787DB3B62EBBCBD000F9A0C2 /* KakaoSDKCertCore */; };
+		787DB3B92EBBCBD000F9A0C2 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 787DB3B82EBBCBD000F9A0C2 /* KakaoSDKCommon */; };
+		787DB45B2EBBE1F300F9A0C2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 787DB45A2EBBE1F300F9A0C2 /* Alamofire */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		786B27262E79816700560305 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -33,14 +42,15 @@
 		787C881A2E8B907000127E8B /* Exceptions for "MegaBox" folder in "MegaBox" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				DTO/ShowtimesResponse.swift,
 				MegaBoxApp.swift,
-				Models/CalendarDay.swift,
-				Models/DomaianModel.swift,
-				Models/LoginModel.swift,
-				Models/Movie.swift,
-				Models/MoviePoster.swift,
-				Models/Profile.swift,
+				Models/Domain/CalendarDay.swift,
+				Models/Domain/DomaianModel.swift,
+				Models/Domain/LoginModel.swift,
+				Models/Domain/Movie.swift,
+				Models/Domain/MoviePoster.swift,
+				Models/Domain/Profile.swift,
+				Models/DTO/AuthDTO.swift,
+				Models/DTO/ShowtimeDTO.swift,
 				Navigation/NavigationRouter.swift,
 				"Preview Content/Preview Assets.xcassets",
 				Resource/Assets/Assets.xcassets,
@@ -53,6 +63,8 @@
 				"Resource/Font/Pretendard-Regular.otf",
 				"Resource/Font/Pretendard-SemiBold.otf",
 				Resource/MovieSchedule.json,
+				Security/KeychainService.swift,
+				Social/KakaoLoginManager.swift,
 				ViewModels/CalendarViewModel.swift,
 				ViewModels/HomeViewModel.swift,
 				ViewModels/LoginViewModel.swift,
@@ -81,6 +93,13 @@
 			);
 			target = 786B272E2E79816700560305 /* MegaBoxUITests */;
 		};
+		787DB3A92EBBB9D500F9A0C2 /* Exceptions for "MegaBox" folder in "MegaBoxTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Security/KeychainService.swift,
+			);
+			target = 786B27242E79816700560305 /* MegaBoxTests */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -98,6 +117,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				787C881A2E8B907000127E8B /* Exceptions for "MegaBox" folder in "MegaBox" target */,
+				787DB3A92EBBB9D500F9A0C2 /* Exceptions for "MegaBox" folder in "MegaBoxTests" target */,
 				787C89EE2E8C314C00127E8B /* Exceptions for "MegaBox" folder in "MegaBoxUITests" target */,
 			);
 			path = MegaBox;
@@ -110,6 +130,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				787DB3B92EBBCBD000F9A0C2 /* KakaoSDKCommon in Frameworks */,
+				787DB3B72EBBCBD000F9A0C2 /* KakaoSDKCertCore in Frameworks */,
+				787DB3B12EBBCBD000F9A0C2 /* KakaoSDK in Frameworks */,
+				787DB45B2EBBE1F300F9A0C2 /* Alamofire in Frameworks */,
+				787DB3B32EBBCBD000F9A0C2 /* KakaoSDKAuth in Frameworks */,
+				787DB3B52EBBCBD000F9A0C2 /* KakaoSDKCert in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +193,12 @@
 			);
 			name = MegaBox;
 			packageProductDependencies = (
+				787DB3B02EBBCBD000F9A0C2 /* KakaoSDK */,
+				787DB3B22EBBCBD000F9A0C2 /* KakaoSDKAuth */,
+				787DB3B42EBBCBD000F9A0C2 /* KakaoSDKCert */,
+				787DB3B62EBBCBD000F9A0C2 /* KakaoSDKCertCore */,
+				787DB3B82EBBCBD000F9A0C2 /* KakaoSDKCommon */,
+				787DB45A2EBBE1F300F9A0C2 /* Alamofire */,
 			);
 			productName = MegaBox;
 			productReference = 786B27152E79816500560305 /* MegaBox.app */;
@@ -251,6 +283,10 @@
 			);
 			mainGroup = 786B270C2E79816500560305;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				787DB3AF2EBBCBD000F9A0C2 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				787DB4592EBBE1F300F9A0C2 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 786B27162E79816500560305 /* Products */;
 			projectDirPath = "";
@@ -618,6 +654,58 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		787DB3AF2EBBCBD000F9A0C2 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.25.0;
+			};
+		};
+		787DB4592EBBE1F300F9A0C2 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		787DB3B02EBBCBD000F9A0C2 /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 787DB3AF2EBBCBD000F9A0C2 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+		787DB3B22EBBCBD000F9A0C2 /* KakaoSDKAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 787DB3AF2EBBCBD000F9A0C2 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKAuth;
+		};
+		787DB3B42EBBCBD000F9A0C2 /* KakaoSDKCert */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 787DB3AF2EBBCBD000F9A0C2 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCert;
+		};
+		787DB3B62EBBCBD000F9A0C2 /* KakaoSDKCertCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 787DB3AF2EBBCBD000F9A0C2 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCertCore;
+		};
+		787DB3B82EBBCBD000F9A0C2 /* KakaoSDKCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 787DB3AF2EBBCBD000F9A0C2 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCommon;
+		};
+		787DB45A2EBBE1F300F9A0C2 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 787DB4592EBBE1F300F9A0C2 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 786B270D2E79816500560305 /* Project object */;
 }

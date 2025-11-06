@@ -61,53 +61,9 @@ final class MovieViewModel: ObservableObject {
                 movie != nil && !theaters.isEmpty && date != nil
             }
             .assign(to: &$isShowtimeVisible)
-
-        // (옵션) 세 가지 모두 선택되면 mock으로 테스트 시
-        /*
-        Publishers.CombineLatest3(
-            $selectedMovie.compactMap { $0 },
-            $selectedTheaters.filter { !$0.isEmpty },
-            $selectedDate.compactMap { $0 }
-        )
-        .map { _, theaters, _ in
-            Self.mockShowtimes(for: theaters)
-        }
-        .receive(on: DispatchQueue.main)
-        .assign(to: &$showtimes)
-        */
     }
 
-    // MARK: - 더미 상영정보 (필요 시 테스트용)
-    private static func mockShowtimes(for theaters: Set<Theater>) -> [Theater: [Showtime]] {
-        var result: [Theater: [Showtime]] = [:]
-        let now = Date()
-        let cal = Calendar.current
-
-        for t in theaters {
-            let first = Showtime(
-                theater: .gangnam,
-                screenName: "박찬욱관",
-                format: "2D",
-                start: now,
-                end: cal.date(byAdding: .minute, value: 120, to: now)!,
-                remaining: 100,
-                capacity: 120
-            )
-            let second = Showtime(
-                theater: .hongdae,
-                screenName: "BTS관",
-                format: "3D",
-                start: cal.date(byAdding: .hour, value: 3, to: now)!,
-                end: cal.date(byAdding: .hour, value: 5, to: now)!,
-                remaining: 70,
-                capacity: 120
-            )
-            result[t] = [first, second]
-        }
-        
-        return result
-    }
-
+    
     // MARK: - JSON 원본(ShowtimeViewModel의 결과) 보관/사용
     private var rawShowtimeMovies: [ShowtimeMovie] = []
 
