@@ -106,10 +106,18 @@ struct LoginView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 40, height: 40)
-            Image("kakaoLogo")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 40, height: 40)
+            Button(action: {
+                viewModel.kakaoLogin { success in
+                    if success {
+                        isLoggedIn = true
+                    }
+                }
+            }) {
+                Image("kakaoLogo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
+            }
             Image("appleLogo")
                 .resizable()
                 .scaledToFit()

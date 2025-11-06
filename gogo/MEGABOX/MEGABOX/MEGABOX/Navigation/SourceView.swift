@@ -6,6 +6,8 @@
 //
 import Foundation
 import SwiftUI
+import KakaoSDKCommon
+import KakaoSDKAuth
 
 struct SourceView: View {
    
@@ -44,10 +46,19 @@ struct SourceView: View {
                 }
             }
         }
+        .task {
+            KakaoSDK.initSDK(appKey: Bundle.kakaoNativeAppKey)
+        }
+        .onOpenURL { url in
+            if AuthApi.isKakaoTalkLoginUrl(url) {
+                _ = AuthController.handleOpenUrl(url: url)
+            }
+        }
         .onAppear {
             autoLoginCheck()
         }
     }
+    
     
     private func autoLoginCheck() {
         let id = KeychainService.shared.read(KeychainService.Key.userID)
@@ -55,6 +66,13 @@ struct SourceView: View {
         if id != nil && pw != nil {
             isLoggedIn = true
         }
+    }
+}
+
+
+private extension Bundle {
+    static var kakaoNativeAppKey: String {
+        (Bundle.main.object(forInfoDictionaryKey: "KAKAO_NATIVE_APP_KEY") as? String) ?? ""
     }
 }
 

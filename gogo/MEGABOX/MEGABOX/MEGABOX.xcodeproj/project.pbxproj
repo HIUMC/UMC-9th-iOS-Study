@@ -6,6 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D73D4F2D2EBC21E600C1744F /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = D73D4F2C2EBC21E600C1744F /* KakaoSDK */; };
+		D73D4F2F2EBC21E600C1744F /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D73D4F2E2EBC21E600C1744F /* KakaoSDKAuth */; };
+		D73D4F312EBC21E600C1744F /* KakaoSDKCert in Frameworks */ = {isa = PBXBuildFile; productRef = D73D4F302EBC21E600C1744F /* KakaoSDKCert */; };
+		D73D4F332EBC21E600C1744F /* KakaoSDKCertCore in Frameworks */ = {isa = PBXBuildFile; productRef = D73D4F322EBC21E600C1744F /* KakaoSDKCertCore */; };
+		D73D4F352EBC21E600C1744F /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = D73D4F342EBC21E600C1744F /* KakaoSDKCommon */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		D735EBA62E7A6AD300474A00 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +73,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D73D4F332EBC21E600C1744F /* KakaoSDKCertCore in Frameworks */,
+				D73D4F312EBC21E600C1744F /* KakaoSDKCert in Frameworks */,
+				D73D4F2D2EBC21E600C1744F /* KakaoSDK in Frameworks */,
+				D73D4F352EBC21E600C1744F /* KakaoSDKCommon in Frameworks */,
+				D73D4F2F2EBC21E600C1744F /* KakaoSDKAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +138,11 @@
 			);
 			name = MEGABOX;
 			packageProductDependencies = (
+				D73D4F2C2EBC21E600C1744F /* KakaoSDK */,
+				D73D4F2E2EBC21E600C1744F /* KakaoSDKAuth */,
+				D73D4F302EBC21E600C1744F /* KakaoSDKCert */,
+				D73D4F322EBC21E600C1744F /* KakaoSDKCertCore */,
+				D73D4F342EBC21E600C1744F /* KakaoSDKCommon */,
 			);
 			productName = MEGABOX;
 			productReference = D735EB972E7A6AD200474A00 /* MEGABOX.app */;
@@ -208,6 +226,9 @@
 			);
 			mainGroup = D735EB8E2E7A6AD200474A00;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D73D4F2B2EBC21E600C1744F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D735EB982E7A6AD200474A00 /* Products */;
 			projectDirPath = "";
@@ -284,6 +305,8 @@
 /* Begin XCBuildConfiguration section */
 		D735EBB72E7A6AD300474A00 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = D735EB992E7A6AD200474A00 /* MEGABOX */;
+			baseConfigurationReferenceRelativePath = Security/Secret.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -348,6 +371,8 @@
 		};
 		D735EBB82E7A6AD300474A00 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = D735EB992E7A6AD200474A00 /* MEGABOX */;
+			baseConfigurationReferenceRelativePath = Security/Secret.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -418,6 +443,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MEGABOX/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "	";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -426,7 +452,7 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -460,6 +486,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MEGABOX/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "	";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -468,7 +495,7 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -620,6 +647,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D73D4F2B2EBC21E600C1744F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakaO/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.25.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D73D4F2C2EBC21E600C1744F /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D73D4F2B2EBC21E600C1744F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+		D73D4F2E2EBC21E600C1744F /* KakaoSDKAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D73D4F2B2EBC21E600C1744F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKAuth;
+		};
+		D73D4F302EBC21E600C1744F /* KakaoSDKCert */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D73D4F2B2EBC21E600C1744F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCert;
+		};
+		D73D4F322EBC21E600C1744F /* KakaoSDKCertCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D73D4F2B2EBC21E600C1744F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCertCore;
+		};
+		D73D4F342EBC21E600C1744F /* KakaoSDKCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D73D4F2B2EBC21E600C1744F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCommon;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D735EB8F2E7A6AD200474A00 /* Project object */;
 }
