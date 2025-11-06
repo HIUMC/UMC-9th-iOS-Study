@@ -9,7 +9,8 @@ import Foundation
 import Combine
 import SwiftUI
 
-// MARK: - Local DTOs mirroring MovieSchedule.json
+// MARK: - DTO -> json 파일
+//Codable 프로토콜 사용 -> Encodable,Decodable
 // JSON 구조: { status, message, data: { movies: [...] } }
 fileprivate struct RVMResponse: Codable {
     let status: String
@@ -44,7 +45,7 @@ fileprivate struct RVMShowtime: Codable {
     let total: Int
 }
 
-// MARK: - Date formatters
+// MARK: - 날짜
 fileprivate let ymdFormatter: DateFormatter = {
     let f = DateFormatter()
     f.calendar = Calendar(identifier: .gregorian)
@@ -70,7 +71,7 @@ final class ReservationViewModel: ObservableObject {
     @Published var chosenTheaters: Set<Theater> = []         // 선택한 극장들
     @Published var pickedDate: Date? = nil                   // 선택한 날짜
 
-    // 파생 상태 (UI 활성화/비활성 제어)
+    // UI
     @Published private(set) var weekDays: [Date] = []
     @Published private(set) var isTheaterActive: Bool = false
     @Published private(set) var isDateActive: Bool = false
@@ -79,7 +80,7 @@ final class ReservationViewModel: ObservableObject {
     // 극장별 상영정보 (뷰에서 그대로 렌더)
     @Published private(set) var showtimeSchedule: [Theater: [Showtime]] = [:]
 
-    // MARK: - 내부 원본 (로컬 DTO 보관)
+    // MARK: - JSON 디코딩 관련
     private var rvmMovies: [RVMMovie] = []              // JSON 디코딩 결과(원본)
     private var cancellables = Set<AnyCancellable>()
 
@@ -93,7 +94,7 @@ final class ReservationViewModel: ObservableObject {
 
 // MARK: - 매핑
 extension ReservationViewModel {
-    /// 로컬 JSON(MovieSchedule.json) 로드 → DTO 디코딩 → Domain 변환
+    /// 로컬 JSON(MovieSchedule.json) 로드 → DTO  → Domain 변환
     func fetchMovies() {
         DispatchQueue.global(qos: .background).async {
             guard let url = Bundle.main.url(forResource: "MovieSchedule", withExtension: "json") else {

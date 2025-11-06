@@ -23,12 +23,12 @@ final class KeychainService {
     private let service: String = Bundle.main.bundleIdentifier ?? "com.example.app"
 
    
-    /// - 자동 로그인/백그라운드 동작을 고려하여 .afterFirstUnlockThisDeviceOnly 사용
+    /// - 자동 로그인/백그라운드 동작을 고려하.afterFirstUnlockThisDeviceOnly 사용!!
     private let accessibility = kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
 
     private init() {}
 
-    // MARK: - Public Keys (프로젝트 전역에서 재사용)
+    // MARK: -  프로젝트 전역에서 재사용
     enum Key {
         static let userID = "user_id"
         static let userPassword = "user_password"
