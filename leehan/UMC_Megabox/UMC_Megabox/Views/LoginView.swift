@@ -94,11 +94,12 @@ struct LoginView: View {
         Button(action: {
             Task {
                 do {
-                    let loginID = viewModel.loginModel.id
+                    let loginid = viewModel.loginModel.id
+                    let loginpwd = viewModel.loginModel.pwd
                     
                     let tokenInfo = try await viewModel.loginButtonTapped()
                     // authenticationmanager에 토큰과 로그인id를 인자로 전달
-                    await authManager.login(tokenInfo: tokenInfo, loginID: loginID)
+                    await authManager.login(tokenInfo: tokenInfo, loginid: loginid, loginpwd: loginpwd)
                 } catch {
                     self.errorMessage = "아이디 또는 비밀번호가 올바르지 않습니다."
                     print("로그인 실패:", error.localizedDescription)

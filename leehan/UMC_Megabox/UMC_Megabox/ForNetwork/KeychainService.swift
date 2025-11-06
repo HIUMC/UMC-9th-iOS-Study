@@ -12,9 +12,66 @@ class KeychainService {
     static let shared = KeychainService()
     
     private init() {}
-    
+    // MARK: 토큰 저장을 위한 변수
     private let account = "authToken"
     private let service = "com.myKeychain.tokenInfo"
+    
+    // MARK: 로그인 정보 저장을 위한 변수
+    private let credentialService = "com.myKeychain.userCredential"
+    
+    // --- 로그인 정보 저장을 위한 새로운 함수들 ---
+    
+    // 로그인 정보 키체인에 저장하는 함수
+    @discardableResult
+    public func saveCredential(id: String, pwd: String) -> OSStatus {
+        // Token객체와 다르게 pwd는 String이기 때문에 utf8로 passwordData에 저장
+        guard let passwordData = pwd.data(using: .utf8) else {
+            print("비밀번호를 Data로 변환하는데 실패함")
+            return errSecParam
+        }
+        
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: id,
+            kSecAttrService as String: credentialService,
+            kSecValueData as String: passwordData,
+            kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlock
+        ]
+        
+        // 기존 항목 삭제
+        SecItemDelete(query as CFDictionary)
+        // 새 항목 추가
+        let status = SecItemAdd(query as CFDictionary, nil)
+        
+        if status == errSecSuccess {
+            print("[Keychain] 아이디 '\(id)'의 비밀번호 저장 성공")
+        } else {
+            print("[Keychain] 비밀번호 저장 실패. Status: \(status)")
+        }
+        
+        return status
+    }
+    
+    // id에 해당하는 키체인 로그인 정보를 삭제하는 함수
+    @discardableResult
+    public func deleteCredential(forId id: String) -> OSStatus {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: credentialService,
+            kSecAttrAccount as String: id
+        ]
+        
+        // 키체인에 저장된 로그인 정보 삭제
+        let status = SecItemDelete(query as CFDictionary)
+        
+        if status == errSecSuccess {
+            print("로그인 정보 삭제 성공")
+        } else {
+            print("로그인 정보 삭제 실패")
+        }
+        
+        return status
+    }
     
     @discardableResult
     private func saveTokenInfo(_ tokenInfo: TokenInfo) -> OSStatus {
