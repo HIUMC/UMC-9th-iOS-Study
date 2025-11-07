@@ -5,11 +5,13 @@
 //  Created by 정승윤 on 10/2/25.
 //
 
+import Observation
 import Foundation
 import SwiftUI
 
+// 하나만 써야한다..
 @Observable
-class NavigationRouter {
+class NavigationRouter: ObservableObject {
     var path = NavigationPath()
     
     func push(_ route: Route) {

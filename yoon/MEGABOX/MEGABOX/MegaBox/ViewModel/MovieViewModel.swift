@@ -11,7 +11,7 @@ import Combine
 
 // @Observable 쓰면 Published를 못씀
 @Observable
-class MovieViewModel {
+class MovieViewModel: ObservableObject {
     var movies: [MovieModel] = [
         MovieModel(posterName: "noway", secPosterName: "f1Poster",name: "어쩔수가없다",engname:"No Other Choice" ,performance: "20만", age: "15"),
         MovieModel(posterName: "blade",secPosterName: "f1Poster", name: "귀멸의 칼날: 무한성",engname:"Demon Slayer: Kimetsu no Yaiba – The Movie: Infinity Castle" ,performance: "1", age: "15"),
