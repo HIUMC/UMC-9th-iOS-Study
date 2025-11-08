@@ -11,8 +11,11 @@ struct LoginView: View {
     @Environment(NavigationRouter.self) private var router
     @ObservedObject var viewModel: LoginViewModel = .init()
     
-    @AppStorage("id") var id: String = "1234"
-    @AppStorage("pwd") var pwd: String = "1234"
+    @State private var userID: String = ""
+    @State private var userPassword: String = ""
+
+    private let keychain = KeychainService.shared
+    
     var body: some View {
         VStack {
             navigationBar
@@ -30,6 +33,14 @@ struct LoginView: View {
             BannerSection
         }
         .padding(.horizontal, 16)
+        .onAppear {
+            if let savedID = keychain.read("userID") {
+                viewModel.loginModel.id = savedID
+            }
+            if let savedPW = keychain.read("userPassword") {
+                viewModel.loginModel.pwd = savedPW
+            }
+        }
     }
 
     private var navigationBar: some View {
@@ -62,13 +73,18 @@ struct LoginView: View {
     private var LoginButton: some View {
         VStack(alignment:.center) {
             Button(action: {
-                // 입력한 값이 미리 저장해둔 계정과 일치하는지 확인
-                if viewModel.loginModel.id == id && viewModel.loginModel.pwd == pwd {
+                // 입력한 값이 Keychain에 저장된 계정과 일치하는지 확인
+                if let savedID = keychain.read("userID"),
+                   let savedPW = keychain.read("userPassword"),
+                   viewModel.loginModel.id == savedID,
+                   viewModel.loginModel.pwd == savedPW {
                     print("로그인 성공!")
-                    // 여기서 화면 전환이나 상태 변경 처리 가능
                     router.push(.login)
                 } else {
-                    print("아이디 또는 비밀번호가 올바르지 않습니다.")
+                    print("아이디 또는 비밀번호가 일치하지 않습니다. (최초 로그인 시 저장)")
+                    keychain.save(viewModel.loginModel.id, for: "userID")
+                    keychain.save(viewModel.loginModel.pwd, for: "userPassword")
+                    router.push(.login)
                 }
             }) {
                 Text("로그인")
@@ -101,6 +117,14 @@ struct LoginView: View {
             .resizable()
             .scaledToFit()
     }
+    
+    // func logout() {
+    //     keychain.delete("userID")
+    //     keychain.delete("userPassword")
+    //     viewModel.loginModel.id = ""
+    //     viewModel.loginModel.pwd = ""
+    //     // Additional logout handling here
+    // }
 }
 
 #Preview {
