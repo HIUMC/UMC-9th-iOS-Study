@@ -7,29 +7,32 @@
 
 import SwiftUI
 
+import KakaoSDKUser
+import KakaoSDKAuth
+
 struct LoginView: View {
     @Environment(NavigationRouter.self) private var router
     @ObservedObject var viewModel: LoginViewModel = .init()
     
     @State private var userID: String = ""
     @State private var userPassword: String = ""
-
+    
     private let keychain = KeychainService.shared
     
     var body: some View {
         VStack {
             navigationBar
             Spacer()
-
+            
             InputSection
                 .padding(.bottom, 75)
-
+            
             LoginButton
                 .padding(.bottom, 35)
-
+            
             SocialLoginSection
                 .padding(.bottom, 39)
-
+            
             BannerSection
         }
         .padding(.horizontal, 16)
@@ -42,7 +45,7 @@ struct LoginView: View {
             }
         }
     }
-
+    
     private var navigationBar: some View {
         HStack{
             Text("로그인")
@@ -52,20 +55,20 @@ struct LoginView: View {
     
     private var InputSection: some View {
         VStack(alignment:.leading){
-
+            
             TextField("아이디", text: $viewModel.loginModel.id)
                 .font(.medium16)
                 .foregroundColor(.gray03)
                 .padding(.bottom, 4)
-
+            
             Divider()
                 .padding(.bottom, 40)
-
+            
             SecureField("비밀번호", text: $viewModel.loginModel.pwd)
                 .font(.medium16)
                 .foregroundColor(.gray03)
                 .padding(.bottom, 4)
-
+            
             Divider()
         }
     }
@@ -107,10 +110,17 @@ struct LoginView: View {
     private var SocialLoginSection: some View {
         HStack(spacing: 73) {
             Image("naverLogin")
-            Image("kakaoLogin")
+            
+            Button(action: {
+                kakaoLogin()
+            }) {
+                Image("kakaoLogin")
+            }
+            
             Image("appleLogin")
         }
     }
+    
     
     private var BannerSection: some View {
         Image("loginBanner")
@@ -125,6 +135,49 @@ struct LoginView: View {
     //     viewModel.loginModel.pwd = ""
     //     // Additional logout handling here
     // }
+    
+    func kakaoLogin() {
+        // 카카오톡 실행 가능 여부 확인
+        if UserApi.isKakaoTalkLoginAvailable() {
+            // 카카오톡 로그인
+            UserApi.shared.loginWithKakaoTalk { oauthToken, error in
+                if let error = error {
+                    print("카카오톡 로그인 실패: \(error.localizedDescription)")
+                } else if let oauthToken = oauthToken {
+                    print("카카오톡 로그인 성공")
+                    handleKakaoLoginSuccess(oauthToken)
+                }
+            }
+        } else {
+            // 카카오계정 로그인
+            UserApi.shared.loginWithKakaoAccount { oauthToken, error in
+                if let error = error {
+                    print("카카오계정 로그인 실패: \(error.localizedDescription)")
+                } else if let oauthToken = oauthToken {
+                    print("카카오계정 로그인 성공")
+                    handleKakaoLoginSuccess(oauthToken)
+                }
+            }
+        }
+    }
+    
+    private func handleKakaoLoginSuccess(_ oauthToken: OAuthToken) {
+        // ✅ (1) 토큰 저장 (필요 시 Keychain 등)
+        keychain.save(oauthToken.accessToken, for: "kakaoAccessToken")
+        
+        // ✅ (2) 사용자 정보 요청
+        UserApi.shared.me { user, error in
+            if let error = error {
+                print("사용자 정보 요청 실패: \(error.localizedDescription)")
+            } else if let user = user {
+                print("사용자 정보 요청 성공: \(user.id ?? 0)")
+                print("닉네임: \(user.kakaoAccount?.profile?.nickname ?? "없음")")
+                
+                // ✅ (3) 로그인 성공 후 화면 이동
+                router.push(.login)
+            }
+        }
+    }
 }
 
 #Preview {
