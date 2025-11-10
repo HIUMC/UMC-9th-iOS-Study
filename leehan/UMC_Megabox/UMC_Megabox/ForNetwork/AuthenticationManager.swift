@@ -33,7 +33,7 @@ class AuthenticationManager {
         }
     }
     
-    // tokenInfo: 필수 전달인자 - 키체인에 저장
+    // tokenInfo: 필수 전달인자 - 키체인에 저
     // isWithKakao: 카카오 로그인이면 true, 카카오 로그인이 아니면 false(디폴트)
     // loginID: 카카오 로그인이 아닌 경우 id 값을 넘겨받음 - 사용자 이름 구분 위함
     func login(tokenInfo: TokenInfo, isWithKakao: Bool = false, loginid: String = "", loginpwd: String = "") async {

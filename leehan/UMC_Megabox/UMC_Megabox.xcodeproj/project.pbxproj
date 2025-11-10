@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		677B93782EC195BB00123AB6 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 677B93772EC195BB00123AB6 /* Moya */; };
 		6792B44E2EB8667C00AD53E0 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6792B44D2EB8667C00AD53E0 /* KakaoSDKAuth */; };
 		6792B4502EB8667C00AD53E0 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 6792B44F2EB8667C00AD53E0 /* KakaoSDKCommon */; };
 		6792B4522EB8667C00AD53E0 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 6792B4512EB8667C00AD53E0 /* KakaoSDKUser */; };
+		67A673FF2EC1EE6700536DEF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 67A673FE2EC1EE6700536DEF /* Kingfisher */; };
 		67B27BC52EB876300080C848 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 67B27BC42EB876300080C848 /* KakaoSDK */; };
 /* End PBXBuildFile section */
 
@@ -30,9 +32,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67A673FF2EC1EE6700536DEF /* Kingfisher in Frameworks */,
 				6792B4502EB8667C00AD53E0 /* KakaoSDKCommon in Frameworks */,
 				67B27BC52EB876300080C848 /* KakaoSDK in Frameworks */,
 				6792B44E2EB8667C00AD53E0 /* KakaoSDKAuth in Frameworks */,
+				677B93782EC195BB00123AB6 /* Moya in Frameworks */,
 				6792B4522EB8667C00AD53E0 /* KakaoSDKUser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,6 +84,8 @@
 				6792B44F2EB8667C00AD53E0 /* KakaoSDKCommon */,
 				6792B4512EB8667C00AD53E0 /* KakaoSDKUser */,
 				67B27BC42EB876300080C848 /* KakaoSDK */,
+				677B93772EC195BB00123AB6 /* Moya */,
+				67A673FE2EC1EE6700536DEF /* Kingfisher */,
 			);
 			productName = UMC_Megabox;
 			productReference = F87869B52E8144A4001AFA0A /* UMC_Megabox.app */;
@@ -111,6 +117,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				6792B44C2EB8667C00AD53E0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				677B93762EC195BB00123AB6 /* XCRemoteSwiftPackageReference "Moya" */,
+				67A673FD2EC1EE6700536DEF /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F8431AA92E795410004CDA65;
@@ -352,6 +360,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		677B93762EC195BB00123AB6 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
 		6792B44C2EB8667C00AD53E0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
@@ -360,9 +376,22 @@
 				minimumVersion = 2.25.0;
 			};
 		};
+		67A673FD2EC1EE6700536DEF /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.6.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		677B93772EC195BB00123AB6 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 677B93762EC195BB00123AB6 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
 		6792B44D2EB8667C00AD53E0 /* KakaoSDKAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6792B44C2EB8667C00AD53E0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
@@ -377,6 +406,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6792B44C2EB8667C00AD53E0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
 			productName = KakaoSDKUser;
+		};
+		67A673FE2EC1EE6700536DEF /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 67A673FD2EC1EE6700536DEF /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		67B27BC42EB876300080C848 /* KakaoSDK */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -28,6 +28,7 @@ class LoginViewModel {
         // 서버에 id, pw를 보내서 토큰을 요청함
         // let tokenInfo = try? await APIService.shared.login(id: id, password: pw)
         
+        // --- 하드코딩 --- 
         if loginModel.id == "Test" && loginModel.pwd == "1234" {
             print("로그인 시뮬레이션 성공")
             return TokenInfo(accessToken: "MOCK_ACCESS_TOKEN", refreshToken: "MOCK_REFRESH_TOKEN")

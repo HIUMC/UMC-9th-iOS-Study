@@ -21,4 +21,11 @@ enum Config {
         }
         return baseURL
     }()
+    
+    static let tmdbApiKey: String = {
+        guard let apiKey = Config.infoDictionary["API_KEY"] as? String else {
+            fatalError()
+        }
+        return apiKey
+    }()
 }
