@@ -13,4 +13,6 @@ enum Route: Hashable {
     case login
     case detail(MovieModel)
     case profile
+    case tab(index: Int)
+    case booking
 }

@@ -116,6 +116,8 @@ struct TopButtonView: View {
     
 //MARK: - 무비 카드 1개
 struct MovieCard: View {
+    @Environment(NavigationRouter.self) var router
+    
     let movieModel: MovieModel
     let onTap: () -> Void
     var body: some View {
@@ -128,7 +130,9 @@ struct MovieCard: View {
                     .padding(.bottom, 8)
             }
             
-            Button(action: {}) {
+            Button(action: {
+                router.path.append(Route.tab(index: 1))
+            }) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.purple03)

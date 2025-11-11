@@ -222,6 +222,7 @@ private extension BookingView {
             }
         }
         .padding(.top, 16)
+        .padding(.horizontal, 16)
     }
     
     private func timeString(_ d: Date) -> String {

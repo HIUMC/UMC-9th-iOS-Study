@@ -17,9 +17,8 @@ struct MainView: View {
         @Bindable var router = router
         
         NavigationStack(path: $router.path) {
-            LoginView()
+            SplashView()
                 .environment(router)
-                .environmentObject(viewModel)
                 .navigationDestination(for: Route.self) { route in
                     switch route {
                     case .home:
@@ -29,15 +28,40 @@ struct MainView: View {
                         MovieDetailView(movie: movie)
                             .navigationBarBackButtonHidden(true)
                     case .login:
-                        TabBarView()
+                        LoginView()
                             .navigationBarBackButtonHidden(true)
+                            .environment(router)
+                            .environmentObject(viewModel)
+                    case .tab(let index):
+                        if let tab = TabBarView.AppTab(rawValue: index)
+                        {
+                            TabBarView(defaultTab: tab)
+                                .environment(router)
+                                .environmentObject(viewModel)
+                                .navigationBarBackButtonHidden(true)
+                        } else {
+                            TabBarView()   // 이상한 인덱스면 기본으로
+                                .environment(router)
+                                .environmentObject(viewModel)
+                                .navigationBarBackButtonHidden(true)
+                        }
                     case .profile:
                         ProfileManageView()
                             .navigationBarBackButtonHidden(true)
+                    case .booking:
+                        BookingView()
+                            .navigationBarBackButtonHidden(true)
+                            .environment(router)
+                            .environmentObject(viewModel)
+                            
                     }
                 }
         }
     }
 }
 
-#Preview { MainView() }
+#Preview {
+    MainView()
+        .environment(NavigationRouter())
+        .environmentObject(MovieViewModel())
+}
