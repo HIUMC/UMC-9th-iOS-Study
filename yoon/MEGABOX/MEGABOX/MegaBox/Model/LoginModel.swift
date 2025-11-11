@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+
 struct LoginModel {
     var id: String 
     var pwd: String

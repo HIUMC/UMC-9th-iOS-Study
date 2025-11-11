@@ -6,6 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		34EBABD52EBDF36600CF8868 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 34EBABD42EBDF36600CF8868 /* KakaoSDK */; };
+		34EBABD72EBDF36600CF8868 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 34EBABD62EBDF36600CF8868 /* KakaoSDKAuth */; };
+		34EBABD92EBDF36600CF8868 /* KakaoSDKCert in Frameworks */ = {isa = PBXBuildFile; productRef = 34EBABD82EBDF36600CF8868 /* KakaoSDKCert */; };
+		34EBABDB2EBDF36600CF8868 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 34EBABDA2EBDF36600CF8868 /* KakaoSDKCommon */; };
+		34EBACCA2EBE40F800CF8868 /* Secret.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 34EBACC92EBE40F800CF8868 /* Secret.xcconfig */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		345C2F552E77FB8D00C64079 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -32,6 +40,8 @@
 		345C2F442E77FB8B00C64079 /* MEGABOX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MEGABOX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		345C2F542E77FB8D00C64079 /* MEGABOXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MEGABOXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		345C2F5E2E77FB8D00C64079 /* MEGABOXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MEGABOXUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		34EBAB0A2EBDC1BD00CF8868 /* MEGABOX.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = MEGABOX.xcodeproj; sourceTree = "<group>"; };
+		34EBACC92EBE40F800CF8868 /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -47,6 +57,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34EBABDB2EBDF36600CF8868 /* KakaoSDKCommon in Frameworks */,
+				34EBABD92EBDF36600CF8868 /* KakaoSDKCert in Frameworks */,
+				34EBABD52EBDF36600CF8868 /* KakaoSDK in Frameworks */,
+				34EBABD72EBDF36600CF8868 /* KakaoSDKAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +119,7 @@
 		345C2F3B2E77FB8B00C64079 = {
 			isa = PBXGroup;
 			children = (
+				34EBACC92EBE40F800CF8868 /* Secret.xcconfig */,
 				345C2F462E77FB8B00C64079 /* MegaBox */,
 				345C2F452E77FB8B00C64079 /* Products */,
 			);
@@ -116,6 +131,13 @@
 				345C2F442E77FB8B00C64079 /* MEGABOX.app */,
 				345C2F542E77FB8D00C64079 /* MEGABOXTests.xctest */,
 				345C2F5E2E77FB8D00C64079 /* MEGABOXUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		34EBAB0E2EBDC1BD00CF8868 /* Products */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,6 +162,10 @@
 			);
 			name = MEGABOX;
 			packageProductDependencies = (
+				34EBABD42EBDF36600CF8868 /* KakaoSDK */,
+				34EBABD62EBDF36600CF8868 /* KakaoSDKAuth */,
+				34EBABD82EBDF36600CF8868 /* KakaoSDKCert */,
+				34EBABDA2EBDF36600CF8868 /* KakaoSDKCommon */,
 			);
 			productName = week1_homework;
 			productReference = 345C2F442E77FB8B00C64079 /* MEGABOX.app */;
@@ -217,6 +243,9 @@
 			);
 			mainGroup = 345C2F3B2E77FB8B00C64079;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				34EBABD32EBDF36600CF8868 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 345C2F452E77FB8B00C64079 /* Products */;
 			projectDirPath = "";
@@ -238,6 +267,10 @@
 					ProjectRef = 3404383A2EAF642C00C58AA6 /* MEGABOX.xcodeproj */;
 				},
 				{
+					ProductGroup = 34EBAB0E2EBDC1BD00CF8868 /* Products */;
+					ProjectRef = 34EBAB0A2EBDC1BD00CF8868 /* MEGABOX.xcodeproj */;
+				},
+				{
 					ProductGroup = 340438B82EAF6DE300C58AA6 /* Products */;
 					ProjectRef = 340438B42EAF6DE300C58AA6 /* MEGABOX.xcodeproj */;
 				},
@@ -256,6 +289,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34EBACCA2EBE40F800CF8868 /* Secret.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,15 +474,19 @@
 		};
 		345C2F692E77FB8D00C64079 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34EBACC92EBE40F800CF8868 /* Secret.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MEGABOX/Preview Content\"";
+				DEVELOPMENT_TEAM = 4HP2RU9G92;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "week1-homework-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -459,8 +497,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "UMC.week1-homework";
+				PRODUCT_BUNDLE_IDENTIFIER = com.UMC.yoon.MEGABOX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -469,6 +508,7 @@
 		};
 		345C2F6A2E77FB8D00C64079 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34EBACC92EBE40F800CF8868 /* Secret.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -478,6 +518,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "week1-homework-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -488,7 +529,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "UMC.week1-homework";
+				PRODUCT_BUNDLE_IDENTIFIER = com.UMC.yoon.MEGABOX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -604,6 +645,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		34EBABD32EBDF36600CF8868 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.25.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		34EBABD42EBDF36600CF8868 /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34EBABD32EBDF36600CF8868 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+		34EBABD62EBDF36600CF8868 /* KakaoSDKAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34EBABD32EBDF36600CF8868 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKAuth;
+		};
+		34EBABD82EBDF36600CF8868 /* KakaoSDKCert */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34EBABD32EBDF36600CF8868 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCert;
+		};
+		34EBABDA2EBDF36600CF8868 /* KakaoSDKCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34EBABD32EBDF36600CF8868 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCommon;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 345C2F3C2E77FB8B00C64079 /* Project object */;
 }
