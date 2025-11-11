@@ -6,14 +6,15 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct DetailedMovieCardView: View {
     
     /*
      부모 뷰의 ForEach 루프 내에서 데이터를 받아서 쓰기만 하므로
-     초기화 해줄필요도, @State변수로 선언해줄 필요도 없음
+     초기화 해줄필요도, @State변수로 선언해줄 필요 없음
      */
-    let movieCard: MovieCard
+    let movieCard: MovieCardDomainModel
     
     var body: some View {
         ScrollView {
@@ -30,19 +31,22 @@ struct DetailedMovieCardView: View {
                 Spacer()
             }
         }
-        .navigationTitle(movieCard.MovieName)
+        .navigationTitle(movieCard.movieName)
     }
     
     private var bigPoster: some View {
-        Image(movieCard.bigPoster)
+        KFImage(movieCard.bigPoster)
             .resizable()
+            .placeholder {
+                ProgressView()
+            }
             .scaledToFit()
             .frame(height: 248)
     }
     
     private var titles: some View {
         VStack(spacing: 4) {
-            Text(movieCard.MovieName)
+            Text(movieCard.movieName)
                 .font(.PretendardBold(size: 24))
                 .foregroundStyle(.black)
             Text(movieCard.subTitle)
@@ -120,16 +124,8 @@ struct DetailedMovieCardView: View {
     
 }
 
-
+/*
 #Preview {
-    DetailedMovieCardView(movieCard:
-    MovieCard(MoviePoster: "poster_f1",
-              MovieName: "F1 더 무비",
-              People: "100만",
-              bigPoster: "poster_f1_big",
-              subTitle: "F1: The Movie",
-              explaination:"최고가 되지 못한 전설 VS 최고가 되고 싶은 루키\n\n한때 주목받는 유망주였지만 끔찍한 사고로 F1에서  우승하지 못하고\n한순간에 추락한 드라이버 ‘손; 헤이스'(브래드 피트).\n그의 오랜 동료인 ‘루벤 세르반테스'(하비에르 바르뎀)에게\n레이싱 복귀를 제안받으며 최하위 팀인 APGXP에 합류한다." ,
-              smallPoster: "poster_f1_small",
-              age: "12세 이상 관람가",
-              date: "2025.06,25 개봉"))
+    DetailedMovieCardView()
 }
+*/

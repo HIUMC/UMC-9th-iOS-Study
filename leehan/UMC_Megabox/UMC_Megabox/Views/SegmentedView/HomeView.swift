@@ -7,11 +7,14 @@
 
 import SwiftUI
 import Foundation
+import Kingfisher
 
 struct HomeView: View {
-    @State private var movieCard: MovieCardViewModel = .init()
     @State private var movieBoard: MovieBoardViewModel = .init()
     @State private var router = NavigationRouter()
+    @Environment(AuthenticationManager.self) private var authManager
+    
+    @StateObject private var viewModel: MovieCardViewModel = MovieCardViewModel()
     
     var body: some View {
         
@@ -37,11 +40,13 @@ struct HomeView: View {
                     
                     MovieBoardView
                     
-                    
-                    
-                    
                 }//.padding() /* end of LazyGrid */
             }.padding(.horizontal)
+            .onAppear {
+                Task {
+                    await viewModel.loadMovies()
+                }
+            }
             .navigationDestination(for: Route.self) { route in
                 switch route {
                 case .login:
@@ -76,6 +81,7 @@ struct HomeView: View {
                     .scaledToFit()
                     .frame(height: 30)
                 Spacer()
+                Button(action: { authManager.logout() }) { Text("로그아웃") }
             }
             
             Spacer().frame(height: 8)
@@ -154,11 +160,14 @@ struct HomeView: View {
                  상위 뷰에서 네비게이션으로 들어가면 왜 패딩도 없어져있고 요소들의 위치도 달라져있는지
                  모르겠음
                  */
-                ForEach(movieCard.movieCards) { movie in
+                ForEach(viewModel.movies) { movie in
                     
                     VStack {
                         Button( action: { router.push(.detail(movieCard: movie)) } ) {
-                            Image(movie.MoviePoster)
+                            KFImage(movie.moviePoster) // TODO: Kingfisher로 구현
+                                .placeholder {
+                                    ProgressView()
+                                }
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 148, height: 212)
@@ -181,7 +190,7 @@ struct HomeView: View {
                         Spacer().frame(height: 8)
                         
                         HStack {
-                            Text(movie.MovieName)
+                            Text(movie.movieName)
                                 .font(.PretendardBold(size: 22))
                                 .foregroundStyle(.black)
                                 .frame(height: 30)
@@ -192,7 +201,7 @@ struct HomeView: View {
                         Spacer().frame(height: 3)
                         
                         HStack {
-                            Text("누적관객수 \(movie.People)")
+                            Text("누적관객수 \(movie.people)")
                                 .font(.PretendardMedium(size: 18))
                                 .foregroundStyle(.black)
                                 .frame(height: 21)

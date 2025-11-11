@@ -13,7 +13,7 @@ enum Route: Hashable {
     case login
     
     case home
-    case detail(movieCard: MovieCard)
+    case detail(movieCard: MovieCardDomainModel)
     
     case store
     
