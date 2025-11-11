@@ -9,7 +9,9 @@ import SwiftUI
 struct LoginView: View {
     // MARK: - 상태 관리
     @StateObject private var viewModel = LoginViewModel()
-    
+    private let kakaoLoginManager = KakaoLoginManager()
+    // @State private var id: String = ""
+    // @State private var pw: String = ""
         /// 로그인 상태
         @AppStorage("isLoggedIn") private var isLoggedIn: Bool = false
         
@@ -79,6 +81,7 @@ struct LoginView: View {
                 }
                 ///카카오 로그인
                 Button(action: {
+                    kakaoLoginManager.loginWithKakao()
                     print("카카오 로그인")
                 }) {
                     Image("kakaoLogin")
@@ -109,24 +112,35 @@ struct LoginView: View {
         .fullScreenCover(isPresented: $isLoggedIn) {
                    BaseTabView() //  로그인 성공 시 전환
         }
+        .onAppear {
+                    // 앱 켰을 때 키체인에 있으면 자동 로그인
+                    if viewModel.loadFromKeychainIfExists() {
+                        isLoggedIn = true
+                    }
+                }
     }
+    
     // MARK: - 로그인 동작
         private func loginAction() {
+            // 입력 체크
             guard !viewModel.loginModel.id.isEmpty,
                   !viewModel.loginModel.pwd.isEmpty else {
                 print("아이디 또는 비밀번호가 비어있습니다.")
                 return
             }
-            
-            // 로그인 성공 시 저장 및 화면 전환
-            savedId = viewModel.loginModel.id
-            savedPwd = viewModel.loginModel.pwd
+
+            // 여기서 실제 서버 검증을 했다 치고 성공이라고 가정
+            // Keychain에 저장
+            viewModel.saveToKeychain()
+
+            // 화면 전환
             isLoggedIn = true
-    }
+        }
 }
 
 
-
+/*
 #Preview { //프리뷰
     LoginView()
 }
+*/

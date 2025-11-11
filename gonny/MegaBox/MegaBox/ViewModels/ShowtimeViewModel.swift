@@ -7,6 +7,7 @@
 import Foundation
 
 @MainActor
+// 상영관별 상영시간 정보를 담은 JSON을 Encoing하는 기능을 담음
 final class ShowtimeViewModel: ObservableObject {
     @Published var movies: [ShowtimeMovie] = []
     @Published var isLoading: Bool = false

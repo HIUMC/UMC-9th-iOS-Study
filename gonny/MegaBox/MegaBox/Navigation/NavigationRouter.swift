@@ -8,7 +8,7 @@ import SwiftUI
 import Observation
 
 @Observable
-class NavigationRouter {
+class NavigationRouter: ObservableObject {
     /// NavigationStack의 경로
     var path = NavigationPath()
     

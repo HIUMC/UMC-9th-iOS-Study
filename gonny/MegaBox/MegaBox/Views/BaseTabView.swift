@@ -30,13 +30,6 @@ struct BaseTabView: View {
                 Image(systemName: "person.fill" )
                 Text("마이 페이지")
             }
-
-
         }
     }
-}
-
-#Preview {
-    BaseTabView()
-        .environment(NavigationRouter()) //  미리 주입
 }
