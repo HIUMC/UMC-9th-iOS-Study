@@ -8,48 +8,51 @@
 import Foundation
 import Moya
 import Alamofire
-
+//.
 enum TMDBAPI {
     case loadMovieInfo
 }
 
-protocol BaseTargetType: TargetType {}
+protocol BaseTargetType: TargetType {}//.
 
 extension BaseTargetType {
     // 요청을 보낼 서버의 기본 주소: TMDB 서버 주소
     var baseURL: URL {
-        return URL(string: "https://api.themoviedb.org/3")!
+        return URL(string: "https://api.themoviedb.org/3")!//.
     }
     
-    // baseURL 뒤에 붙을 세부 경로
+    // baseURL 뒤에 붙을 세부 경로//.
     var path: String {
         return "/movie/now_playing"
-    }
+    }//.
     
     var method: Moya.Method {
         return .get
     }
-    
+    //.
     // 요청에 담을 데이터
     var task: Task {
-        return .requestParameters(parameters: [
+        return .requestParameters(parameters: [//.
             "api_key": Config.tmdbApiKey,
             "language": "ko-KR",
             "page": 1,
-            "region": "KR"
+            "region": "KR"//.
         ],
           encoding: URLEncoding.default)
     }
-}
+}//.
 
 extension TMDBAPI: BaseTargetType {
     // 지금 당장은 특별한 헤더가 필요 없으므로
     var headers: [String: String]? {
-        return nil // 또는 return [:]
+        return nil // 또는 return [:]//.
     }
-    
+    //
     // 샘플 데이터
     var sampleData: Data {
+        
+        
+        
         let jsonString = """
             {
               "dates": {
@@ -464,6 +467,6 @@ extension TMDBAPI: BaseTargetType {
               "total_results": 1734
             }
             """
-        return Data(jsonString.utf8)
+        return Data(jsonString.utf8)//.
     }
 }
