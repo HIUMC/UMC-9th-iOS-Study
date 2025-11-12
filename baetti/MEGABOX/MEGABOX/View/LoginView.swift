@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 import KakaoSDKUser
 import KakaoSDKAuth
 
@@ -14,15 +15,17 @@ struct LoginView: View {
     @Environment(NavigationRouter.self) private var router
     @ObservedObject var viewModel: LoginViewModel = .init()
     
+
     @State private var userID: String = ""
     @State private var userPassword: String = ""
     
     private let keychain = KeychainService.shared
-    
+
     var body: some View {
         VStack {
             navigationBar
             Spacer()
+
             
             InputSection
                 .padding(.bottom, 75)
@@ -46,6 +49,7 @@ struct LoginView: View {
         }
     }
     
+
     private var navigationBar: some View {
         HStack{
             Text("로그인")
@@ -55,20 +59,26 @@ struct LoginView: View {
     
     private var InputSection: some View {
         VStack(alignment:.leading){
-            
+
             TextField("아이디", text: $viewModel.loginModel.id)
                 .font(.medium16)
                 .foregroundColor(.gray03)
                 .padding(.bottom, 4)
+
+
+            Divider()
+                .padding(.bottom, 40)
+
+
             
             Divider()
                 .padding(.bottom, 40)
             
+
             SecureField("비밀번호", text: $viewModel.loginModel.pwd)
                 .font(.medium16)
                 .foregroundColor(.gray03)
-                .padding(.bottom, 4)
-            
+
             Divider()
         }
     }
@@ -76,6 +86,7 @@ struct LoginView: View {
     private var LoginButton: some View {
         VStack(alignment:.center) {
             Button(action: {
+
                 // 입력한 값이 Keychain에 저장된 계정과 일치하는지 확인
                 if let savedID = keychain.read("userID"),
                    let savedPW = keychain.read("userPassword"),
@@ -88,6 +99,7 @@ struct LoginView: View {
                     keychain.save(viewModel.loginModel.id, for: "userID")
                     keychain.save(viewModel.loginModel.pwd, for: "userPassword")
                     router.push(.login)
+
                 }
             }) {
                 Text("로그인")
@@ -110,6 +122,7 @@ struct LoginView: View {
     private var SocialLoginSection: some View {
         HStack(spacing: 73) {
             Image("naverLogin")
+
             
             Button(action: {
                 kakaoLogin()
@@ -117,16 +130,18 @@ struct LoginView: View {
                 Image("kakaoLogin")
             }
             
+
             Image("appleLogin")
         }
     }
     
-    
+
     private var BannerSection: some View {
         Image("loginBanner")
             .resizable()
             .scaledToFit()
     }
+
     
     // func logout() {
     //     keychain.delete("userID")
@@ -178,6 +193,7 @@ struct LoginView: View {
             }
         }
     }
+
 }
 
 #Preview {

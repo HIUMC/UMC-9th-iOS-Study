@@ -182,7 +182,7 @@ struct MovieCard: View {
             Text(movieModel.title)
                 .font(.PretendardBold(size:22))
             Spacer().frame(height: 2)
-            Text("누적관객수 \(movieModel.countAudience)")
+            Text("누적관객수 \(movieModel.countAudience ?? "")")
                 .font(.PretendardMedium(size:18))
         }
     }

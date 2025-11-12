@@ -1,17 +1,11 @@
 
-.DS_Store 
-*.xcconfig
+
+
+.DS_Store
+
+
+
 
 
 **/*Secret.xcconfig
-
-
-.DS_Store
-
-
-.DS_Store 
-
-.DS_Store
-
-
 
