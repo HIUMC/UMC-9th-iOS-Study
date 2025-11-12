@@ -5,6 +5,8 @@
 //  Created by 박정환 on 11/12/25.
 //
 
+// TMDB API의 엔드포인트 정의 — TargetType 구현 (baseURL, path, method, task 등)
+
 import Foundation
 import Moya
 import Alamofire

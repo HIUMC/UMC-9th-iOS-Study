@@ -5,7 +5,8 @@
 //  Created by 박정환 on 11/12/25.
 //
 
-// MARK: - TMDB Now Playing
+// TMDB 응답/요청 구조 정의 — 서버 JSON ↔ Swift 구조체(Codable) 변환
+
 struct NowPlayingResponseDTO: Codable {
     let dates: DatesDTO
     let page: Int
