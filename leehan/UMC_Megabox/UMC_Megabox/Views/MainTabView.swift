@@ -10,7 +10,7 @@ import SwiftUI
 struct MainTabView: View {
     // State 변수로 라우터 생성
     @State private var router = NavigationRouter()
-    @Environment(AuthenticationManager.self) private var auth
+    @Environment(AuthorizationManager.self) private var auth
     
     var body: some View {
         
@@ -61,5 +61,5 @@ struct MainTabView: View {
 
 #Preview {
     MainTabView()
-        .environment(AuthenticationManager())
+        .environment(AuthorizationManager())
 }

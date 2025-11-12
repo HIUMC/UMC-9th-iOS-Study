@@ -12,7 +12,7 @@ import Kingfisher
 struct HomeView: View {
     @State private var movieBoard: MovieBoardViewModel = .init()
     @State private var router = NavigationRouter()
-    @Environment(AuthenticationManager.self) private var authManager
+    @Environment(AuthorizationManager.self) private var authManager
     
     @StateObject private var viewModel: MovieCardViewModel = MovieCardViewModel()
     
