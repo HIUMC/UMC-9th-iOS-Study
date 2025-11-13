@@ -10,7 +10,7 @@ import Kingfisher
 
 struct DetailedMovieCardView: View {
     
-    let movieCard: MovieCardDomainModel//.
+    let movieCard: MovieCardDomainModel
     
     var body: some View {
         ScrollView {
@@ -31,21 +31,22 @@ struct DetailedMovieCardView: View {
     }
     
     private var bigPoster: some View {
-        KFImage(movieCard.bigPoster)//.
+        // KingFisher를 이용해서 구현
+        KFImage(movieCard.bigPoster)
             .resizable()
             .placeholder {
-                ProgressView()//.
+                ProgressView()
             }
             .scaledToFit()
             .frame(height: 248)
-    }//.
+    }
     
     private var titles: some View {
-        VStack(spacing: 4) {//.
+        VStack(spacing: 4) {
             Text(movieCard.movieName)
                 .font(.PretendardBold(size: 24))
                 .foregroundStyle(.black)
-            Text(movieCard.subTitle)//.
+            Text(movieCard.subTitle)
                 .font(.PretendardSemiBold(size: 14))
                 .foregroundStyle(.gray03)
         }
@@ -53,7 +54,7 @@ struct DetailedMovieCardView: View {
     
     private var explain: some View {
         Text(movieCard.explaination)
-            .font(.PretendardSemiBold(size: 18))//.
+            .font(.PretendardSemiBold(size: 18))
             .foregroundStyle(.gray03)
             .frame(height: 175)
     }
@@ -93,26 +94,26 @@ struct DetailedMovieCardView: View {
         HStack {
             
             Image(movieCard.smallPoster)
-                .frame(height: 120)//.
+                .frame(height: 120)
             
             VStack {
-                Text(movieCard.age)//.
+                Text(movieCard.age)
                     .font(.PretendardSemiBold(size: 13))
                     .foregroundStyle(.black)
                     .frame(height: 18)
-                //.
+            
                 Spacer().frame(height: 9)
                 
                 Text(movieCard.date)
-                    .font(.PretendardSemiBold(size: 13))//.
+                    .font(.PretendardSemiBold(size: 13))
                     .foregroundStyle(.black)
-                    .frame(height: 18)//.
+                    .frame(height: 18)
                 
                 Spacer()
             }.frame(height: 120)
             
             
-            Spacer()//.
+            Spacer()
         }.frame(height: 120)
         
         

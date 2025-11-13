@@ -14,7 +14,7 @@ struct HomeView: View {
     @State private var router = NavigationRouter()
     @Environment(AuthorizationManager.self) private var authManager
     
-    @StateObject private var viewModel: MovieCardViewModel = MovieCardViewModel()//.
+    @StateObject private var viewModel: MovieCardViewModel = MovieCardViewModel()
     
     var body: some View {
         
@@ -160,16 +160,17 @@ struct HomeView: View {
                  상위 뷰에서 네비게이션으로 들어가면 왜 패딩도 없어져있고 요소들의 위치도 달라져있는지
                  모르겠음
                  */
-                ForEach(viewModel.movies) { movie in//.
+                ForEach(viewModel.movies) { movie in
                     
                     VStack {
-                        Button( action: { router.push(.detail(movieCard: movie)) } ) {//.
+                        Button( action: { router.push(.detail(movieCard: movie)) } ) {
+                            // KingFisher를 이용해서 구현
                             KFImage(movie.moviePoster)
                                 .placeholder {
-                                    ProgressView()//.
+                                    ProgressView()
                                 }
                                 .resizable()
-                                .scaledToFit()//.
+                                .scaledToFit()
                                 .frame(width: 148, height: 212)
                         }
                         
