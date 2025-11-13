@@ -17,7 +17,7 @@ struct LoginView: View {
     @State private var path = NavigationPath()
     
     @Environment(LoginViewModel.self) private var viewModel
-    @Environment(AuthenticationManager.self) private var authManager
+    @Environment(AuthorizationManager.self) private var authManager
     
     
     @State private var errorMessage: String?
@@ -173,6 +173,6 @@ struct LoginView: View {
 
 #Preview {
     LoginView()
-        .environment(AuthenticationManager())
+        .environment(AuthorizationManager())
         .environment(LoginViewModel())
 }

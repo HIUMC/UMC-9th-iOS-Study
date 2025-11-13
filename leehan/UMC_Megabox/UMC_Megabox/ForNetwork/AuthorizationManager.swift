@@ -10,7 +10,7 @@ import Observation
 import KakaoSDKUser
 
 @Observable
-class AuthenticationManager {
+class AuthorizationManager {
     
     // 앱의 현재 로그인 상태 - false면 LoginView, true면 MainTabView
     var isLoggedIn: Bool = false
@@ -43,7 +43,7 @@ class AuthenticationManager {
         // --- 카카오 로그인인지 검사 ---
         if isWithKakao { // 카카오 로그인 O
             do {
-                if let userName = try await getKakaoUserName() { // getKakaoUserName() 함수를 호출하여 유저 이름 가져옴
+                if let userName = try await ProfileManager.profileManager.getKakaoUserName() { // getKakaoUserName() 함수를 호출하여 유저 이름 가져옴
                     UserDefaults.standard.set(userName, forKey: "name")
                 }
             } catch {
@@ -68,23 +68,7 @@ class AuthenticationManager {
         await MainActor.run { isLoggedIn = true }
     }
     
-    // 카카오 서버에서 카카오 로그인 정보를 바탕으로 유저 이름을 받아옴
-    func getKakaoUserName() async throws -> String? {
-        return try await withCheckedThrowingContinuation { continuation in
-            
-            // --- SDK를 통해 유저 정보를 가져옴 ---
-            UserApi.shared.me { ( user, error) in
-                if let error = error {
-                    print("카카오 유저 정보 불러오기 실패", error)
-                    continuation.resume(throwing: error)
-                    // 불러온 유저 정보에서 nickname 추출하여 userName에 저장
-                } else if let userName = user?.kakaoAccount?.profile?.nickname {
-                    print("카카오 유저 정보 불러오기 성공")
-                    continuation.resume(returning: userName)
-                } else { continuation.resume(returning: "사용자") }
-            }
-        }
-    }
+    
     
     func logout() {
         // 키체인에서 토큰 삭제

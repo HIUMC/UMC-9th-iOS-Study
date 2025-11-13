@@ -10,10 +10,6 @@ import Kingfisher
 
 struct DetailedMovieCardView: View {
     
-    /*
-     부모 뷰의 ForEach 루프 내에서 데이터를 받아서 쓰기만 하므로
-     초기화 해줄필요도, @State변수로 선언해줄 필요 없음
-     */
     let movieCard: MovieCardDomainModel
     
     var body: some View {
@@ -35,6 +31,7 @@ struct DetailedMovieCardView: View {
     }
     
     private var bigPoster: some View {
+        // KingFisher를 이용해서 구현
         KFImage(movieCard.bigPoster)
             .resizable()
             .placeholder {
@@ -104,7 +101,7 @@ struct DetailedMovieCardView: View {
                     .font(.PretendardSemiBold(size: 13))
                     .foregroundStyle(.black)
                     .frame(height: 18)
-                
+            
                 Spacer().frame(height: 9)
                 
                 Text(movieCard.date)

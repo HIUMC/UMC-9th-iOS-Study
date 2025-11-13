@@ -7,12 +7,12 @@
 
 import SwiftUI
 import Foundation
-import Kingfisher
+import Kingfisher//.
 
 struct HomeView: View {
     @State private var movieBoard: MovieBoardViewModel = .init()
     @State private var router = NavigationRouter()
-    @Environment(AuthenticationManager.self) private var authManager
+    @Environment(AuthorizationManager.self) private var authManager
     
     @StateObject private var viewModel: MovieCardViewModel = MovieCardViewModel()
     
@@ -164,7 +164,8 @@ struct HomeView: View {
                     
                     VStack {
                         Button( action: { router.push(.detail(movieCard: movie)) } ) {
-                            KFImage(movie.moviePoster) // TODO: Kingfisher로 구현
+                            // KingFisher를 이용해서 구현
+                            KFImage(movie.moviePoster)
                                 .placeholder {
                                     ProgressView()
                                 }
