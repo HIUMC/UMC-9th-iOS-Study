@@ -123,7 +123,8 @@ extension ReservationViewModel {
                             countAudience: nil,
                             description: nil,
                             releaseDate: nil,
-                            rating: dto.ageRating
+                            rating: dto.ageRating,
+                            backdrop: nil
                         )
                     }
                 }

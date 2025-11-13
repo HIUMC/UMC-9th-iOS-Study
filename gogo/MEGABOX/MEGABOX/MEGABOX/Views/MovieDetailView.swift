@@ -1,4 +1,5 @@
 import SwiftUI
+import Kingfisher
 
 struct MovieDetailView: View {
     let movie: MovieModel
@@ -14,125 +15,56 @@ struct MovieDetailView: View {
     
     var body: some View {
         ScrollView {
-            switch movie.title {
-            case "F1 더 무비":
-                VStack(alignment: .leading, spacing: 5) {
-                    Image(.f1Top)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: .infinity)
-                    
-                    VStack(spacing: 4) {
-                        Text(movie.title)
-                            .font(.PretendardBold(size: 24))
-                            .multilineTextAlignment(.center)
-                        Text("F1 : The Movie")
-                            .font(.PretendardMedium(size: 14))
-                            .foregroundStyle(.gray03)
-                            .multilineTextAlignment(.center)
+            VStack(alignment: .leading, spacing: 0) {
+                
+                // MARK: - 상단 대형 이미지 (poster 또는 backdrop 용)
+                KFImage(URL(string: movie.backdrop ?? movie.poster))
+                    .placeholder {
+                        Rectangle()
+                            .fill(Color.gray.opacity(0.3))
+                            .frame(height: 250)
                     }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    Spacer().frame(height:5)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: .infinity)
+                
+                // MARK: - 제목 / 부제목
+                VStack(spacing: 4) {
+                    Text(movie.title)
+                        .font(.PretendardBold(size: 24))
+                        .multilineTextAlignment(.center)
                     
-                    Text("최고가 되지 못한 전설 VS 최고가 되고 싶은 루키\n\n한때 주목받는 유망주였지만 끔찍한 사고로 F1에서 우승하지 못하고\n한순간에 추락한 드라이버 ‘손; 헤이스’(브래드 피트).\n그의 오랜 동료인 ‘루벤 세르반테스’(하비에르 바르뎀)에게\n레이싱 복귀를 제안받으며 최하위 팀인 APGX에 합류한다.")
+                    // 원제는 없으므로 같은 제목 표시 (원한다면 MovieModel 수정)
+                    Text(movie.title)
+                        .font(.PretendardMedium(size: 14))
+                        .foregroundStyle(.gray03)
+                }
+                .padding(.top, 10)
+                .frame(maxWidth: .infinity)
+                
+                // MARK: - 줄거리
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(movie.description ?? "")
                         .font(.PretendardSemiBold(size: 16))
                         .foregroundStyle(.gray03)
-                        .lineSpacing(2)
-                        .multilineTextAlignment(.leading)
+                        .lineSpacing(4)
                         .padding(.horizontal,16)
-                    
-                    // 세그먼트 (상세정보 / 실관람평)
-                    VStack {
-                        HStack {
-                            Button(action: {
-                                selectedSegment = .info
-                            }) {
-                                VStack {
-                                    Text("상세 정보")
-                                        .font(.PretendardBold(size: 22))
-                                        .foregroundStyle(selectedSegment == .info ? .black : .gray02)
-                                    if selectedSegment == .info {
-                                        Rectangle()
-                                            .frame(height: 2)
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                            .foregroundColor(.black)
-                                            .matchedGeometryEffect(id: "underline", in: underlineNamespace)
-                                            .animation(.easeInOut, value: selectedSegment)
-                                    } else {
-                                        Rectangle()
-                                            .frame(height: 2)
-                                            .foregroundColor(.clear)
-                                    }
-                                }
-                            }
-                            Spacer()
-                            Button(action: {
-                                selectedSegment = .reviews
-                            }) {
-                                VStack {
-                                    Text("실관람평")
-                                        .font(.PretendardBold(size: 22))
-                                        .foregroundStyle(selectedSegment == .reviews ? .black : .gray02)
-                                    if selectedSegment == .reviews {
-                                        Rectangle()
-                                            .frame(height: 2)
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                            .foregroundColor(.black)
-                                            .matchedGeometryEffect(id: "underline", in: underlineNamespace)
-                                            .animation(.easeInOut, value: selectedSegment)
-                                    } else {
-                                        Rectangle()
-                                            .frame(height: 2)
-                                            .foregroundColor(.clear)
-                                    }
-                                }
-                            }
-                        }
-                        .padding(.vertical)
-                        .background(.clear)
-                    }
-                    
-                    if selectedSegment == .info {
-                        HStack(alignment: .top, spacing: 10) {
-                            Image(.f1Bottom)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 120)
-                            VStack(spacing: 8) {
-                                Text(movie.rating ?? "")
-                                    .font(.PretendardSemiBold(size: 13))
-                                    .foregroundStyle(.black)
-                                Text(movie.releaseDate ?? "")
-                                    .font(.PretendardSemiBold(size: 13))
-                                    .foregroundStyle(.black)
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .alignmentGuide(.top) { _ in 0 }
-                        }
-                    } else {
-                        
-                        VStack {
-                            Spacer()
-                            HStack {
-                                Spacer()
-                                Text("등록된 관람평이 없어요🥲 ")
-                                    .font(.PretendardSemiBold(size: 16))
-                                    .foregroundStyle(.gray08)
-                                Spacer()
-                            }
-                            Spacer()
-                        }
-                    }
+                }
+                .padding(.top, 20)
+                
+                
+                // MARK: - 세그먼트 선택 (상세 정보 / 실관람평)
+                segmentSelector
+                
+                
+                // MARK: - 세그먼트 별 내용
+                if selectedSegment == .info {
+                    infoSection
+                } else {
+                    reviewSection
                 }
                 
-            default:
-                VStack {
-                    Spacer()
-                    Text("EmptyView")
-                        .font(.title)
-                        .foregroundColor(.gray)
-                    Spacer()
-                }
+                Spacer().frame(height: 60)
             }
         }
         .navigationTitle(movie.title)
@@ -150,8 +82,108 @@ struct MovieDetailView: View {
     }
 }
 
-#Preview {
-    MovieDetailView(movie: MovieModel(
-        title: "F1 더 무비", poster: "poster3", countAudience: "30만", description: "최고가 되지 못한 전설 VS 최고가 되고 싶은 루키\n\n한때 주목받는 유망주였지만 끔찍한 사고로 F1에서 우승하지 못하고\n한순간에 추락한 드라이버 ‘손; 헤이스’(브래드 피트).\n그의 오랜 동료인 ‘루벤 세르반테스’(하비에르 바르뎀)에게 레이싱 복귀를 제안받으며 최하위 팀인 APGX에 합류한다.", releaseDate: "2025.06.25 개봉", rating: "12세 이상 관람가"
-    ))
+
+
+// MARK: - 세그먼트 버튼
+private extension MovieDetailView {
+    
+    var segmentSelector: some View {
+        HStack {
+            ForEach(DetailSegment.allCases, id: \.self) { segment in
+                Button {
+                    withAnimation(.easeInOut) {
+                        selectedSegment = segment
+                    }
+                } label: {
+                    VStack {
+                        Text(segment.rawValue)
+                            .font(.PretendardBold(size: 22))
+                            .foregroundStyle(selectedSegment == segment ? .black : .gray02)
+                        
+                        if selectedSegment == segment {
+                            Rectangle()
+                                .frame(height: 2)
+                                .foregroundColor(.black)
+                                .matchedGeometryEffect(id: "underline", in: underlineNamespace)
+                        } else {
+                            Rectangle()
+                                .frame(height: 2)
+                                .foregroundColor(.clear)
+                        }
+                    }
+                }
+                
+                if segment != DetailSegment.allCases.last {
+                    Spacer()
+                }
+            }
+        }
+        .padding(.vertical)
+        .padding(.horizontal, 16)
+    }
 }
+
+
+// MARK: - 상세 정보 섹션
+private extension MovieDetailView {
+    
+    var infoSection: some View {
+        HStack(alignment: .top, spacing: 15) {
+            
+            KFImage(URL(string: movie.poster))
+                .placeholder {
+                    Rectangle()
+                        .fill(Color.gray.opacity(0.3))
+                        .frame(width: 120, height: 180)
+                }
+                .resizable()
+                .scaledToFit()
+                .frame(width: 120)
+            
+            VStack(alignment: .leading, spacing: 12) {
+                Text(movie.rating ?? "관람등급 정보 없음")
+                    .font(.PretendardSemiBold(size: 13))
+                
+                Text(movie.releaseDate ?? "개봉일 정보 없음")
+                    .font(.PretendardSemiBold(size: 13))
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .padding(.horizontal, 16)
+    }
+}
+
+
+// MARK: - 실관람평 섹션
+private extension MovieDetailView {
+    
+    var reviewSection: some View {
+        VStack {
+            Spacer()
+            HStack {
+                Spacer()
+                Text("등록된 관람평이 없어요🥲 ")
+                    .font(.PretendardSemiBold(size: 16))
+                    .foregroundStyle(.gray08)
+                Spacer()
+            }
+            Spacer()
+        }
+        .frame(height: 200)
+    }
+}
+
+
+#Preview {
+    MovieDetailView(
+        movie: MovieModel(
+            title: "테스트 영화",
+            poster: "https://image.tmdb.org/t/p/w342/vSMWJkBTEfa7kFxHizSz4uJNVlf.jpg",
+            countAudience: "30만",
+            description: "줄거리 예시입니다.",
+            releaseDate: "2025.06.25 개봉",
+            rating: "12세 이상 관람가",  backdrop: "https://image.tmdb.org/t/p/w780/abcd1234.jpg"   // ← 실제 문자열
+        )
+    )
+}
+ 

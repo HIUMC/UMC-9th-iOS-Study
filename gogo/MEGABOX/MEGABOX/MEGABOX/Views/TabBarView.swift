@@ -19,7 +19,7 @@ struct TabBarView: View {
                 }
                 //예매뷰
                 Tab("바로 예매", systemImage: "play.laptopcomputer") {
-                    EmptyView()
+                    ReservationView()
                 }
                 //모바일 오더 뷰
                 Tab("모바일 오더", systemImage: "popcorn") {

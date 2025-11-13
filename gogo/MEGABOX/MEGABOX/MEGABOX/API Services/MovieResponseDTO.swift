@@ -53,20 +53,21 @@ struct MovieResultDTO: Decodable {
 extension MovieResponseDTO {
     func toDomain() -> [MovieModel] {
         return results.map { dto in
-            let baseURL = "https://image.tmdb.org/t/p/w342"
-            let posterURL: String
-            if let path = dto.posterPath {
-                posterURL = "https://image.tmdb.org/t/p/w342\(path)"
-            } else {
-                posterURL = ""
-            }
+            // TMDB 이미지 베이스 URL
+            let posterBaseURL = "https://image.tmdb.org/t/p/w342"
+            let backdropBaseURL = "https://image.tmdb.org/t/p/w780"
+
+            let posterURL = dto.posterPath.map { posterBaseURL + $0 } ?? ""
+            let backdropURL = dto.backdropPath.map { backdropBaseURL + $0 }
+
             return MovieModel(
-                title: dto.title ?? "제목 없음",
+                title: dto.title ?? dto.originalTitle ?? "제목 없음",
                 poster: posterURL,
-                countAudience: "고정임요!",
+                countAudience: "고정!명",                          // 과제용 하드코딩
                 description: dto.overview ?? "줄거리 정보가 없습니다.",
                 releaseDate: dto.releaseDate ?? "미정",
-                rating: "(*fixed*)세 관람가"
+                rating: "고정 관람가",                                  // 과제용 하드코딩
+                backdrop: backdropURL                                   // ✅ 새로 추가
             )
         }
     }

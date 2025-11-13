@@ -56,7 +56,7 @@ final class MovieService {
         }
     }
     
-    // MARK: - async/await 버전으로도 !
+
     // MARK: - async/await 버전으로도 !
     func fetchNowPlayingMoviesAsync() async throws -> MovieResponseDTO {
         print("🎬 [MovieService] async/await 로딩중...")
