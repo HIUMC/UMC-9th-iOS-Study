@@ -7,12 +7,15 @@
 
 import Foundation
 import SwiftUI
+import Kingfisher
 
 // 패스뷰를 통해서 들어오면 패딩이 적용이 안됌
 // NavigationStack -> 자식 뷰로 갈때 레이아웃이 달라지기 때문
 // 패스 뷰로 들어왔을 때 레이아웃 깨지는걸 어떻게 해야 할지 모르겠음.,
 struct MovieInfoView: View {
-    let movie: MovieModel
+
+    let movie: MovieCardModel
+    @Environment(TMDBViewModel.self) var tmdbviewModel
     @Environment(\.dismiss) var dismiss
     var body: some View {
         VStack {
@@ -39,7 +42,7 @@ struct MovieInfoView: View {
                     
                 Spacer()
                 
-                Text(movie.name)
+                Text(movie.title)
                         .font(.Pretendardmedium18)
                         .padding(.trailing,162)
                 
@@ -50,17 +53,27 @@ struct MovieInfoView: View {
         }
     
     private var MovieInfo: some View {
+        // 로컬 변수 쓰니 뭘 반환할지 헷갈려함 -> return으로 명시
         VStack(alignment: .center){
-            Image(movie.secPosterName)
-                .resizable()
-                .scaledToFit()
-                .frame(maxHeight:248)
+            KFImage(URL(string: movie.backdropURL))
+                        .placeholder { ProgressView() }
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxHeight:248)
             Spacer().frame(height: 9)
-            Text(movie.name).font(.PretendardBold24)
-            Text(movie.engname).foregroundStyle(.gray03).font(.PretendardsemiBold14)
-            Text("최고가 되지 못한 전설 VS 최고가 되고 싶은 루키 한때 주목받는 유망주였지만 끔찍한 사고로 F1에서 우승하지 못하고 한순간에 추락한 드라이버 ‘손; 헤이스'(브래드 피트). 그의 오랜 동료인 ‘루벤 세르반테스'(하비에르 바르뎀)에게 레이싱 복귀를 제안받으며 최하위 팀인 APGXP에 합류한다.").font(.PretendardsemiBold18).foregroundStyle(.gray03)
+            Text(movie.title).font(.PretendardBold24)
+            Text(movie.title).foregroundStyle(.gray03).font(.PretendardsemiBold14)
+            Text(movie.overview)
+                        .font(.PretendardsemiBold18)
+                        .foregroundStyle(.gray03)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+        }.onAppear {
+            Task{
+                await tmdbviewModel.fetchNowPlayingMovies()
+            }
         }
     }
+    
     private var MovieDetailBar: some View {
         HStack{
             VStack{
@@ -79,14 +92,16 @@ struct MovieInfoView: View {
             }   
         }
     }
+    
     private var MovieDetail: some View {
-        HStack{
-            Image(movie.posterName).resizable()
-                .frame(width: 100,height: 120)
+        return HStack{
+            KFImage(URL(string: movie.posterURL))
+                        .resizable()
+                        .frame(width: 100,height: 120)
             VStack{
-                Text("12세 이상 관람가").font(.PretendardsemiBold13)
+                Text(movie.rating).font(.PretendardsemiBold13)
                 Spacer().frame(height:9)
-                Text("2025.06.25 개봉").font(.PretendardsemiBold13)
+                Text("\(movie.releaseDate) 개봉").font(.PretendardsemiBold13)
             }
             Spacer()
         }
@@ -94,11 +109,22 @@ struct MovieInfoView: View {
 }
 
 struct MovieInfoView_Preview: PreviewProvider {
+    static var tmdbViewModel = TMDBViewModel()
     static var previews: some View {
         devicePreviews {
-            MovieInfoView(movie: MovieModel(posterName: "sample",secPosterName: "암거나",name:"영화제목",engname: "영어이름", performance: "100만명", age: "15"))
+            MovieInfoView(movie: MovieCardModel(
+                id: 1,
+                title: "영화 제목 (API)",
+                posterURL: "https://image.tmdb.org/t/p/w500/sample_path.jpg", // 실제 이미지 URL로 대체
+                originalTitle: "영화 제목 (영)",
+                backdropURL: "https://image.tmdb.org/t/p/w500/sample_path.jpg",
+                overview: "개요",
+                releaseDate: "2025-10-22",
+                rating: "3.0",
+                attendance: "100만명"
+            ))
                 .environment(NavigationRouter())
-                .environment(MovieViewModel())
+                .environment(tmdbViewModel)
         }
     }
 }

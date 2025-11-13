@@ -55,37 +55,7 @@ class KakaoLoginService: ObservableObject {
             }
         }
     }
-    
-    //MARK: - 2. 인가코드로 토큰 받아오기
-//    func getToken(code:String) {
-//        let url = "https://kauth.kakao.com/oauth/token"
-//        
-//        let restAPIKey = "7866a3d89afcf1ae347051d1edef8fed"
-//        let redirectURI = "https://example.com/oauth"
-//        
-//        let parameters: [String:String] = [
-//            "grant_type": "authorization_code",
-//            "client_id": restAPIKey,
-//            "redirect_uri" : redirectURI,
-//            "code" : code
-//        ]
-//        
-//        AF.request(url, method: .post, parameters: parameters).responseDecodable(of: KakaoToken.self) { response in
-//            switch response.result {
-//            case .success(let token):
-//                print("액세스토큰: \(token.access_token)")
-//                
-//                // 키체인에 저장
-//                self.keychain.savePasswordToKeychain(account: self.tokenKey,  service: self.service, password: token.access_token)
-//                
-//                self.getUserInfo(accessToken: token.access_token)
-//            case .failure(let error):
-//                print("토큰 발급 실패")
-//            }
-//        }
-//    }
-    
-    //MARK: - 3. 사용자 로그인 처리
+    //MARK: - 2. 사용자 로그인 처리
     func getUserInfo(accessToken:String) {
         let url = "https://kapi.kakao.com/v2/user/me"
         let header: HTTPHeaders = ["Authorization" : "Bearer \(accessToken)"]

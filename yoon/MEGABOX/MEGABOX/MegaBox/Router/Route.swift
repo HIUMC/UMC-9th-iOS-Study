@@ -10,7 +10,7 @@ import SwiftUI
 enum Route: Hashable {
     case home
     case login
-    case detail(MovieModel)
+    case detail(MovieCardModel)
     case profile
     case userSetting
 }

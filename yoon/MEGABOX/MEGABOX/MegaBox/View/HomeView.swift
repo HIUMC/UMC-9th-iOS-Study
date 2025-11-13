@@ -8,10 +8,11 @@
 //TODO: 라우터 이해하기.
 import Foundation
 import SwiftUI
-
+import Kingfisher
 
 // 뷰 밖에다 써도 됌
 struct HomeView: View {
+    @Environment(TMDBViewModel.self) var tmdbViewModel
     @Environment(NavigationRouter.self) var router
     @Environment(MovieViewModel.self) var movieViewModel
     @State private var tab: MvTab = .chart
@@ -32,6 +33,8 @@ struct HomeView: View {
                     MovieFeed
                 }.padding(.horizontal,16)
                     .padding(.top,23)
+            }.task {
+                await tmdbViewModel.fetchNowPlayingMovies()
             }
         
     }
@@ -117,12 +120,16 @@ struct HomeView: View {
     
     struct MovieCard: View {
         @Environment(NavigationRouter.self) var router
-        let movie: MovieModel
+        let movie: MovieCardModel
         
         var body: some View {
                 VStack {
-                    
-                        Image(movie.posterName)
+                    KFImage(URL(string: movie.posterURL))
+                        .placeholder {
+                                            ProgressView()
+                                                .frame(width: 148, height: 212)
+                                                .background(Color.gray.opacity(0.1))
+                                        }
                             .resizable()
                             .frame(width: 148, height: 212)
                             .onTapGesture {
@@ -136,19 +143,19 @@ struct HomeView: View {
                             .background{RoundedRectangle(cornerRadius: 10).stroke(.purple03, lineWidth: 1)}
                     }
                     Spacer().frame(height: 8)
-                    Text(movie.name).font(.PretendardBold22)
+                    Text(movie.title).font(.PretendardBold22)
                     Spacer().frame(height: 3)
-                    Text("누적관객수 \(movie.performance)").font(.Pretendardmedium18)
+                    Text("누적관객수 \(movie.attendance)").font(.Pretendardmedium18)
             }
         }
     } // Back 버튼은 네비게이션 때문에 생기는 것이다
     
     struct MovieList: View {
-        @Environment(MovieViewModel.self) var movieViewModel
+        @Environment(TMDBViewModel.self) var movieViewModel
         var body: some View {
             ScrollView(.horizontal, showsIndicators: false, content: {
                 LazyHStack(spacing:24){
-                    ForEach(movieViewModel.movies) { movie in MovieCard(movie: movie)}
+                    ForEach(movieViewModel.movieCards) { movie in MovieCard(movie: movie)}
                 }
             })
         } 
