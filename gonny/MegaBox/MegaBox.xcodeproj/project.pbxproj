@@ -13,6 +13,8 @@
 		787DB3B72EBBCBD000F9A0C2 /* KakaoSDKCertCore in Frameworks */ = {isa = PBXBuildFile; productRef = 787DB3B62EBBCBD000F9A0C2 /* KakaoSDKCertCore */; };
 		787DB3B92EBBCBD000F9A0C2 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 787DB3B82EBBCBD000F9A0C2 /* KakaoSDKCommon */; };
 		787DB45B2EBBE1F300F9A0C2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 787DB45A2EBBE1F300F9A0C2 /* Alamofire */; };
+		787DB6B02EC447CA00F9A0C2 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 787DB6AF2EC447CA00F9A0C2 /* CombineMoya */; };
+		787DB6B22EC447CA00F9A0C2 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 787DB6B12EC447CA00F9A0C2 /* Moya */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,7 @@
 		787C881A2E8B907000127E8B /* Exceptions for "MegaBox" folder in "MegaBox" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Config.swift,
 				MegaBoxApp.swift,
 				Models/Domain/CalendarDay.swift,
 				Models/Domain/DomaianModel.swift,
@@ -50,6 +53,7 @@
 				Models/Domain/MoviePoster.swift,
 				Models/Domain/Profile.swift,
 				Models/DTO/AuthDTO.swift,
+				Models/DTO/PlayingDTO.swift,
 				Models/DTO/ShowtimeDTO.swift,
 				Navigation/NavigationRouter.swift,
 				"Preview Content/Preview Assets.xcassets",
@@ -64,7 +68,14 @@
 				"Resource/Font/Pretendard-SemiBold.otf",
 				Resource/MovieSchedule.json,
 				Security/KeychainService.swift,
-				Social/KakaoLoginManager.swift,
+				Security/TokenModel.swift,
+				Service/APITargetType.swift,
+				Service/AuthRouter.swift,
+				Service/KakaoLoginManager.swift,
+				Service/MoyaRouter.swift,
+				Service/MoyaService.swift,
+				Token/AcessTokenRefresher.swift,
+				Token/TokenProvider.swift,
 				ViewModels/CalendarViewModel.swift,
 				ViewModels/HomeViewModel.swift,
 				ViewModels/LoginViewModel.swift,
@@ -93,13 +104,6 @@
 			);
 			target = 786B272E2E79816700560305 /* MegaBoxUITests */;
 		};
-		787DB3A92EBBB9D500F9A0C2 /* Exceptions for "MegaBox" folder in "MegaBoxTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Security/KeychainService.swift,
-			);
-			target = 786B27242E79816700560305 /* MegaBoxTests */;
-		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -117,7 +121,6 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				787C881A2E8B907000127E8B /* Exceptions for "MegaBox" folder in "MegaBox" target */,
-				787DB3A92EBBB9D500F9A0C2 /* Exceptions for "MegaBox" folder in "MegaBoxTests" target */,
 				787C89EE2E8C314C00127E8B /* Exceptions for "MegaBox" folder in "MegaBoxUITests" target */,
 			);
 			path = MegaBox;
@@ -132,7 +135,9 @@
 			files = (
 				787DB3B92EBBCBD000F9A0C2 /* KakaoSDKCommon in Frameworks */,
 				787DB3B72EBBCBD000F9A0C2 /* KakaoSDKCertCore in Frameworks */,
+				787DB6B22EC447CA00F9A0C2 /* Moya in Frameworks */,
 				787DB3B12EBBCBD000F9A0C2 /* KakaoSDK in Frameworks */,
+				787DB6B02EC447CA00F9A0C2 /* CombineMoya in Frameworks */,
 				787DB45B2EBBE1F300F9A0C2 /* Alamofire in Frameworks */,
 				787DB3B32EBBCBD000F9A0C2 /* KakaoSDKAuth in Frameworks */,
 				787DB3B52EBBCBD000F9A0C2 /* KakaoSDKCert in Frameworks */,
@@ -199,6 +204,8 @@
 				787DB3B62EBBCBD000F9A0C2 /* KakaoSDKCertCore */,
 				787DB3B82EBBCBD000F9A0C2 /* KakaoSDKCommon */,
 				787DB45A2EBBE1F300F9A0C2 /* Alamofire */,
+				787DB6AF2EC447CA00F9A0C2 /* CombineMoya */,
+				787DB6B12EC447CA00F9A0C2 /* Moya */,
 			);
 			productName = MegaBox;
 			productReference = 786B27152E79816500560305 /* MegaBox.app */;
@@ -286,6 +293,7 @@
 			packageReferences = (
 				787DB3AF2EBBCBD000F9A0C2 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				787DB4592EBBE1F300F9A0C2 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				787DB6AE2EC447CA00F9A0C2 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 786B27162E79816500560305 /* Products */;
@@ -672,6 +680,14 @@
 				minimumVersion = 5.10.2;
 			};
 		};
+		787DB6AE2EC447CA00F9A0C2 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -704,6 +720,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 787DB4592EBBE1F300F9A0C2 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		787DB6AF2EC447CA00F9A0C2 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 787DB6AE2EC447CA00F9A0C2 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		787DB6B12EC447CA00F9A0C2 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 787DB6AE2EC447CA00F9A0C2 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
