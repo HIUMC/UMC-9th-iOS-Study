@@ -7,14 +7,14 @@
 
 import Foundation
 
-// MARK: - Now Playing 응답 루트
+// MARK: - 메인 DTO
 struct MovieResponseDTO: Decodable {
     let dates: DatesDTO?
     let page: Int
     let results: [MovieResultDTO]
     let totalPages: Int?
     let totalResults: Int?
-
+//Decodable 선언
     enum CodingKeys: String, CodingKey {
         case dates, page, results
         case totalPages = "total_pages"
@@ -37,8 +37,6 @@ struct MovieResultDTO: Decodable {
     let popularity: Double?
     let backdropPath: String?
     let posterPath: String?
-
-    // 추가적으로 받아올 수 있는 유용한 값들
     let title: String?
     let voteAverage: Double?
     let voteCount: Int?
@@ -53,7 +51,7 @@ struct MovieResultDTO: Decodable {
 extension MovieResponseDTO {
     func toDomain() -> [MovieModel] {
         return results.map { dto in
-            // TMDB 이미지 베이스 URL
+            // TMDB 이미지 Base URL
             let posterBaseURL = "https://image.tmdb.org/t/p/w342"
             let backdropBaseURL = "https://image.tmdb.org/t/p/w780"
 
@@ -67,7 +65,7 @@ extension MovieResponseDTO {
                 description: dto.overview ?? "줄거리 정보가 없습니다.",
                 releaseDate: dto.releaseDate ?? "미정",
                 rating: "고정 관람가",                                  // 과제용 하드코딩
-                backdrop: backdropURL                                   // ✅ 새로 추가
+                backdrop: backdropURL                             //영화 상세 화면 탑 배너 이미지
             )
         }
     }

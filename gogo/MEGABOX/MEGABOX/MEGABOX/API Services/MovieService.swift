@@ -10,12 +10,12 @@ import Moya
 
 // MARK: - MovieService 파일 !!!!
 final class MovieService {
-    static let shared = MovieService() // 싱글톤
+    static let shared = MovieService() // 싱글톤!
     private let provider = MoyaProvider<MovieEndpoints>()
     
     private init() {}
     
-    // MARK: - Now Playing 영화 목록 요청
+    // MARK: - Now Playing 현재 상영중 영화 목록 요청~!
     func fetchNowPlayingMovies(
         completion: @escaping (Result<MovieResponseDTO, NetworkError>) -> Void
     ) {
@@ -57,7 +57,7 @@ final class MovieService {
     }
     
 
-    // MARK: - async/await 버전으로도 !
+    // MARK: - async/await 버전으로도 ! (로그로 서버랑 연결 확인 가능)
     func fetchNowPlayingMoviesAsync() async throws -> MovieResponseDTO {
         print("🎬 [MovieService] async/await 로딩중...")
 

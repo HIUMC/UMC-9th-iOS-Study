@@ -17,7 +17,7 @@ struct MovieDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 
-                // MARK: - 상단 대형 이미지 (poster 또는 backdrop 용)
+                // MARK: - 상단 대형 이미지 (서버에서 받아온 backdrop 용)
                 KFImage(URL(string: movie.backdrop ?? movie.poster))
                     .placeholder {
                         Rectangle()
@@ -28,13 +28,13 @@ struct MovieDetailView: View {
                     .scaledToFit()
                     .frame(maxWidth: .infinity)
                 
-                // MARK: - 제목 / 부제목
+                // MARK: - 제목
                 VStack(spacing: 4) {
                     Text(movie.title)
                         .font(.PretendardBold(size: 24))
                         .multilineTextAlignment(.center)
                     
-                    // 원제는 없으므로 같은 제목 표시 (원한다면 MovieModel 수정)
+                  //영화 제목
                     Text(movie.title)
                         .font(.PretendardMedium(size: 14))
                         .foregroundStyle(.gray03)
@@ -42,7 +42,7 @@ struct MovieDetailView: View {
                 .padding(.top, 10)
                 .frame(maxWidth: .infinity)
                 
-                // MARK: - 줄거리
+                // MARK: - 영화 상세정보(줄거리 description)
                 VStack(alignment: .leading, spacing: 10) {
                     Text(movie.description ?? "")
                         .font(.PretendardSemiBold(size: 16))
