@@ -5,10 +5,12 @@
 //  Created by 박병선 on 9/30/25.
 //
 import SwiftUI
+import Kingfisher
 
 struct HomeView: View {
     @Environment(NavigationRouter.self) var router
     @StateObject var viewModel: HomeViewModel
+    @StateObject var vm: MovieViewModel
     
     var body: some View {
         @Bindable var router = router
@@ -37,13 +39,27 @@ struct HomeView: View {
                 }
                 .background(Color.white)
             }
+            
+            if vm.isLoading {
+                Color.black.opacity(0.2)
+                    .ignoresSafeArea()
+                ProgressView("영화 불러오는 중...")
+                    .padding()
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(12)
+            }
+        }
             //  navigationDestination을 MovieDetail 타입으로 연결
             .navigationDestination(for: MovieDetail.self) { detail in
                 MovieDetailView(movieDetail: detail)
             }
+        // 화면이 나타날 때 TMDB API 한 번 호출
+            .task {
+                await vm.loadNowPlaying()
+            }
         }
+       
     }
-}
 
 // MARK: - 상단 탭바
 struct TopTabBar: View {
@@ -128,12 +144,21 @@ private struct PosterCard: View {
     
     var body: some View {
         VStack {
-            //  포스터 클릭 → MovieDetailView로 이동
+            //  포스터 클릭 → TMDB에서 매핑된 MovieDetailView로 이동
             Button {
-                if let detail = viewModel.movieDetails.first(where: { $0.titleKR == movie.title }) {
+                /* API 연결 전 코드 */
+                /*
+                 if let detail = viewModel.movieDetails.first(where: { $0.titleKR == movie.title }) {
                     router.push(detail)  //  단순히 detail을 path에 추가
                 }
-            } label: {
+                 */
+                if let detail = viewModel.detail(for: movie) {
+                    router.push(detail)
+                }
+            }
+            /*
+             API 연결 전
+             label: {
                 Image(movie.poster)
                     .resizable()
                     .scaledToFill()
@@ -141,7 +166,27 @@ private struct PosterCard: View {
                     .cornerRadius(8)
                     .padding(.bottom, 5)
             }
-
+*/
+            label: {
+                            KFImage(URL(string: movie.poster))
+                                .placeholder {                      // 이이미지 로딩 중
+                                    ZStack {
+                                        Rectangle()
+                                            .fill(Color("gray02"))
+                                            .frame(width: 140, height: 200)
+                                            .cornerRadius(8)
+                                        ProgressView()
+                                    }
+                                }
+                                .retry(maxCount: 2, interval: .seconds(1))
+                                .cancelOnDisappear(true)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 140, height: 200)
+                                .cornerRadius(8)
+                                .clipped()
+                                .padding(.bottom, 5)
+                        }
             // 바로 예매 버튼
             Button(action: {}) {
                 Text("바로 예매")
@@ -241,7 +286,9 @@ struct PromotionSection: View {
     }
 }
 
+/*
 #Preview {
-    HomeView(viewModel: HomeViewModel())
+    HomeView(viewModel: HomeViewModel(), vm: MovieViewModel())
         .environment(NavigationRouter()) //  최신 방식 프리뷰 주입
 }
+*/

@@ -11,7 +11,7 @@ struct BaseTabView: View {
     
     var body: some View {
         TabView {
-            HomeView(viewModel: HomeViewModel()).tabItem {
+            HomeView(viewModel: HomeViewModel(), vm: MovieViewModel()).tabItem {
                 Image(systemName: "house.fill" )
                 Text("홈")
             }

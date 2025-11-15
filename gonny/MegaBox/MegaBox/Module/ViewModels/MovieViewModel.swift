@@ -22,6 +22,32 @@ final class MovieViewModel: ObservableObject {
         .init(title: "야당", poster: "yadang_poster", audience: nil),
         .init(title: "THE ROSES", poster: "theRoses_poster", audience: nil)
     ]
+    
+      /// 홈 리스트에 보여줄 영화들
+      @Published var nowPlayingMovies: [Movie] = []
+    
+      /// 선택된 영화의 상세 정보
+      @Published var selectedMovieDetail: MovieDetail?
+      
+      /// 로딩 상태
+      @Published var isLoading: Bool = false
+      
+      /// 에러 메시지 (필요 시 Alert 등에 사용)
+      @Published var errorMessage: String?
+      
+      // MARK: - Dependencies
+      
+      private let tmdbService: TMDBServicing
+      
+      /// 상세를 만들 때 원본 DTO가 필요하므로 캐싱해 둠
+      private var nowPlayingDTOs: [PlayingMovieDTO] = []
+      
+      // MARK: - Init
+      
+      init(tmdbService: TMDBServicing = TMDBService.shared) {
+          self.tmdbService = tmdbService
+          self.movieSelect()
+      }
 
     // 선택 상태
     @Published var selectedMovie: Movie? = nil
@@ -37,9 +63,6 @@ final class MovieViewModel: ObservableObject {
 
     private var bag = Set<AnyCancellable>()
 
-    init() {
-        movieSelect()
-    }
 
     private func movieSelect() {
         // 극장 버튼 활성화: 영화 선택 여부
@@ -163,5 +186,59 @@ final class MovieViewModel: ObservableObject {
         return f.date(from: ymd)
     }
 
+    //MARK: -TMDB API처리 함수들
+    /// 뷰에서 호출할 진입 함수
+       /// 예: .task { await viewModel.loadNowPlaying() }
+       func loadNowPlaying(
+           page: Int = 1,
+           language: String = "ko-KR",
+           region: String? = "KR"
+       ) async {
+           isLoading = true
+           errorMessage = nil
+           
+           do {
+               // TMDBService의 async/await 함수 호출
+               let response = try await tmdbService.fetchNowPlayingAsync(
+                   page: page,
+                   language: language,
+                   region: region
+               )
+               
+               // 원본 DTO 저장 (상세 변환 등에 사용)
+               nowPlayingDTOs = response.results
+               
+               // DTO -> 도메인(Movie)로 매핑
+               nowPlayingMovies = response.results.map { $0.toMovie() }
+               
+           } catch {
+               print("[MovieViewModel] Now Playing 요청 실패: \(error)")
+               errorMessage = "영화 목록을 불러오지 못했습니다."
+           }
+           
+           isLoading = false
+       }
+       
+       /// 리스트에서 특정 영화를 선택했을 때 상세 정보 생성
+       /// - Parameter index: nowPlayingMovies의 인덱스
+       func selectMovie(at index: Int) {
+           guard nowPlayingDTOs.indices.contains(index) else {
+               print("[MovieViewModel] 잘못된 인덱스 접근: \(index)")
+               return
+           }
+           
+           let dto = nowPlayingDTOs[index]
+           selectedMovieDetail = dto.toMovieDetail()
+       }
+       
+       /// Movie 자체를 받아서 상세 생성하고 싶을 때 (선택사항)
+       func selectMovie(_ movie: Movie) {
+           // title 기준으로 DTO 매칭 (간단 구현)
+           guard let dto = nowPlayingDTOs.first(where: { $0.title == movie.title }) else {
+               print("[MovieViewModel] 해당 Movie에 대응하는 DTO를 찾을 수 없음")
+               return
+           }
+           selectedMovieDetail = dto.toMovieDetail()
+       }
+   }
 
-}

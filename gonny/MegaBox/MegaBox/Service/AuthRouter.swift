@@ -9,11 +9,11 @@ import Foundation
 import Moya
 import Alamofire
 
-enum AuthRouter {
+enum AuthRouter : APITargetType {
     case sendRefreshToken(refreshToken: String) // 리프레시 토큰 갱신
 }
 
-extension AuthRouter: APITargetType {
+extension AuthRouter {
     var path: String {
         switch self {
         case .sendRefreshToken:

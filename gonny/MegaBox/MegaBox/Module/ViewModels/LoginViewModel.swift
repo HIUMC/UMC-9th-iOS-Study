@@ -22,7 +22,7 @@ class LoginViewModel: ObservableObject {
     @Published var userId: String = ""
     @Published var password: String = ""
     @Published var userName: String = "" // 마이페이지 표시용
-   
+   /*
     /// 로그인 성공 시 호출
     func saveToKeychain() {
         // 아이디 저장 (이건 account로 쓰고)
@@ -67,7 +67,7 @@ class LoginViewModel: ObservableObject {
            /// 로그인 상태 true
            isLoggedIn = true
        }
-       /*
+      
        // 앱 실행 시 자동 로그인 시도
        func autoLogin() {
            
@@ -80,7 +80,7 @@ class LoginViewModel: ObservableObject {
                self.isLoggedIn = true
            }
        }
-       */
+       
     
        func logout() {
            keychain.delete(account: userId, service: service)
@@ -88,5 +88,9 @@ class LoginViewModel: ObservableObject {
            isLoggedIn = false
        }
     
+    
    
+}
+    */
+    
 }

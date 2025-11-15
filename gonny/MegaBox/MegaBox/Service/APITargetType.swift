@@ -10,10 +10,11 @@ import Moya
 protocol APITargetType: TargetType {}
 
 extension APITargetType {
+    
     var baseURL: URL {
-        return URL(string: "http://localhost:8080")!
-    }
-
+            return URL(string: "https://api.themoviedb.org/3")!
+        }
+    
     var headers: [String: String]? {
         switch task {
         case .requestJSONEncodable, .requestParameters:

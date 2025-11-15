@@ -4,7 +4,7 @@
 //
 //  Created by 박병선 on 11/13/25.
 //
-
+// 앱의 설정값(Config값)을 안전하게 불러오는 유틸리티
 import Foundation
 
 enum Config {

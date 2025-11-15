@@ -29,6 +29,7 @@ final class HomeViewModel: ObservableObject {
     //  현재 선택된 영화의 상세정보
     @Published var movieDetail: MovieDetail //initializer 필요함
     
+    
     // 전체 더미 목록 (필요시 유지)
     @Published var movieDetails: [MovieDetail] = [
         MovieDetail(
@@ -112,6 +113,18 @@ final class HomeViewModel: ObservableObject {
         case reviews = "실관람평"
         var id: String { rawValue }
     }
+    
+    //포스터 클릭 시 MovieDetailView로 넘어가게 하는 함수
+        func detail(for movie: Movie) -> MovieDetail? {
+            // 1. movies 배열에서 같은 Movie를 찾아서 index 구함
+            if let index = movies.firstIndex(of: movie),
+               movieDetails.indices.contains(index) {
+                return movieDetails[index]
+            }
+            // 2. 혹시 몰라서 title 기준으로 한 번 더 탐색 (보너스)
+            return movieDetails.first { $0.titleKR == movie.title }
+        }
+    
 }
     
 

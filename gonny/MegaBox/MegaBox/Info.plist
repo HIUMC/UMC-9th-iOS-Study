@@ -3,7 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>BASE_URL</key>
-	<string>$(BASE_URL)</string>
+	<array>
+		<string></string>
+	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>kakaokompassauth</string>
@@ -11,6 +13,10 @@
 		<string>kakaoplus</string>
 		<string>kakaotalk</string>
 	</array>
+	<key>TMDB_API_KEY</key>
+	<string>$(TMDB_API_KEY)</string>
+	<key>TMDB_READ_TOKEN</key>
+	<string>$(TMDB_READ_TOKEN)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Pretendard-Bold.otf</string>

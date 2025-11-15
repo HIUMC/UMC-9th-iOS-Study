@@ -4,97 +4,88 @@
 //
 //  Created by 박병선 on 11/13/25.
 //
-
 import Foundation
 import Security
 
-class KeychainService {
+final class KeychainService: @unchecked Sendable {
     static let shared = KeychainService()
     
     private init() {}
     
-    private let account = "authToken"
-    private let service = "com.plantory.Plantory"
-    
-    @discardableResult
-    private func saveTokenInfo(_ tokenInfo: TokenInfo) -> OSStatus {
-        do {
-            let data = try JSONEncoder().encode(tokenInfo)
-            
-            let query: [String: Any] = [
-                kSecClass as String: kSecClassGenericPassword,
-                kSecAttrAccount as String: account,
-                kSecAttrService as String: service,
-                kSecValueData as String: data,
-                kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlock
-            ]
-            
-            SecItemDelete(query as CFDictionary)
-            
-            return SecItemAdd(query as CFDictionary, nil)
-        } catch {
-            print("JSON 인코딩 실패:", error)
-            return errSecParam
-        }
+    // MARK: - Internal Session API
+
+    /// 세션에 저장된 정보를 저장합니다.
+    public func saveSession(_ session: TokenInfo, for key: String) -> Bool {
+        guard let data = try? JSONEncoder().encode(session) else { return false }
+        return save(data, for: key)
     }
-    
-    private func loadTokenInfo() -> TokenInfo? {
-        let query: [String: Any] = [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: account,
-            kSecAttrService as String: service,
-            kSecReturnData as String: true,
-            kSecMatchLimit as String: kSecMatchLimitOne
+
+    /// 세션에 저장된 정보를 불러옵니다.
+    public func loadSession(for key: String) ->TokenInfo? {
+        guard let data = load(key: key),
+              let session = try? JSONDecoder().decode(TokenInfo.self, from: data) else { return nil }
+        return session
+    }
+
+    /// 세션 정보를 삭제합니다.
+    public func deleteSession(for key: String) {
+        _ = delete(key: key)
+    }
+
+    // MARK: - Private Raw Keychain Operations
+
+    @discardableResult
+    private func save(_ data: Data, for key: String) -> Bool {
+        // 기존 값 존재 시 삭제
+        if load(key: key) != nil {
+            _ = delete(key: key)
+        }
+
+        let query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: key,
+            kSecValueData: data,
+            kSecAttrAccessible: kSecAttrAccessibleWhenUnlocked
         ]
-        
-        var item: CFTypeRef?
+
+        let status = SecItemAdd(query as CFDictionary, nil)
+        if status != errSecSuccess {
+            print("Keychain Save Failed: \(status) - \(SecCopyErrorMessageString(status, nil) ?? "Unknown error" as CFString)")
+        }
+
+        return status == errSecSuccess
+    }
+
+    private func load(key: String) -> Data? {
+        let query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: key,
+            kSecReturnData: kCFBooleanTrue!,
+            kSecMatchLimit: kSecMatchLimitOne
+        ]
+
+        var item: AnyObject?
         let status = SecItemCopyMatching(query as CFDictionary, &item)
-        
-        guard status == errSecSuccess,
-              let data = item as? Data else {
-            print("토큰 정보 불러오기 실패 - status:", status)
-            return nil
+
+        if status != errSecSuccess {
+            print("Keychain Load Failed: \(status) - \(SecCopyErrorMessageString(status, nil) ?? "Unknown error" as CFString)")
         }
-        
-        do {
-            return try JSONDecoder().decode(TokenInfo.self, from: data)
-        } catch {
-            print("❌ JSON 디코딩 실패:", error)
-            return nil
-        }
+
+        return item as? Data
     }
-    
+
     @discardableResult
-    private func deleteTokenInfo() -> OSStatus {
-        let query: [String: Any] = [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: account,
-            kSecAttrService as String: service
+    private func delete(key: String) -> Bool {
+        let query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: key
         ]
-        
-        return SecItemDelete(query as CFDictionary)
-    }
-    
-    public func saveToken(_ tokenInfo: TokenInfo) {
-        let saveStatus = self.saveTokenInfo(tokenInfo)
-        print("토큰이 저장됨, \(saveStatus == errSecSuccess)")
-    }
-    
-    public func loadToken() -> TokenInfo? {
-        if let loadedToken = self.loadTokenInfo() {
-            print("accessToken:", loadedToken.accessToken)
-            print("RefreshToken:", loadedToken.refreshToken)
-            return loadedToken
-        } else {
-            print("토큰 정보 없음")
-            return nil
+
+        let status = SecItemDelete(query as CFDictionary)
+        if status != errSecSuccess && status != errSecItemNotFound {
+            print("Keychain Delete Failed: \(status) - \(SecCopyErrorMessageString(status, nil) ?? "Unknown error" as CFString)")
         }
-    }
-    
-    public func deleteToken() -> OSStatus {
-        let deleteStatus = self.deleteTokenInfo()
-        print(deleteStatus == errSecSuccess ? "삭제 성공" : "삭제 실패")
-        return deleteStatus
+
+        return status == errSecSuccess
     }
 }
-

@@ -14,31 +14,34 @@ class TokenProvider: TokenProviding {
     
     var accessToken: String? {
         get {
-            guard let userInfo = keyChain.loadToken() else { return nil }
+            guard let userInfo = keyChain.loadSession(for: userSession) else { return nil }
             return userInfo.accessToken
         }
         set {
-            guard var userInfo = keyChain.loadToken() else { return }
+            guard var userInfo = keyChain.loadSession(for: userSession) else { return }
             userInfo.accessToken = newValue ?? "토큰 정보 없음"
-            keyChain.saveToken(userInfo)
+            keyChain.saveSession(userInfo, for: userSession)
         }
     }
     
     var refreshToken: String? {
         get {
-            guard let userInfo = keyChain.loadToken() else { return nil }
+            guard let userInfo = keyChain.loadSession(for: userSession)
+            else { return nil }
             return userInfo.refreshToken
         }
         
         set {
-            guard var userInfo = keyChain.loadToken() else { return }
+            guard var userInfo = keyChain.loadSession(for: userSession)
+            else { return }
             userInfo.refreshToken = newValue ?? "토큰 정보 없음"
-            keyChain.saveToken(userInfo)
+            keyChain.saveSession(userInfo, for: userSession)
         }
     }
     
     func refreshToken(completion: @escaping (String?, (any Error)?) -> Void) {
-        guard let userInfo = keyChain.loadToken() else {
+        guard let userInfo = keyChain.loadSession(for: userSession)
+         else {
             let error = NSError(domain: "example.com", code: -2, userInfo: [NSLocalizedDescriptionKey: "UserSession or refreshToken not found"])
             completion(nil, error)
             return
