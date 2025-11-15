@@ -18,6 +18,7 @@ struct MovieModel: Identifiable, Hashable {
     let description: String?
     let releaseDate: String?
     let rating: String?
+    let backdrop: String? 
 }
 
 enum Theater: String, CaseIterable, Hashable, Identifiable {

@@ -13,28 +13,17 @@ import SwiftUI
 // Combine을 사용해서 영화 선택 → 극장 선택 → 날짜 선택 → 상영시간 표시까지 순서대로 반응하도록 구성함
 final class MovieViewModel: ObservableObject {
     
-    // MARK: - 영화 목록 (더미 데이터)
-    // 나중에 서버 연결 시 이 부분을 API로 교체하면 됨
-    @Published var movies: [MovieModel] = [
-        .init(title: "어쩔 수가 없다", poster: "poster1", countAudience: "20만", description: nil, releaseDate: nil, rating: nil),
-        .init(title: "극장판 귀멸의 칼날", poster: "poster2", countAudience: "1", description: nil, releaseDate: nil, rating: nil),
-        .init(title: "F1 더 무비", poster: "poster3", countAudience: "30만",
-              description: "최고가 되지 못한 전설 VS 최고가 되고 싶은 루키\n\n한때 주목받는 유망주였지만 끔찍한 사고로 F1에서 우승하지 못하고\n한순간에 추락한 드라이버 ‘손; 헤이스’(브래드 피트).\n그의 오랜 동료인 ‘루벤 세르반테스’(하비에르 바르뎀)에게\n레이싱 복귀를 제안받으며 최하위 팀인 APGX에 합류한다.",
-              releaseDate: "2025.06.25 개봉",
-              rating: "12세 이상 관람가"),
-        .init(title: "얼굴", poster: "poster4", countAudience: nil, description: nil, releaseDate: nil, rating: nil),
-        .init(title: "모노노케 히메", poster: "poster5", countAudience: nil, description: nil, releaseDate: nil, rating: nil),
-        .init(title: "보스", poster: "poster6", countAudience: nil, description: nil, releaseDate: nil, rating: nil),
-        .init(title: "야당", poster: "poster7", countAudience: nil, description: nil, releaseDate: nil, rating: nil),
-        .init(title: "THE ROSES", poster: "poster8", countAudience: nil, description: nil, releaseDate: nil, rating: nil)
-    ]
+    private let movieService = MovieService.shared
+
+    // MARK: - 영화 목록
+    @Published var movies: [MovieModel] = []
     
     // MARK: - 사용자가 선택한 요소들
     @Published var pickedMovie: MovieModel? = nil             // 선택한 영화
     @Published var chosenTheaters: Set<Theater> = []          // 선택한 극장들
     @Published var pickedDate: Date? = nil                    // 선택한 날짜
     
-    // MARK: - 내부 상태 (UI 제어용)
+    
     @Published private(set) var weekDays: [Date] = []         // 오늘부터 7일
     @Published private(set) var isTheaterActive = false       // 영화 선택 후 → 극장 버튼 활성화
     @Published private(set) var isDateActive = false          // 영화+극장 선택 후 → 날짜 선택 활성화
@@ -48,6 +37,21 @@ final class MovieViewModel: ObservableObject {
     init() {
         setupBindings()    // 상태 변화 연결
         createWeekDates()  // 주간 날짜 초기화
+        Task {
+            await fetchNowPlayingMovies()
+        }
+    }
+    
+    @MainActor
+    func fetchNowPlayingMovies() async {
+        do {
+            let response = try await movieService.fetchNowPlayingMoviesAsync()
+            let domainMovies = response.toDomain()
+            self.movies = domainMovies
+            print("성공: \(domainMovies.count) 개")
+        } catch {
+            print("실패: \(error)")
+        }
     }
     
     // MARK: - Combine 바인딩 설정
