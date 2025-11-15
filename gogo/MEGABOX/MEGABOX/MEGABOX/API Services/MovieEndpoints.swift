@@ -10,13 +10,13 @@
 import Foundation
 import Moya
 
-// MARK: - 영화 관련 API 엔드포인트 정의
+// MARK: - 엔드포인트 정의!
 enum MovieEndpoints {
     case nowPlaying
    
 }
 
-// MARK: - TargetType 채택
+// MARK: - TargetType !!
 extension MovieEndpoints: TargetType {
     
     // 기본 URL
@@ -37,7 +37,11 @@ extension MovieEndpoints: TargetType {
         return .get
     }
     
-    // 파라미터 설정 (쿼리)~ / query에 API KEY 같이 보냄
+    // 파라미터 설정 (쿼리)~ / query에 API KEY 같이 보냄!
+    // 쿼리 파라미터에서 &는 순서 상관 없대 !
+    // 쿼리 파라미터는 path var 아님 !!
+    //https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&page=1&region=KR 에서  ? 뒤에가 모두 쿼리 파라미터임.
+    
     var task: Task {
         switch self {
         case .nowPlaying:
@@ -50,20 +54,7 @@ extension MovieEndpoints: TargetType {
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         }
     }
-    
-    // 요청 헤더
-//    var headers: [String : String]? {
-//        // xcconfig 또는 Info.plist에서 Bearer Token 읽기
-//        guard let token = Bundle.main.object(forInfoDictionaryKey: "TMDB_READ_TOKEN") as? String else {
-//            return [
-//                "accept": "application/json"
-//            ]
-//        }
-//        return [
-//            "accept": "application/json",
-//            "Authorization": "Bearer \(token)"
-//        ]
-//    }
+
     var headers: [String: String]? {
         return [
             "accept": "application/json",

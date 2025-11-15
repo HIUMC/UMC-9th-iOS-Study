@@ -51,7 +51,7 @@ struct MovieResultDTO: Decodable {
 extension MovieResponseDTO {
     func toDomain() -> [MovieModel] {
         return results.map { dto in
-            // TMDB 이미지 Base URL
+            // TMDB 이미지 Base URL ! Kingfisher에게 URL 로 전달 
             let posterBaseURL = "https://image.tmdb.org/t/p/w342"
             let backdropBaseURL = "https://image.tmdb.org/t/p/w780"
 

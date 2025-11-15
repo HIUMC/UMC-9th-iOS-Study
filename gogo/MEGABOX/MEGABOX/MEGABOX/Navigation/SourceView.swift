@@ -43,6 +43,10 @@ struct SourceView: View {
                 case .memberInfo:
                     InfoManageView(isLoggedIn: $isLoggedIn)
                         .navigationBarBackButtonHidden(true)
+                case .menuDetail:
+                    MenuDetailView()
+                        .navigationBarBackButtonHidden(true)
+               
                 }
             }
         }

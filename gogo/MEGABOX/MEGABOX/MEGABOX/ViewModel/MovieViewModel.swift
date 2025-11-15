@@ -23,7 +23,7 @@ final class MovieViewModel: ObservableObject {
     @Published var chosenTheaters: Set<Theater> = []          // 선택한 극장들
     @Published var pickedDate: Date? = nil                    // 선택한 날짜
     
-    // MARK: - 내부 상태 (UI 제어용)
+    
     @Published private(set) var weekDays: [Date] = []         // 오늘부터 7일
     @Published private(set) var isTheaterActive = false       // 영화 선택 후 → 극장 버튼 활성화
     @Published private(set) var isDateActive = false          // 영화+극장 선택 후 → 날짜 선택 활성화

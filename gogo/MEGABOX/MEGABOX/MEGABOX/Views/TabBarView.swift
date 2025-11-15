@@ -23,7 +23,8 @@ struct TabBarView: View {
                 }
                 //모바일 오더 뷰
                 Tab("모바일 오더", systemImage: "popcorn") {
-                    EmptyView()
+                    MobileOrderView()
+                    
                 }
                 //마이페이지 뷰
                 Tab("마이페이지", systemImage: "person") {

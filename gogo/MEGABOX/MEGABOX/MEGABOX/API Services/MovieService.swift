@@ -21,6 +21,9 @@ final class MovieService {
     ) {
         print("🎬 [MovieService] Now Playing 영화 데이터 요청 시작...")
         
+        
+        
+        //do-catch 문 +  Moya의 Result 타입 사용
         provider.request(.nowPlaying) { result in
             switch result {
             case .success(let response):
