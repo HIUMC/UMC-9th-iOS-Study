@@ -25,7 +25,7 @@ struct OrderMainCardButton: View {
 
         VStack(alignment: .leading, spacing: 8) {
           Text(title)
-            .font(.system(size: 20, weight: .semibold))
+            .font(.PretendardBold22)
 
           if let subtitle {
             Text(subtitle)

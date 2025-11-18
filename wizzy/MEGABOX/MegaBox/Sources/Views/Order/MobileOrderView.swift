@@ -11,7 +11,17 @@ struct MobileOrderView: View {
   
   var body: some View {
     ScrollView() {
+      HStack {
+        Image(.meboxHeader)
+          .resizable()
+          .scaledToFit()
+          .frame(width: 149)
+        Spacer()
+      }
+      .padding(.leading, 16)
       VStack(alignment: .leading) {
+        SelectTheaterBar(style: .purple, theaterName: "강남")
+          .padding(.horizontal, -16)
         OrderMainView()
           .padding(.bottom, 35)
         LabelView(menuText: "추천 메뉴", subText: "영화 볼때 뭐먹지 고민될 땐 추천 메뉴!")
@@ -21,7 +31,6 @@ struct MobileOrderView: View {
         LabelView(menuText: "베스트 메뉴", subText: "영화 볼때 뭐먹지 고민될 땐 베스트 메뉴!")
         BestMenuScrollView()
       }
-      .padding(.horizontal, 16)
     }
   }
 }
@@ -37,6 +46,7 @@ struct LabelView: View {
       Text(subText)
         .modifier(OrderSubTextStyle())
     }
+    .padding(.leading, 16)
   }
 }
 
@@ -50,6 +60,7 @@ struct RecommendMenuScrollView: View {
             RecommandMenuButton(item: item, action: {})
           }
         }
+        .padding(.leading, 16)
       }
     }
 }
@@ -64,6 +75,7 @@ struct BestMenuScrollView: View {
             BestMenuButton(item: item, action: {})
           }
         }
+        .padding(.leading, 16)
       }
     }
 }
