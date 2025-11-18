@@ -12,156 +12,218 @@ struct MobileOrderView: View {
     @Environment(NavigationRouter.self) private var router
     
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 28) {
-                
-                // MARK: - 극장 변경 헤더
-                TheaterSelectHeaderView()
-                
-                // MARK: - 네모 메뉴 4개 (재사용 가능)
-                SquareMenuGridView(router: router)
-                
-                // MARK: - 추천 메뉴
-                MenuHorizontalSectionView(
-                    title: "추천 메뉴",
-                    menus: viewModel.recommendedMenus,
-                    router: router
-                )
-                
-                // MARK: - 베스트 메뉴
-                MenuHorizontalSectionView(
-                    title: "베스트 메뉴",
-                    menus: viewModel.bestMenus,
-                    router: router
-                )
+        VStack(spacing: 0) {
+            HStack {
+                Spacer().frame(width: 20)
+                Image("meboxLogo")
+                    .resizable()
+                    .frame(width: 149, height: 30)
+                    .padding(.bottom, 8)
+                Spacer()
             }
-            .padding(.horizontal, 16)
-            .padding(.top, 20)
+            .padding(.bottom, 8)
+
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 28) {
+                  
+                    
+                    // MARK: - 극장 변경 헤
+                    TheaterSelectHeaderView()
+                    
+                    // MARK: - 카드 섹션 (바로 주문, 스토어 교환권, 선물하기)
+                    //스토어 교환권, 선물하기는 재사용
+
+                    HStack(spacing: 12) {
+                        DirectOrderCard()
+
+                        VStack(spacing: 12) {
+                            SmallMenuCard(title: "스토어 교환권", imageName: "store")
+                            SmallMenuCard(title: "선물하기", imageName: "present")
+                        }
+                    }
+
+                    DeliveryCard()
+                       
+                    // MARK: - 추천 메뉴
+                    MenuHorizontalSectionView(
+                        title: "추천 메뉴",
+                        menus: viewModel.recommendedMenus,
+                        router: router
+                    )
+                    
+                    // MARK: - 베스트 메뉴
+                    MenuHorizontalSectionView(
+                        title: "베스트 메뉴",
+                        menus: viewModel.bestMenus,
+                        router: router
+                    )
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 20)
+               
+              
+            }
         }
-        .navigationTitle("바로 주문")
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 
+struct DirectOrderCard: View {
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("바로 주문")
+                .font(.PretendardBold(size: 14))
+                .foregroundColor(.black)
+
+            Text("이제 줄서지 말고\n모바일로 주문하고 픽업!")
+                .font(.PretendardRegular(size: 12))
+               
+                .padding(.top, 6)
+
+            Spacer()
+
+            HStack {
+                Spacer()
+                Image("popcorn1")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 44, height: 44)
+            }
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 15)
+        .frame(width: 232, height: 308, alignment: .leading)
+        .background(Color.white)
+        .cornerRadius(10)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .inset(by: 0.5)
+                .stroke(Color(red: 0.79, green: 0.77, blue: 0.77), lineWidth: 1)
+        )
+    }
+}
+
+struct SmallMenuCard: View {
+    let title: String
+    let imageName: String
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(title)
+                .font(.PretendardBold(size: 14))
+                .foregroundColor(.black)
+
+            Spacer()
+
+            HStack {
+                Spacer()
+                Image(imageName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 36, height: 36)
+            }
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 10)
+        .frame(width: 150, height: 150, alignment: .leading)
+        .background(Color.white)
+        .cornerRadius(10)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .inset(by: 0.5)
+                .stroke(Color(red: 0.79, green: 0.77, blue: 0.77), lineWidth: 1)
+        )
+    }
+}
+
+struct DeliveryCard: View {
+    var body: some View {
+        HStack(alignment: .top) {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("어디서든 팝콘 만나기")
+                    .font(.PretendardBold(size: 14))
+                    .foregroundColor(.black)
+
+                Text("팝콘 콜라 스낵 모든 메뉴 배달 가능!")
+                    .font(.PretendardRegular(size: 12))
+                    
+            }
+
+            Spacer()
+
+            Image("motor")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 46, height: 46)
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 25)
+        .frame(width: 400, alignment: .top)
+        .background(Color.white)
+        .cornerRadius(10)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .inset(by: 0.5)
+                .stroke(Color(red: 0.79, green: 0.77, blue: 0.77), lineWidth: 1)
+        )
+    }
+}
 
 // MARK: - 극장 변경 헤더
 struct TheaterSelectHeaderView: View {
     var body: some View {
-        HStack {
-            HStack(spacing: 6) {
-                Image(systemName: "mappin.circle.fill")
-                Text("강남")
-            }
-            .font(.system(size: 16, weight: .semibold))
+        HStack(alignment: .center) {
+
+        
             
+
             Spacer()
-            
-            Button {
-                // TODO: - 극장 선택 네비게이션
-            } label: {
-                Text("극장 변경")
-                    .foregroundColor(.white)
-                    .font(.system(size: 14, weight: .bold))
-                    .padding(.vertical, 6)
-                    .padding(.horizontal, 14)
-                    .background(Color.purple)
-                    .clipShape(RoundedRectangle(cornerRadius: 6))
-            }
-        }
-    }
-}
 
+           
+            HStack {
 
-// MARK: - 네모 메뉴 아이템
-struct SquareMenuItemView: View {
-    let title: String
-    let subtitle: String?
-    let systemImage: String
-    let height: CGFloat
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            VStack(alignment: .leading, spacing: 8) {
-                
-                Text(title)
-                    .font(.system(size: 16, weight: .semibold))
-                
-                if let subtitle = subtitle {
-                    Text(subtitle)
-                        .font(.system(size: 12))
-                        .foregroundColor(.gray)
+                // 왼쪽: 위치 아이콘 + 강남
+                HStack(spacing: 8) {
+                    Image("location")
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                       
+
+                    Text("강남")
+                        .font(.PretendardSemiBold(size: 13))
+                        .foregroundColor(.white)
                 }
-                
+
                 Spacer()
-                
-                Image(systemName: systemImage)
-                    .font(.system(size: 30))
-                    .foregroundColor(.black)
+
+                // 오른쪽: 극장 변경 버튼
+                Button {
+                    print("극장 변경 눌림")
+                } label: {
+                    Text("극장 변경")
+                        .font(.PretendardSemiBold(size:13))
+                        .foregroundStyle(.white)
+                        .padding(.vertical,8)
+                        .padding(.horizontal, 5)
+                        .background(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.white, lineWidth: 1)
+                        )
+                }
             }
-            .padding()
-            .frame(maxWidth: .infinity)
-            .frame(height: height)
-            .background(Color.white)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .shadow(radius: 2)
+
+            Spacer()
+
+       
         }
+        .padding(.horizontal, 016)
+        .padding(.vertical,10)
+        .background(Color(red: 0.40, green: 0.05, blue: 0.85))
     }
 }
 
-// MARK: - 네모 메뉴 전체 그리드
-struct SquareMenuGridView: View {
-    let router: NavigationRouter
-    
-    var body: some View {
-        VStack(spacing: 16) {
-            
-            // MARK: - 첫 번째 줄
-            HStack(spacing: 12) {
-                
-                // 크게 하나 (바로 주문)
-                SquareMenuItemView(
-                    title: "바로 주문",
-                    subtitle: "이제 빠르게 주문해요!",
-                    systemImage: "bag",
-                    height: 140
-                ) {
-                    // TODO: 바로 주문 네비게이션
-                }
-                
-                VStack(spacing: 12) {
-                    SquareMenuItemView(
-                        title: "스토어 교환권",
-                        subtitle: nil,
-                        systemImage: "ticket",
-                        height: 65
-                    ) {
-                        print("스토어 교환권 클릭")
-                    }
-                    
-                    SquareMenuItemView(
-                        title: "선물하기",
-                        subtitle: nil,
-                        systemImage: "gift",
-                        height: 65
-                    ) {
-                        print("선물하기 클릭")
-                    }
-                }
-            }
-            
-            // MARK: - 두 번째 줄
-            SquareMenuItemView(
-                title: "어디서든 팝콘 만나기",
-                subtitle: "편한 곳에서 스낵 주문 가능!",
-                systemImage: "car",
-                height: 90
-            ) {
-                print("팝콘 만나기 클릭")
-            }
-        }
-    }
-}
+
+
 
 
 // MARK: - 메뉴 카드
@@ -169,19 +231,21 @@ struct MenuCardView: View {
     let item: MenuItemModel
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 2) {
             Image(item.imageName)
                 .resizable()
                 .scaledToFill()
                 .frame(width: 120, height: 120)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
+            Spacer().frame(height:4)
             
             Text(item.title)
-                .font(.system(size: 14, weight: .semibold))
+                .font(.PretendardRegular(size:13))
+                .foregroundColor(.black)
             
             Text("\(item.price)원")
-                .font(.system(size: 12))
-                .foregroundColor(.gray)
+                .font(.PretendardSemiBold(size:14))
+                .foregroundColor(.black)
         }
     }
 }
@@ -196,7 +260,22 @@ struct MenuHorizontalSectionView: View {
         VStack(alignment: .leading, spacing: 12) {
             
             Text(title)
-                .font(.system(size: 18, weight: .bold))
+                .font(.PretendardBold(size:22))
+            
+            if title == "추천 메뉴" {
+                Text("영화 볼때 뭐먹지 고민될 때 추천메뉴!")
+                    .font(.PretendardRegular(size: 12))
+                    .foregroundColor(Color(red: 0.47, green: 0.47, blue: 0.47))
+
+
+                  
+            } else if title == "베스트 메뉴" {
+                Text("영화 볼때 뭐먹지 고민될때 베스트 메뉴!")
+                    .font(.PretendardRegular(size: 12))
+                    .foregroundColor(Color(red: 0.47, green: 0.47, blue: 0.47))
+
+                  
+            }
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 16) {
@@ -214,3 +293,21 @@ struct MenuHorizontalSectionView: View {
 }
 
 
+
+
+
+#Preview("MobileOrder - iPhone 17 Pro") {
+    NavigationStack {
+        MobileOrderView()
+            .environment(NavigationRouter())   // ✅ 프리뷰용 라우터 주입
+    }
+    .previewDevice("iPhone 17 Pro")
+}
+
+#Preview("MobileOrder - iPhone 11") {
+    NavigationStack {
+        MobileOrderView()
+            .environment(NavigationRouter())   // ✅ 프리뷰용 라우터 주입
+    }
+    .previewDevice("iPhone 11")
+}
