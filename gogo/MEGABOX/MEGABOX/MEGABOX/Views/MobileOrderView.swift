@@ -14,14 +14,15 @@ struct MobileOrderView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Spacer().frame(width: 20)
+                Spacer().frame(width: 45)
                 Image("meboxLogo")
                     .resizable()
                     .frame(width: 149, height: 30)
-                    .padding(.bottom, 8)
+                   
                 Spacer()
             }
-            .padding(.bottom, 8)
+//            .padding(.leading, 10)
+           
 
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 28) {
@@ -29,12 +30,14 @@ struct MobileOrderView: View {
                     
                     // MARK: - 극장 변경 헤
                     TheaterSelectHeaderView()
+                        .padding(.horizontal, 1)
                     
                     // MARK: - 카드 섹션 (바로 주문, 스토어 교환권, 선물하기)
                     //스토어 교환권, 선물하기는 재사용
 
                     HStack(spacing: 12) {
                         DirectOrderCard()
+                            .padding(.leading, 20)
 
                         VStack(spacing: 12) {
                             SmallMenuCard(title: "스토어 교환권", imageName: "store")
@@ -42,7 +45,14 @@ struct MobileOrderView: View {
                         }
                     }
 
+                    
+                
+                    
+                    //어디서든 팝콘 만나기
+
                     DeliveryCard()
+                        .padding(.leading, 20)
+
                        
                     // MARK: - 추천 메뉴
                     MenuHorizontalSectionView(
@@ -50,6 +60,8 @@ struct MobileOrderView: View {
                         menus: viewModel.recommendedMenus,
                         router: router
                     )
+                    .padding(.leading, 20)
+
                     
                     // MARK: - 베스트 메뉴
                     MenuHorizontalSectionView(
@@ -57,8 +69,10 @@ struct MobileOrderView: View {
                         menus: viewModel.bestMenus,
                         router: router
                     )
+                    .padding(.leading, 20)
+
                 }
-                .padding(.horizontal, 20)
+//                .padding(.leading, 20)
                 .padding(.top, 20)
                
               
@@ -72,11 +86,12 @@ struct DirectOrderCard: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("바로 주문")
-                .font(.PretendardBold(size: 14))
+                .font(.PretendardBold(size: 24))
                 .foregroundColor(.black)
 
             Text("이제 줄서지 말고\n모바일로 주문하고 픽업!")
                 .font(.PretendardRegular(size: 12))
+                .foregroundColor(Color(red: 0.47, green: 0.47, blue: 0.47))
                
                 .padding(.top, 6)
 
@@ -92,7 +107,7 @@ struct DirectOrderCard: View {
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 15)
-        .frame(width: 232, height: 308, alignment: .leading)
+        .frame(width: 200, height: 308, alignment: .leading)
         .background(Color.white)
         .cornerRadius(10)
         .overlay(
@@ -110,7 +125,7 @@ struct SmallMenuCard: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(title)
-                .font(.PretendardBold(size: 14))
+                .font(.PretendardBold(size: 22))
                 .foregroundColor(.black)
 
             Spacer()
@@ -123,7 +138,7 @@ struct SmallMenuCard: View {
                     .frame(width: 36, height: 36)
             }
         }
-        .padding(.horizontal, 12)
+        .padding(.horizontal,20)
         .padding(.vertical, 10)
         .frame(width: 150, height: 150, alignment: .leading)
         .background(Color.white)
@@ -141,11 +156,12 @@ struct DeliveryCard: View {
         HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 8) {
                 Text("어디서든 팝콘 만나기")
-                    .font(.PretendardBold(size: 14))
+                    .font(.PretendardBold(size: 24))
                     .foregroundColor(.black)
 
                 Text("팝콘 콜라 스낵 모든 메뉴 배달 가능!")
                     .font(.PretendardRegular(size: 12))
+                    .foregroundColor(Color(red: 0.47, green: 0.47, blue: 0.47))
                     
             }
 
@@ -158,7 +174,7 @@ struct DeliveryCard: View {
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 25)
-        .frame(width: 400, alignment: .top)
+        .frame(width: 360, alignment: .top)
         .background(Color.white)
         .cornerRadius(10)
         .overlay(
@@ -216,7 +232,7 @@ struct TheaterSelectHeaderView: View {
 
        
         }
-        .padding(.horizontal, 016)
+        
         .padding(.vertical,10)
         .background(Color(red: 0.40, green: 0.05, blue: 0.85))
     }
@@ -287,6 +303,7 @@ struct MenuHorizontalSectionView: View {
                         }
                     }
                 }
+                .padding(.leading, 0)
             }
         }
     }
