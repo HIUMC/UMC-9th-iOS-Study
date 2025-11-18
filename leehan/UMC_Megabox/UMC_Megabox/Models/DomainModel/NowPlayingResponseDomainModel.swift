@@ -16,12 +16,12 @@ struct MovieCardDomainModel: Identifiable, Hashable {
     var id: Int
     
     /* 가로 스크롤에서 사용 */
-    var moviePoster: URL? // 영화 포스터
+    var moviePoster: URL? // 영화 포스터 - URL 객체로 받음: KingFisher로 처리
     var movieName: String // 영화 이름
     var people: String // 누적관객수 하드코딩
     
     /* 영화 상세 정보 탭 */
-    var bigPoster: URL?
+    var bigPoster: URL? // - URL 객체로 받음: KingFisher로 처리
     var subTitle: String
     var explaination: String
     var smallPoster: String // 작은 포스터 하드코딩

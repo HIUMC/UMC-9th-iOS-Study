@@ -43,6 +43,10 @@ struct SourceView: View {
                 case .memberInfo:
                     InfoManageView(isLoggedIn: $isLoggedIn)
                         .navigationBarBackButtonHidden(true)
+                case .menuDetail:
+                    MenuDetailView()
+                        .navigationBarBackButtonHidden(true)
+               
                 }
             }
         }
@@ -59,7 +63,7 @@ struct SourceView: View {
         }
     }
     
-    
+    //키체인 자동 로그인
     private func autoLoginCheck() {
         let id = KeychainService.shared.read(KeychainService.Key.userID)
         let pw = KeychainService.shared.read(KeychainService.Key.userPassword)
@@ -69,6 +73,7 @@ struct SourceView: View {
     }
 }
 
+// 번들
 
 private extension Bundle {
     static var kakaoNativeAppKey: String {

@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct MBTabView: View {
+    @Environment(TMDBViewModel.self) var tmdbViewModel
     @ObservedObject var theaterVM: TheaterViewModel
     @Binding var selectTheaters: Set<Theaters>
     var body: some View {
