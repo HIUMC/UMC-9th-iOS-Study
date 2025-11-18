@@ -2,29 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>BASE_URL</key>
-	<array>
-		<string></string>
-	</array>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>kakaokompassauth</string>
-		<string>kakaolink</string>
-		<string>kakaoplus</string>
-		<string>kakaotalk</string>
-	</array>
-	<key>TMDB_API_KEY</key>
-	<string>$(TMDB_API_KEY)</string>
-	<key>TMDB_READ_TOKEN</key>
-	<string>$(TMDB_READ_TOKEN)</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Pretendard-Bold.otf</string>
-		<string>Pretendard-ExtraBold.otf</string>
-		<string>Pretendard-Light.otf</string>
-		<string>Pretendard-Medium.otf</string>
-		<string>Pretendard-Regular.otf</string>
-		<string>Pretendard-SemiBold.otf</string>
-	</array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>kakaokompassauth</string>
+        <string>kakaolink</string>
+        <string>kakaoplus</string>
+        <string>kakaotalk</string>
+    </array>
+    <key>UIAppFonts</key>
+    <array>
+        <string>Pretendard-Bold.otf</string>
+        <string>Pretendard-ExtraBold.otf</string>
+        <string>Pretendard-Light.otf</string>
+        <string>Pretendard-Medium.otf</string>
+        <string>Pretendard-Regular.otf</string>
+        <string>Pretendard-SemiBold.otf</string>
+    </array>
 </dict>
 </plist>

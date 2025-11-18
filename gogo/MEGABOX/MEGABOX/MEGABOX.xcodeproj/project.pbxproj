@@ -1,0 +1,691 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D73D4F2D2EBC21E600C1744F /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = D73D4F2C2EBC21E600C1744F /* KakaoSDK */; };
+		D73D4F2F2EBC21E600C1744F /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D73D4F2E2EBC21E600C1744F /* KakaoSDKAuth */; };
+		D73D4F312EBC21E600C1744F /* KakaoSDKCert in Frameworks */ = {isa = PBXBuildFile; productRef = D73D4F302EBC21E600C1744F /* KakaoSDKCert */; };
+		D73D4F332EBC21E600C1744F /* KakaoSDKCertCore in Frameworks */ = {isa = PBXBuildFile; productRef = D73D4F322EBC21E600C1744F /* KakaoSDKCertCore */; };
+		D73D4F352EBC21E600C1744F /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = D73D4F342EBC21E600C1744F /* KakaoSDKCommon */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D735EBA62E7A6AD300474A00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D735EB8F2E7A6AD200474A00 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D735EB962E7A6AD200474A00;
+			remoteInfo = MEGABOX;
+		};
+		D735EBB02E7A6AD300474A00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D735EB8F2E7A6AD200474A00 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D735EB962E7A6AD200474A00;
+			remoteInfo = MEGABOX;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D735EB972E7A6AD200474A00 /* MEGABOX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MEGABOX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D735EBA52E7A6AD300474A00 /* MEGABOXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MEGABOXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D735EBAF2E7A6AD300474A00 /* MEGABOXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MEGABOXUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D735EBDF2E7A6C6300474A00 /* Exceptions for "MEGABOX" folder in "MEGABOX" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D735EB962E7A6AD200474A00 /* MEGABOX */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D735EB992E7A6AD200474A00 /* MEGABOX */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D735EBDF2E7A6C6300474A00 /* Exceptions for "MEGABOX" folder in "MEGABOX" target */,
+			);
+			path = MEGABOX;
+			sourceTree = "<group>";
+		};
+		D735EBA82E7A6AD300474A00 /* MEGABOXTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MEGABOXTests;
+			sourceTree = "<group>";
+		};
+		D735EBB22E7A6AD300474A00 /* MEGABOXUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MEGABOXUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D735EB942E7A6AD200474A00 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D73D4F332EBC21E600C1744F /* KakaoSDKCertCore in Frameworks */,
+				D73D4F312EBC21E600C1744F /* KakaoSDKCert in Frameworks */,
+				D73D4F2D2EBC21E600C1744F /* KakaoSDK in Frameworks */,
+				D73D4F352EBC21E600C1744F /* KakaoSDKCommon in Frameworks */,
+				D73D4F2F2EBC21E600C1744F /* KakaoSDKAuth in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D735EBA22E7A6AD300474A00 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D735EBAC2E7A6AD300474A00 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D735EB8E2E7A6AD200474A00 = {
+			isa = PBXGroup;
+			children = (
+				D735EB992E7A6AD200474A00 /* MEGABOX */,
+				D735EBA82E7A6AD300474A00 /* MEGABOXTests */,
+				D735EBB22E7A6AD300474A00 /* MEGABOXUITests */,
+				D735EB982E7A6AD200474A00 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D735EB982E7A6AD200474A00 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D735EB972E7A6AD200474A00 /* MEGABOX.app */,
+				D735EBA52E7A6AD300474A00 /* MEGABOXTests.xctest */,
+				D735EBAF2E7A6AD300474A00 /* MEGABOXUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D735EB962E7A6AD200474A00 /* MEGABOX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D735EBB92E7A6AD300474A00 /* Build configuration list for PBXNativeTarget "MEGABOX" */;
+			buildPhases = (
+				D735EB932E7A6AD200474A00 /* Sources */,
+				D735EB942E7A6AD200474A00 /* Frameworks */,
+				D735EB952E7A6AD200474A00 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D735EB992E7A6AD200474A00 /* MEGABOX */,
+			);
+			name = MEGABOX;
+			packageProductDependencies = (
+				D73D4F2C2EBC21E600C1744F /* KakaoSDK */,
+				D73D4F2E2EBC21E600C1744F /* KakaoSDKAuth */,
+				D73D4F302EBC21E600C1744F /* KakaoSDKCert */,
+				D73D4F322EBC21E600C1744F /* KakaoSDKCertCore */,
+				D73D4F342EBC21E600C1744F /* KakaoSDKCommon */,
+			);
+			productName = MEGABOX;
+			productReference = D735EB972E7A6AD200474A00 /* MEGABOX.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D735EBA42E7A6AD300474A00 /* MEGABOXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D735EBBC2E7A6AD300474A00 /* Build configuration list for PBXNativeTarget "MEGABOXTests" */;
+			buildPhases = (
+				D735EBA12E7A6AD300474A00 /* Sources */,
+				D735EBA22E7A6AD300474A00 /* Frameworks */,
+				D735EBA32E7A6AD300474A00 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D735EBA72E7A6AD300474A00 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D735EBA82E7A6AD300474A00 /* MEGABOXTests */,
+			);
+			name = MEGABOXTests;
+			packageProductDependencies = (
+			);
+			productName = MEGABOXTests;
+			productReference = D735EBA52E7A6AD300474A00 /* MEGABOXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D735EBAE2E7A6AD300474A00 /* MEGABOXUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D735EBBF2E7A6AD300474A00 /* Build configuration list for PBXNativeTarget "MEGABOXUITests" */;
+			buildPhases = (
+				D735EBAB2E7A6AD300474A00 /* Sources */,
+				D735EBAC2E7A6AD300474A00 /* Frameworks */,
+				D735EBAD2E7A6AD300474A00 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D735EBB12E7A6AD300474A00 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D735EBB22E7A6AD300474A00 /* MEGABOXUITests */,
+			);
+			name = MEGABOXUITests;
+			packageProductDependencies = (
+			);
+			productName = MEGABOXUITests;
+			productReference = D735EBAF2E7A6AD300474A00 /* MEGABOXUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D735EB8F2E7A6AD200474A00 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					D735EB962E7A6AD200474A00 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					D735EBA42E7A6AD300474A00 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = D735EB962E7A6AD200474A00;
+					};
+					D735EBAE2E7A6AD300474A00 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = D735EB962E7A6AD200474A00;
+					};
+				};
+			};
+			buildConfigurationList = D735EB922E7A6AD200474A00 /* Build configuration list for PBXProject "MEGABOX" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D735EB8E2E7A6AD200474A00;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D73D4F2B2EBC21E600C1744F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = D735EB982E7A6AD200474A00 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D735EB962E7A6AD200474A00 /* MEGABOX */,
+				D735EBA42E7A6AD300474A00 /* MEGABOXTests */,
+				D735EBAE2E7A6AD300474A00 /* MEGABOXUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D735EB952E7A6AD200474A00 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D735EBA32E7A6AD300474A00 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D735EBAD2E7A6AD300474A00 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D735EB932E7A6AD200474A00 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D735EBA12E7A6AD300474A00 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D735EBAB2E7A6AD300474A00 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D735EBA72E7A6AD300474A00 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D735EB962E7A6AD200474A00 /* MEGABOX */;
+			targetProxy = D735EBA62E7A6AD300474A00 /* PBXContainerItemProxy */;
+		};
+		D735EBB12E7A6AD300474A00 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D735EB962E7A6AD200474A00 /* MEGABOX */;
+			targetProxy = D735EBB02E7A6AD300474A00 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D735EBB72E7A6AD300474A00 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = D735EB992E7A6AD200474A00 /* MEGABOX */;
+			baseConfigurationReferenceRelativePath = Security/Secret.xcconfig;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = KX93JF4Y2Z;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D735EBB82E7A6AD300474A00 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = D735EB992E7A6AD200474A00 /* MEGABOX */;
+			baseConfigurationReferenceRelativePath = Security/Secret.xcconfig;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = KX93JF4Y2Z;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		D735EBBA2E7A6AD300474A00 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MEGABOX/MEGABOX.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = KX93JF4Y2Z;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MEGABOX/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "	";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Koh.MEGABOX;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Debug;
+		};
+		D735EBBB2E7A6AD300474A00 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MEGABOX/MEGABOX.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = KX93JF4Y2Z;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MEGABOX/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "	";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Koh.MEGABOX;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Release;
+		};
+		D735EBBD2E7A6AD300474A00 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = KX93JF4Y2Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Koh.MEGABOXTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MEGABOX.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MEGABOX";
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Debug;
+		};
+		D735EBBE2E7A6AD300474A00 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = KX93JF4Y2Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Koh.MEGABOXTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MEGABOX.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MEGABOX";
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Release;
+		};
+		D735EBC02E7A6AD300474A00 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = KX93JF4Y2Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Koh.MEGABOXUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = MEGABOX;
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Debug;
+		};
+		D735EBC12E7A6AD300474A00 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = KX93JF4Y2Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Koh.MEGABOXUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = MEGABOX;
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D735EB922E7A6AD200474A00 /* Build configuration list for PBXProject "MEGABOX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D735EBB72E7A6AD300474A00 /* Debug */,
+				D735EBB82E7A6AD300474A00 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D735EBB92E7A6AD300474A00 /* Build configuration list for PBXNativeTarget "MEGABOX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D735EBBA2E7A6AD300474A00 /* Debug */,
+				D735EBBB2E7A6AD300474A00 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D735EBBC2E7A6AD300474A00 /* Build configuration list for PBXNativeTarget "MEGABOXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D735EBBD2E7A6AD300474A00 /* Debug */,
+				D735EBBE2E7A6AD300474A00 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D735EBBF2E7A6AD300474A00 /* Build configuration list for PBXNativeTarget "MEGABOXUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D735EBC02E7A6AD300474A00 /* Debug */,
+				D735EBC12E7A6AD300474A00 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D73D4F2B2EBC21E600C1744F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakaO/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.25.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D73D4F2C2EBC21E600C1744F /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D73D4F2B2EBC21E600C1744F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+		D73D4F2E2EBC21E600C1744F /* KakaoSDKAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D73D4F2B2EBC21E600C1744F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKAuth;
+		};
+		D73D4F302EBC21E600C1744F /* KakaoSDKCert */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D73D4F2B2EBC21E600C1744F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCert;
+		};
+		D73D4F322EBC21E600C1744F /* KakaoSDKCertCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D73D4F2B2EBC21E600C1744F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCertCore;
+		};
+		D73D4F342EBC21E600C1744F /* KakaoSDKCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D73D4F2B2EBC21E600C1744F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCommon;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = D735EB8F2E7A6AD200474A00 /* Project object */;
+}

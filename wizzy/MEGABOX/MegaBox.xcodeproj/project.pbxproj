@@ -1,0 +1,574 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 70;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		39E050FEB27D77B7056F85C1 /* MegaBoxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDC5358BCC565CEC81BDBD1 /* MegaBoxApp.swift */; };
+		611C43C82EAC8353005C2748 /* MovieSchedule.json in Resources */ = {isa = PBXBuildFile; fileRef = 611C43C72EAC8353005C2748 /* MovieSchedule.json */; };
+		611C43CA2EAC83A7005C2748 /* MovieScheduleDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611C43C92EAC83A7005C2748 /* MovieScheduleDTO.swift */; };
+		611C45292EB23C3A005C2748 /* toDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611C45282EB23C3A005C2748 /* toDomain.swift */; };
+		61C9AC322EBD83DD00E04816 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 61C9AC312EBD83DD00E04816 /* KakaoSDK */; };
+		61C9AC342EBDBA0C00E04816 /* Secret.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 61C9AC332EBDBA0C00E04816 /* Secret.xcconfig */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		73ED898B715C62B74E6DD2D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7250977E6D41EFB3EB6B4AF7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D8068CE08B0A8E85A6DBB655;
+			remoteInfo = MegaBox;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2F0F9DD80F1CB74D2DC4EDD4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBEF3E61C485190506A1431C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		611C43C72EAC8353005C2748 /* MovieSchedule.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MovieSchedule.json; sourceTree = "<group>"; };
+		611C43C92EAC83A7005C2748 /* MovieScheduleDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieScheduleDTO.swift; sourceTree = "<group>"; };
+		611C45282EB23C3A005C2748 /* toDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toDomain.swift; sourceTree = "<group>"; };
+		61C9AC332EBDBA0C00E04816 /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
+		6833E323F8E1379B0551DAF6 /* MegaBox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "MegaBox-Info.plist"; sourceTree = "<group>"; };
+		70968C0934CDEE4482BF7866 /* MegaBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MegaBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		95C1869C93BEDFCAA84B26B1 /* MegaBoxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MegaBoxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEE0EA2D5F8FB9999C245CB6 /* MegaBoxTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "MegaBoxTests-Info.plist"; sourceTree = "<group>"; };
+		FBDC5358BCC565CEC81BDBD1 /* MegaBoxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegaBoxApp.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		611890D52E7FB69700243C23 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
+		611890D62E7FB69D00243C23 /* ViewModels */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModels; sourceTree = "<group>"; };
+		6147D0A22E8A9D9E00A133C6 /* Navigation */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Navigation; sourceTree = "<group>"; };
+		6191AD9E2E782B6100F6F18F /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
+		6191ADA32E782B9800F6F18F /* Resources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Resources; sourceTree = "<group>"; };
+		61C9ABC32EBADAD000E04816 /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0171995BEE3F954231D82084 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61C9AC322EBD83DD00E04816 /* KakaoSDK in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6286B97ACEFF99F43A486D0C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		04E92A9F3F0E6F77107B0A82 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				A16D279B29B1D02DE43A8F89 /* Derived */,
+				DD883208B22ABCFA019311D0 /* MegaBox */,
+			);
+			name = Project;
+			sourceTree = "<group>";
+		};
+		1655454AFDF6D7FC7B4E361F /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				611C43C72EAC8353005C2748 /* MovieSchedule.json */,
+				61C9ABC32EBADAD000E04816 /* Services */,
+				6147D0A22E8A9D9E00A133C6 /* Navigation */,
+				611890D62E7FB69D00243C23 /* ViewModels */,
+				611890D52E7FB69700243C23 /* Models */,
+				6191ADA32E782B9800F6F18F /* Resources */,
+				6191AD9E2E782B6100F6F18F /* Views */,
+				FBDC5358BCC565CEC81BDBD1 /* MegaBoxApp.swift */,
+				611C43C92EAC83A7005C2748 /* MovieScheduleDTO.swift */,
+				611C45282EB23C3A005C2748 /* toDomain.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		A16D279B29B1D02DE43A8F89 /* Derived */ = {
+			isa = PBXGroup;
+			children = (
+				E9FD06034A36F77F92143431 /* InfoPlists */,
+			);
+			path = Derived;
+			sourceTree = "<group>";
+		};
+		BFDBD67092279A3FAAC4B892 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				70968C0934CDEE4482BF7866 /* MegaBox.app */,
+				95C1869C93BEDFCAA84B26B1 /* MegaBoxTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CD24F3BA39F89388251B5EDD = {
+			isa = PBXGroup;
+			children = (
+				04E92A9F3F0E6F77107B0A82 /* Project */,
+				BFDBD67092279A3FAAC4B892 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DD883208B22ABCFA019311D0 /* MegaBox */ = {
+			isa = PBXGroup;
+			children = (
+				1655454AFDF6D7FC7B4E361F /* Sources */,
+				61C9AC332EBDBA0C00E04816 /* Secret.xcconfig */,
+			);
+			path = MegaBox;
+			sourceTree = "<group>";
+		};
+		E9FD06034A36F77F92143431 /* InfoPlists */ = {
+			isa = PBXGroup;
+			children = (
+				6833E323F8E1379B0551DAF6 /* MegaBox-Info.plist */,
+				CEE0EA2D5F8FB9999C245CB6 /* MegaBoxTests-Info.plist */,
+			);
+			path = InfoPlists;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8B4C3A14AD6FCF7F4E85DF16 /* MegaBoxTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC639C183CF6DC9C3BE21533 /* Build configuration list for PBXNativeTarget "MegaBoxTests" */;
+			buildPhases = (
+				B079524FA93733E65814A663 /* Sources */,
+				F2C7A5C6180065EBDA8947B8 /* Resources */,
+				6286B97ACEFF99F43A486D0C /* Frameworks */,
+				2F0F9DD80F1CB74D2DC4EDD4 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				90936AC3A6550242B1EB959F /* PBXTargetDependency */,
+			);
+			name = MegaBoxTests;
+			packageProductDependencies = (
+			);
+			productName = MegaBoxTests;
+			productReference = 95C1869C93BEDFCAA84B26B1 /* MegaBoxTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D8068CE08B0A8E85A6DBB655 /* MegaBox */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 389A7483F1C3266C7BDCA508 /* Build configuration list for PBXNativeTarget "MegaBox" */;
+			buildPhases = (
+				4D124BC3B84A7C65F27F2635 /* Sources */,
+				04CC33FE9F044FB1C5D7ABA4 /* Resources */,
+				0171995BEE3F954231D82084 /* Frameworks */,
+				BBEF3E61C485190506A1431C /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				611890D52E7FB69700243C23 /* Models */,
+				611890D62E7FB69D00243C23 /* ViewModels */,
+				6147D0A22E8A9D9E00A133C6 /* Navigation */,
+				6191AD9E2E782B6100F6F18F /* Views */,
+				6191ADA32E782B9800F6F18F /* Resources */,
+				61C9ABC32EBADAD000E04816 /* Services */,
+			);
+			name = MegaBox;
+			packageProductDependencies = (
+				61C9AC312EBD83DD00E04816 /* KakaoSDK */,
+			);
+			productName = MegaBox;
+			productReference = 70968C0934CDEE4482BF7866 /* MegaBox.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7250977E6D41EFB3EB6B4AF7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					8B4C3A14AD6FCF7F4E85DF16 = {
+						TestTargetID = D8068CE08B0A8E85A6DBB655;
+					};
+				};
+			};
+			buildConfigurationList = AAA4D51BF679B8A5006611A0 /* Build configuration list for PBXProject "MegaBox" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CD24F3BA39F89388251B5EDD;
+			packageReferences = (
+				61C9AC302EBD83DD00E04816 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+			);
+			productRefGroup = BFDBD67092279A3FAAC4B892 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D8068CE08B0A8E85A6DBB655 /* MegaBox */,
+				8B4C3A14AD6FCF7F4E85DF16 /* MegaBoxTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		04CC33FE9F044FB1C5D7ABA4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				611C43C82EAC8353005C2748 /* MovieSchedule.json in Resources */,
+				61C9AC342EBDBA0C00E04816 /* Secret.xcconfig in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2C7A5C6180065EBDA8947B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4D124BC3B84A7C65F27F2635 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39E050FEB27D77B7056F85C1 /* MegaBoxApp.swift in Sources */,
+				611C43CA2EAC83A7005C2748 /* MovieScheduleDTO.swift in Sources */,
+				611C45292EB23C3A005C2748 /* toDomain.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B079524FA93733E65814A663 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		90936AC3A6550242B1EB959F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MegaBox;
+			target = D8068CE08B0A8E85A6DBB655 /* MegaBox */;
+			targetProxy = 73ED898B715C62B74E6DD2D7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		007F387E9A536819C13F07E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61C9AC332EBDBA0C00E04816 /* Secret.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = XRY42MG75P;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Derived/InfoPlists/MegaBox-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wizzy.MegaBox;
+				PRODUCT_NAME = MegaBox;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2C4A9D0A57D799EED2D986F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61C9AC332EBDBA0C00E04816 /* Secret.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6EA0C4E95042C63DE564A03D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61C9AC332EBDBA0C00E04816 /* Secret.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = XRY42MG75P;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Derived/InfoPlists/MegaBox-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wizzy.MegaBox;
+				PRODUCT_NAME = MegaBox;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BBE57AFAA74228C251B0D9A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Derived/InfoPlists/MegaBoxTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.tuist.MegaBoxTests;
+				PRODUCT_NAME = MegaBoxTests;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MegaBox.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MegaBox";
+				TEST_TARGET_NAME = MegaBox;
+			};
+			name = Debug;
+		};
+		E119EB8028F180FFE45D423B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61C9AC332EBDBA0C00E04816 /* Secret.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F023CBC4FAF654FEBD47229B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Derived/InfoPlists/MegaBoxTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.tuist.MegaBoxTests;
+				PRODUCT_NAME = MegaBoxTests;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MegaBox.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MegaBox";
+				TEST_TARGET_NAME = MegaBox;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		389A7483F1C3266C7BDCA508 /* Build configuration list for PBXNativeTarget "MegaBox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6EA0C4E95042C63DE564A03D /* Debug */,
+				007F387E9A536819C13F07E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AAA4D51BF679B8A5006611A0 /* Build configuration list for PBXProject "MegaBox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E119EB8028F180FFE45D423B /* Debug */,
+				2C4A9D0A57D799EED2D986F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BC639C183CF6DC9C3BE21533 /* Build configuration list for PBXNativeTarget "MegaBoxTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BBE57AFAA74228C251B0D9A0 /* Debug */,
+				F023CBC4FAF654FEBD47229B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		61C9AC302EBD83DD00E04816 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.25.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		61C9AC312EBD83DD00E04816 /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 61C9AC302EBD83DD00E04816 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 7250977E6D41EFB3EB6B4AF7 /* Project object */;
+}

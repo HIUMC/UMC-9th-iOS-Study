@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key></key>
+	<string></string>
+	<key>KAKAO_NATIVE_APP_KEY</key>
+	<string>$KAKAO_NATIVE_APP_KEY</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>kakaompathauth</string>
+		<string>kakaolink</string>
+		<string>kakaoplus</string>
+		<string>kakaotalk</string>
+	</array>
+</dict>
+</plist>

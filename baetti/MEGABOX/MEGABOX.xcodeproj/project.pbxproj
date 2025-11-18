@@ -1,0 +1,189 @@
+// !$*UTF8*$!
+{
+    archiveVersion = 1;
+    classes = {
+    };
+    objectVersion = 77;
+    objects = {
+
+/* Begin PBXBuildFile section */
+        88B34B3B2EBDBF5D00E6738A /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 88B34B3A2EBDBF5D00E6738A /* KakaoSDK */; };
+        88B34B3D2EBDBF5D00E6738A /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 88B34B3C2EBDBF5D00E6738A /* KakaoSDKAuth */; };
+        88B34B3F2EBDBF5D00E6738A /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 88B34B3E2EBDBF5D00E6738A /* KakaoSDKCommon */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+        88FB9E462E79C87E00DC1634 /* MEGABOX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MEGABOX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+        88FBA21C2E79E1C800DC1634 /* Exceptions for "MEGABOX" folder in "MEGABOX" target */ = {
+            isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+            membershipExceptions = (
+                Info.plist,
+            );
+            target = 88FB9E452E79C87E00DC1634 /* MEGABOX */;
+        };
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+        88FB9E482E79C87E00DC1634 /* MEGABOX */ = {
+            isa = PBXFileSystemSynchronizedRootGroup;
+            exceptions = (
+                88FBA21C2E79E1C800DC1634 /* Exceptions for "MEGABOX" folder in "MEGABOX" target */,
+            );
+            path = MEGABOX;
+            sourceTree = "<group>";
+        };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+        88FB9E432E79C87E00DC1634 /* Frameworks */ = {
+            isa = PBXFrameworksBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                88B34B3B2EBDBF5D00E6738A /* KakaoSDK in Frameworks */,
+                88B34B3F2EBDBF5D00E6738A /* KakaoSDKCommon in Frameworks */,
+                88B34B3D2EBDBF5D00E6738A /* KakaoSDKAuth in Frameworks */,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+        88FB9E3D2E79C87E00DC1634 = {
+            isa = PBXGroup;
+            children = (
+                88FB9E482E79C87E00DC1634 /* MEGABOX */,
+                88FB9E472E79C87E00DC1634 /* Products */,
+            );
+            sourceTree = "<group>";
+        };
+        88FB9E472E79C87E00DC1634 /* Products */ = {
+            isa = PBXGroup;
+            children = (
+                88FB9E462E79C87E00DC1634 /* MEGABOX.app */,
+            );
+            name = Products;
+            sourceTree = "<group>";
+        };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+        88FB9E452E79C87E00DC1634 /* MEGABOX */ = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = 88FB9E542E79C88000DC1634 /* Build configuration list for PBXNativeTarget "MEGABOX" */;
+            buildPhases = (
+                88FB9E422E79C87E00DC1634 /* Sources */,
+                88FB9E432E79C87E00DC1634 /* Frameworks */,
+                88FB9E442E79C87E00DC1634 /* Resources */,
+            );
+            buildRules = (
+            );
+            dependencies = (
+            );
+            fileSystemSynchronizedGroups = (
+                88FB9E482E79C87E00DC1634 /* MEGABOX */,
+            );
+            name = MEGABOX;
+            packageProductDependencies = (
+                88B34B3A2EBDBF5D00E6738A /* KakaoSDK */,
+                88B34B3C2EBDBF5D00E6738A /* KakaoSDKAuth */,
+                88B34B3E2EBDBF5D00E6738A /* KakaoSDKCommon */,
+            );
+            productName = MEGABOX;
+            productReference = 88FB9E462E79C87E00DC1634 /* MEGABOX.app */;
+            productType = "com.apple.product-type.application";
+        };
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+        88FB9E3E2E79C87E00DC1634 /* Project object */ = {
+            isa = PBXProject;
+            attributes = {
+                BuildIndependentTargetsInParallel = 1;
+                LastSwiftUpdateCheck = 1620;
+                LastUpgradeCheck = 1620;
+                TargetAttributes = {
+                    88FB9E452E79C87E00DC1634 = {
+                        CreatedOnToolsVersion = 16.2;
+                    };
+                };
+            };
+            buildConfigurationList = 88FB9E412E79C87E00DC1634 /* Build configuration list for PBXProject "MEGABOX" */;
+            developmentRegion = en;
+            hasScannedForEncodings = 0;
+            knownRegions = (
+                en,
+                Base,
+            );
+            mainGroup = 88FB9E3D2E79C87E00DC1634;
+            minimizedProjectReferenceProxies = 1;
+            packageReferences = (
+                88B34B392EBDBF5D00E6738A /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+            );
+            preferredProjectObjectVersion = 77;
+            productRefGroup = 88FB9E472E79C87E00DC1634 /* Products */;
+            projectDirPath = "";
+            projectRoot = "";
+            targets = (
+                88FB9E452E79C87E00DC1634 /* MEGABOX */,
+            );
+        };
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+        88FB9E442E79C87E00DC1634 /* Resources */ = {
+            isa = PBXResourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+        88FB9E422E79C87E00DC1634 /* Sources */ = {
+            isa = PBXSourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+        ... (Debug/Release 설정 부분은 그대로 유지) ...
+/* End XCBuildConfiguration section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+        88B34B392EBDBF5D00E6738A /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+            isa = XCRemoteSwiftPackageReference;
+            repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+            requirement = {
+                kind = upToNextMajorVersion;
+                minimumVersion = 2.25.0;
+            };
+        };
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+        88B34B3A2EBDBF5D00E6738A /* KakaoSDK */ = {
+            isa = XCSwiftPackageProductDependency;
+            package = 88B34B392EBDBF5D00E6738A /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+            productName = KakaoSDK;
+        };
+        88B34B3C2EBDBF5D00E6738A /* KakaoSDKAuth */ = {
+            isa = XCSwiftPackageProductDependency;
+            package = 88B34B392EBDBF5D00E6738A /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+            productName = KakaoSDKAuth;
+        };
+        88B34B3E2EBDBF5D00E6738A /* KakaoSDKCommon */ = {
+            isa = XCSwiftPackageProductDependency;
+            package = 88B34B392EBDBF5D00E6738A /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+            productName = KakaoSDKCommon;
+        };
+/* End XCSwiftPackageProductDependency section */
+    };
+    rootObject = 88FB9E3E2E79C87E00DC1634 /* Project object */;
+}
