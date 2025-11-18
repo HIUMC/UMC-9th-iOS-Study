@@ -1,7 +1,7 @@
 //
 //  KeychainService.swift
 //  MEGABOX
-//
+///Users/koh/Documents/GitHub/UMC-9th-iOS-Study/gogo/MEGABOX/MEGABOX/MEGABOX/Security/KeychainService.swift
 //  Created by 고석현 on 11/6/25.
 //
 
@@ -55,11 +55,11 @@ final class KeychainService {
         ]
 
         let status = SecItemAdd(query as CFDictionary, nil)
-        print("🔐 Keychain Save → key: \(key), value: \(value), success: \(status == errSecSuccess)")
+        print(" Keychain Save → key: \(key), value: \(value), success: \(status == errSecSuccess)")
         return status == errSecSuccess
     }
 
-    // MARK: - 조회
+    // MARK: - 계정 조회
     /// 문자열로 값 조회(없으면 nil)
     func read(_ key: String) -> String? {
         let query: [String: Any] = [
