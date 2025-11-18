@@ -12,9 +12,12 @@ import Alamofire
 enum TMDBAPI {
     case loadMovieInfo
 }
+// 후에 API 요청이 추가되면 적절하게 BaseTargetType을 수정해야 함
 
+// TargetType 프로토콜을 따르는 BaseTargetType 프로토콜 정의
 protocol BaseTargetType: TargetType {}
 
+// BaseTargetType 프로토콜은 아래 속성을 공통으로 가짐
 extension BaseTargetType {
     // 요청을 보낼 서버의 기본 주소: TMDB 서버 주소
     var baseURL: URL {
@@ -42,12 +45,12 @@ extension BaseTargetType {
     }
 }
 
+// BaseTargetType에서 공통으로 정의된 속성 빼고는 여기에 정의
 extension TMDBAPI: BaseTargetType {
     // 지금 당장은 특별한 헤더가 필요 없으므로
     var headers: [String: String]? {
-        return nil // 또는 return [:]
+        return nil
     }
-    
     // 샘플 데이터
     var sampleData: Data {
         let jsonString = """
