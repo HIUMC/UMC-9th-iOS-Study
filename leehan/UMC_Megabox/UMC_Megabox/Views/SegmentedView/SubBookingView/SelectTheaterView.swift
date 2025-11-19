@@ -34,7 +34,7 @@ struct SelectTheaterView: View {
     private func toggleTheaterSelection(_ theater: Theater) {
         if let index = viewModel.selectedTheaters.firstIndex(of: theater) {
             viewModel.selectedTheaters.remove(at: index)
-        } else {
+        } else {             
             viewModel.selectedTheaters.append(theater)
         }
     }
