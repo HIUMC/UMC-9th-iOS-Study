@@ -54,6 +54,9 @@ struct MainView: View {
                             .environment(router)
                             .environmentObject(viewModel)
                             
+                    case .mobileOrder:
+                      DetailOrderView()
+                        .navigationBarBackButtonHidden(true)
                     }
                 }
         }

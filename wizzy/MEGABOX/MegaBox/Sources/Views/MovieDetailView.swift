@@ -69,7 +69,7 @@ struct MovieDetailView: View {
                 """)
             .font(.PretendardSemiBold18)
             .foregroundStyle(.gray03)
-            .padding(.bottom, 25) // 지금 피그마 줄자 못 써서.. ㅠ
+            .padding(.bottom, 25)
         }
     }
     
