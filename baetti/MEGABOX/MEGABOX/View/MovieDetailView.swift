@@ -12,7 +12,7 @@ struct MovieDetailView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            DetailNavBar(movie: movie)
+            NavigationBar(movie: movie)
             
             MovieDescriptionSection(movie: movie)
 
@@ -22,7 +22,7 @@ struct MovieDetailView: View {
         .padding(.top, 8)
     }
     
-    private struct DetailNavBar: View {
+    private struct NavigationBar: View {
         @Environment(\.dismiss) private var dismiss
         let movie: MovieModel
 
