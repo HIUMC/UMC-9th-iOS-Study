@@ -14,6 +14,8 @@ struct SourceView: View {
     @Environment(NavigationRouter.self) var router
     @EnvironmentObject var viewModel: MovieViewModel
     @State private var isLoggedIn: Bool = false
+    // Provide a single MobileOrderViewModel instance for the flow
+    @State private var mobileOrderViewModel = MobileOrderViewModel()
 
     var body: some View {
         @Bindable var router = router
@@ -44,7 +46,8 @@ struct SourceView: View {
                     InfoManageView(isLoggedIn: $isLoggedIn)
                         .navigationBarBackButtonHidden(true)
                 case .menuDetail:
-                    MenuDetailView()
+                    // Pass the Observation-based view model
+                    MenuDetailView(viewModel: mobileOrderViewModel)
                         .navigationBarBackButtonHidden(true)
                
                 }

@@ -191,7 +191,7 @@ struct MemberInfoView: View {
             }
             Spacer()
             VStack {
-                Image("location")
+                Image("location2")
                 Text("극장별예매")
                     .font(.PretendardMedium(size:16))
             }

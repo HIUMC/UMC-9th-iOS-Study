@@ -30,7 +30,7 @@ struct MobileOrderView: View {
                     
                     // MARK: - 극장 변경 헤
                     TheaterSelectHeaderView()
-                        .padding(.horizontal, 1)
+                        .padding(.horizontal, 0.01)
                     
                     // MARK: - 카드 섹션 (바로 주문, 스토어 교환권, 선물하기)
                     //스토어 교환권, 선물하기는 재사용
@@ -38,6 +38,9 @@ struct MobileOrderView: View {
                     HStack(spacing: 12) {
                         DirectOrderCard()
                             .padding(.leading, 20)
+                            .onTapGesture {
+                                router.push(.menuDetail)
+                            }
 
                         VStack(spacing: 12) {
                             SmallMenuCard(title: "스토어 교환권", imageName: "store")
