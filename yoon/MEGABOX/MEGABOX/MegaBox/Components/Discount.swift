@@ -25,7 +25,7 @@ struct DiscountModifier: ViewModifier {
                 Text("\(originalPrice-discountedPrice)원")
                     .font(.Pretendardmedium14)
                 Text("\(originalPrice)원")
-                    .font(.caption) // 작은 텍스트
+                    .font(.Pretendardregular12) // 작은 텍스트
                     .foregroundStyle(.gray02)
                     .strikethrough(true, color: .gray02)
             }

@@ -12,14 +12,14 @@ import Observation
 final class MobileOrderViewModel {
 
     let recommendedMenus: [MenuItemModel] = [
-        MenuItemModel(menuImage: "lovecombo", name: "러브 콤보", price: 10900, isBest: true, isRecommended: true,discount:nil, isSoldOut: false),
-        MenuItemModel(menuImage: "doublecombo", name: "더블 콤보", price: 24900, isBest: true, isRecommended: true,discount:nil, isSoldOut: false),
-        MenuItemModel(menuImage: "disneyposter", name: "디즈니 픽사 포스터", price: 15900, isBest: false, isRecommended: true,discount:nil,isSoldOut: false)
+        MenuItemModel(menuImage: "lovecombo", name: "러브 콤보", price: 10900, isBest: false, isRecommended: false,discount:nil, isSoldOut: false),
+        MenuItemModel(menuImage: "doublecombo", name: "더블 콤보", price: 24900, isBest: false, isRecommended: false,discount:nil, isSoldOut: false),
+        MenuItemModel(menuImage: "disneyposter", name: "디즈니 픽사 포스터", price: 15900, isBest: false, isRecommended: false,discount:nil,isSoldOut: false)
     ]
 
     let bestMenus: [MenuItemModel] = [
-        MenuItemModel(menuImage: "singlecombo", name: "싱글 콤보", price: 10900,isBest: true, isRecommended: false,discount:nil, isSoldOut: false),
-        MenuItemModel(menuImage: "doublecombo", name: "더블 콤보", price: 24900, isBest: true, isRecommended: false,discount:nil, isSoldOut: false),
+        MenuItemModel(menuImage: "singlecombo", name: "싱글 콤보", price: 10900,isBest: false, isRecommended: false,discount:nil, isSoldOut: false),
+        MenuItemModel(menuImage: "doublecombo", name: "더블 콤보", price: 24900, isBest: false, isRecommended: false,discount:nil, isSoldOut: false),
         MenuItemModel(menuImage: "lovecombopackage", name: "러브 콤보 패키지", price: 32000, isBest: false, isRecommended: false,discount:nil, isSoldOut: false)
     ]
     
