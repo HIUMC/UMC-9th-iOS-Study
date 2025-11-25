@@ -1,6 +1,17 @@
 
+# Xcode
+DerivedData/
+xcuserdata/
 
+# Build artifacts
+build/
+*.xcarchive
+*.ipa
 
+# Secrets
+*.xcconfig
+
+# macOS system files
 .DS_Store
 
 
@@ -8,7 +19,3 @@
 project.xcworkspace/xcuserdata/
 *.codemodel/xcuserdata/
 
-
-**/*Secret.xcconfig
-
-xcuserdata/
