@@ -11,6 +11,10 @@ import Foundation
 struct UserInfoView: View {
     @AppStorage("name") private var name: String = ""
     
+    @State var selectedImage: UIImage? = nil
+    @State var showImagePicker: Bool = false
+    @State var isPressing: Bool = false
+    
     var body: some View {
         //NavigationStack {
             VStack {
@@ -38,51 +42,78 @@ struct UserInfoView: View {
     
     /* 상단 사용자 정보 */
     private var topUserInfoGroup: some View {
-        VStack {
-            /* 상단 HStack */
-            HStack {
-                /* ~~~ 님 */
-                Text("\(name)님")
-                    .font(.PretendardBold(size: 24))
-                
-                /* WELCOME */
-                RoundedRectangle(cornerRadius: 6)
-                    .foregroundStyle(.tag)
-                    .frame(width: 81, height: 25)
-                    .overlay(
-                        Text("WELCOME")
-                            .font(.PretendardMedium(size: 14))
-                            .foregroundStyle(Color.white))
-                
-                Spacer()
-                
-                /* 회원정보 버튼 */
-                NavigationLink(destination: ManageUserInfoView()){
-                    RoundedRectangle(cornerRadius: 16)
-                        .foregroundStyle(.gray07)
-                        .frame(width: 72, height: 28)
-                        .overlay(
-                            Text("회원정보")
-                                .font(.PretendardSemiBold(size: 14))
-                                .foregroundStyle(.white))
+        
+        HStack(spacing: 12) {
+            // 프로필 이미지
+            Group {
+                if let image = selectedImage {
+                    Image(uiImage: image)
+                        .resizable()
+                } else {
+                    Image("icon_profile")
+                        .resizable()
                 }
-            } // end of HStack
+            }.scaleEffect(isPressing ? 0.9 : 1.0) // isPressing에 따라 애니메이션
+                .animation(.easeInOut(duration: 0.2), value: isPressing) // 애니메이션에 딜레이
+                // onLongPressGesture -> 누르는 시간 설정하여 동작할 수 있게 함
+                .onLongPressGesture(minimumDuration: 1.0, pressing: { pressingState in
+                self.isPressing = pressingState
+                }) { // 1초를 채우면 이 코드가 실행
+                showImagePicker = true
+                }
+                .sheet(isPresented: $showImagePicker) {
+                ImagePicker(images: $selectedImage)
+                }
+                .frame(width: 55, height: 55)
+                .scaledToFit()
+                .clipShape(Circle())
             
-            /* 하단 HStack*/
-            HStack {
-                /* 멤버십 포인트 */
-                Text("멤버십 포인트")
-                    .font(.PretendardSemiBold(size: 14))
-                    .foregroundStyle(.gray04)
+            VStack {
+                /* 상단 HStack */
+                HStack {
+                    /* ~~~ 님 */
+                    Text("\(name)님")
+                        .font(.PretendardBold(size: 24))
+                    
+                    /* WELCOME */
+                    RoundedRectangle(cornerRadius: 6)
+                        .foregroundStyle(.tag)
+                        .frame(width: 81, height: 25)
+                        .overlay(
+                            Text("WELCOME")
+                                .font(.PretendardMedium(size: 14))
+                                .foregroundStyle(Color.white))
+                    
+                    Spacer()
+                    
+                    /* 회원정보 버튼 */
+                    NavigationLink(destination: ManageUserInfoView()){
+                        RoundedRectangle(cornerRadius: 16)
+                            .foregroundStyle(.gray07)
+                            .frame(width: 72, height: 28)
+                            .overlay(
+                                Text("회원정보")
+                                    .font(.PretendardSemiBold(size: 14))
+                                    .foregroundStyle(.white))
+                    }
+                } // end of HStack
                 
-                /* 500P */
-                Text("500P")
-                    .font(.PretendardMedium(size: 14))
-                    .foregroundStyle(.black)
-                
-                Spacer()
-            } // end of HStack
-        }.frame(height: 56) // end of VStack
+                /* 하단 HStack*/
+                HStack {
+                    /* 멤버십 포인트 */
+                    Text("멤버십 포인트")
+                        .font(.PretendardSemiBold(size: 14))
+                        .foregroundStyle(.gray04)
+                    
+                    /* 500P */
+                    Text("500P")
+                        .font(.PretendardMedium(size: 14))
+                        .foregroundStyle(.black)
+                    
+                    Spacer()
+                } // end of HStack
+            }.frame(height: 56) // end of VStack
+        }
     }
     
     /* 클럽 멤버십 버튼 */

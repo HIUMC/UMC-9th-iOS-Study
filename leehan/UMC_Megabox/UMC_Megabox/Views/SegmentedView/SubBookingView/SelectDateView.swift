@@ -37,10 +37,6 @@ struct SelectDateView: View {
                             
                     }
                 } // end of HStack
-                
-                
-                
-                
             }
         }
     }
