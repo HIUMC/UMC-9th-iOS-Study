@@ -9,11 +9,10 @@ import SwiftUI
 struct ProfileView: View{
     
     @Environment(NavigationRouter.self) private var router
-    
+    @State private var showImagePicker = false
+    @State private var selectedImages: [UIImage] = []
 
     var body: some View{
-        //@Bindable var router = router
-        
         VStack(alignment: .leading, spacing: 15){
             profileHeaderView()
             clubMembershipView()
@@ -28,21 +27,42 @@ struct ProfileView: View{
 struct profileHeaderView: View {
     @Environment(NavigationRouter.self) private var router
     @EnvironmentObject var auth: LoginViewModel // loginVM의 데이터를 받아온 auth라는 변수
-    /*
-     @StateObject var auth: LoginViewModel
+    @State private var showImagePicker = false
+    @State private var selectedImages: [UIImage] = []
+    
+    
+     //@StateObject var auth: LoginViewModel
     @AppStorage("userName") private var savedName: String =  "이*원"
-     */
     @AppStorage("userPoint") private var savedPoint: Int = 500
+    @AppStorage("profileImageData") private var profileImageData: Data?   // 프사 저장용
     
     var body: some View {
         
-        HStack {
+        HStack(spacing: 16) {
+            // 프로필 이미지
+            profileImageView
+                .onLongPressGesture  {
+                    showImagePicker = true
+                    }
+                     .sheet(isPresented: $showImagePicker) {
+                        ImagePicker(
+                          images: $selectedImages,
+                          selectedLimit: 1      // 프로필 → 한 장만
+                        )
+                    }
+                    .onChange(of: selectedImages) { oldValue, newValue in
+                    // 새 사진이 1장 들어왔을 때 저장
+                        if let image = newValue.first,
+                           let data = image.jpegData(compressionQuality: 0.8) {
+                            profileImageData = data
+                        }
+                    }
             // 왼쪽: 프로필 정보
             VStack(alignment: .leading, spacing: 4) {
 
                 // 이름 + 배지
                 HStack {
-                     Text("\(auth.userName)님") // 6주차에 고친부분
+                     Text("\(savedName)님")
                         .font(.pretendardBold(24))
                         .padding(.leading)
                      
@@ -89,7 +109,37 @@ struct profileHeaderView: View {
             .padding(.top, -20)
         }
         .padding(.top,10)
+        .onAppear {
+                    // 저장된 프로필 이미지 불러오기
+                    if let data = profileImageData,
+                       let img = UIImage(data: data) {
+                        selectedImages = [img]    // 편하게 넣기
+                    }
+                }
     }
+    
+    @ViewBuilder
+       private var profileImageView: some View {
+           Group {
+               if let first = selectedImages.first {
+                   Image(uiImage: first)
+                       .resizable()
+                       .scaledToFill()
+               } else if let data = profileImageData,
+                         let img = UIImage(data: data) {
+                   Image(uiImage: img)
+                       .resizable()
+                       .scaledToFill()
+               } else {
+                   Image("default_profile")   // 기본값
+                       .resizable()
+                       .frame(width:50, height:50)
+                       .padding(.leading, 20)
+               }
+           }
+           .frame(width: 52, height: 52)
+           .clipShape(Circle())
+       }
 }
 
 struct clubMembershipView: View{
@@ -255,11 +305,13 @@ struct couponInfoView: View {
     }
 }
 
-/*
+
  
-#Preview{
+
+// MARK: - ProfileView 전체 프리뷰
+#Preview {
     ProfileView()
-    .environment(NavigationRouter())  //  인스턴스 직접 주입
-  }
-*/
+        .environment(NavigationRouter())
+        .environmentObject(LoginViewModel())
+}
 

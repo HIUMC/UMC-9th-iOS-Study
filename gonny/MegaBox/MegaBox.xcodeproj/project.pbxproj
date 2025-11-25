@@ -66,11 +66,6 @@
 				Module/ViewModels/MovieViewModel.swift,
 				Module/ViewModels/ShowtimeViewModel.swift,
 				Module/Views/BaseTabView.swift,
-				Module/Views/Components/MenuItemCardView.swift,
-				Module/Views/Components/OrderMenuItemCardView.swift,
-				Module/Views/Components/TheaterChangeBarView.swift,
-				Module/Views/Components/TopTheaterBarView.swift,
-				Module/Views/Components/ViewModifier.swift,
 				Module/Views/HomeView.swift,
 				Module/Views/LoginView.swift,
 				Module/Views/MemberInfoView.swift,
@@ -79,6 +74,12 @@
 				Module/Views/OrderMenuListView.swift,
 				Module/Views/ProfileView.swift,
 				Module/Views/SplashView.swift,
+				Module/Views/UIComponents/ImagePicker.swift,
+				Module/Views/UIComponents/MenuItemCardView.swift,
+				Module/Views/UIComponents/OrderMenuItemCardView.swift,
+				Module/Views/UIComponents/TheaterChangeBarView.swift,
+				Module/Views/UIComponents/TopTheaterBarView.swift,
+				Module/Views/UIComponents/ViewModifier.swift,
 				Module/Views/Week4/CalendarView.swift,
 				Module/Views/Week4/MovieSearchView.swift,
 				Module/Views/Week4/MovieSheet.swift,
@@ -524,7 +525,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MegaBox/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진앨범에 대한 접근이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -557,7 +560,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MegaBox/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진앨범에 대한 접근이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
