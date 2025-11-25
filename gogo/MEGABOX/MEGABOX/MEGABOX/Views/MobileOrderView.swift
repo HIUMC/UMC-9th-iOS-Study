@@ -7,12 +7,15 @@
 
 import SwiftUI
 
+// MARK: - 모바일 오더 메인 화면
+// 전체 모바일 오더 UI 구성과 네비게이션을 담당하는 화면
 struct MobileOrderView: View {
     @State private var viewModel = MobileOrderViewModel()
     @Environment(NavigationRouter.self) private var router
     
     var body: some View {
         VStack(spacing: 0) {
+            /// 상단 MEBOX 로고 영역
             HStack {
                 Spacer().frame(width: 45)
                 Image("meboxLogo")
@@ -27,19 +30,23 @@ struct MobileOrderView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 28) {
                   
-                    
-                    // MARK: - 극장 변경 헤
+                    //MARK: - 극장 변경 헤더
                     TheaterSelectHeaderView()
-                        .padding(.horizontal, 1)
+                        .padding(.horizontal, 0.01)
                     
-                    // MARK: - 카드 섹션 (바로 주문, 스토어 교환권, 선물하기)
+                    /// 바로 주문 / 스토어 교환권 / 선물하기 카드 섹션
                     //스토어 교환권, 선물하기는 재사용
 
                     HStack(spacing: 12) {
+                        //MARK: - 바로 주문 박스
                         DirectOrderCard()
                             .padding(.leading, 20)
+                            .onTapGesture {
+                                router.push(.menuDetail)
+                            }
 
                         VStack(spacing: 12) {
+                            //MARK: - 스토어 교환권 / 선물하기 박스
                             SmallMenuCard(title: "스토어 교환권", imageName: "store")
                             SmallMenuCard(title: "선물하기", imageName: "present")
                         }
@@ -49,12 +56,12 @@ struct MobileOrderView: View {
                 
                     
                     //어디서든 팝콘 만나기
-
+                    //MARK: - 어디서든 팝콘 만나기 카드
                     DeliveryCard()
                         .padding(.leading, 20)
 
                        
-                    // MARK: - 추천 메뉴
+                    /// 추천 메뉴 섹션
                     MenuHorizontalSectionView(
                         title: "추천 메뉴",
                         menus: viewModel.recommendedMenus,
@@ -63,7 +70,7 @@ struct MobileOrderView: View {
                     .padding(.leading, 20)
 
                     
-                    // MARK: - 베스트 메뉴
+                    /// 베스트 메뉴 섹션
                     MenuHorizontalSectionView(
                         title: "베스트 메뉴",
                         menus: viewModel.bestMenus,
@@ -82,13 +89,17 @@ struct MobileOrderView: View {
     }
 }
 
+// MARK: - 바로 주문 카드
+
 struct DirectOrderCard: View {
     var body: some View {
         VStack(alignment: .leading) {
+            /// 카드 제목
             Text("바로 주문")
                 .font(.PretendardBold(size: 24))
                 .foregroundColor(.black)
 
+            /// 안내 문구
             Text("이제 줄서지 말고\n모바일로 주문하고 픽업!")
                 .font(.PretendardRegular(size: 12))
                 .foregroundColor(Color(red: 0.47, green: 0.47, blue: 0.47))
@@ -97,6 +108,7 @@ struct DirectOrderCard: View {
 
             Spacer()
 
+            /// 우측 팝콘 이미지
             HStack {
                 Spacer()
                 Image("popcorn1")
@@ -118,18 +130,22 @@ struct DirectOrderCard: View {
     }
 }
 
+// MARK: - 작은 메뉴 카드 ->재사용
+// 스토어 교환권 / 선물하기 카드 UI
 struct SmallMenuCard: View {
     let title: String
     let imageName: String
 
     var body: some View {
         VStack(alignment: .leading) {
+            /// 카드 제목
             Text(title)
                 .font(.PretendardBold(size: 22))
                 .foregroundColor(.black)
 
             Spacer()
 
+            /// 우측 아이콘 이미지
             HStack {
                 Spacer()
                 Image(imageName)
@@ -151,10 +167,13 @@ struct SmallMenuCard: View {
     }
 }
 
+// MARK: - 배달 카드
+// 팝콘·스낵 배달 가능 안내 카드 UI
 struct DeliveryCard: View {
     var body: some View {
         HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 8) {
+                /// 배달 안내 텍스트
                 Text("어디서든 팝콘 만나기")
                     .font(.PretendardBold(size: 24))
                     .foregroundColor(.black)
@@ -167,6 +186,7 @@ struct DeliveryCard: View {
 
             Spacer()
 
+            /// 우측 오토바이 이미지
             Image("motor")
                 .resizable()
                 .scaledToFit()
@@ -184,12 +204,13 @@ struct DeliveryCard: View {
         )
     }
 }
-
-// MARK: - 극장 변경 헤더
+    
+// MARK: - 극장 선택 헤더
+// 현재 선택된 극장 표시 + 극장 변경 버튼 UI
 struct TheaterSelectHeaderView: View {
     var body: some View {
         HStack(alignment: .center) {
-
+        
         
             
 
@@ -242,12 +263,14 @@ struct TheaterSelectHeaderView: View {
 
 
 
-// MARK: - 메뉴 카드
+// MARK: - 단일 메뉴 카드
+// 메뉴 이미지, 제목, 가격을 보여주는 카드 UI
 struct MenuCardView: View {
     let item: MenuItemModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
+            /// 메뉴 이미지
             Image(item.imageName)
                 .resizable()
                 .scaledToFill()
@@ -255,6 +278,7 @@ struct MenuCardView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 12))
             Spacer().frame(height:4)
             
+            /// 메뉴 제목 / 가격
             Text(item.title)
                 .font(.PretendardRegular(size:13))
                 .foregroundColor(.black)
@@ -267,6 +291,7 @@ struct MenuCardView: View {
 }
 
 // MARK: - 메뉴 섹션 (가로 스크롤)
+// 추천 메뉴 / 베스트 메뉴 등 가로 스크롤 메뉴 목록 구성
 struct MenuHorizontalSectionView: View {
     let title: String
     let menus: [MenuItemModel]
@@ -275,9 +300,11 @@ struct MenuHorizontalSectionView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             
+            /// 섹션 제목
             Text(title)
                 .font(.PretendardBold(size:22))
             
+            /// 부제 텍스트 (추천 / 베스트별 다르게 표시)
             if title == "추천 메뉴" {
                 Text("영화 볼때 뭐먹지 고민될 때 추천메뉴!")
                     .font(.PretendardRegular(size: 12))
@@ -293,6 +320,7 @@ struct MenuHorizontalSectionView: View {
                   
             }
             
+            /// 가로 스크롤 메뉴 목록
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 16) {
                     ForEach(menus) { item in
