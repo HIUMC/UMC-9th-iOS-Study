@@ -20,7 +20,7 @@ struct UMC_MegaboxApp: App {
     var body: some Scene {
         
         // 인증 관리자 인스턴스
-        @State var authManager = AuthenticationManager()
+        @State var authManager = AuthorizationManager()
         @State var loginViewModel = LoginViewModel()
         
         

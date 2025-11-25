@@ -11,6 +11,8 @@
 		<string>kakaoplus</string>
 		<string>kakaotalk</string>
 	</array>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>사진 앨범 접근 권한이 필요합니다.</string>
 	<key>TMDB_API_KEY</key>
 	<string>$(TMDB_API_KEY)</string>
 	<key>TMDB_READ_ACCESS_TOKEN</key>

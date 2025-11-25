@@ -45,21 +45,23 @@ struct MovieCardDTO: Identifiable, Hashable, Codable {
     }
 }
 extension MovieCardDTO {
-    
+    // TMDB에서 제공하는 imageBaseURL
+    // 이 baseURL 뒤에 fetch로 받아온 이미지 데이터를 붙여서 사용함
     private var imageBaseURL: String {
         return "https://image.tmdb.org/t/p/w500"
     }
     
     func toDomain() -> MovieCardDomainModel {
+        // baseURL을 이용해서 포스터 URL 생성해줌
         let fullMoviePosterURL = URL(string: imageBaseURL + moviePoster)
         let fullBigPosterURL = URL(string: imageBaseURL + bigPoster)
         
         return MovieCardDomainModel(
             id: id,
-            moviePoster: (fullMoviePosterURL)!,
+            moviePoster: (fullMoviePosterURL)!, // 만들어준 포스터 URL을 파싱
             movieName: movieName,
             people: "1000만", // 하드코딩
-            bigPoster: (fullBigPosterURL)!,
+            bigPoster: (fullBigPosterURL)!, // 만들어준 포스터 URL을 파싱
             subTitle: subTitle,
             explaination: explaination,
             smallPoster: "poster_f1_small", // 하드코딩

@@ -8,7 +8,8 @@
 import SwiftUI
 
 
-// MARK: - 메뉴 상세 페이지
+/// MARK: - 메뉴 상세 페이지
+/// 선택된 메뉴를 보여주고, 상단 네비게이션과 극장 선택, 메뉴 리스트를 구성
 struct MenuDetailView: View {
     
     @Environment(\.dismiss) private var dismiss
@@ -20,7 +21,7 @@ struct MenuDetailView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 20) {
                 
-                // MARK: - 상단 뒤로가기 + 장바구니 + 제목
+                /// 상단 뒤로가기 / 장바구니 / 제목 영역
                 HStack {
                     Button(action: {
                         dismiss()
@@ -52,10 +53,10 @@ struct MenuDetailView: View {
                 .padding(.top, 10)
                 .padding(.horizontal, 20)
                 
-                // MARK: - 극장 선택 바(extension 애매..) ( 일단 밑에 정의는 해 놓음 )
+                /// 극장 선택 헤더 (상세 페이지용 밝은 스타일)
                 TheaterSelectHeaderDetailsView()
                 
-                // MARK: - 상품 카드 리스트 (2열 Grid)
+                /// 메뉴 카드 그리드 (2열 구성)
                 let columns = [
                     GridItem(.flexible(), spacing: 20),
                     GridItem(.flexible(), spacing: 10)
@@ -76,7 +77,8 @@ struct MenuDetailView: View {
     }
 }
 
-// MARK: - 헤더 색상 변경 Modifier
+/// MARK: - 헤더 색상 변경 Modifier
+/// 상세 페이지용 밝은 헤더 배경 스타일 구성
 struct TheaterHeaderStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
@@ -90,6 +92,8 @@ extension View {
     }
 }
 
+/// MARK: - 극장 선택 헤더 Wrapper
+/// TheaterSelectHeadersView 에 Modifier 적용
 struct TheaterSelectHeaderDetailsView: View {
     var body: some View {
         TheaterSelectHeadersView()
@@ -97,7 +101,8 @@ struct TheaterSelectHeaderDetailsView: View {
     }
 }
 
-// MARK: - 극장 변경 헤더 ( 그냥 Modifier로 하기 애매함 )
+/// MARK: - 극장 선택 헤더
+/// 현재 극장 위치 표시 + 극장 변경 버튼 UI
 struct TheaterSelectHeadersView: View {
     var body: some View {
         HStack(alignment: .center) {
@@ -112,6 +117,7 @@ struct TheaterSelectHeadersView: View {
 
                 // 왼쪽: 위치 아이콘 + 강남
                 HStack(spacing: 8) {
+                    /// 위치 아이콘
                     Image("location1")
                         .resizable()
                         .frame(width: 24, height: 24)
@@ -151,13 +157,15 @@ struct TheaterSelectHeadersView: View {
     }
 }
 
-// MARK: - 메뉴 카드
+/// MARK: - 메뉴 카드
+/// 이미지 + 이름 + 가격 + 배지/품절 표시를 포함하는 단일 카드
 struct MenuCardsView: View {
     let item: MenuItemModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             
+            /// 메뉴 이미지 + 배지/품절 Modifier 적용
             Image(item.imageName)
                 .resizable()
                 .scaledToFit()
@@ -168,11 +176,13 @@ struct MenuCardsView: View {
                 .recommendBadge(item.isRecommended)
                 .soldOut(item.isSoldOut)
             
+            /// 메뉴 제목
             Text(item.title)
                 .font(.PretendardRegular(size: 13))
                 .foregroundColor(.black)
                 .lineLimit(1)
             
+            /// 메뉴 가격
             Text("\(item.price)원")
                 .font(.PretendardBold(size: 13))
                 .foregroundColor(.black)
@@ -181,7 +191,8 @@ struct MenuCardsView: View {
     }
 }
 
-// MARK: - BEST 배지 뷰 Modifier
+/// MARK: - BEST 배지 Modifier
+/// 메뉴가 BEST 상품일 때 좌측 상단에 배지를 표시
 struct BestBadgeModifier: ViewModifier {
     let isBest: Bool
     
@@ -199,7 +210,8 @@ struct BestBadgeModifier: ViewModifier {
     }
 }
 
-// MARK: - 추천 배지 뷰 Modifier
+/// MARK: - 추천 배지 Modifier
+/// 추천 상품 표시용 배지
 struct RecommendBadgeModifier: ViewModifier {
     let isRecommended: Bool
     
@@ -217,7 +229,8 @@ struct RecommendBadgeModifier: ViewModifier {
     }
 }
 
-// MARK: - 품절 오버레이 뷰 Modifier
+/// MARK: - 품절 오버레이 Modifier
+/// 품절 상태일 때 어둡게 처리 후 ‘품절’ 텍스트 표시
 struct SoldOutModifier: ViewModifier {
     let isSoldOut: Bool
     
@@ -239,7 +252,7 @@ struct SoldOutModifier: ViewModifier {
     }
 }
 
-// MARK: - 뷰 Extension
+/// MARK: - 메뉴 배지 및 품절 Modifier Extension
 extension View {
     func bestBadge(_ value: Bool) -> some View {
         modifier(BestBadgeModifier(isBest: value))
