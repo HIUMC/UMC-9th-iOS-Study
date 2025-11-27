@@ -28,7 +28,6 @@ struct MemberInfoManageView: View {
     
     /// 상단 네비게이션 바
     private var NavigationBar: some View {
-
         HStack {
             Button(action: { dismiss() }) {
                 Image("leading")

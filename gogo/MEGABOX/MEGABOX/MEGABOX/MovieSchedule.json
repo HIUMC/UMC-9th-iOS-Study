@@ -1,0 +1,385 @@
+{
+    "status": "success",
+    "message": "Showtimes fetched successfully",
+    "data": {
+        "movies": [
+            {
+                "id": "m-001",
+                "title": "어쩔수가없다",
+                "age_rating": "15",
+                "schedules": [
+                    {
+                        "date": "2025-09-22",
+                        "areas": [
+                            {
+                                "area": "강남",
+                                "items": [
+                                    {
+                                        "auditorium": "크리클라이너 1관",
+                                        "format": "2D",
+                                        "showtimes": [
+                                            { "start": "11:30", "end": "13:58", "available": 109, "total": 116 },
+                                            { "start": "14:20", "end": "16:48", "available": 19,  "total": 116 },
+                                            { "start": "17:05", "end": "19:28", "available": 1,   "total": 116 },
+                                            { "start": "19:45", "end": "22:02", "available": 100, "total": 116 },
+                                            { "start": "22:20", "end": "00:04", "available": 116, "total": 116 }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "area": "홍대",
+                                "items": [
+                                    {
+                                        "auditorium": "BTS관 (7층 1관 [Laser])",
+                                        "format": "2D",
+                                        "showtimes": [
+                                            { "start": "09:30", "end": "11:50", "available": 75,  "total": 116 },
+                                            { "start": "12:00", "end": "14:26", "available": 102, "total": 116 },
+                                            { "start": "14:45", "end": "17:04", "available": 88,  "total": 116 }
+                                        ]
+                                    },
+                                    {
+                                        "auditorium": "BTS관 (9층 2관 [Laser])",
+                                        "format": "2D",
+                                        "showtimes": [
+                                            { "start": "11:30", "end": "13:58", "available": 34,  "total": 116 },
+                                            { "start": "14:10", "end": "16:32", "available": 100, "total": 116 },
+                                            { "start": "16:50", "end": "19:00", "available": 13,  "total": 116 },
+                                            { "start": "19:20", "end": "21:40", "available": 92,  "total": 116 }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "date": "2025-09-23",
+                        "areas": [
+                            {
+                                "area": "강남",
+                                "items": [
+                                    {
+                                        "auditorium": "크리클라이너 1관",
+                                        "format": "2D",
+                                        "showtimes": [
+                                            { "start": "10:30", "end": "12:58", "available": 112, "total": 116 },
+                                            { "start": "13:40", "end": "16:08", "available": 54,  "total": 116 },
+                                            { "start": "16:20", "end": "18:48", "available": 22,  "total": 116 },
+                                            { "start": "19:30", "end": "21:58", "available": 97,  "total": 116 }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "area": "홍대",
+                                "items": [
+                                    {
+                                        "auditorium": "BTS관 (7층 1관 [Laser])",
+                                        "format": "2D",
+                                        "showtimes": [
+                                            { "start": "09:50", "end": "12:10", "available": 81,  "total": 116 },
+                                            { "start": "12:30", "end": "14:56", "available": 99,  "total": 116 },
+                                            { "start": "15:20", "end": "17:39", "available": 61,  "total": 116 }
+                                        ]
+                                    },
+                                    {
+                                        "auditorium": "BTS관 (9층 2관 [Laser])",
+                                        "format": "2D",
+                                        "showtimes": [
+                                            { "start": "11:10", "end": "13:38", "available": 45,  "total": 116 },
+                                            { "start": "14:00", "end": "16:22", "available": 88,  "total": 116 },
+                                            { "start": "16:40", "end": "18:58", "available": 24,  "total": 116 },
+                                            { "start": "19:10", "end": "21:30", "available": 90,  "total": 116 }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "date": "2025-09-24",
+                        "areas": [
+                            {
+                                "area": "강남",
+                                "items": [
+                                    {
+                                        "auditorium": "크리클라이너 1관",
+                                        "format": "2D",
+                                        "showtimes": [
+                                            { "start": "11:00", "end": "13:28", "available": 106, "total": 116 },
+                                            { "start": "13:50", "end": "16:18", "available": 33,  "total": 116 },
+                                            { "start": "16:40", "end": "19:08", "available": 5,   "total": 116 },
+                                            { "start": "19:20", "end": "21:48", "available": 84,  "total": 116 },
+                                            { "start": "22:10", "end": "00:34", "available": 116, "total": 116 }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "area": "홍대",
+                                "items": [
+                                    {
+                                        "auditorium": "BTS관 (7층 1관 [Laser])",
+                                        "format": "2D",
+                                        "showtimes": [
+                                            { "start": "10:10", "end": "12:30", "available": 72,  "total": 116 },
+                                            { "start": "12:50", "end": "15:16", "available": 104, "total": 116 },
+                                            { "start": "15:40", "end": "18:00", "available": 76,  "total": 116 }
+                                        ]
+                                    },
+                                    {
+                                        "auditorium": "BTS관 (9층 2관 [Laser])",
+                                        "format": "2D",
+                                        "showtimes": [
+                                            { "start": "11:40", "end": "14:08", "available": 29,  "total": 116 },
+                                            { "start": "14:20", "end": "16:42", "available": 93,  "total": 116 },
+                                            { "start": "17:10", "end": "19:30", "available": 18,  "total": 116 },
+                                            { "start": "19:40", "end": "22:00", "available": 87,  "total": 116 }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "m-002",
+                "title": "F1 더 무비",
+                "age_rating": "12",
+                "schedules": [
+                    {
+                        "date": "2025-09-22",
+                        "areas": [
+                            {
+                                "area": "강남",
+                                "items": [
+                                    {
+                                        "auditorium": "IMAX 1관",
+                                        "format": "IMAX",
+                                        "showtimes": [
+                                            { "start": "10:00", "end": "12:15", "available": 45,  "total": 50 },
+                                            { "start": "13:30", "end": "15:45", "available": 12,  "total": 50 },
+                                            { "start": "17:00", "end": "19:15", "available": 8,   "total": 50 },
+                                            { "start": "20:30", "end": "22:45", "available": 35,  "total": 50 }
+                                        ]
+                                    },
+                                    {
+                                        "auditorium": "4DX 2관",
+                                        "format": "4DX",
+                                        "showtimes": [
+                                            { "start": "11:15", "end": "13:30", "available": 28,  "total": 40 },
+                                            { "start": "15:45", "end": "18:00", "available": 5,   "total": 40 },
+                                            { "start": "19:15", "end": "21:30", "available": 22,  "total": 40 }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "area": "홍대",
+                                "items": [
+                                    {
+                                        "auditorium": "IMAX 3관",
+                                        "format": "IMAX",
+                                        "showtimes": [
+                                            { "start": "09:45", "end": "12:00", "available": 38,  "total": 50 },
+                                            { "start": "13:15", "end": "15:30", "available": 15,  "total": 50 },
+                                            { "start": "16:45", "end": "19:00", "available": 3,   "total": 50 },
+                                            { "start": "20:15", "end": "22:30", "available": 42,  "total": 50 }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "date": "2025-09-23",
+                        "areas": [
+                            {
+                                "area": "강남",
+                                "items": [
+                                    {
+                                        "auditorium": "IMAX 1관",
+                                        "format": "IMAX",
+                                        "showtimes": [
+                                            { "start": "10:30", "end": "12:45", "available": 48,  "total": 50 },
+                                            { "start": "14:00", "end": "16:15", "available": 25,  "total": 50 },
+                                            { "start": "17:30", "end": "19:45", "available": 18,  "total": 50 },
+                                            { "start": "21:00", "end": "23:15", "available": 41,  "total": 50 }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "area": "홍대",
+                                "items": [
+                                    {
+                                        "auditorium": "IMAX 3관",
+                                        "format": "IMAX",
+                                        "showtimes": [
+                                            { "start": "10:00", "end": "12:15", "available": 33,  "total": 50 },
+                                            { "start": "13:30", "end": "15:45", "available": 7,   "total": 50 },
+                                            { "start": "17:00", "end": "19:15", "available": 12,  "total": 50 },
+                                            { "start": "20:30", "end": "22:45", "available": 39,  "total": 50 }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "date": "2025-09-24",
+                        "areas": [
+                            {
+                                "area": "강남",
+                                "items": [
+                                    {
+                                        "auditorium": "IMAX 1관",
+                                        "format": "IMAX",
+                                        "showtimes": [
+                                            { "start": "09:30", "end": "11:45", "available": 42,  "total": 50 },
+                                            { "start": "12:45", "end": "15:00", "available": 18,  "total": 50 },
+                                            { "start": "15:30", "end": "17:45", "available": 6,   "total": 50 },
+                                            { "start": "18:15", "end": "20:30", "available": 29,  "total": 50 },
+                                            { "start": "21:00", "end": "23:15", "available": 44,  "total": 50 }
+                                        ]
+                                    },
+                                    {
+                                        "auditorium": "4DX 2관",
+                                        "format": "4DX",
+                                        "showtimes": [
+                                            { "start": "10:30", "end": "12:45", "available": 15,  "total": 40 },
+                                            { "start": "14:00", "end": "16:15", "available": 3,   "total": 40 },
+                                            { "start": "17:30", "end": "19:45", "available": 1,   "total": 40 },
+                                            { "start": "20:00", "end": "22:15", "available": 25,  "total": 40 }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "m-003",
+                "title": "귀멸의 칼날: 무한성",
+                "age_rating": "15",
+                "schedules": [
+                    {
+                        "date": "2025-09-22",
+                        "areas": [
+                            {
+                                "area": "강남",
+                                "items": [
+                                    {
+                                        "auditorium": "2D",
+                                        "format": "2D",
+                                        "showtimes": [
+                                            { "start": "09:30", "end": "12:20", "available": 85,  "total": 120 },
+                                            { "start": "13:00", "end": "15:50", "available": 23,  "total": 120 },
+                                            { "start": "16:30", "end": "19:20", "available": 2,   "total": 120 },
+                                            { "start": "20:00", "end": "22:50", "available": 78,  "total": 120 },
+                                            { "start": "23:30", "end": "02:20", "available": 95,  "total": 120 }
+                                        ]
+                                    },
+                                    {
+                                        "auditorium": "4DX 3관",
+                                        "format": "4DX",
+                                        "showtimes": [
+                                            { "start": "10:45", "end": "13:35", "available": 15,  "total": 40 },
+                                            { "start": "14:15", "end": "17:05", "available": 4,   "total": 40 },
+                                            { "start": "17:45", "end": "20:35", "available": 1,   "total": 40 },
+                                            { "start": "21:15", "end": "00:05", "available": 28,  "total": 40 }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "area": "홍대",
+                                "items": [
+                                    {
+                                        "auditorium": "2D",
+                                        "format": "2D",
+                                        "showtimes": [
+                                            { "start": "09:00", "end": "11:50", "available": 67,  "total": 120 },
+                                            { "start": "12:30", "end": "15:20", "available": 19,  "total": 120 },
+                                            { "start": "16:00", "end": "18:50", "available": 5,   "total": 120 },
+                                            { "start": "19:30", "end": "22:20", "available": 89,  "total": 120 }
+                                        ]
+                                    },
+                                    {
+                                        "auditorium": "Dolby Cinema 4관",
+                                        "format": "Dolby",
+                                        "showtimes": [
+                                            { "start": "11:00", "end": "13:50", "available": 22,  "total": 60 },
+                                            { "start": "14:30", "end": "17:20", "available": 8,   "total": 60 },
+                                            { "start": "18:00", "end": "20:50", "available": 3,   "total": 60 },
+                                            { "start": "21:30", "end": "00:20", "available": 45,  "total": 60 }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "date": "2025-09-23",
+                        "areas": [
+                            {
+                                "area": "강남",
+                                "items": [
+                                    {
+                                        "auditorium": "2D",
+                                        "format": "2D",
+                                        "showtimes": [
+                                            { "start": "09:45", "end": "12:35", "available": 92,  "total": 120 },
+                                            { "start": "13:15", "end": "16:05", "available": 31,  "total": 120 },
+                                            { "start": "16:45", "end": "19:35", "available": 7,   "total": 120 },
+                                            { "start": "20:15", "end": "23:05", "available": 84,  "total": 120 }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "area": "홍대",
+                                "items": [
+                                    {
+                                        "auditorium": "2D",
+                                        "format": "2D",
+                                        "showtimes": [
+                                            { "start": "09:30", "end": "12:20", "available": 74,  "total": 120 },
+                                            { "start": "13:00", "end": "15:50", "available": 26,  "total": 120 },
+                                            { "start": "16:30", "end": "19:20", "available": 11,  "total": 120 },
+                                            { "start": "20:00", "end": "22:50", "available": 96,  "total": 120 }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "date": "2025-09-24",
+                        "areas": [
+                            {
+                                "area": "강남",
+                                "items": [
+                                    {
+                                        "auditorium": "돌비시네마",
+                                        "format": "2D",
+                                        "showtimes": [
+                                            { "start": "09:15", "end": "12:05", "available": 88,  "total": 120 },
+                                            { "start": "12:45", "end": "15:35", "available": 25,  "total": 120 },
+                                            { "start": "16:15", "end": "19:05", "available": 4,   "total": 120 },
+                                            { "start": "19:45", "end": "22:35", "available": 81,  "total": 120 },
+                                            { "start": "23:15", "end": "02:05", "available": 98,  "total": 120 }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -11,10 +11,9 @@ import Observation
 
 struct LoginView: View {
     @Environment(NavigationRouter.self) var router
+    @Binding var isLoggedIn: Bool
     
     @State private var viewModel = LoginViewModel()
-    @AppStorage("userId") private var storedId: String = ""
-    @AppStorage("userPwd") private var storedPwd: String = ""
     var body: some View {
         VStack {
             navigationBarView
@@ -74,10 +73,11 @@ struct LoginView: View {
     
     private var loginButtonView: some View {
         Button(action: {
-            storedId = viewModel.loginModel.id
-            storedPwd = viewModel.loginModel.pwd
-            print("저장된 아이디: \(storedId), 저장된 비밀번호: \(storedPwd)")
-                           router.path.append(Route.login)
+            let id = viewModel.loginModel.id
+            let pwd = viewModel.loginModel.pwd
+            KeychainService.shared.save(id, for: KeychainService.Key.userID)
+            KeychainService.shared.save(pwd, for: KeychainService.Key.userPassword)
+            isLoggedIn = true
         }) {
             HStack {
                 Spacer()
@@ -106,10 +106,18 @@ struct LoginView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 40, height: 40)
-            Image("kakaoLogo")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 40, height: 40)
+            Button(action: {
+                viewModel.kakaoLogin { success in
+                    if success {
+                        isLoggedIn = true
+                    }
+                }
+            }) {
+                Image("kakaoLogo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
+            }
             Image("appleLogo")
                 .resizable()
                 .scaledToFit()
@@ -130,11 +138,11 @@ struct LoginView: View {
 
 //프리뷰 (과제용/아이폰 11, 16프로)
 #Preview("iPhone 11") {
-    LoginView()
+    LoginView(isLoggedIn: .constant(false))
            .environment(NavigationRouter())
 }
 
 #Preview("iPhone 16 Pro") {
-    LoginView()
+    LoginView(isLoggedIn: .constant(false))
            .environment(NavigationRouter())
 }

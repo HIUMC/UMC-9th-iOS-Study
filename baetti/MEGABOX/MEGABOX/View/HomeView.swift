@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct HomeView: View {
     @Environment(MovieViewModel.self) private var viewModel
@@ -21,6 +22,9 @@ struct HomeView: View {
                 MovieChartSection
                 MovieFeedSection
             }
+        }
+        .task {
+            await viewModel.fetchNowPlaying()
         }
     }
     
@@ -82,14 +86,24 @@ struct HomeView: View {
                                     Button {
                                         router.push(.detail(movie))
                                     } label: {
-                                        Image(movie.poster)
-                                            .resizable()
-                                            .scaledToFit()
+                                        ZStack {
+                                            KFImage(URL(string: movie.poster))
+                                                .resizable()
+                                                .frame(width: 148, height: 212)
+                                                .scaledToFit()
+                                            ProgressView()
+                                                .frame(width: 148, height: 212)
+                                        }
                                     }
                                 } else {
-                                    Image(movie.poster)
-                                        .resizable()
-                                        .scaledToFit()
+                                    ZStack {
+                                        KFImage(URL(string: movie.poster))
+                                            .resizable()
+                                            .frame(width: 148, height: 212)
+                                            .scaledToFit()
+                                        ProgressView()
+                                            .frame(width: 148, height: 212)
+                                    }
                                 }
                                 
                                 Button(action: {}) {
@@ -104,7 +118,9 @@ struct HomeView: View {
                                 }
                                 Text(movie.title)
                                     .font(.bold22)
+                                    .frame(width: 148)
                                     .lineLimit(1)
+                                    .truncationMode(.tail) //...
                                     .padding(.bottom, 3)
                                 
                                 Text("누적관객수 \(movie.countAudience ?? "")")
@@ -178,7 +194,7 @@ struct HomeView: View {
     }
 }
 
-    
+
 #Preview {
     NavigationStack {
         HomeView()

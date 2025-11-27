@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct InfoManageView: View {
+    @Binding var isLoggedIn: Bool
     
     @Environment(\.dismiss) private var dismiss
 
-    @AppStorage("userId") private var savedId: String = "ksh020920"
+    private var userId: String {
+        KeychainService.shared.read(KeychainService.Key.userID) ?? ""
+    }
     @AppStorage("userName") private var savedName: String = "고석현"
     @State private var tempName: String = ""
     
@@ -44,7 +47,7 @@ struct InfoManageView: View {
             
        
             HStack {
-                Text(savedId)
+                Text(userId)
                 Spacer()
             }
             .padding(.vertical, 12)
@@ -73,7 +76,19 @@ struct InfoManageView: View {
             .padding(.vertical, 12)
             .overlay(Rectangle().frame(height: 1).foregroundColor(Color("gray02")), alignment: .bottom)
             
-            Spacer()
+            Button("로그아웃") {
+                KeychainService.shared.deleteMany([
+                    KeychainService.Key.userID,
+                    KeychainService.Key.userPassword,
+                    KeychainService.Key.userName
+                ])
+                isLoggedIn = false
+            }
+            .font(.PretendardMedium(size: 14))
+            .foregroundColor(Color.red)
+            .padding(.top, 20)
+            
+        Spacer()
         }
         .padding(.horizontal, 16)
         .onAppear {
@@ -85,9 +100,9 @@ struct InfoManageView: View {
 
 //프리뷰 (과제용/아이폰 11, 16프로)
 #Preview("iPhone 11") {
-   InfoManageView()
+   InfoManageView(isLoggedIn: .constant(true))
 }
 
 #Preview("iPhone 16 Pro") {
-    InfoManageView()
+    InfoManageView(isLoggedIn: .constant(true))
 }
