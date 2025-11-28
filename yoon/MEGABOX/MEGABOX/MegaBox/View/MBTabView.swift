@@ -23,7 +23,7 @@ struct MBTabView: View {
             }
 
             Tab("모바일 오더", systemImage: "popcorn") {
-                Text("Account View")
+                MobileOrderView()
             }
             
             Tab("마이 페이지", systemImage: "person") {

@@ -36,6 +36,9 @@ struct PathView: View {
                     case .userSetting:
                         UserSettingsView()
                             .navigationBarBackButtonHidden(true)
+                    case .menuDetail:
+                        MenuDetailView()
+                            .navigationBarBackButtonHidden(true)
                     }
                 }
         }
