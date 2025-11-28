@@ -5,6 +5,7 @@
 //  Created by 박정환 on 10/8/25.
 //
 
+
 // 이 파일은 예약(예매) 화면의 상태를 관리하고, 영화/극장/날짜 선택에 따라 상영 시간을 제공합니다.
 
 import Foundation
@@ -18,27 +19,33 @@ final class ReservationViewModel: ObservableObject {
     /// JSON 파싱(DTO → Domain)으로 로드된 실제 도메인 영화 목록
     @Published var domainMovies: [Movie] = []
 
+
     /// 영화 선택 (처음엔 미선택)
     @Published var selectedMovieIndex: Int? = nil
 
     /// 도메인 JSON에서 가져오는 극장 목록
     @Published var theaters: [String] = []
+
     @Published var selectedTheaters: Set<String> = []
 
     /// 날짜 선택 (오늘 포함 일주일)
     @Published var weekDays: [DayItem] = DayItem.thisWeek()
     @Published var selectedDay: DayItem? = nil
 
-    // MARK: - 활성화 상태
+
+
     @Published private(set) var isTheaterEnabled: Bool = false      // 영화 선택 후 활성화
     @Published private(set) var isDateEnabled: Bool = false         // 영화 + 극장 선택 후 활성화
     @Published private(set) var isShowtimeVisible: Bool = false     // 영화 + 극장 + 날짜 모두 선택 시 표시
 
+
     // 상영 시간표
+
     struct Showtime: Identifiable, Hashable { let id = UUID(); let time: String; let seats: String }
     @Published private(set) var showtimes: [String: [Showtime]] = [:] // theater -> showtimes
 
     private var bag = Set<AnyCancellable>()
+
 
     // MARK: - 초기화
     init() {
@@ -76,6 +83,7 @@ final class ReservationViewModel: ObservableObject {
         } catch {
             print("❌ JSON 디코딩 실패:", error)
         }
+
     }
 
     private func bindPipelines() {
@@ -112,7 +120,9 @@ final class ReservationViewModel: ObservableObject {
         )
         .flatMap { [weak self] _, theaters, _ -> AnyPublisher<[String: [Showtime]], Never> in
             guard let self else { return Just([:]).eraseToAnyPublisher() }
+
             let result = self.showtimesFromDomain(for: Array(theaters))
+
             // 약간의 지연을 줘서 비동기 느낌
             return Just(result)
                 .delay(for: .milliseconds(150), scheduler: DispatchQueue.main)
@@ -121,6 +131,7 @@ final class ReservationViewModel: ObservableObject {
         .receive(on: DispatchQueue.main)
         .assign(to: &self.$showtimes)
     }
+
 
     /// 도메인 스케줄에서 극장 목록 업데이트
     private func refreshTheatersFromDomain() {
@@ -151,10 +162,12 @@ final class ReservationViewModel: ObservableObject {
     }
 
     // MARK: - 헬퍼 함수
+
     var currentMovieTitle: String {
         guard let idx = selectedMovieIndex, movies.indices.contains(idx) else { return "영화를 선택하세요" }
         return movies[idx].title
     }
+
 
     // MARK: - 사용자 입력 처리
     func selectMovie(at index: Int) {
@@ -163,11 +176,13 @@ final class ReservationViewModel: ObservableObject {
         selectedDay = nil // 날짜 초기화
         refreshTheatersFromDomain()
     }
+
     func toggleTheater(_ name: String) {
         guard theaters.contains(name) else { return }
         if selectedTheaters.contains(name) { selectedTheaters.remove(name) } else { selectedTheaters.insert(name) }
     }
     func selectTheater(_ name: String) { guard theaters.contains(name) else { return }; selectedTheaters = [name] }
+
     func selectDay(_ day: DayItem) { guard weekDays.contains(day) else { return }; selectedDay = day
         refreshTheatersFromDomain()
     }
@@ -232,7 +247,7 @@ final class ReservationViewModel: ObservableObject {
             } ?? []
             dict[theater] = showtimes
         }
-
+ㅈ
         return dict
     }
 }

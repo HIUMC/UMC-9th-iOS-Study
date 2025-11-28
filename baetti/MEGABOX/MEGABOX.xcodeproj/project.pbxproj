@@ -10,6 +10,8 @@
 		88B34B3B2EBDBF5D00E6738A /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 88B34B3A2EBDBF5D00E6738A /* KakaoSDK */; };
 		88B34B3D2EBDBF5D00E6738A /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 88B34B3C2EBDBF5D00E6738A /* KakaoSDKAuth */; };
 		88B34B3F2EBDBF5D00E6738A /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 88B34B3E2EBDBF5D00E6738A /* KakaoSDKCommon */; };
+		88ECFBE22EC3BF5D00E80317 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 88ECFBE12EC3BF5D00E80317 /* Moya */; };
+		88ECFBF22EC44E9400E80317 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 88ECFBF12EC44E9400E80317 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +46,9 @@
 			files = (
 				88B34B3B2EBDBF5D00E6738A /* KakaoSDK in Frameworks */,
 				88B34B3F2EBDBF5D00E6738A /* KakaoSDKCommon in Frameworks */,
+				88ECFBE22EC3BF5D00E80317 /* Moya in Frameworks */,
 				88B34B3D2EBDBF5D00E6738A /* KakaoSDKAuth in Frameworks */,
+				88ECFBF22EC44E9400E80317 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +94,8 @@
 				88B34B3A2EBDBF5D00E6738A /* KakaoSDK */,
 				88B34B3C2EBDBF5D00E6738A /* KakaoSDKAuth */,
 				88B34B3E2EBDBF5D00E6738A /* KakaoSDKCommon */,
+				88ECFBE12EC3BF5D00E80317 /* Moya */,
+				88ECFBF12EC44E9400E80317 /* Kingfisher */,
 			);
 			productName = MEGABOX;
 			productReference = 88FB9E462E79C87E00DC1634 /* MEGABOX.app */;
@@ -121,6 +127,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				88B34B392EBDBF5D00E6738A /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				88ECFBE02EC3BF5D00E80317 /* XCRemoteSwiftPackageReference "Moya" */,
+				88ECFBF02EC44E9400E80317 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 88FB9E472E79C87E00DC1634 /* Products */;
@@ -155,6 +163,8 @@
 /* Begin XCBuildConfiguration section */
 		88FB9E522E79C88000DC1634 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 88FB9E482E79C87E00DC1634 /* MEGABOX */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -274,6 +284,8 @@
 		};
 		88FB9E552E79C88000DC1634 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 88FB9E482E79C87E00DC1634 /* MEGABOX */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -364,6 +376,22 @@
 				minimumVersion = 2.25.0;
 			};
 		};
+		88ECFBE02EC3BF5D00E80317 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+		88ECFBF02EC44E9400E80317 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.6.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -381,6 +409,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 88B34B392EBDBF5D00E6738A /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
 			productName = KakaoSDKCommon;
+		};
+		88ECFBE12EC3BF5D00E80317 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88ECFBE02EC3BF5D00E80317 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		88ECFBF12EC44E9400E80317 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88ECFBF02EC44E9400E80317 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

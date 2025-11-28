@@ -3,6 +3,8 @@
 //  MEGABOX
 //
 //  Created by 고석현 on 9/26/25.
+//MARK: - {피알 리뷰용으로 변경 내역을 위한 주석 추가 !!}
+ 
 //
 
 import SwiftUI
@@ -13,6 +15,11 @@ struct MemberInfoView: View {
     @AppStorage("userPoints") private var userPoints: Int = 500
     @Environment(NavigationRouter.self) var router
     @EnvironmentObject var viewModel: MovieViewModel
+    
+    
+    //MARK: - 프로필 이미지 상태 변수 추가
+    @State private var showImagePicker = false
+    @State private var profileImage: UIImage? = nil
     
     //MARK: -바디 뷰
     var body: some View {
@@ -27,6 +34,9 @@ struct MemberInfoView: View {
             Spacer()
         }
         .padding(.horizontal)
+        .sheet(isPresented: $showImagePicker) {
+            ImagePicker(selectedImage: $profileImage)
+        }
     }
     
     //MARK: -이름 가운데 글자 마스킹
@@ -41,8 +51,25 @@ struct MemberInfoView: View {
     //MARK: -헤더 뷰
     private var headerView: some View {
         HStack(alignment: .center) {
-            VStack(alignment: .leading, spacing: 6) {
+            VStack(alignment: .leading, spacing: 0) {
                 HStack(spacing: 8) {
+                    Group {
+                        if let profileImage = profileImage {
+                            Image(uiImage: profileImage)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 50, height: 50)
+                                .clipShape(Circle())
+                        } else {
+                            Image(systemName: "person.circle")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                        }
+                    }
+                    .onLongPressGesture(minimumDuration: 1.0) {
+                        showImagePicker = true
+                    }
+                        
                     Text(maskedUserName)
                         .font(.PretendardBold(size:24))
                     HStack(alignment: .center, spacing: 10) {
@@ -80,12 +107,13 @@ struct MemberInfoView: View {
                     }
                 }
                 HStack(spacing: 2) {
+                    Spacer().frame(width: 57)
                     Text("멤버십 포인트")
                         .font(.PretendardSemiBold(size:14))
                         .foregroundColor(.gray04)
                     Spacer().frame(width: 10)
                     Text("\(userPoints)P")
-                        .font(.PretendardBold(size:14))
+                        .font(.PretendardMedium(size:14))
                      
                 }
             }
@@ -191,7 +219,7 @@ struct MemberInfoView: View {
             }
             Spacer()
             VStack {
-                Image("location")
+                Image("location2")
                 Text("극장별예매")
                     .font(.PretendardMedium(size:16))
             }
@@ -213,18 +241,16 @@ struct MemberInfoView: View {
     }
 }
 
-//프리뷰 (과제용/아이폰 11, 16프로)
-#Preview("iPhone 11") {
+
+// MARK: - Preview
+#Preview {
+    // Dummy Router
+    let router = NavigationRouter()
+    
+    // Dummy ViewModel
+    let viewModel = MovieViewModel()
+    
     MemberInfoView()
-    .environment(NavigationRouter())
-    .environmentObject(MovieViewModel())
+        .environment(router)
+        .environmentObject(viewModel)
 }
-
-#Preview("iPhone 16 Pro") {
-    MemberInfoView()
-    .environment(NavigationRouter())
-    .environmentObject(MovieViewModel())
-}
-
-
-

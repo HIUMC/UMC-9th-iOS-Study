@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct MegaBoxApp: App {
     @State private var router = NavigationRouter()
+
     @StateObject private var movieVM = MovieViewModel()
     @StateObject var auth = LoginViewModel()
     @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
@@ -42,6 +43,7 @@ struct MegaBoxApp: App {
                 .environmentObject(movieVM)
              */
             
+
         }
     }
 }
