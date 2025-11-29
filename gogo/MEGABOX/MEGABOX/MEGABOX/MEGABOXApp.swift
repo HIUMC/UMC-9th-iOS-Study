@@ -13,7 +13,7 @@ struct MegaBoxApp: App {
     var body: some Scene {
         WindowGroup {
            
-            ReservationView()
+            SourceView()
                 .environment(router)
                 .environmentObject(viewModel)
         }

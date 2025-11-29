@@ -9,8 +9,11 @@
 import SwiftUI
 
 enum Route: Hashable {
-    case home
-    case login
-    case detail(MovieModel)
-    case profile
+  case home
+  case login
+  case detail(MovieModel)
+  case profile
+  case tab(index: Int)
+  case booking
+  case mobileOrder
 }

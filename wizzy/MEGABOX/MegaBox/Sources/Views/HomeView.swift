@@ -16,6 +16,7 @@ struct HomeView: View {
     @Environment(NavigationRouter.self) var router
     @EnvironmentObject var viewModel: MovieViewModel
 
+    @State private var contentsVM = ContentsViewModel()
     
     @State private var tab: MovieTab = .chart
 
@@ -26,7 +27,7 @@ struct HomeView: View {
                 TopButtonView(select: $tab)
                 switch tab {
                 case .chart:
-                    MovieScrollChart(movies: viewModel.movies) { movie in
+                    MovieScrollChart(movies: contentsVM.movieCards) { movie in
                         router.path.append(Route.detail(movie))
                     }
                 case .upcoming:
@@ -35,6 +36,9 @@ struct HomeView: View {
                 MovieFeedView().padding(.top, 39)
             }
             .padding(.horizontal, 16)
+            .task {
+                await contentsVM.getNowPlayingMovie(language: "ko-KR", page: 1, region: "KR")
+            }
         }
     }
 }
@@ -116,6 +120,8 @@ struct TopButtonView: View {
     
 //MARK: - 무비 카드 1개
 struct MovieCard: View {
+    @Environment(NavigationRouter.self) var router
+    
     let movieModel: MovieModel
     let onTap: () -> Void
     var body: some View {
@@ -128,7 +134,9 @@ struct MovieCard: View {
                     .padding(.bottom, 8)
             }
             
-            Button(action: {}) {
+            Button(action: {
+                router.path.append(Route.tab(index: 1))
+            }) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.purple03)

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 
 
@@ -157,7 +158,14 @@ struct MovieCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Button(action: onTap) {
-                Image(movieModel.poster)
+                KFImage(URL(string: movieModel.poster))
+                    .placeholder {
+                        Image(systemName: "photo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 150, height: 220)
+                            .foregroundColor(.gray)
+                    }
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 150)
@@ -182,7 +190,7 @@ struct MovieCard: View {
             Text(movieModel.title)
                 .font(.PretendardBold(size:22))
             Spacer().frame(height: 2)
-            Text("누적관객수 \(movieModel.countAudience)")
+            Text("누적관객수 \(movieModel.countAudience ?? "")")
                 .font(.PretendardMedium(size:18))
         }
     }

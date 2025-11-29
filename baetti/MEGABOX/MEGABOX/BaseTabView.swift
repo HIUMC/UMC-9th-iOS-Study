@@ -19,7 +19,7 @@ struct BaseTabView: View {
             }
             
             Tab("모바일 오더", systemImage: "popcorn") {
-                Text("프로필 화면")
+                MobileOrderView()
             }
             
             Tab("마이 페이지", systemImage: "person") {
@@ -32,4 +32,6 @@ struct BaseTabView: View {
 #Preview {
     BaseTabView()
         .environment(NavigationRouter())
+        .environment(MovieViewModel())
+        .environment(MobileOrderViewModel())
 }

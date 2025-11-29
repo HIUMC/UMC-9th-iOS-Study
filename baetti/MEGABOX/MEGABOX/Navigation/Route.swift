@@ -9,6 +9,7 @@ import SwiftUI
 
 enum Route: Equatable, Hashable {
     case login
+    case mobileOrderDetail
     case profile
     case detail(MovieModel)
 }
