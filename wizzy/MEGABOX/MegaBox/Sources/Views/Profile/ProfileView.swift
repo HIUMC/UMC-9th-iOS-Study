@@ -7,12 +7,14 @@
 
 import SwiftUI
 
+import PhotosUI
+
 struct ProfileView: View {
     @AppStorage("id") private var storedId: String = "Guest"
     
     @Environment(NavigationRouter.self) var router
     @EnvironmentObject var viewModel: MovieViewModel
-
+    @State private var profileImage: UIImage? = nil
     //@State private var router = NavigationRouter() // 하위뷰에서 이렇게 절대 만들지 말 것!!
     
     var body: some View {
@@ -34,6 +36,8 @@ struct ProfileView: View {
     private var headerView: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
+                ProfileImageView(profileImage: $profileImage)
+                    .padding(.trailing, 8)
                 Text(storedId)
                     .font(.PretendardBold24)
                     .foregroundStyle(.black)
