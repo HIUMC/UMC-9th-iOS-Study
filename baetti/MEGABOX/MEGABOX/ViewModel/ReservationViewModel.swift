@@ -247,7 +247,7 @@ final class ReservationViewModel: ObservableObject {
             } ?? []
             dict[theater] = showtimes
         }
-ㅈ
+
         return dict
     }
 }

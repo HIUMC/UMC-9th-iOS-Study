@@ -25,7 +25,6 @@ struct LoginView: View {
         VStack {
             navigationBar
             Spacer()
-
             
             InputSection
                 .padding(.bottom, 75)
@@ -64,12 +63,6 @@ struct LoginView: View {
                 .font(.medium16)
                 .foregroundColor(.gray03)
                 .padding(.bottom, 4)
-
-
-            Divider()
-                .padding(.bottom, 40)
-
-
             
             Divider()
                 .padding(.bottom, 40)

@@ -11,6 +11,8 @@ struct MemberInfoView: View {
     @Environment(NavigationRouter.self) var router
     
     @AppStorage("nickname") private var nickname: String = ""
+    @State private var showImagePicker = false
+    @State private var profileImage: UIImage? = nil
     
     var body: some View {
         VStack {
@@ -27,55 +29,73 @@ struct MemberInfoView: View {
             
             Spacer()
         }
+        .sheet(isPresented: $showImagePicker) {
+            ImagePicker(image: $profileImage, selectedLimit: 1)
+        }
         .padding(.horizontal, 14)
-        .padding(.top, 103)
+        .padding(.top, 29)
     }
     
     
     //상단 헤더
     private var MemberHeader: some View {
-        VStack(alignment: .leading) {
-            HStack(spacing: 0) {
-                Text(nickname)
-                    .font(.bold24)
-                Text("님")
-                    .font(.bold24)
-                    .padding(.trailing, 5)
-                
-                Text("WELCOME")
-                    .font(.medium14)
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(
-                        RoundedRectangle(cornerRadius: 6, style: .continuous)
-                            .fill(Color.tag)
-                    )
-                Spacer()
-                
-                Button {
-                    // 회원정보 버튼 액션 자리
-                    router.push(.profile)
-                } label: {
-                    Text("회원정보")
-                        .font(.semiBold14)
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 11)
-                        .padding(.vertical, 4)
-                        .background(Capsule().fill(Color.gray07))
+        HStack(alignment: .center, spacing: 14) {
+            Circle()
+                .fill(.gray)
+                .frame(width: 50, height: 50)
+                .overlay {
+                    if let profileImage {
+                        Image(uiImage: profileImage)
+                            .resizable()
+                            .scaledToFill()
+                            .clipShape(Circle())
+                    }
                 }
-                .padding(.vertical, 6)
-            }
-            
-            HStack {
-                Text("멤버십 포인트")
-                    .font(.semiBold14)
-                    .foregroundColor(.gray04)
-                Text("500P")
-                    .font(.medium14)
-                    .foregroundColor(.black)
+                .onLongPressGesture(minimumDuration: 1) {
+                    showImagePicker = true
+                }
+            VStack(alignment: .leading) {
+                HStack(spacing: 0) {
+                    Text(nickname)
+                        .font(.bold24)
+                    Text("님")
+                        .font(.bold24)
+                        .padding(.trailing, 5)
+                    
+                    Text("WELCOME")
+                        .font(.medium14)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(
+                            RoundedRectangle(cornerRadius: 6, style: .continuous)
+                                .fill(Color.tag)
+                        )
+                    Spacer()
+                    
+                    Button {
+                        router.push(.profile)
+                    } label: {
+                        Text("회원정보")
+                            .font(.semiBold14)
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 11)
+                            .padding(.vertical, 4)
+                            .background(Capsule().fill(Color.gray07))
+                    }
+                    .padding(.vertical, 6)
+                }
                 
-                Spacer()
+                HStack {
+                    Text("멤버십 포인트")
+                        .font(.semiBold14)
+                        .foregroundColor(.gray04)
+                    Text("500P")
+                        .font(.medium14)
+                        .foregroundColor(.black)
+                    
+                    Spacer()
+                }
             }
         }
     }
