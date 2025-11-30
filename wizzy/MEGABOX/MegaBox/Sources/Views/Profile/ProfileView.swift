@@ -214,9 +214,3 @@ struct ProfileView: View {
     
     
 }
-
-#Preview {
-    ProfileView()
-        .environment(NavigationRouter())
-        .environmentObject(MovieViewModel())
-}

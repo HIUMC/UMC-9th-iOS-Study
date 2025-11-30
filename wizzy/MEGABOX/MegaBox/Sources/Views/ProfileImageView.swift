@@ -49,7 +49,3 @@ struct ProfileImageView: View {
             }
     }
 }
-
-#Preview {
-    ProfileImageView(profileImage: .constant(nil)) // 기본 이미지를 표시하도록 nil 전달
- }

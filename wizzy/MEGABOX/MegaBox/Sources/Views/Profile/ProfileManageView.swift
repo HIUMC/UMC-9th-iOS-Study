@@ -88,7 +88,3 @@ struct ProfileManageView: View {
     }
     
 }
-
-#Preview {
-    ProfileManageView()
-}
