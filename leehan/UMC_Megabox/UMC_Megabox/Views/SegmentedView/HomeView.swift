@@ -40,7 +40,7 @@ struct HomeView: View {
                     
                     MovieBoardView
                     
-                }//.padding() /* end of LazyGrid */
+                } /* end of LazyGrid */
             }.padding(.horizontal)
             .onAppear {
                 Task {
