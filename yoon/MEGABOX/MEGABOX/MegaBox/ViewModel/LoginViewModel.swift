@@ -28,8 +28,7 @@ class LoginViewModel: ObservableObject {
     }
     // 자동 로그인
     func autoLogin() {
-        guard let savedID = keychainService.load(account: "userId", service: "com.megabox"),
-              let savedPwd = keychainService.load(account: savedID, service: "com.megabox")
+        guard let savedID = keychainService.load(account: "userId", service: "com.megabox")
                 // ID -> Pwd 가져오기
         else {
             print("자동 로그인 실패 : 저장된 로그인 정보 없음")

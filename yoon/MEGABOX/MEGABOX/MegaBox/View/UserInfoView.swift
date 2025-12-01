@@ -7,12 +7,16 @@
 
 import Foundation
 import SwiftUI
+import PhotosUI
 
 struct UserInfoView: View {
     @EnvironmentObject var loginVM: LoginViewModel
-    @Environment(NavigationRouter.self) var router
-    var body: some View {
+    @EnvironmentObject var router: NavigationRouter
         
+    
+    @State private var uiImage: UIImage? = nil
+    
+    var body: some View {
         VStack{
             Spacer().frame(height:59)
             
@@ -49,18 +53,23 @@ struct UserInfoView: View {
     }
         
         private var ProfileHeader:some View {
+            HStack{
+                ProfileImageView(uiImage: $uiImage)
+                
+                Spacer().frame(width:12)
             VStack(alignment: .leading){
                 HStack {
-                    Text("\(loginVM.userName ?? "회원")님")
-                        .font(.PretendardBold24)
-                    
-                    Text("WELCOME")
-                        .padding(.horizontal, 8)
-                        .padding(.vertical,4)
-                        .font(.Pretendardmedium14)
-                        .foregroundStyle(.white)
-                        .background(.tag)
-                        .clipShape(RoundedRectangle(cornerRadius: 6))
+                            Text("\(loginVM.userName ?? "회원")님")
+                                .font(.PretendardBold24)
+                            
+                            Text("WELCOME")
+                                .padding(.horizontal, 8)
+                                .padding(.vertical,4)
+                                .font(.Pretendardmedium14)
+                                .foregroundStyle(.white)
+                                .background(.tag)
+                                .clipShape(RoundedRectangle(cornerRadius: 6))
+                
                     
                     Spacer()
                     
@@ -81,6 +90,7 @@ struct UserInfoView: View {
                     Text("500P")
                         .font(.Pretendardmedium14)
                         .foregroundStyle(.black)
+                }
                 }
             }
         }
@@ -168,7 +178,6 @@ struct UserInfoView: View {
                         .frame(width:36,height:36)
                     Text(title)
                         .font(.Pretendardmedium16)
-                    
                 }
             }
         }
@@ -176,9 +185,13 @@ struct UserInfoView: View {
 
 struct UserInfo_Preview: PreviewProvider {
     static var previews: some View {
+        let router = NavigationRouter()
+        let loginVM = LoginViewModel()
+        
         devicePreviews {
             UserInfoView()
-                .environment(NavigationRouter())
+                .environmentObject(router)
+                .environmentObject(loginVM)
                 .environment(MovieViewModel())
         }
     }
