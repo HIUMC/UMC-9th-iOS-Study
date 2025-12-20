@@ -9,6 +9,13 @@ import SwiftUI
 
 struct UserInfoView: View {
     
+    @GestureState private var isDetectingLongPress = false
+    @State private var completedLongPress = false
+    
+    @State private var showImagePicker = false
+    @State private var profileImage: UIImage? = nil // 선택된 프로필 이미지
+    
+    
     @AppStorage("id") var userID: String = ""
     @AppStorage("pwd") var userPwd: String = ""
     @AppStorage("name") var userName: String = ""
@@ -19,6 +26,18 @@ struct UserInfoView: View {
     @State var userInfoViewModel = UserInfoViewModel() // 뷰 내부에서 ViewModel 인스턴스 생성 및 관리
 
     
+
+    var longPress: some Gesture {
+            LongPressGesture(minimumDuration: 2)
+                .updating($isDetectingLongPress) { currentState, gestureState,
+                        transaction in
+                    gestureState = currentState
+                    transaction.animation = Animation.easeIn(duration: 0.2)
+                }
+                .onEnded { finished in
+                    showImagePicker = true
+                }
+        }
 
 
     var body: some View {
@@ -35,55 +54,85 @@ struct UserInfoView: View {
 
         }
         .padding(.horizontal,14)
+        .sheet(isPresented: $showImagePicker) {
+                    ImagePicker(selectedImage: $profileImage)
+                } //사진 선택으로 picker 연결
     }
         
     
-    //회원정보 헤더
     private var userInfo: some View{
-        VStack(alignment: .leading){
+        HStack{
+            //회원 이미지 선택 아이콘
+            Button(action:{showImagePicker = true})
+            {
+                //앨범에서 선택한 이미지
+                if let image = profileImage {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 55, height: 55)
+                                        .clipShape(Circle())
+                } else {
+                    Image(.profile)
+                        .resizable()
+                        .frame(width: 55, height: 55)
+                        .clipShape(Circle())
+                }
+            }
+            .gesture(longPress) 
+            
             //이름,welcome,회원정보
-            HStack{
-                Text("\(userName)님")
-                .font(.PretendardBold(size: 24))
-                .padding(.trailing, 3)
-                
-                RoundedRectangle(cornerRadius:6)
-                    .frame(width:81,height:25)
-                    .foregroundStyle(.tag)
-                    .overlay(
-                        Text("WELCOME")
-                            .font(.PretendardRegular(size: 14))
-                            .foregroundStyle(.white01))
-                
-                Spacer()
+
+            VStack(alignment: .leading){
+                HStack{
                     
-                 
-                Button(action: { container.navigationRouter.path.append(NavigationDestination.userinfo)
-                }) {
-                    RoundedRectangle(cornerRadius: 16)
-                        .frame(width:72,height:28)
-                        .foregroundStyle(.gray07)
+                    
+                    
+                    Text("\(userName)님")
+                        .font(.PretendardBold(size: 24))
+                        .padding(.trailing, 3)
+                    
+                    RoundedRectangle(cornerRadius:6)
+                        .frame(width:81,height:25)
+                        .foregroundStyle(.tag)
                         .overlay(
-                            Text("회원정보")
+                            Text("WELCOME")
                                 .font(.PretendardRegular(size: 14))
                                 .foregroundStyle(.white01))
+                    
+                    Spacer()
+                    
+                    
+                    Button(action: { container.navigationRouter.path.append(NavigationDestination.userinfo)
+                    }) {
+                        RoundedRectangle(cornerRadius: 16)
+                            .frame(width:72,height:28)
+                            .foregroundStyle(.gray07)
+                            .overlay(
+                                Text("회원정보")
+                                    .font(.PretendardRegular(size: 14))
+                                    .foregroundStyle(.white01))
                     }
-                 
-            }//HStack_end
+                    
+                }//HStack_end
                 
-            //멤버십 포인트
+                
+                //멤버십 포인트
                 HStack{
                     Text("멤버십 포인트")
                         .font(.PretendardRegular(size: 14))
                         .foregroundStyle(.gray04)
-
+                    
                     Text("500P")
                         .font(.PretendardRegular(size: 14))
                         .foregroundStyle(.black01)
                 }//HStack_end
                 
-        }//VStack_end
+            }//VStack_end
+        }//HStack_end
     }
+    
+
     
     private var clubMembership: some View{
         Button(action:{/* 회원정보 액션 */}){
@@ -201,6 +250,7 @@ struct InfoIcons : View{
         }
     }
 }
+ 
 #Preview {
     UserInfoView()
         .environment(NavigationRouter())

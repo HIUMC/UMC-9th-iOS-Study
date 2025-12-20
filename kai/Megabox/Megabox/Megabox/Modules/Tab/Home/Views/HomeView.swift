@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct HomeView: View {
     @EnvironmentObject var container: DIContainer
@@ -20,7 +21,8 @@ struct HomeView: View {
                 if viewModel.selectedHeaderTab == .home {
                     SegmentedTabView(viewModel: viewModel)
                     MovieCardSection(viewModel: viewModel)
-                if viewModel.selectedSegment == .chart {  MovieFeedHeader()
+                if viewModel.selectedSegment == .chart {
+                        MovieFeedHeader()
                         MovieFeedSection(viewModel: viewModel)
                     }
                 } else {
@@ -31,6 +33,10 @@ struct HomeView: View {
             }
         }
         .navigationBarHidden(true)
+        .task{
+            //뷰가 나타날 때 API 호출
+            await viewModel.fetchNowPlayingMovies()
+        }
     }
     
     private var topHeader : some View {
@@ -128,23 +134,30 @@ private struct MovieCardView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Image(movie.imageAssetName)
+            KFImage(movie.posterURL)
+                .placeholder{
+                    ProgressView()
+                        .frame(width: 148, height: 200)
+                        .background(Color.gray06)
+                        .cornerRadius(8)
+                }
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 148, height: 200)
+                .cornerRadius(8)
+                .clipped()
                 
             Spacer().frame(height:8)
+            
             Button(action: {
                 // 액션
             }) {
-                // ⭐️ ZStack을 사용하여 배경 위에 텍스트를 쌓습니다. (버튼의 레이블)
                 ZStack {
-                    // 1. 배경 (보라색 테두리)
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.purple03, lineWidth: 1) // ⭐️ Purple 색상 사용 가정
+                        .stroke(Color.purple03, lineWidth: 1) 
                         .frame(width: 148, height: 36)
                     
-                    // 2. 텍스트
+                    
                     Text("바로 예매")
                         .font(.caption) // 텍스트 크기 조정
                         .fontWeight(.bold)

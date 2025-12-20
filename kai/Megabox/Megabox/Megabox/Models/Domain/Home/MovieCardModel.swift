@@ -7,16 +7,16 @@
 
 import Foundation
 
-// MARK: - 1. Model: 순수 데이터 정의
+// MARK: 순수 데이터 정의
 struct MovieCardModel: Identifiable, Hashable {
-    // 고유 식별자 (Hashable 및 Identifiable 요구사항 충족)
-    let id = UUID()
-    
-    let title: String
-    let imageAssetName: String // 에셋 목록 기반의 포스터 이미지 이름
-    let releaseDate: String? // 개봉일
-    let audienceCount: String // 누적 관객수
+    let id: Int               // API에서 id를 받으므로 Identifiable을 위해 Int로 변경
+    let title: String         // 영화 제목
+    let posterURL: URL?       // Kingfisher가 사용할 포스터 이미지 URL
+    let releaseDate: String?  // 개봉일
+    let audienceCount: String // 누적 관객수 (하드코딩)
+    let rating: String        // 영화 관람 등급 (하드코딩)
 }
+
 
 // MARK: - Route/Segment 정의
 enum MovieSegment: String, CaseIterable, Hashable {

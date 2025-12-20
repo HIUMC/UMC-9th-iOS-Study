@@ -8,8 +8,7 @@
 import SwiftUI
 
 
-// MARK: - MovieDetailView: F1 영화 상세 페이지
-/*
+
 struct MovieDetailView: View {
     let movie: MovieDetailModel
     
@@ -25,7 +24,6 @@ struct MovieDetailView: View {
                 VStack(alignment: .leading, spacing: 0) {
                     
                     // 커스텀 네비게이션 바 높이만큼 Spacer로 밀어내어 내용이 가려지지 않게 함
-                    Spacer().frame(height: 44 + safeAreaInsets.top)
                     
                     posterSection
                     textSummarySection
@@ -63,7 +61,6 @@ struct MovieDetailView: View {
             .frame(height: 44)
             .padding(.horizontal, 8)
         }
-        .padding(.top, safeAreaInsets.top)
         .background(.ultraThinMaterial)
     }
     
@@ -72,7 +69,7 @@ struct MovieDetailView: View {
             Image(movie.detailPosterAssetName)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(maxWidth: .infinity, height: 280)
+                .frame(maxWidth: .infinity)
                 .clipped()
         }
     }
@@ -203,4 +200,3 @@ private struct ReviewContentSection: View {
         MovieDetailView(movie: mockMovie)
     }
 }
-*/

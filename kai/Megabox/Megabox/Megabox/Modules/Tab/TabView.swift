@@ -40,7 +40,6 @@ struct BaseTabView: View {
                 }
                 .tag(TabItem.userinfo)
         }
-        // 선택 색상(원하면 프로젝트 컬러로 교체 가능: .tint(.purple03))
         .tint(.purple)
 
         // iOS 기본 Glass(blur) 탭바 느낌 유지

@@ -66,7 +66,7 @@ extension Font {
     }
     
     static func PretendardLight(size: CGFloat) -> Font {
-        return .pretend(type: .medium, size: size)
+        return .pretend(type: .light, size: size)
     }
     
     static func PretendardExtraLight(size: CGFloat) -> Font {
