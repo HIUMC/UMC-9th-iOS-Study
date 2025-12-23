@@ -35,6 +35,7 @@ struct MemberInfoView: View {
         }
         .padding(.horizontal)
         .sheet(isPresented: $showImagePicker) {
+            //ImagePicker 구조체
             ImagePicker(selectedImage: $profileImage)
         }
     }
