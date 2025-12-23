@@ -125,20 +125,24 @@ struct profileHeaderView: View {
                    Image(uiImage: first)
                        .resizable()
                        .scaledToFill()
+                       .clipShape(Circle())
+
                } else if let data = profileImageData,
                          let img = UIImage(data: data) {
                    Image(uiImage: img)
                        .resizable()
                        .scaledToFill()
+                       .clipShape(Circle())
+
                } else {
                    Image("default_profile")   // 기본값
                        .resizable()
-                       .frame(width:50, height:50)
+                       .scaledToFit()
+                       .frame(width:55, height:55)
                        .padding(.leading, 20)
                }
            }
            .frame(width: 52, height: 52)
-           .clipShape(Circle())
        }
 }
 
